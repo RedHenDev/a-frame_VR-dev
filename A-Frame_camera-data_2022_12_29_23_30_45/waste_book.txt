@@ -1,0 +1,73 @@
+Legacy loco.js system -- working, but squashing all entities into 0 0 0 from start
+
+/* Custom A-Frame component
+Fires a specified event on this entity on a regular timed interval */
+
+AFRAME.registerComponent('locomotion', {
+        init: function () {
+          console.log(this.data);
+        },
+  
+        tick: function () {
+          
+          let theta=document.querySelector("#subject").object3D.rotation.y;
+          
+          let pitch=-document.querySelector("#subject").object3D.rotation.x;
+          
+          //console.log('brrr');
+          let speed=-0.01; 
+          
+          yPos -= pitch*speed;  
+          zPos -= Math.cos(theta)*speed;
+          xPos -= Math.sin(theta)*speed;
+          var els = document.querySelectorAll('.clickable');
+for (var i = 0; i < els.length; i++) {
+  els[i].setAttribute("position", "" + xPos + " " + yPos + " " + zPos);
+}
+          
+          // **** Old system
+// document.querySelector("#subject").object3D.position.z += Math.cos(theta)*speed;
+//           document.querySelector("#subject").object3D.position.x += Math.sin(theta)*speed;
+          // ****
+        
+          /*
+          New system
+        yPos = document.querySelector("#subject").object3D.position.y += pitch*speed;  
+        
+          zPos += Math.cos(theta)*speed;
+          xPos += Math.sin(theta)*speed;
+          document.querySelector("#subject").setAttribute("position", "" + xPos + " " + yPos + " " + zPos);
+         */ 
+         
+        }
+      });
+
+
+
+&&
+
+<a-entity id="rig"
+          movement-controls
+          position="0 0 0">
+      
+      <a-camera id="subject" locomotion="Engine on!" log-position-data="output:#hud" position="0 1.6 0"
+            look-controls="pointerLockEnabled: true">
+    
+<!--         <a-entity line="start: -0.02 0 0; end: 0 0 -5; color: green">
+          </a-entity> -->
+        
+        <a-entity
+          cursor="fuse: true; fuseTimeout: 1000;"
+          raycaster="objects:.clickable;"
+          geometry="primitive:box; width:0.2;  height:0.2; depth:0.2;"
+          material="color:magenta;"
+          position="0 0 -2;"
+          animation__fusing="property:rotation; from: 0 0 0; to: 0 0 360; dur: 1000; startEvents: fusing;"
+          animation__reset="property:scale; from: 0.2 0.2 0.2; to: 1 1 1; dur: 500; startEvents: mouseleave;"
+          ></a-entity>
+     
+        <a-plane id="hud" position = "0 1 -2" text="color:yellow; xOffset: 0.5; width:1.9;" material="color:black">
+        </a-plane>
+      </a-camera>
+        
+        </a-entity> <!-- end of rig wrapper-->
