@@ -12,25 +12,24 @@
   </head>
 
   <body>
-    <a-scene fog="type: linear; color: #0FE; far:220;">
-      <!-- Allow assets time to load.-->
+    <a-scene fog="type: linear; color: #00FFEF; far:128;">
+      
+			<!-- Allow assets time to load.-->
       <a-assets timeout="100000">
 
 				<!-- Crossorigin to permit loading images -->
-				<img crossorigin="local" id="imgCity" src="eperquerie.png">
-				<!-- Load as video for controls? -->
-				<img crossorigin="local" id="imgBear" src="bearwalking.gif" autoplay="true" loop="true">
 				<img crossorigin="local" id="imgJojo1" src="adventure_jojo.jpg">
 				<img crossorigin="local" id="imgJojo2" src="jojo_panda.png">
+				<img crossorigin="local" id="imgBloop1" src="bloop_1.png">
   		</a-assets>
 
   <!-- 360-degree image. Default rad is 100-->
   <a-sky id="image-360" radius="100" src="#imgJojo2"></a-sky>
       
       <!-- Blue point light, 5 meters in the air. -->
-<a-light type="point" color="white" position="0 5 20"></a-light>
+<a-light type="point" color="white" position="0 22 20"></a-light>
       
-      <a-light type="point" color="white" position="0 12 -20"></a-light>
+      <a-light type="directional" color="pink" position="0 22 -20"></a-light>
       
       <a-entity id="rig" movement-controls>
       <a-entity id="subject" 
@@ -39,9 +38,6 @@
                 look-controls  
                 locomotion="Engine on!" 
                 log-position-data="output:#hud">
-    
-<!--         <a-entity line="start: -0.02 0 0; end: 0 0 -5; color: green">
-          </a-entity> -->
         
         <a-entity
           cursor="fuse: true; fuseTimeout: 1000;"
@@ -53,7 +49,8 @@
           animation__reset="property:scale; from: 0.2 0.2 0.2; to: 1 1 1; dur: 500; startEvents: mouseleave;"
           ></a-entity>
      
-        <a-plane id="hud" 
+        <a-plane id="hud"
+								 visible="false"
                  position = "-2 2 -4" 
                  rotation = "25 25 0" 
   text="color:yellow; xOffset: 0.5; width:1.9;" 
@@ -62,15 +59,14 @@
       </a-entity> <!-- rig end -->
       </a-entity> <!-- camera end -->
 
-        <a-sphere class="clickable" position="4.2 -5 -5" radius="2" color="#00EEFF" shadow id="mySphere"></a-sphere>
+			<a-sphere class="clickable" position="4.2 -5 -5" radius="2" color="#00EEFF" shadow id="mySphere"></a-sphere>
       
       <a-sphere class="clickable" position="-4 3 -9" radius="1" color="rgb(0,255,0)" shadow id="mySphere2"></a-sphere>
 			
+			<!-- Giant panel paintings -->
 			<a-box position="0 8 12" scale="10 10 1" material="src: #imgJojo1"></a-box>
-        
-      <a-box position="-1 0.5 -3" rotation="0 45 0" material="src: #imgBear"></a-box>
-      <a-sphere class="clickable" position="0 1.25 -5" radius="1.25" color="#00FF00"></a-sphere>
-      <a-cylinder class="clickable" position="1 0.75 -7" radius="0.5" height="1.5" color="#0000FF"></a-cylinder>
+			<a-box position="0 8 12" scale="10 10 1" material="src: #imgJojo1"></a-box>
+
 			<!-- tunnel -->
 			<a-torus class="clickable" position="1 4 -4" radius="0.5" height="1.5" color="#DD00DD"></a-torus>
 			<a-torus class="clickable" position="1 4 -5" radius="0.5" height="1.5" color="#EE00EE"></a-torus>
