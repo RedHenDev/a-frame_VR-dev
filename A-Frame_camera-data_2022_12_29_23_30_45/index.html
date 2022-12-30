@@ -8,19 +8,19 @@
   <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
 -->
 
-<!-- NB defer is crucial here! -->
-    <script src="sphereFly.js" defer></script>
-    <!-- NB must not defer these scripts, else
+  		<!-- NB defer is crucial here! -->
+      <script src="sphereFly.js" defer></script>
+      <!-- NB must not defer these scripts, else
             text will not render to HUD -->
       <script src="main.js"></script>
-        <script src="loco.js"></script>
+      <script src="loco.js"></script>
 
   </head>
 
   <body>
-    <a-scene fog="type: linear; color: #0FE; far:220;">
+    <a-scene fog="type:linear;color:#0FE;far:220;">
       <!-- Allow assets time to load.-->
-      <a-assets timeout="100000">
+      <a-assets timeout="10000">
 
 				<!-- Crossorigin to permit loading images -->
 				<img crossorigin="local" id="imgCity" src="eperquerie.png">
@@ -30,8 +30,7 @@
 				<img crossorigin="local" id="imgJojo2" src="jojo_panda.png">
   		</a-assets>
 
-  <!-- 360-degree image. Default rad is 100-->
-  <a-sky id="image-360" radius="100" src="#imgCity"></a-sky>
+  
       
       <!-- Blue point light, 5 meters in the air. -->
 <a-light type="point" color="white" position="0 5 20"></a-light>
@@ -39,6 +38,9 @@
       <a-light type="point" color="white" position="0 12 -20"></a-light>
       
       <a-entity id="rig" movement-controls>
+			<!-- 360-degree image. Default rad is 10-->
+  		<a-sky id="image-360" radius="5" 
+				 src="#imgCity"></a-sky>
       <a-entity id="subject" 
                 camera
                 position="0 1.6 0"
@@ -50,17 +52,17 @@
           </a-entity> -->
         
         <a-entity
-          cursor="fuse: true; fuseTimeout: 1000;"
+          cursor="fuse: true; fuseTimeout: 2000;"
           raycaster="objects:.clickable;"
           geometry="primitive:box; width:0.2;  height:0.2; depth:0.2;"
           material="color:magenta;"
           position="0 0 -3;"
-          animation__fusing="property:rotation; from: 0 0 0; to: 0 0 360; dur: 1000; startEvents: fusing;"
-          animation__reset="property:scale; from: 0.2 0.2 0.2; to: 1 1 1; dur: 500; startEvents: mouseleave;"
+          animation__fusing="property:rotation; from: 0 0 0; to: 0 0 360; dur: 2000; startEvents: fusing;"
+          animation__reset="property:scale; from: 0.7 0.7 0.7; to: 1 1 1; dur: 333; startEvents: mouseleave;"
           ></a-entity>
      
         <a-plane id="hud" 
-                 position = "-2 2 -4" 
+                 position = "-2 1.5 -3" 
                  rotation = "25 25 0" 
   text="color:yellow; xOffset: 0.5; width:1.9;" 
                  material="color:yellow">
@@ -81,7 +83,7 @@
         
       <a-box position="-1 0.5 -3" rotation="0 45 0" material="src: #imgCity" gif=""></a-box>
 			
-      <a-sphere class="clickable" position="0 1.25 -5" radius="1.25" color="#00FF00"></a-sphere>
+      <a-sphere class="clickable" position="9 1.25 -5" radius="1.25" color="#00FF00"></a-sphere>
       <a-cylinder class="clickable" position="1 0.75 -7" radius="0.5" height="1.5" color="#0000FF"></a-cylinder>
 			<!-- tunnel -->
 			<a-torus position="0 4 -5" radius="0.7" height="1.5" color="#DD00DD"></a-torus>
