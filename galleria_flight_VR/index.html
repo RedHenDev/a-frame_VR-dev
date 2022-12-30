@@ -15,12 +15,12 @@
     <a-scene fog="type: linear; color: #00FFEF; far:128;">
       
 			<!-- Allow assets time to load.-->
-      <a-assets timeout="100000">
+      <a-assets timeout="10000">
 
 				<!-- Crossorigin to permit loading images -->
 				<img crossorigin="local" id="imgJojo1" src="adventure_jojo.jpg">
 				<img crossorigin="local" id="imgJojo2" src="jojo_panda.png">
-				<img crossorigin="local" id="imgBloop1" src="bloop_1.png">
+				<img crossorigin="local" id="imgBloop1" src="bloop_fish_1.png">
   		</a-assets>
 
   <!-- 360-degree image. Default rad is 100-->
@@ -63,9 +63,9 @@
       
       <a-sphere class="clickable" position="-4 3 -9" radius="1" color="rgb(0,255,0)" shadow id="mySphere2"></a-sphere>
 			
-			<!-- Giant panel paintings -->
+			<!-- Giant paintings -->
 			<a-box position="0 8 12" scale="10 10 1" material="src: #imgJojo1"></a-box>
-			<a-box position="0 8 12" scale="10 10 1" material="src: #imgJojo1"></a-box>
+			<a-box position="-20 8 12" scale="30 20 1" material="src: #imgBloop1"></a-box>
 
 			<!-- tunnel -->
 			<a-torus class="clickable" position="1 4 -4" radius="0.5" height="1.5" color="#DD00DD"></a-torus>

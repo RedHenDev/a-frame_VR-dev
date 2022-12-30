@@ -2,6 +2,10 @@
 <html>
   <head>
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+		<!-- Let's see if we can get gifs to work... -->
+		<script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+  <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
+
 <!-- NB defer is crucial here! -->
     <script src="sphereFly.js" defer></script>
     <!-- NB must not defer these scripts, else
@@ -19,7 +23,7 @@
 				<!-- Crossorigin to permit loading images -->
 				<img crossorigin="local" id="imgCity" src="eperquerie.png">
 				<!-- Load as video for controls? -->
-				<img crossorigin="local" id="imgBear" src="bearwalking.gif" autoplay="true" loop="true">
+				<img crossorigin="local" id="imgBear" src="bearwalking.gif">
 				<img crossorigin="local" id="imgJojo1" src="adventure_jojo.jpg">
 				<img crossorigin="local" id="imgJojo2" src="jojo_panda.png">
   		</a-assets>
@@ -68,7 +72,7 @@
 			
 			<a-box position="0 8 12" scale="10 10 1" material="src: #imgJojo1"></a-box>
         
-      <a-box position="-1 0.5 -3" rotation="0 45 0" material="src: #imgBear"></a-box>
+      <a-box position="-1 0.5 -3" rotation="0 45 0" material="shader:gif; src: #imgBear" gif=""></a-box>
       <a-sphere class="clickable" position="0 1.25 -5" radius="1.25" color="#00FF00"></a-sphere>
       <a-cylinder class="clickable" position="1 0.75 -7" radius="0.5" height="1.5" color="#0000FF"></a-cylinder>
 			<!-- tunnel -->
