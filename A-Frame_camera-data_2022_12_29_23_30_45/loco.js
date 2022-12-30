@@ -4,36 +4,33 @@ Fires a specified event on this entity on a regular timed interval */
 AFRAME.registerComponent('locomotion', {
         init: function () {
           console.log(this.data);
+          
+          // Create refs here, which is
+          // more performant than each
+          // tick at runtime.
+          this.rig =
+          document.querySelector("#rig").object3D;
+          this.cam =
+      document.querySelector("#subject").object3D;
+          
         },
   
-        tick: function () {
+        tick: function () { 
           
-          let theta=document.querySelector("#rig").object3D.rotation.y;
-          
-          let pitch=-document.querySelector("#rig").object3D.rotation.x;
-          
-          //console.log('brrr');
+          // First, determine direction
+          // from camera.
+          let theta=this.cam.rotation.y;
+          // NB these two reversed.
+          let pitch=-this.cam.rotation.x;
           let speed=-0.01; 
-          
-          // Eureka! 
-          // NB removed += to prevent 
-          // acceleration here.
-          
-          yPos = pitch*speed;  
-          zPos = Math.cos(theta)*speed;
-          xPos = Math.sin(theta)*speed;
-          var els = document.querySelectorAll('.clickable');
-for (var i = 0; i < els.length; i++) {
-  let cpx = els[i].object3D.position.x;
-  let cpy = els[i].object3D.position.y;
-  let cpz = els[i].object3D.position.z;
-  els[i].setAttribute("position", {
-      x: cpx - xPos,
-      y: cpy - yPos,
-      z: cpz - zPos
-    });
-}
+         
+          // Finally, move pos of rig.
+          // NB move rig, not camera.
+          this.rig.position.z += 
+            Math.cos(theta)*speed;
+          this.rig.position.x += 
+            Math.sin(theta)*speed;
+          this.rig.position.y += pitch*speed;
 
         }
       });
-
