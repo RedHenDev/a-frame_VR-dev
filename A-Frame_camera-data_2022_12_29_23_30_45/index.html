@@ -18,14 +18,16 @@
 
 				<!-- Crossorigin to permit loading images -->
 				<img crossorigin="local" id="imgCity" src="eperquerie.png">
-				<img crossorigin="local" id="imgBear" src="bearwalking.gif">
-  </a-assets>
+				<!-- Load as video for controls? -->
+				<img crossorigin="local" id="imgBear" src="bearwalking.gif" autoplay="true" loop="true">
+				<img crossorigin="local" id="imgJojo1" src="adventure_jojo.jpg">
+  		</a-assets>
 
   <!-- 360-degree image. Default rad is 100-->
   <a-sky id="image-360" radius="100" src="#imgCity"></a-sky>
       
       <!-- Blue point light, 5 meters in the air. -->
-<a-light type="point" color="blue" position="0 5 20"></a-light>
+<a-light type="point" color="white" position="0 5 20"></a-light>
       
       <a-light type="point" color="white" position="0 12 -20"></a-light>
       
@@ -59,13 +61,19 @@
       </a-entity> <!-- rig end -->
       </a-entity> <!-- camera end -->
 
-        <a-sphere class="clickable" position="4.2 3 -5" radius="2" color="#00EEFF" shadow id="mySphere"></a-sphere>
+        <a-sphere class="clickable" position="4.2 -5 -5" radius="2" color="#00EEFF" shadow id="mySphere"></a-sphere>
       
       <a-sphere class="clickable" position="-4 3 -9" radius="1" color="rgb(0,255,0)" shadow id="mySphere2"></a-sphere>
+			
+			<a-box position="0 8 12" scale="10 10 1" material="src: #imgJojo1"></a-box>
         
-      <a-box class="clickable" position="-1 0.5 -3" rotation="0 45 0" material="shader:gif; src:#imgBear" gif="#imgBear"></a-box>
+      <a-box position="-1 0.5 -3" rotation="0 45 0" material="src: #imgBear"></a-box>
       <a-sphere class="clickable" position="0 1.25 -5" radius="1.25" color="#00FF00"></a-sphere>
-      <a-cylinder class="clickable" position="1 0.75 -3" radius="0.5" height="1.5" color="#0000FF"></a-cylinder>
+      <a-cylinder class="clickable" position="1 0.75 -7" radius="0.5" height="1.5" color="#0000FF"></a-cylinder>
+			<!-- tunnel -->
+			<a-torus class="clickable" position="1 4 -4" radius="0.5" height="1.5" color="#DD00DD"></a-torus>
+			<a-torus class="clickable" position="1 4 -5" radius="0.5" height="1.5" color="#EE00EE"></a-torus>
+			<a-torus class="clickable" position="1 4 -6" radius="0.5" height="1.5" color="#FF00FF"></a-torus>
 <!--       <a-plane position="0 0 -4" rotation="-90 0 0" width="42" height="42" color="#7BC8A4"></a-plane> -->
 <!--       <a-sky color="#ECECEC"></a-sky> -->
     </a-scene>
