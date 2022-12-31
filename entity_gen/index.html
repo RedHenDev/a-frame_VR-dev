@@ -27,11 +27,13 @@
       <a-assets timeout="10000">
 
 				<!-- Crossorigin to permit loading images -->
+				<!-- ../ to refer up dir on path. -->
 				<img crossorigin="local" id="imgJojo2" src="../roost_assets/images/jojo_panda.png">
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
   		</a-assets>
       
 			<!--Let's try to build an 'empty' with farm.-->
+			<!--It worked :)-->
 			<a-entity farm></a-entity>
 			
       <!-- Blue point light, 5 meters in the air. -->
@@ -54,9 +56,9 @@
         <a-entity
           cursor="fuse:true;fuseTimeout:2000;"
           raycaster="objects:.clickable;"
-          geometry="primitive:plane;width:0.01;  height:0.01;"
+          geometry="primitive:plane;width:0.1;  height:0.1;"
           material="color:white;wireframe:true;"
-          position="0 0 -0.3;"
+          position="0 0 -1.5;"
           animation__fusing="property:rotation;from:0 0 0;to:0 0 360;dur:2000;startEvents:fusing;"
           animation__reset="property:scale;from:0.7 0.7 0.7;to: 1 1 1;dur:333;startEvents:fused;"
          ></a-entity>
