@@ -19,8 +19,8 @@ AFRAME.registerComponent('farm',{
 		let bScale=0.5;
 		let cols=86;
 		let rows=86;
-		let freq=6;
-		let amp=4*bScale;
+		let freq=128;
+		let amp=1*bScale;
 		for (let i=0;i<cols;i++){
 			for (let j=0;j<rows;j++){
 				let e = document.createElement('a-box');
@@ -30,7 +30,7 @@ AFRAME.registerComponent('farm',{
 				e.object3D.position.x=i*bScale-cols*0.5*bScale;
 				e.object3D.position.z=j*bScale-cols*0.5*bScale;
 				e.object3D.position.y = 
-					Math.floor(perlin(i/freq,j/freq)*amp);
+					(perlin(i/freq,j/freq)*amp);
 				e.setAttribute('material', 'color:green');
 				//e.setAttribute('material', 'src:#imgJojo2');
 				this.sceneEl.appendChild(e);

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-<!--      <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>-->
+      <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 			<!-- root ref: https://redhendev.github.io/a-frame_VR-dev/ -->
+			
 			<script src="../roost_scripts/perlin_gpt3.js"></script>
-			<script src="aframe.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v$npm_package_version/dist/aframe-physics-system.min.js"></script>
+<!--			<script src="aframe.min.js"></script>-->
 			<!-- NB defer is crucial here! -->
     	<script src="../roost_scripts/event_listen.js" defer></script>
-			<script src="../roost_scripts/root_test.js" defer></script>
-			
+<!--			<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>-->
 			<!--OK, this works better without defer.-->
 			<script src="block_farm.js"></script>
     	<!-- NB must not defer these scripts, else
@@ -30,6 +29,7 @@
 
 				<!-- Crossorigin to permit loading images -->
 				<!-- ../ to refer up dir on path. -->
+				<a-asset-item id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>
 				<img crossorigin="local" id="imgJojo2" src="../roost_assets/images/jojo_panda.png">
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
   		</a-assets>
@@ -44,7 +44,8 @@
       
       <a-light type="ambient" color="pink" position="0 22 -20"></a-light>
       
-      <a-entity id="rig" movement-controls>
+      <a-entity id="rig" movement-controls 
+								static-body="shape:sphere">
 			<!-- 360-degree image. Default rad is 10-->
   		<a-sky id="image-360" radius="1042" 
 				 src="#imgJojo2"></a-sky>
@@ -60,7 +61,7 @@
           raycaster="objects:.clickable;"
           geometry="primitive:plane;width:0.1;  height:0.1;"
           material="color:white;wireframe:true;
-										depthTest:false;"
+										depthTest:false;transparent:true;"
           position="0 0 -0.9;"
           animation__fusing="property:rotation;from:0 0 0;to:0 0 360;dur:2000;startEvents:fusing;"
           animation__reset="property:scale;from:0.7 0.7 0.7;to: 1 1 1;dur:333;startEvents:fused;"
@@ -72,14 +73,17 @@
                  rotation = "25 25 0" 
   text="color:yellow; xOffset: 0.5; width:1.9;" 
                  material="color:blue;
-													 depthTest:false;">
+													 depthTest:false;
+													 transparent:true;">
         </a-plane>
       </a-entity> <!-- rig end -->
       </a-entity> <!-- camera end -->
 
+			<a-gltf-model src="#cityModel" position="" rotation="" scale="" visible="" gltf-model=""></a-gltf-model>
+			
 			<a-sphere id="mySphere" class="clickable" position="4.2 -5 -5" radius="2" color="#00EEFF" shadow></a-sphere>
       
-      <a-sphere id="testPig" class="clickable" position="-4 3 -9" radius="1" color="rgb(0,255,0)" shadow ></a-sphere>
+      <a-sphere id="testPig" class="clickable" position="-4 3 -9" radius="1" color="rgb(0,255,0)" shadow dynamic-body></a-sphere>
 			
 			<!-- Giant paintings -->
 			<a-box position="0 8 12" scale="10 5 1" material="src: #imgJojo2"></a-box>

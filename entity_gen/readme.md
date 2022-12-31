@@ -15,3 +15,11 @@
 0 rig wrapper for VR (custom) locomotion
 
 0 timeout for loading assets
+
+0 ../ for path reference in HTML
+
+0 .object3D +performant than .setAttribute
+
+0 material to transparent:true and depthTest:false 
+		to always draw on top (useful for UI)
+		NB - doesn't work on the text!
