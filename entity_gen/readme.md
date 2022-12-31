@@ -4,6 +4,8 @@
 
 0 defer
 
+0 fusing
+
 0 not to defer hud thingy (see main.js)
 
 0 crossorigin
