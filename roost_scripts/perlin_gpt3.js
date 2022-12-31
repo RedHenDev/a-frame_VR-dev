@@ -1,3 +1,4 @@
+const gradientResolution = 16;
 function perlin(x, y) {
   // Generate a pseudorandom grid of gradients
   const gradients = [];
