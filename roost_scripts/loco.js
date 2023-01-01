@@ -31,25 +31,29 @@ AFRAME.registerComponent('locomotion', {
           // NB these two reversed.
           let pitch=-this.cam.rotation.x;
 					// Test for speed control.
-//          if (this.cam.rotation.z > 0 &&
-//						 this.cam.rotation < 2.90){
-//						this.vel+=0.01;
-//					}
-//					else if (this.cam.rotation.z < 0 &&
-//									 this.cam.rotation > -2.90){
-//						this.vel-=0.01;
-//					}
-					let ws=Math.abs(this.cam.rotation.z);
-					this.vel = 3.14-ws;
-          let speed=-this.vel*0.04;
+					let ws=this.cam.rotation.z;
+          if (ws > 0.2 && ws < 0.4){
+						this.vel+=0.01;
+					}
+					else if (ws < -0.2 && ws > -0.4){
+						this.vel*=0.5;
+					}
+					// Corner turn.
+          if (ws > 0.4){
+						this.cam.rotation.y+=0.01;
+					}
+					else if (ws < -0.4){
+						this.cam.rotation.y-=0.01;
+					}
 					// Speed cap.
-//					const maxS=0.04;
-//					if (speed < -maxS){
-//						speed = -maxS;
-//					}
-//					if (speed > maxS){
-//						speed = maxS;
-//					}
+					const maxS=0.04;
+					if (this.vel > maxS){
+						this.vel = maxS;
+					}
+					
+          let speed=-this.vel;
+					// Friction.
+					this.vel*=0.96;
          
           // Finally, move pos of rig.
           // NB move rig, not camera.
