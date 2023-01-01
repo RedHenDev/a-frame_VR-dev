@@ -21,7 +21,7 @@ AFRAME.registerComponent('locomotion', {
           let theta=this.cam.rotation.y;
           // NB these two reversed.
           let pitch=-this.cam.rotation.x; 
-         
+         	let speed = -0.01;
           // Finally, move pos of rig.
           // NB move rig, not camera.
           this.rig.position.z += 
