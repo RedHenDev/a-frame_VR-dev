@@ -42,13 +42,13 @@ AFRAME.registerComponent('locomotion', {
 					
           let speed=-this.vel;
 					// Speed cap.
-					const maxS=0.04;
-					if (speed < -maxS){
-						speed = -maxS;
-					}
-					if (speed > maxS){
-						speed = maxS;
-					}
+//					const maxS=0.04;
+//					if (speed < -maxS){
+//						speed = -maxS;
+//					}
+//					if (speed > maxS){
+//						speed = maxS;
+//					}
          
           // Finally, move pos of rig.
           // NB move rig, not camera.
