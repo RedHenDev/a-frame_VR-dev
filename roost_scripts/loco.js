@@ -31,13 +31,12 @@ AFRAME.registerComponent('locomotion', {
           // NB these two reversed.
           let pitch=-this.cam.rotation.x;
 					// Test for speed control.
-          if (this.cam.rotation.z > 0 &&
-						 	this.cam.rotation.z > 5){
-						//this.vel+=0.01;
+          if (this.cam.rotation.z > 0.39){
+						this.vel+=0.001;
 					}
-//					else if (	this.cam.rotation.z < 0){
-//						this.vel-=0.01;
-//					}
+					else if (this.cam.rotation.z < -0.39){
+						this.vel-=0.001;
+					}
           let speed=-this.vel; 
          
           // Finally, move pos of rig.
