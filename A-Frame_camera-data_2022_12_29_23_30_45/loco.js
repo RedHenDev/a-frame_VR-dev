@@ -12,8 +12,6 @@ AFRAME.registerComponent('locomotion', {
           document.querySelector("#rig").object3D;
           this.cam =
       		document.querySelector("#subject").object3D;
-					// Current speed.
-					this.vel=0.01;
         },
   
         tick: function () { 
@@ -22,12 +20,7 @@ AFRAME.registerComponent('locomotion', {
           // from camera.
           let theta=this.cam.rotation.y;
           // NB these two reversed.
-          let pitch=-this.cam.rotation.x;
-					if (this.cam.rotation.z > 2.9)
-						vel+=0.01;
-					else if (this.cam.rotation.z < -2.9)
-						vel-=0.01;
-          let speed=-vel; 
+          let pitch=-this.cam.rotation.x; 
          
           // Finally, move pos of rig.
           // NB move rig, not camera.
