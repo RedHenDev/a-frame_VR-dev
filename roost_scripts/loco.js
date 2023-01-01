@@ -23,7 +23,7 @@ AFRAME.registerComponent('locomotion', {
           
 					// Sine bob test for our shuttle.
 					this.i++;
-					this.shu.y+=Math.sin(this.i);
+					this.shu.y+=Math.sin(this.i)*4;
 					
           // First, determine direction
           // from camera.
