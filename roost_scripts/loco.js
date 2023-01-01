@@ -32,12 +32,12 @@ AFRAME.registerComponent('locomotion', {
           let pitch=-this.cam.rotation.x;
 					// Test for speed control.
           if (this.cam.rotation.z > 0 &&
-						 this.cam.rotation > 3.2){
-						this.vel+=0.005;
+						 this.cam.rotation < 2.90){
+						this.vel+=0.01;
 					}
 					else if (this.cam.rotation.z < 0 &&
-									 this.cam.rotation < -3.2){
-						this.vel-=0.005;
+									 this.cam.rotation < -2.90){
+						this.vel-=0.01;
 					}
 					
           let speed=-this.vel;
