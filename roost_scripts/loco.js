@@ -32,12 +32,21 @@ AFRAME.registerComponent('locomotion', {
           let pitch=-this.cam.rotation.x;
 					// Test for speed control.
           if (this.cam.rotation.z > 0.39){
-						this.vel+=0.01;
+						this.vel+=0.005;
 					}
 					else if (this.cam.rotation.z < -0.39){
-						this.vel-=0.01;
+						this.vel-=0.005;
 					}
-          let speed=-this.vel; 
+					
+          let speed=-this.vel;
+					// Speed cap.
+					const maxS=0.04;
+					if (speed < -maxS){
+						speed = -maxS;
+					}
+					if (speed > maxS){
+						speed = maxS;
+					}
          
           // Finally, move pos of rig.
           // NB move rig, not camera.
