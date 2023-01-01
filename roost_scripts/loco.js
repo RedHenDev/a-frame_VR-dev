@@ -40,8 +40,8 @@ AFRAME.registerComponent('locomotion', {
 //						this.vel-=0.01;
 //					}
 					let ws=Math.abs(this.cam.rotation.z);
-					this.vel = 3.14-ws;
-          let speed=-this.vel*0.01;
+					this.vel = ws-3.14;
+          let speed=-this.vel*0.1;
 					// Speed cap.
 //					const maxS=0.04;
 //					if (speed < -maxS){
