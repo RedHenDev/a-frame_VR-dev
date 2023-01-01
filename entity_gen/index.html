@@ -31,6 +31,7 @@
 				<!-- ../ to refer up dir on path. -->
 				<a-asset-item id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>
 				<a-asset-item id="dog" src="../roost_assets/models/chihuahua_gpt.obj"></a-asset-item>
+				<a-asset-item id="shuttle" src="../roost_assets/models/shuttle.obj"></a-asset-item>
 				<img crossorigin="local" id="imgJojo2" src="../roost_assets/images/jojo_panda.png">
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
   		</a-assets>
@@ -87,12 +88,23 @@
       </a-entity> <!-- rig end -->
       </a-entity> <!-- camera end -->
 
-			<!--.obj model test.-->
-			<a-entity obj-model="obj:#dog" position="0 18 -12" 
-								rotation="0 0 0" material="color:orange" scale="4 4 4"></a-entity>
+			<!--.obj model tests.-->
+			<a-entity obj-model="obj:#dog" 
+								position="0 18 -12" 
+								rotation="0 0 0"
+								scale="4 4 4"
+								material="color:orange">
+			</a-entity>
+			<a-entity obj-model="obj:#shuttle" 
+								position="22 18 22" 
+								rotation="0 0 0"
+								scale="4 4 4"
+								material="color:green"
+								metalness="200">
+			</a-entity>
 <!--			<a-entity obj-model="obj:#dog" dynamic-body="shape: box; mass: 2"></a-entity>-->
 			<!--glTF model test.-->
-			<a-gltf-model src="#cityModel" position="" rotation="" scale="0.5" visible="" gltf-model=""></a-gltf-model>
+			<a-gltf-model src="#cityModel" position="" rotation="" scale="" visible=""></a-gltf-model>
 			
 			<!--Test spheres.-->
 			<a-sphere id="mySphere" class="nclickable"
@@ -106,7 +118,9 @@
 
 			<!-- tunnel -->
 			<a-torus class="clickable" position="0 4 -8" radius="0.5" height="1.5" color="#440044"></a-torus>
-			<a-torus class="clickable" position="0 4 -9" radius="0.5" height="1.5" color="#880088"></a-torus>
+			<a-torus class="clickable" position="0 4 -9" radius="0.5" height="1.5" 
+			material="color:#880088;emissive:#FF00FF">
+			</a-torus>
 			<a-torus class="clickable" position="0 4 -10" radius="0.5" height="1.5" color="#FF00FF"></a-torus>
 <!--       <a-plane position="0 0 -4" rotation="-90 0 0" width="42" height="42" color="#7BC8A4"></a-plane> -->
 <!--       <a-sky color="#ECECEC"></a-sky> -->
