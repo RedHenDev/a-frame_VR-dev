@@ -1,6 +1,5 @@
 /* Custom A-Frame component
 Fires a specified event on this entity on a regular timed interval */
-
 AFRAME.registerComponent('locomotion', {
         init: function () {
           console.log(this.data);
@@ -36,9 +35,9 @@ AFRAME.registerComponent('locomotion', {
 						 	this.cam.rotation.z < 2.9){
 						this.vel+=0.01;
 					}
-					else if (	this.cam.rotation.z < 0){
-						this.vel-=0.01;
-					}
+//					else if (	this.cam.rotation.z < 0){
+//						this.vel-=0.01;
+//					}
           let speed=-this.vel; 
          
           // Finally, move pos of rig.
