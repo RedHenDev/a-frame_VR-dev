@@ -23,3 +23,4 @@
 0 material to transparent:true and depthTest:false 
 		to always draw on top (useful for UI)
 		NB - doesn't work on the text!
+		opacity to 0.5 - transparency works!
