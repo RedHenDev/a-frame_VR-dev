@@ -17,8 +17,8 @@ AFRAME.registerComponent('farm',{
 //		console.log(row);
 	//}
 		let bScale=0.5;
-		let cols=86;
-		let rows=86;
+		let cols=12;
+		let rows=12;
 		let freq=128;
 		let amp=1*bScale;
 		for (let i=0;i<cols;i++){
@@ -28,7 +28,7 @@ AFRAME.registerComponent('farm',{
 				e.object3D.scale.y=bScale;
 				e.object3D.scale.z=bScale;
 				e.object3D.position.x=i*bScale-cols*0.5*bScale;
-				e.object3D.position.z=j*bScale-cols*0.5*bScale;
+				e.object3D.position.z=j*bScale-cols*0.5*bScale-32;
 				e.object3D.position.y = 
 					(perlin(i/freq,j/freq)*amp);
 				e.setAttribute('material', 'color:green');
