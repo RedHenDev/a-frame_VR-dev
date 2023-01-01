@@ -23,9 +23,9 @@ AFRAME.registerComponent('locomotion', {
           let theta=this.cam.rotation.y;
           // NB these two reversed.
           let pitch=-this.cam.rotation.x;
-					if (this.cam.rotation.z > 5)
+					if (this.cam.rotation.z > 2.9)
 						vel+=0.01;
-					else if (this.cam.rotation.z < -5)
+					else if (this.cam.rotation.z < -2.9)
 						vel-=0.01;
           let speed=-vel; 
          

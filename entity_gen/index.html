@@ -41,15 +41,23 @@
 			<a-entity farm></a-entity>
 			
       <!-- Blue point light, 5 meters in the air. -->
-			<a-light type="point" color="white" 
-				 position="0 22 20"></a-light>
+			<a-sphere
+							 	light="type:point;color:white" 
+							 	color="white" 
+				 			 	position="0 22 0">
+			</a-sphere>
       
-      <a-light type="ambient" color="pink" position="0 22 -20"></a-light>
+      <a-sphere
+							 	light="type:point;color:red" 
+							 	color="red" 
+							 	position="0 21 0">
+			</a-sphere>
       
+			<!--Subject's rig starts here.-->
       <a-entity id="rig" movement-controls>
-			<!-- 360-degree image. Default rad is 10-->
 				
-  		<a-sky id="image-360" radius="5" 
+			<!-- 360-degree image. Default rad is 10-->
+  		<a-sky id="image-360" radius="50" 
 				 src="#imgJojo2"></a-sky>
 				
       <a-entity id="subject" 
