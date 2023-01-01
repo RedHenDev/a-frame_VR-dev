@@ -31,7 +31,7 @@
 				<!-- ../ to refer up dir on path. -->
 				<a-asset-item id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>
 				<a-asset-item id="dog" src="../roost_assets/models/chihuahua_gpt.obj"></a-asset-item>
-				<a-asset-item id="shuttle" src="../roost_assets/models/shuttle.obj"></a-asset-item>
+				<a-asset-item id="modShuttle" src="../roost_assets/models/shuttle.obj"></a-asset-item>
 				<img crossorigin="local" id="imgJojo2" src="../roost_assets/images/jojo_panda.png">
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
   		</a-assets>
@@ -43,14 +43,14 @@
       <!-- Blue point light, 5 meters in the air. -->
 			<a-sphere
 							 	light="type:point;color:white" 
-							 	color="white" 
-				 			 	position="0 22 0">
+							 	material="shader:flat; color:white" 
+				 			 	position="-4 12 0">
 			</a-sphere>
       
       <a-sphere
 							 	light="type:point;color:red" 
-							 	color="red" 
-							 	position="0 21 0">
+							 	material="shader:flat; color:red" 
+							 	position="4 12 0">
 			</a-sphere>
       
 			<!--Subject's rig starts here.-->
@@ -81,7 +81,7 @@
 										transparent:true; opacity:0.5"
           position="0 0 -0.9;"
           animation__fusing="property:rotation;from:0 0 0;to:0 0 360;dur:2000;startEvents:fusing;"
-          animation__reset="property:scale;from:0.7 0.7 0.7;to: 1 1 1;dur:333;startEvents:fused;"
+          animation__reset="property:scale;from:0.7 0.7 0.7;to: 1 1 1;dur:333;startEvents:mouseleave;"
          ></a-entity>
      
 				<!--HUD NB rotated 180 on Z for my viewer.-->
@@ -89,7 +89,7 @@
 								 visible="true"
                  position="-0.4 0.35 -0.9"
 								 scale="0.4 0.4 0"
-                 rotation="0 30 0"
+                 rotation="0 30 180"
   text="color:black; xOffset: 0.5; width:1.9;" 
                  material="color:cyan;
 													 depthTest:false;
@@ -98,28 +98,23 @@
 					</a-plane>
         
       </a-entity> <!-- camera end -->
-			
       </a-entity> <!-- rig end -->
 
 			<!--.obj model tests.-->
-			<a-entity obj-model="obj:#dog" 
-								position="0 18 -12" 
-								rotation="0 0 0"
-								scale="4 4 4"
-								material="color:orange">
-			</a-entity>
-			<a-entity obj-model="obj:#shuttle" 
-								position="22 18 22" 
-								rotation="0 0 0"
-								scale="4 4 4"
-								material="color:green"
-								metalness="200">
+			<a-entity obj-model="obj:#modShuttle"
+								id="shuttle"
+								position="22 14 22"
+								rotation="0 33 0"
+								scale="1 1 1"
+								material="shader:standard;
+													color:silver;
+													metalness:1">
 			</a-entity>
 			<!--			<a-entity obj-model="obj:#dog" dynamic-body="shape: box; mass: 2"></a-entity>-->
 			<!--glTF model test.-->
 
 			<!-- glFT test. Sci-fi model found online.-->
-			<a-gltf-model src="#cityModel" position="" rotation="" scale="" visible=""></a-gltf-model>
+			<a-gltf-model src="#cityModel" position="" rotation="" scale="1 1 1" visible=""></a-gltf-model>
 			
 			<!--Test spheres.-->
 			<a-sphere id="mySphere" class="clickable"

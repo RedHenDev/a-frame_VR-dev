@@ -14,23 +14,29 @@ AFRAME.registerComponent('locomotion', {
       		document.querySelector("#subject").object3D;
           // Current speed.
 					this.vel=0.01;
+					
+					this.shu=document.
+						querySelector("#shuttle").object3D;
+					this.i=0;
         },
   
         tick: function () { 
           
+					// Sine bob test for our shuttle.
+					this.i++;
+					this.shu.y+=Math.sin(this.i);
+					
           // First, determine direction
           // from camera.
           let theta=this.cam.rotation.y;
           // NB these two reversed.
           let pitch=-this.cam.rotation.x;
 					// Test for speed control.
-          if (this.cam.rotation.z > 0 &&
-						  this.cam.rotation.z < 2.90){
-						this.vel+=0.01;
+          if (this.cam.rotation.z > 0){
+						this.vel+=0.1;
 					}
-					else if (	this.cam.rotation.z < 0 &&
-						  			this.cam.rotation.z < -2.90){
-						this.vel-=0.01;
+					else if (	this.cam.rotation.z < 0){
+						this.vel-=0.1;
 					}
           let speed=-this.vel; 
          
