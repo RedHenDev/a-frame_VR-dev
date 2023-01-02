@@ -25,7 +25,7 @@
 		<style>
 		#StartArea {
 			position: fixed;width: 100vw;height: 100vh;
-			z-index: 10000;background-color: rgba(0,111,222,0.6);
+			z-index: 10000;background-color: rgba(0,200,222,0.6);
 			}
 		#StartButton{
 			top: 33vh; left:33vh;
@@ -113,7 +113,8 @@
           raycaster="objects:.clickable;"
           geometry="primitive:plane;width:0.1;  height:0.1;"
 
-					material="color:cyan;depthTest:false;
+					material="shader:flat;color:cyan;
+										depthTest:false;
 										transparent:true; opacity:0.5"
           position="0 0 -0.9;"
           animation__fusing="property:rotation;from:0 0 0;to:0 0 360;dur:2000;startEvents:fusing;"
@@ -126,8 +127,9 @@
                  position="0.4 0 -0.9"
 								 scale="0.3 0.4 0"
                  rotation="0 -30 180"
-  text="color:white; xOffset: 0.5; width:1.9;" 
-                 material="color:white;
+  text="color:black; xOffset: 0.5; width:1.9;" 
+                 material="shader:flat;
+													 color:white;
 													 depthTest:false;
 													 transparent:true;
 													 opacity:0.6">
