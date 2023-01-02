@@ -26,8 +26,8 @@ AFRAME.registerComponent('locomotion', {
 					// OK working, forgot to add position to shu!
 					this.i++;
 					//console.log(this.i);
-					this.shu.position.y+=Math.sin(this.i*0.01)*1;
-					this.shu.rotation.y+=Math.sin(this.i*0.01)*1;
+					this.shu.position.y=Math.sin(this.i*0.01)*2+4;
+					this.shu.rotation.y=Math.sin(this.i*0.01)*6;
           // First, determine direction
           // from camera.
           let theta=this.cam.rotation.y;

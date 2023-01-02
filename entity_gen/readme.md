@@ -34,4 +34,27 @@
 								material="shader:standard;
 													color:silver;
 													metalness:0.8">
+													
+0 Starting audio. NB must load audio asset as <audio> and not <asset-item> for instance!
+	   And, create audioContext to play on Chrome and iOS:
+	<style>
+		#StartArea {
+			position: fixed;width: 100vw;height: 100vh;
+			z-index: 10000;
+			background-color: rgba(0,127,63,0.5);
+			}
+	</style>
+	<div id="StartArea">
+  	<button id="StartButton">Start</button>
+	</div>
+	<script>
+		document.querySelector("#StartButton").onclick = function() {
+  		document.querySelector("#StartArea").style.display = "none";
+				const context = new AudioContext();
+				if (context.state !== 'running') {
+    				context.resume();
+  			}	
+		}
+		</script>
+
 									
