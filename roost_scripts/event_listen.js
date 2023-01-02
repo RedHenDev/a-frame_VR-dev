@@ -6,8 +6,7 @@ mySphere.addEventListener("mouseenter", e => {
  	mySphere.object3D.position.y += 1;
 });
 
-myPig.addEventListener("mouseover", e => {
+myPig.addEventListener("mouseleave", e => {
   myPig.setAttribute("color", "yellow")
  	myPig.object3D.position.z += 1;
-	
 });

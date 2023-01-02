@@ -24,3 +24,14 @@
 		to always draw on top (useful for UI)
 		NB - doesn't work on the text!
 		opacity to 0.5 - transparency works!
+
+0 Using obj
+	<a-entity obj-model="obj:#modShuttle"
+								id="shuttle"
+								position="22 14 22"
+								rotation="0 33 0"
+								scale="0.5 0.5 0.5"
+								material="shader:standard;
+													color:silver;
+													metalness:0.8">
+									

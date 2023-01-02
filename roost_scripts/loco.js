@@ -19,12 +19,15 @@ AFRAME.registerComponent('locomotion', {
 					this.i=0;
         },
   
-        tick: function () { 
+        tick: function (timeDelta) { 
           
 					// Sine bob test for our shuttle.
+					// Not yet working...
+					// OK working, forgot to add position to shu!
 					this.i++;
-					this.shu.y+=Math.sin(this.i)*4;
-					
+					//console.log(this.i);
+					this.shu.position.y+=Math.sin(this.i*0.01)*1;
+					this.shu.rotation.y+=Math.sin(this.i*0.01)*1;
           // First, determine direction
           // from camera.
           let theta=this.cam.rotation.y;

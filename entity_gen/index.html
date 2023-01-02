@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+			<!-- Include the p5.js library -->
+			<!-- For audio context.-->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 			
 			<script src="../roost_scripts/perlin_gpt3.js"></script>
@@ -19,6 +22,33 @@
   </head>
 
   <body>
+		<style>
+		#StartArea {
+			position: fixed;
+			width: 100vw;
+			height: 100vh;
+			z-index: 10000;
+			background-color: white;
+			}
+		</style>
+		<div id="StartArea">
+  		<button id="StartButton">Start</button>
+		</div>
+	
+		<script>
+			
+			document.querySelector("#StartButton").onclick = function() {
+  		document.querySelector("#StartArea").style.display = "none";
+				var context = new AudioContext();
+				console.log(context);
+				
+				if (context.state !== 'running') {
+    				context.resume();
+  			}			
+  	
+			}
+			
+		</script>
     <a-scene>
 		<!--Fog...-->
 		<!--    
@@ -30,8 +60,10 @@
 				<!-- Crossorigin to permit loading images -->
 				<!-- ../ to refer up dir on path. -->
 				<a-asset-item id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>
-				<a-asset-item id="dog" src="../roost_assets/models/chihuahua_gpt.obj"></a-asset-item>
-				<a-asset-item id="modShuttle" src="../roost_assets/models/shuttle.obj"></a-asset-item>
+				<a-asset-item id="modShuttle" src="../roost_assets/models/shuttle.obj">
+				</a-asset-item>
+				<a-asset-item id="sAmb" src="../roost_assets/sounds/rising_moon.mp3">
+				</a-asset-item>
 				<img crossorigin="local" id="imgJojo2" src="../roost_assets/images/jojo_panda.png">
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
   		</a-assets>
@@ -39,6 +71,12 @@
 			<!--Let's try to build an 'empty' with farm.-->
 			<!--It worked :)-->
 			<a-entity farm></a-entity>
+			<!--And now our sound manager.-->
+<!--			<a-entity soundManager></a-entity>-->
+<!--
+			<a-entity id="river" geometry="primitive: plane" material="color: blue"
+          position="-10 0 0" sound="src:#sAmb; autoplay: true;loop:true"></a-entity>
+-->
 			
       <!-- Blue point light, 5 meters in the air. -->
 			<a-sphere
@@ -105,10 +143,10 @@
 								id="shuttle"
 								position="22 14 22"
 								rotation="0 33 0"
-								scale="1 1 1"
+								scale="0.5 0.5 0.5"
 								material="shader:standard;
 													color:silver;
-													metalness:1">
+													metalness:0.8">
 			</a-entity>
 			<!--			<a-entity obj-model="obj:#dog" dynamic-body="shape: box; mass: 2"></a-entity>-->
 			<!--glTF model test.-->
