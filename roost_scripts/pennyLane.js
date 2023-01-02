@@ -6,7 +6,7 @@ But we settled on 'Penny Lane' :)
 
 */
 
-AFRAME.registerComponent('soundManager', {
+AFRAME.registerComponent('soundmanager', {
 	init: function(){
 		// Grab the a-scene so that we can append
 		// new entity to the scene (else will not
