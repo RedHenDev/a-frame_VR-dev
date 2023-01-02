@@ -23,6 +23,8 @@ AFRAME.registerComponent('locomotion', {
 					this.timeStamp=Date.now();
 					console.log(this.timeStamp);
 					this.engineOn=false;
+					this.hark=document.querySelector("#sTog").
+					components.sound;
         },
   
         tick: function (timeDelta) { 
@@ -51,6 +53,7 @@ AFRAME.registerComponent('locomotion', {
 						// toggling via head z rotations.
 						let cTime = Date.now();
 						if (cTime-this.timeStamp > 1000){
+							this.hark.play();
 							this.engineOn=!this.engineOn;
 							this.timeStamp=Date.now();
 							if (!this.engineOn){
@@ -74,9 +77,9 @@ AFRAME.registerComponent('locomotion', {
 					let speed=-this.vel;
 					if (!this.engineOn) {
 							// Apply friction.
-							this.vel*=0.94;
-							if (this.vel < 0.0001)
-								this.vel=0;
+							this.vel*=0.98;
+//							if (this.vel < 0.001)
+//								this.vel=0;
 					}
 					else{
 						this.vel+=acc;
