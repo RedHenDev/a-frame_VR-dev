@@ -35,8 +35,8 @@ AFRAME.registerComponent('locomotion', {
           let pitch=-this.cam.rotation.x;
 					// Test for speed control.
 					let ws=Math.abs(this.cam.rotation.z);
-					const minZ=2.90; // Default 0.2.
-					const maxZ=2.80; // Default 0.4.
+					const minZ=2.80; // Default 0.2.
+					const maxZ=2.90; // Default 0.4.
           if (ws > minZ && ws < maxZ){
 						this.vel+=0.01;
 					}
@@ -44,13 +44,13 @@ AFRAME.registerComponent('locomotion', {
 //						this.vel*=0.5;
 //					}
 					// Speed cap.
-					const maxS=0.08;
+					const maxS=0.1;
 					if (this.vel > maxS){
 						this.vel = maxS;
 					}
           let speed=-this.vel;
 					// Friction.
-					this.vel*=0.9;
+					this.vel*=0.94;
          
           // Finally, move pos of rig.
           // NB move rig, not camera.
