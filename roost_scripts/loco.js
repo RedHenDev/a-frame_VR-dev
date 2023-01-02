@@ -17,6 +17,9 @@ AFRAME.registerComponent('locomotion', {
 					this.shu=document.
 						querySelector("#shuttle").object3D;
 					this.i=0;
+					
+					// Timing for toggling.
+					this.timeStamp=0;
         },
   
         tick: function (timeDelta) { 
@@ -39,6 +42,9 @@ AFRAME.registerComponent('locomotion', {
 					const maxZ=2.90; // Default 0.4.
           if (ws > minZ && ws < maxZ){
 						this.vel+=0.01;
+						// Log time stame. This will be for
+						// toggling via head z rotations.
+						let currentTime = +new Date();
 					}
 //					else if (ws < minZ || ws > maxZ){
 //						this.vel*=0.5;
@@ -51,7 +57,7 @@ AFRAME.registerComponent('locomotion', {
           let speed=-this.vel;
 					// Friction.
 					this.vel*=0.94;
-         
+         	this.timeStamp= +new Date();
           // Finally, move pos of rig.
           // NB move rig, not camera.
           this.rig.position.z += 
