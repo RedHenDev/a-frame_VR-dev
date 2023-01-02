@@ -1,6 +1,10 @@
 let mySphere = document.querySelector("#mySphere");
 let myPig = document.querySelector("#testPig");
 
+function cyberInput(key){
+	console.log(key);
+}
+
 mySphere.addEventListener("mouseenter", e => {
   mySphere.setAttribute("color", "purple")
  	mySphere.object3D.position.y += 1;
