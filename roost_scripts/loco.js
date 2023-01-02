@@ -18,8 +18,9 @@ AFRAME.registerComponent('locomotion', {
 						querySelector("#shuttle").object3D;
 					this.i=0;
 					
-					// Timing for toggling.
+					// Timing for toggling engine.
 					this.timeStamp=0;
+					this.engineOn=false;
         },
   
         tick: function (timeDelta) { 
@@ -38,19 +39,27 @@ AFRAME.registerComponent('locomotion', {
           let pitch=-this.cam.rotation.x;
 					// Test for speed control.
 					let ws=Math.abs(this.cam.rotation.z);
-					const minZ=2.80; // Default 0.2.
-					const maxZ=2.90; // Default 0.4.
+					const minZ=2.7; // Default 0.2.
+					const maxZ=2.9; // Default 0.4.
+					const acc=0.002;
+					// Let's try a toggle.
           if (ws > minZ && ws < maxZ){
-						this.vel+=0.01;
+						//this.vel+=acc;
+						
 						// Log time stame. This will be for
 						// toggling via head z rotations.
-						let currentTime = +new Date();
+						let cTime = +new Date();
+						if (cTime-this.timeStamp < 1000)
+							break;
+						this.engineOn=!this.engineOn;
+						this.timeStamp= +new Date();
 					}
+					if (this.engineOn) this.vel=0.01;
 //					else if (ws < minZ || ws > maxZ){
 //						this.vel*=0.5;
 //					}
 					// Speed cap.
-					const maxS=0.1;
+					const maxS=0.05;
 					if (this.vel > maxS){
 						this.vel = maxS;
 					}
