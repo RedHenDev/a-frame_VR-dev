@@ -13,11 +13,11 @@ AFRAME.registerComponent('farm',{
 //			}
 //		console.log(row);
 	//}
-		let bScale=1;
-		let cols=24;
-		let rows=24;
-		let freq=64;
-		let amp=1*bScale;
+		const bScale=2;
+		const cols=12;
+		const rows=12;
+		const freq=64;
+		const amp=1*bScale;
 		for (let i=0;i<cols;i++){
 			for (let j=0;j<rows;j++){
 				let e = document.createElement('a-box');
@@ -25,7 +25,7 @@ AFRAME.registerComponent('farm',{
 				e.object3D.scale.y=bScale;
 				e.object3D.scale.z=bScale;
 				e.object3D.position.x=i*bScale-cols*0.5*bScale;
-				e.object3D.position.z=j*bScale-cols*0.5*bScale-64;
+				e.object3D.position.z=j*bScale-cols*0.5*bScale;
 				e.object3D.position.y = 
 					(perlin(i/freq,j/freq)*amp);
 				e.setAttribute('material', 'color:green');

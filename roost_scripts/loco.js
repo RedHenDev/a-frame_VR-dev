@@ -52,9 +52,10 @@ AFRAME.registerComponent('locomotion', {
 						if (cTime-this.timeStamp > 1000){
 							this.engineOn=!this.engineOn;
 							this.timeStamp=Date.now();
+							if (!this.engineOn)this.cam.rotation.y+=90;
 						}
 					}
-					if (this.engineOn) this.vel=0.01;
+					if (this.engineOn) this.vel+=acc;
 //					else if (ws < minZ || ws > maxZ){
 //						this.vel*=0.5;
 //					}
