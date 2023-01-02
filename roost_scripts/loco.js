@@ -13,6 +13,7 @@ AFRAME.registerComponent('locomotion', {
       		document.querySelector("#subject").object3D;
           // Current speed.
 					this.vel=0.01;
+					this.currentVel=0.01;
 					
 					this.shu=document.
 						querySelector("#shuttle").object3D;
@@ -52,21 +53,35 @@ AFRAME.registerComponent('locomotion', {
 						if (cTime-this.timeStamp > 1000){
 							this.engineOn=!this.engineOn;
 							this.timeStamp=Date.now();
-							if (!this.engineOn)this.cam.rotation.y+=90;
+							if (!this.engineOn){
+								this.cam.rotation.y+=1.6;
+								document.querySelector('#reticle').
+								setAttribute('material','color:red');
+							}
+							else {
+								document.querySelector('#reticle').
+								setAttribute('material','color:lime');
+							}
 						}
 					}
-					if (this.engineOn) this.vel+=acc;
-//					else if (ws < minZ || ws > maxZ){
-//						this.vel*=0.5;
-//					}
+					
 					// Speed cap.
 					const maxS=0.05;
 					if (this.vel > maxS){
 						this.vel = maxS;
 					}
-          let speed=-this.vel;
-					// Friction.
-					this.vel*=0.94;
+					// Engine.
+					let speed=-this.vel;
+					if (!this.engineOn) {
+							// Apply friction.
+							this.vel*=0.94;
+							if (this.vel < 0.0001)
+								this.vel=0;
+					}
+					else{
+						this.vel+=acc;
+					}
+					
           // Finally, move pos of rig.
           // NB move rig, not camera.
           this.rig.position.z += 
