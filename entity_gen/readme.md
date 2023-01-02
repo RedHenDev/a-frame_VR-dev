@@ -61,4 +61,14 @@
 			}
 		</script>
 
+0 Can create own soundmanager:
+	this.sceneEl=document.querySelector('a-scene');
+		console.log('sound manager online');
+		// Create empty for ambient sound.
+		// Set attributes and finally append to scene.
+		this.ambSound=document.createElement('a-entity');
+		this.ambSound.setAttribute('sound',
+			'src:#sAmb;autoplay:true;loop:true');
+		this.sceneEl.appendChild(this.ambSound);
+		
 									

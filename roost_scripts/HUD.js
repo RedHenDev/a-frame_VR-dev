@@ -15,7 +15,7 @@ AFRAME.registerComponent('log-position-data', {
 				
         tick: function () {
 
-          let dataString = "Big City!:\n";
+          let dataString = "Hold on!:\n";
           dataString += "Position: \n";
           dataString += `x: ${this.rig.position.x.toFixed(2)}\n`
           dataString += `y: ${this.rig.position.y.toFixed(2)}\n`
