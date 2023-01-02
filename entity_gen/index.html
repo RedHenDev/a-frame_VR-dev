@@ -7,7 +7,7 @@
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 			
 			<script src="../roost_scripts/perlin_gpt3.js"></script>
-<!--			<script src="../roost_scripts/pennyLane.js"></script>-->
+			<script src="../roost_scripts/pennyLane.js" defer></script>
 			<!--<script src="aframe.min.js"></script>-->
 		
 			<!-- NB defer is crucial here! -->
@@ -54,7 +54,7 @@
 		<a-scene fog="type:linear;color:#00FFEF;far:128;"> 
 		-->
 			<!-- Allow assets time to load.-->
-      <a-assets timeout="10000">
+      <a-assets timeout="5000">
 
 				<!-- Crossorigin to permit loading images -->
 				<!-- ../ to refer up dir on path. -->
@@ -74,11 +74,13 @@
 			<!--It worked :)-->
 			<a-entity farm></a-entity>
 			<!--And now our sound manager.-->
-<!--			<a-entity soundmanager></a-entity>-->
+			<a-entity soundmanager></a-entity>
+<!--
 			<a-entity id="river"
           sound="src:#sAmb;autoplay:true;loop:true;
-								 positional:false;volume:0.1;"
+								 positional:false;volume:0.3;"
 			></a-entity>
+-->
 			
       <!-- Blue point light, 5 meters in the air. -->
 			<a-sphere
@@ -95,11 +97,11 @@
 			
 				<!--Hark in our ear.-->
 				<a-entity id="hark" sound="src:#sTog;
-						autoplay:true;volume:0.2;positional:false;">
+						autoplay:true;volume:0.4;positional:false;">
 				</a-entity>
       
 			<!--Subject's rig starts here.-->
-      <a-entity id="rig" movement-controls wasd-controls="acceleration:200">
+      <a-entity id="rig" movement-controls>
 				
 			<!-- 360-degree image. Default rad is 10-->
   		<a-sky id="image-360" radius="5000" 
@@ -109,6 +111,7 @@
                 camera
                 position="0 1.6 0"
                 look-controls
+								wasd-controls="acceleration:200"
                 locomotion="Engine on!" 
                 log-position-data="output:#hud">
 				<!--
@@ -161,7 +164,7 @@
 			<!--glTF model test.-->
 
 			<!-- glFT test. Sci-fi model found online.-->
-			<a-gltf-model src="#cityModel" position="" rotation="" scale="" visible=""></a-gltf-model>
+			<a-gltf-model src="#cityModel" position="" rotation="" scale="10 10 10" visible=""></a-gltf-model>
 			
 			<!--Test spheres.-->
 			<a-sphere id="mySphere" class="clickable"

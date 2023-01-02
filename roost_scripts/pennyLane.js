@@ -16,9 +16,8 @@ AFRAME.registerComponent('soundmanager', {
 		// Create empty for ambient sound.
 		// Set attributes and finally append to scene.
 		this.ambSound=document.createElement('a-entity');
-		this.ambSound.setAttribute('sound','src:#sAmb');
-		this.ambSound.setAttribute('autoplay','true');
-		this.ambSound.setAttribute('loop','true');
+		this.ambSound.setAttribute('sound',
+			'src:#sAmb;autoplay:true;loop:true');
 		this.sceneEl.appendChild(this.ambSound);
 		
 	}
