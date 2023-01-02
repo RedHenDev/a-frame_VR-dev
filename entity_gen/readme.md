@@ -23,7 +23,8 @@
 0 material to transparent:true and depthTest:false 
 		to always draw on top (useful for UI)
 		NB - doesn't work on the text!
-		opacity to 0.5 - transparency works!
+		+ opacity to 0.5 - transparency works!
+		+ set material to shader: flat (ignore lighting)
 
 0 Using obj
 	<a-entity obj-model="obj:#modShuttle"
@@ -40,21 +41,24 @@
 	<style>
 		#StartArea {
 			position: fixed;width: 100vw;height: 100vh;
-			z-index: 10000;
-			background-color: rgba(0,127,63,0.5);
+			z-index: 10000;background-color: rgba(0,200,222,0.6);
 			}
-	</style>
-	<div id="StartArea">
-  	<button id="StartButton">Start</button>
-	</div>
-	<script>
-		document.querySelector("#StartButton").onclick = function() {
+		#StartButton{
+			position: absolute;top: 33vh; left:33vh;
+			}
+		</style>
+		<div id="StartArea">
+  		<button id="StartButton">Start</button>
+		</div>
+		<script>
+			document.querySelector("#StartButton").onclick = function() {
   		document.querySelector("#StartArea").style.display = "none";
 				const context = new AudioContext();
+				//console.log(context);
 				if (context.state !== 'running') {
     				context.resume();
-  			}	
-		}
+  			}			
+			}
 		</script>
 
 									

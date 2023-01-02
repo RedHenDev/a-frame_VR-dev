@@ -28,27 +28,24 @@
 			z-index: 10000;background-color: rgba(0,200,222,0.6);
 			}
 		#StartButton{
-			top: 33vh; left:33vh;
+			position: absolute;top: 33vh; left:33vh;
+			font-size:32px;
 			}
 		</style>
 		<div id="StartArea">
   		<button id="StartButton">Start</button>
 		</div>
-	
 		<script>
-			
 			document.querySelector("#StartButton").onclick = function() {
   		document.querySelector("#StartArea").style.display = "none";
 				const context = new AudioContext();
 				//console.log(context);
-				
 				if (context.state !== 'running') {
     				context.resume();
   			}			
-  	
 			}
-			
 		</script>
+		
     <a-scene>
 		<!--Fog...-->
 		<!--    
