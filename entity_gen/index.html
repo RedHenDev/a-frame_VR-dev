@@ -61,9 +61,9 @@
 				<a-asset-item id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>
 				<a-asset-item id="modShuttle" src="../roost_assets/models/shuttle.obj">
 				</a-asset-item>
-				<audio id="sAmb" src="../roost_assets/sounds/rising_moon.mp3">
+				<audio crossorigin="local" id="sAmb" src="../roost_assets/sounds/rising_moon.mp3">
 				</audio>
-				<audio id="sTog"
+				<audio crossorigin="local" id="sTog"
 				src="../roost_assets/sounds/Hit_01.mp3">
 				</audio>
 				<img crossorigin="local" id="imgJojo2" src="../roost_assets/images/jojo_panda.png">
@@ -77,7 +77,7 @@
 <!--			<a-entity soundmanager></a-entity>-->
 			<a-entity id="river"
           sound="src:#sAmb;autoplay:true;loop:true;
-								 positional:false;"
+								 positional:false;volume:0.1;"
 			></a-entity>
 			
       <!-- Blue point light, 5 meters in the air. -->
@@ -92,9 +92,14 @@
 							 	material="shader:flat; color:red" 
 							 	position="4 12 12">
 			</a-sphere>
+			
+				<!--Hark in our ear.-->
+				<a-entity id="hark" sound="src:#sTog;
+						autoplay:true;volume:0.2;positional:false;">
+				</a-entity>
       
 			<!--Subject's rig starts here.-->
-      <a-entity id="rig" movement-controls>
+      <a-entity id="rig" movement-controls wasd-controls="acceleration:200">
 				
 			<!-- 360-degree image. Default rad is 10-->
   		<a-sky id="image-360" radius="5000" 
@@ -103,7 +108,7 @@
       <a-entity id="subject" 
                 camera
                 position="0 1.6 0"
-                look-controls  
+                look-controls
                 locomotion="Engine on!" 
                 log-position-data="output:#hud">
 				<!--
@@ -112,15 +117,12 @@
 										depthTest:false;transparent:true;"
 				-->
 				
-				<!--Hark in our ear.-->
-				<a-entity sound='src:#sTog; volume=0.5;'></a-entity>
-				
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:2000;"
           raycaster="objects:.clickable"
           geometry="primitive:plane;width:0.04;  height:0.04;"
-					material="shader:flat;color:lime;
+					material="shader:flat;color:red;
 										depthTest:false;
 										transparent:true; opacity:0.5"
           position="0 0 -0.9;"

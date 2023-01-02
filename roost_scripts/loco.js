@@ -23,7 +23,7 @@ AFRAME.registerComponent('locomotion', {
 					this.timeStamp=Date.now();
 					console.log(this.timeStamp);
 					this.engineOn=false;
-					this.hark=document.querySelector("#sTog");
+					this.hark=document.querySelector("#hark");
         },
   
         tick: function (timeDelta) { 
@@ -46,17 +46,16 @@ AFRAME.registerComponent('locomotion', {
 					const maxZ=2.75; // Default 0.4.
 					const acc=0.002;
 					// Let's try a toggle.
-          if (ws > minZ && ws < maxZ){
-						//this.vel+=acc;
-						// Log time stame. This will be for
+					// Pitch for mac dev testing.
+          if ((ws > minZ && ws < maxZ)){
+						// Log time stamp. This will be for
 						// toggling via head z rotations.
 						let cTime = Date.now();
 						if (cTime-this.timeStamp > 1000){
-							this.hark.playSound();
+							this.hark.components.sound.playSound();
 							this.engineOn=!this.engineOn;
 							this.timeStamp=Date.now();
 							if (!this.engineOn){
-								this.rig.rotation.y+=90;
 								document.querySelector('#reticle').
 								setAttribute('material','color:red');
 							}
