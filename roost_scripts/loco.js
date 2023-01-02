@@ -41,8 +41,8 @@ AFRAME.registerComponent('locomotion', {
           let pitch=-this.cam.rotation.x;
 					// Test for speed control.
 					let ws=Math.abs(this.cam.rotation.z);
-					const minZ=2.6; // Default 0.2.
-					const maxZ=2.9; // Default 0.4.
+					const minZ=2.5; // Default 0.2.
+					const maxZ=2.75; // Default 0.4.
 					const acc=0.002;
 					// Let's try a toggle.
           if (ws > minZ && ws < maxZ){

@@ -62,6 +62,9 @@
 				</a-asset-item>
 				<audio id="sAmb" src="../roost_assets/sounds/rising_moon.mp3">
 				</audio>
+				<audio id="sTog"
+				src="../roost_assets/sounds/Hit_01.mp3">
+				</audio>
 				<img crossorigin="local" id="imgJojo2" src="../roost_assets/images/jojo_panda.png">
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
   		</a-assets>
@@ -100,12 +103,15 @@
                 look-controls  
                 locomotion="Engine on!" 
                 log-position-data="output:#hud">
-        
 				<!--
 					Default material for reticle.
           material="color:white;wireframe:true;
 										depthTest:false;transparent:true;"
 				-->
+				
+				<!--Hark in our ear.-->
+				<a-entity sound='src:#sTog; volume=0.5;'></a-entity>
+				
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:2000;"
