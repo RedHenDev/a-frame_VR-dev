@@ -6,19 +6,18 @@ function getKeyString(_x,_y){
 	return `${_x}x${_y}`;
 }
 
-(function () {
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-	firebase.auth().onAuthStateChanged((user)=>{
-		console.log(user);
+const auth = getAuth(firebaseApp);
+onAuthStateChanged(auth, user => {
+  // Check for user status.
+	console.log(user);
 		if (user){
 			// Logged in!
 			console.log('Hi mom!');
 		} else{
 			// Logged out!
 		}
-		})
-	
-	
-	firebase.auth().signInAnonymously();
-	
-})();
+});
+
+
