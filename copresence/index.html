@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-		<title>Co-presence VR Firebase</title>
+ 
+		<title>Copresence VR Firebase</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -17,7 +18,7 @@
             text will not render to HUD -->
       <script src="../roost_scripts/HUD.js"></script>
       <script src="../roost_scripts/loco.js"></script>
-
+  
   </head>
 
   <body>
@@ -134,17 +135,6 @@
         
       </a-entity> <!-- camera end -->
       </a-entity> <!-- rig end -->
-
-			<!--.obj model tests.-->
-			<a-entity obj-model="obj:#modShuttle"
-								id="shuttle"
-								position="22 14 22"
-								rotation="0 33 0"
-								scale="0.5 0.5 0.5"
-								material="shader:standard;
-													color:silver;
-													metalness:0.8">
-			</a-entity>
 			
 			<!--Test spheres.-->
 			<a-sphere id="mySphere" class="clickable"
@@ -169,5 +159,33 @@
 			</a-torus>
 
     </a-scene>
+		
+		<!-- Firebase code -->
+<script type=module>
+			// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCXia4i3h3dFretIVmyBAVkJ_RCBlhK3pQ",
+  authDomain: "multiplayer-base-ea50c.firebaseapp.com",
+  databaseURL: "https://multiplayer-base-ea50c-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "multiplayer-base-ea50c",
+  storageBucket: "multiplayer-base-ea50c.appspot.com",
+  messagingSenderId: "285500551349",
+  appId: "1:285500551349:web:22f8c400161df176400efc",
+  measurementId: "G-NZE8NB60MC"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+</script>
+	<script src="../roost_scripts/app.js"></script>	
+
   </body>
 </html>

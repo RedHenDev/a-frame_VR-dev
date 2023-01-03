@@ -15,9 +15,9 @@ AFRAME.registerComponent('locomotion', {
 					this.vel=0.01;
 					this.currentVel=0.01;
 					
-					this.shu=document.
-						querySelector("#shuttle").object3D;
-					this.i=0;
+//					this.shu=document.
+//						querySelector("#shuttle").object3D;
+//					this.i=0;
 					
 					// Timing for toggling engine.
 					this.timeStamp=Date.now();
@@ -35,6 +35,7 @@ AFRAME.registerComponent('locomotion', {
   
         tick: function (timeDelta) { 
           
+					/*
 					// Sine bob test for our shuttle.
 					// Not yet working...
 					// OK working, forgot to add position to shu!
@@ -42,7 +43,8 @@ AFRAME.registerComponent('locomotion', {
 					//console.log(this.i);
 					this.shu.position.y=Math.sin(this.i*0.01)*2+4;
 					this.shu.rotation.y=Math.sin(this.i*0.01)*6;
-          
+          */
+					
 					// First, determine direction
           // from camera.
           let theta=this.cam.rotation.y;
