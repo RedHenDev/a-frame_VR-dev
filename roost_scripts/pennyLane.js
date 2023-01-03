@@ -1,11 +1,9 @@
 /* 
 Sound Manager Mon 2-Jan-23.
- 
+
 Had notion to call this 'Dylan'.
 But we settled on 'Penny Lane' :)
-
 */
-
 AFRAME.registerComponent('soundmanager', {
 	init: function(){
 		// Grab the a-scene so that we can append
@@ -17,8 +15,7 @@ AFRAME.registerComponent('soundmanager', {
 		// Set attributes and finally append to scene.
 		this.ambSound=document.createElement('a-entity');
 		this.ambSound.setAttribute('sound',
-			'src:#sAmb;autoplay:true;loop:true');
+			'src:#sAmb;autoplay:true;loop:true;volume:1');
 		this.sceneEl.appendChild(this.ambSound);
-		
 	}
 });

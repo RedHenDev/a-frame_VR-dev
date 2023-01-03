@@ -82,13 +82,10 @@
 			></a-entity>
 -->
 			
-      <!-- Blue point light, 5 meters in the air. -->
-			<a-sphere
-							 	light="type:point;color:white" 
-							 	material="shader:flat; color:white" 
-				 			 	position="-4 12 -12">
-			</a-sphere>
+			<!--TEST REACTION TO CURSOR RAYCAST-->
+			<a-entity id="box" class="clickable" fuse-listener geometry="primitive: box" scale="10 10 10" material="color: blue"></a-entity>
       
+      <!--Lights-->
       <a-sphere
 							 	light="type:point;color:red" 
 							 	material="shader:flat; color:red" 
@@ -97,7 +94,7 @@
 			
 				<!--Hark in our ear.-->
 				<a-entity id="hark" sound="src:#sTog;
-						autoplay:true;volume:0.4;positional:false;">
+						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
       
 			<!--Subject's rig starts here.-->
@@ -114,25 +111,25 @@
 								wasd-controls="acceleration:200"
                 locomotion="Engine on!" 
                 log-position-data="output:#hud">
-				<!--
-					Default material for reticle.
-          material="color:white;wireframe:true;
-										depthTest:false;transparent:true;"
-				-->
 				
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:2000;"
           raycaster="objects:.clickable"
-          geometry="primitive:plane;width:0.04;  height:0.04;"
+          geometry="primitive:ring;radiusInner: 0.02; radiusOuter: 0.03"
 					material="shader:flat;color:red;
 										depthTest:false;
 										transparent:true; opacity:0.5"
-          position="0 0 -0.9;"
-          animation__fusing="property:rotation;from:0 0 0;to:0 0 360;dur:2000;startEvents:fusing;"
-          animation__reset="property:scale;from:0.7 0.7 0.7;to: 1 1 1;dur:333;startEvents:mouseleave;"
+          position="0 0 -1;"
+          animation__fusing="property:scale;from:1 1 1;to:0 0 0;dur:2000;startEvents:fusing;"
+          animation__reset="property:scale;from:0 0 0;to: 1 1 1;dur:333;startEvents:mouseleave;"
          ></a-entity>
-     
+     		<!-- Lights. -->
+			<a-sphere
+							 	light="type:point;color:white" 
+							 	material="shader:flat; color:white" 
+				 			 	position="0 3 -2">
+			</a-sphere>
 				<!--NB can be rotated 180 on Z for my viewer.-->
         <a-plane id="hud"
 								 visible="true"
@@ -164,7 +161,7 @@
 			<!--glTF model test.-->
 
 			<!-- glFT test. Sci-fi model found online.-->
-			<a-gltf-model src="#cityModel" position="" rotation="" scale="20 20 20" visible=""></a-gltf-model>
+			<a-gltf-model src="#cityModel" position="" rotation="" scale="40 40 40" visible=""></a-gltf-model>
 			
 			<!--Test spheres.-->
 			<a-sphere id="mySphere" class="clickable"
@@ -177,7 +174,7 @@
 			<a-box position="-20 8 12" scale="30 20 1" material="src: #imgBloop1"></a-box>
 
 			<!-- tunnel -->
-			<a-torus class="clickable" position="0 4 -8" radius="0.5" height="1.5" color="#440044"></a-torus>
+			<a-torus fuse-listener class="clickable" position="0 4 -8" radius="0.5" height="1.5" color="#440044"></a-torus>
 			<a-torus class="clickable" position="0 4 -9" radius="0.5" height="1.5" 
 			material="color:#880088;emissive:#FF00FF">
 			</a-torus>

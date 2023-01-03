@@ -21,9 +21,16 @@ AFRAME.registerComponent('locomotion', {
 					
 					// Timing for toggling engine.
 					this.timeStamp=Date.now();
-					console.log(this.timeStamp);
 					this.engineOn=false;
+					// For sound of toggling.
 					this.hark=document.querySelector("#hark");
+					
+					// NB -- I could check whether Z is
+					// inverted on camera rotation, i.e.
+					// either around 3.14 or around 0.2
+					// and then invert z of HUD accordingly?
+					// Then, both directions of viewers
+					// catered for.
         },
   
         tick: function (timeDelta) { 
@@ -35,7 +42,8 @@ AFRAME.registerComponent('locomotion', {
 					//console.log(this.i);
 					this.shu.position.y=Math.sin(this.i*0.01)*2+4;
 					this.shu.rotation.y=Math.sin(this.i*0.01)*6;
-          // First, determine direction
+          
+					// First, determine direction
           // from camera.
           let theta=this.cam.rotation.y;
           // NB these two reversed.
@@ -44,9 +52,9 @@ AFRAME.registerComponent('locomotion', {
 					let ws=Math.abs(this.cam.rotation.z);
 					const minZ=2.5; // Default 0.2.
 					const maxZ=2.75; // Default 0.4.
-					const acc=0.002;
+					const acc=0.002; // Default 0.002.
 					// Let's try a toggle.
-					// Pitch for mac dev testing.
+					// Can add or Pitch for mac dev testing.
           if ((ws > minZ && ws < maxZ)){
 						// Log time stamp. This will be for
 						// toggling via head z rotations.
