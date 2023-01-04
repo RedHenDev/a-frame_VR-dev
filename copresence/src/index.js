@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js';
 import { getAuth, onAuthStateChanged, signInAnonymously  } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, ref, set, onDisconnect } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 
 const firebaseConfig = {
@@ -47,9 +47,12 @@ onAuthStateChanged(auth, user => {
 		set(playerRef, {
 			id: playerId,
 			name: 'Mom',
-			position: `${Math.random()*10} ${2} ${Math.random()*10}` 
+			position: `${Math.floor(Math.random()*10)} ${2} ${Math.floor(Math.random()*10)}` 
 		});
+		
+	 	onDisconnect.remove(playerRef);
 	}
 	else{
+		
 	}
 });
