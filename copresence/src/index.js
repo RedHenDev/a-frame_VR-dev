@@ -36,6 +36,7 @@ onAuthStateChanged(auth, user => {
 	console.log(user);
 	if (user != null){
 		console.log('hi mom!');
+		const uid = user.uid;
 	}
 	else{
 	}
