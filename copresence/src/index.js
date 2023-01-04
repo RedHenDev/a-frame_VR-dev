@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js';
 import { getAuth, onAuthStateChanged, signInAnonymously  } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { getDatabase, ref, set, onDisconnect } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, ref, onDisconnect, set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 
 const firebaseConfig = {
@@ -19,9 +19,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-const db = getDatabase(app);
-let playerId;
-let playerRef;
+const db = getDatabase();
+//let playerId;
+//let playerRef;
 
 
 signInAnonymously(auth)
@@ -34,15 +34,16 @@ signInAnonymously(auth)
     // ...
   });
 
-
-
 onAuthStateChanged(auth, user => {
   // Check for user status
 	console.log(user);
 	if (user != null){
+		
+		const playerId = user.uid;
+		// Create a reference to the player's data in the database using the `ref` function.
+		const playerRef = ref(db,`players/${playerId}`);
+		
 		console.log('hi mom!');
-		playerId = user.uid;
-		playerRef = ref(db, `players/${playerId}`);
 		
 		set(playerRef, {
 			id: playerId,
@@ -50,9 +51,16 @@ onAuthStateChanged(auth, user => {
 			position: `${Math.floor(Math.random()*10)} ${2} ${Math.floor(Math.random()*10)}` 
 		});
 		
-	 	onDisconnect.remove(playerRef);
+		// This causes problems.
+		
+		//playerRef.onDisconnect().remove();
+	 
 	}
 	else{
-		
+		// Nope -- but thanks for trying, GPT3.
+		// This block will be executed when the user signs out.
+//		if (playerRef) {
+//			playerRef.remove();
+//		}
 	}
 });
