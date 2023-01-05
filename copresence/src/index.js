@@ -20,8 +20,8 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getDatabase();
-//let playerId;
-//let playerRef;
+let playerId;
+let playerRef;
 
 
 signInAnonymously(auth)
@@ -33,15 +33,16 @@ signInAnonymously(auth)
     const errorMessage = error.message;
     // ...
   });
+		
 
 onAuthStateChanged(auth, user => {
   // Check for user status
 	console.log(user);
 	if (user != null){
 		
-		const playerId = user.uid;
+		playerId = user.uid;
 		// Create a reference to the player's data in the database using the `ref` function.
-		const playerRef = ref(db,`players/${playerId}`);
+		playerRef = ref(db,`players/${playerId}`);
 		
 		console.log('hi mom!');
 		
@@ -51,16 +52,8 @@ onAuthStateChanged(auth, user => {
 			position: `${Math.floor(Math.random()*10)} ${2} ${Math.floor(Math.random()*10)}` 
 		});
 		
-		// This causes problems.
-		
-		//playerRef.onDisconnect().remove();
-	 
+		onDisconnect(playerRef).remove();
 	}
-	else{
-		// Nope -- but thanks for trying, GPT3.
-		// This block will be executed when the user signs out.
-//		if (playerRef) {
-//			playerRef.remove();
-//		}
-	}
+	
+	
 });
