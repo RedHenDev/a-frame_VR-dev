@@ -35,15 +35,19 @@ function manifestSubject(_whatPos){
 			_whatPos);
 		sceneEl.appendChild(nub);
 	
+		// Change player position.
+//		const rig = document.querySelector("#rig").object3D;
+//		rig.position.x = _whatPos.x;
+	
 }
 
 
-function initGame(){
+function initGame(_who){
 
 	const allSubjectsRef = ref(db,'players');
 
 	// New subject has entered world...
-	onValue(allSubjectsRef, (snapshot) => {
+	onValue(_who, (snapshot) => {
 		console.log(`${snapshot.val()} manifested...`);
 		const whatPos=snapshot.val().position;
 		console.log(`connected at ${whatPos}`);
@@ -85,7 +89,7 @@ onAuthStateChanged(auth, user => {
 		// https://firebase.google.com/docs/database/web/offline-capabilities#section-sample
 		onDisconnect(playerRef).remove();
 		
-		initGame();
+		initGame(playerRef);
 	}
 	
 	
