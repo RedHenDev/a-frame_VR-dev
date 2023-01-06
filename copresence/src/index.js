@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js';
 import { getAuth, onAuthStateChanged, signInAnonymously  } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { getDatabase, ref, onDisconnect, set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, child_added, onValue, ref, onDisconnect, set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 
 const firebaseConfig = {
@@ -23,6 +23,46 @@ const db = getDatabase();
 let playerId;
 let playerRef;
 
+
+function initGame(){
+	const allPlayersRef = ref(db,`players`);
+
+	onValue(allPlayersRef, (snapshot) => {
+		if (snapshot.val()) {
+			const playerPos = snapshot.val().position;
+			console.log(`connected at ${playerPos}`);
+			const sceneEl=document.querySelector('a-scene');
+		console.log('generating avatar...');
+		// Create plaeholder shape for player.
+		// Set attributes and finally append to scene.
+		const nub=document.createElement('a-box');
+		nub.setAttribute('position',
+			playerPos);
+		sceneEl.appendChild(nub);
+		} else {
+			console.log("not connected");
+		}
+});
+//	child_added(allPlayersRef, (snapshot) => {
+//		if (snapshot.val()) {
+//			const playerPos = snapshot.val().position;
+//			console.log(`connected at ${playerPos}`);
+//			const sceneEl=document.querySelector('a-scene');
+//		console.log('generating avatar...');
+//		// Create plaeholder shape for player.
+//		// Set attributes and finally append to scene.
+//		const nub=document.createElement('a-box');
+//		nub.setAttribute('position',
+//			playerPos);
+//		sceneEl.appendChild(nub);
+//		} else {
+//			console.log("not connected");
+//		}
+//});
+	
+		
+									
+}
 
 signInAnonymously(auth)
   .then(() => {
@@ -52,7 +92,11 @@ onAuthStateChanged(auth, user => {
 			position: `${Math.floor(Math.random()*10)} ${2} ${Math.floor(Math.random()*10)}` 
 		});
 		
+		// Solution here:
+		// https://firebase.google.com/docs/database/web/offline-capabilities#section-sample
 		onDisconnect(playerRef).remove();
+		
+		initGame();
 	}
 	
 	
