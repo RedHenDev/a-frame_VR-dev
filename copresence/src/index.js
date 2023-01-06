@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js';
 import { getAuth, onAuthStateChanged, signInAnonymously  } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { getDatabase, child_added, onValue, ref, onDisconnect, set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, onValue, ref, onDisconnect, set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 
 const firebaseConfig = {
@@ -24,45 +24,34 @@ let playerId;
 let playerRef;
 
 
-function initGame(){
-	const allPlayersRef = ref(db,`players`);
-
-	onValue(allPlayersRef, (snapshot) => {
-		if (snapshot.val()) {
-			const playerPos = snapshot.val().position;
-			console.log(`connected at ${playerPos}`);
-			const sceneEl=document.querySelector('a-scene');
+function manifestSubject(_whatPos){
+	
+		const sceneEl=document.querySelector('a-scene');
 		console.log('generating avatar...');
 		// Create plaeholder shape for player.
 		// Set attributes and finally append to scene.
 		const nub=document.createElement('a-box');
 		nub.setAttribute('position',
-			playerPos);
+			_whatPos);
 		sceneEl.appendChild(nub);
-		} else {
-			console.log("not connected");
-		}
-});
-//	child_added(allPlayersRef, (snapshot) => {
-//		if (snapshot.val()) {
-//			const playerPos = snapshot.val().position;
-//			console.log(`connected at ${playerPos}`);
-//			const sceneEl=document.querySelector('a-scene');
-//		console.log('generating avatar...');
-//		// Create plaeholder shape for player.
-//		// Set attributes and finally append to scene.
-//		const nub=document.createElement('a-box');
-//		nub.setAttribute('position',
-//			playerPos);
-//		sceneEl.appendChild(nub);
-//		} else {
-//			console.log("not connected");
-//		}
-//});
 	
-		
-									
 }
+
+
+function initGame(){
+
+	const allSubjectsRef = ref(db,'players');
+
+	// New subject has entered world...
+	onValue(allSubjectsRef, (snapshot) => {
+		console.log(`${snapshot.val()} manifested...`);
+		const whatPos=snapshot.val().position;
+		console.log(`connected at ${whatPos}`);
+		manifestSubject(whatPos);
+	});
+								
+} // EOF initGame().
+
 
 signInAnonymously(auth)
   .then(() => {
