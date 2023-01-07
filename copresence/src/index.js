@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js';
 import { getAuth, onAuthStateChanged, signInAnonymously  } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { getDatabase, onValue, ref, onDisconnect, set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, onChildAdded, onValue, ref, onDisconnect, set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 
 const firebaseConfig = {
@@ -60,12 +60,11 @@ function baptise(){
 	return `${fn} ${sn}`;
 }
 
-function manifestSubject(_who){
+function manifestSubject(_who,_me){
 		// NB _who here is a single snapshot.val() object.
 		
-		// First, grab our rig and sceneEl. 
+		// First, grab our sceneEl. 
 		// We should probably do this globally earlier?
-		const rig = document.querySelector("#rig");
 		const sceneEl=document.querySelector('a-scene');
 		console.log('generating avatar...');
 		// Create plaeholder shape for player.
@@ -77,7 +76,10 @@ function manifestSubject(_who){
 			_who.name);
 		sceneEl.appendChild(nub);
 		
+		if (_me){
+		const rig = document.querySelector("#rig");
 		// Change player position and HUD display name.
+		
 		const posStr=_who.position;
 		gName=_who.name;
 		
@@ -86,6 +88,7 @@ function manifestSubject(_who){
 		rig.object3D.position.x = posArr[0];
 		rig.object3D.position.y = posArr[1];
 		rig.object3D.position.z = posArr[2];
+		}
 }
 
 function initGame(_who){
@@ -98,20 +101,19 @@ function initGame(_who){
 		console.log(`${snapshot.val().name} manifested...`);
 		const whatPos=snapshot.val().position;
 		console.log(`connected at ${whatPos}`);
-		manifestSubject(snapshot.val());
-		
+		manifestSubject(snapshot.val(),true);
 	});
-	
 	
 	// So now we also need to listen for changes
 	// higher up the node. I.e. at 'players'.
-	// Let's try. Not yet grabbing new individual...
-	// oh, doubling up -- no need to manifest self again...
-//	let allSubjectsRef = ref(db,`players`);
-//	onValue(allSubjectsRef, (snapshot) => {
-//		let newSub=snapshot.val() ;
-//		console.log(newSub);
-//	});
+	// Let's try.
+	const allSubjectsRef=ref(db,`players`);
+	//const newb=push(allSubjectsRef);
+	onChildAdded(allSubjectsRef, (data) => {
+		let newSub=data.val();
+		// False because not me, another subject.
+  	manifestSubject(newSub,false);
+	});
 								
 } // EOF initGame().
 
