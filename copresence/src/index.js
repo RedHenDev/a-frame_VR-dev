@@ -106,6 +106,7 @@ function manifestSubject(_who,_me){
 function initGame(_who){
 	// NB. _who here is playerRef.
 	// New subject enters world...
+	
 	// This callback will detect change to node in db.
 	// BUT only for _who -- i.e. this client, not others.
 
@@ -167,6 +168,11 @@ onAuthStateChanged(auth, user => {
 		
 		// Deal with DOM avatar a-frame etc.
 		initGame(playerRef);
+	}
+	else{
+		// User is null, signed out.
+		// Remove a-frame entity...
+		console.log(`Removing ${playerRef.name}`);
 	}
 	
 	
