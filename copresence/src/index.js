@@ -24,7 +24,36 @@ let playerId;
 let playerRef;
 
 
-function manifestSubject(_whatPos){
+function randomFromArray(_array){
+	return _array[Math.floor(Math.random()*_array.length)];
+}
+
+const fnames=[
+	'crazy',
+	'hot',
+	'square',
+	'imobile',
+	'razor',
+	'beefy'
+	]
+const snames=[
+	'jones',
+	'smith',
+	'edwards',
+	'eastwood',
+	'musk',
+	'coolridge'
+	]
+
+function baptise(){
+	const fn=randomFromArray(fnames);
+	const sn=randomFromArray(snames);
+	return `${fn} ${sn}`;
+}
+
+function manifestSubject(_who){
+		
+		const rig = document.querySelector("#rig");
 	
 		const sceneEl=document.querySelector('a-scene');
 		console.log('generating avatar...');
@@ -32,26 +61,36 @@ function manifestSubject(_whatPos){
 		// Set attributes and finally append to scene.
 		const nub=document.createElement('a-box');
 		nub.setAttribute('position',
-			_whatPos);
+			_who.position);
+		nub.setAttribute('id',
+			_who.name);
 		sceneEl.appendChild(nub);
 	
+		// Don't change camera rig to new subject's position.
+		// Only if we are the 'first' in. NOOOO.
+//		const allSubjectsRef = ref(db,'players');
+//		if (allSubjectsRef.length > 1) return;
+		//if (allSubjectsRef.contains(_who)) return;
 		// Change player position.
-//		const rig = document.querySelector("#rig").object3D;
-//		rig.position.x = _whatPos.x;
+		const posStr=_who.position;
+//		const posArray = posStr.split(' ').map(str => parseInt(str));
+	const posArr = posStr.match(/\d+/g).map(str => parseInt(str));
+
+		rig.object3D.position.x = posArr[0];
+		rig.object3D.position.y = posArr[1];
+		rig.object3D.position.z = posArr[2];
 	
 }
 
 
 function initGame(_who){
 
-	const allSubjectsRef = ref(db,'players');
-
 	// New subject has entered world...
 	onValue(_who, (snapshot) => {
-		console.log(`${snapshot.val()} manifested...`);
+		console.log(`${snapshot.val().name} manifested...`);
 		const whatPos=snapshot.val().position;
 		console.log(`connected at ${whatPos}`);
-		manifestSubject(whatPos);
+		manifestSubject(snapshot.val());
 	});
 								
 } // EOF initGame().
@@ -78,11 +117,11 @@ onAuthStateChanged(auth, user => {
 		playerRef = ref(db,`players/${playerId}`);
 		
 		console.log('hi mom!');
-		
+		const label = baptise();
 		set(playerRef, {
 			id: playerId,
-			name: 'Mom',
-			position: `${Math.floor(Math.random()*10)} ${2} ${Math.floor(Math.random()*10)}` 
+			name: label,
+			position: `${Math.floor(Math.random()*10)} ${12} ${Math.floor(Math.random()*10)}` 
 		});
 		
 		// Solution here:
