@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Red Hen dev",
   "license": "MIT",
   "dependencies": {
     "firebase": "^9.15.0"

@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js';
 import { getAuth, onAuthStateChanged, signInAnonymously  } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { getDatabase, onChildAdded, onValue, ref, onDisconnect, set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, onChildAdded, onValue, ref, onDisconnect, set, onChildRemoved } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 
 const firebaseConfig = {
@@ -135,6 +135,11 @@ function initGame(_who){
 	onChildRemoved(allSubjectsRef, (data) => {
   	console.log(`Removing ${data.name}`);
 	});
+	
+	// Updating player positions etc.
+//	onChildChanged(commentsRef, (data) => {
+//  setCommentValues(postElement, data.key, data.val().text, data.val().author);
+//	});
 								
 } // EOF initGame().
 
