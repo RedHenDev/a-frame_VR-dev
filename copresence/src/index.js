@@ -30,7 +30,7 @@ function randomFromArray(_array){
 const fnames=[
 	'red',
 	'green',
-	'gold',
+	'golden',
 	'scarlet',
 	'bronze',
 	'silver',
@@ -43,7 +43,9 @@ const fnames=[
 	'marron',
 	'sage',
 	'lime',
-	'silky'
+	'silky',
+	'ginger',
+	'saffron'
 	]
 const snames=[
 	'dog',
@@ -128,6 +130,11 @@ function initGame(_who){
 		let isItMe = `NEMO` == gName;
   	manifestSubject(newSub,isItMe);
 	});
+	
+	// And to clean up when other subject disconnects...
+	onChildRemoved(allSubjectsRef, (data) => {
+  	console.log(`Removing ${data.name}`);
+	});
 								
 } // EOF initGame().
 
@@ -164,6 +171,11 @@ onAuthStateChanged(auth, user => {
 		
 		// Callback for when user disconnects.
 		// Remove function removes user child from db.
+		function smoosh(){
+			
+		
+		}
+		
 		onDisconnect(playerRef).remove();
 		
 		// Deal with DOM avatar a-frame etc.
@@ -171,8 +183,7 @@ onAuthStateChanged(auth, user => {
 	}
 	else{
 		// User is null, signed out.
-		// Remove a-frame entity...
-		console.log(`Removing ${playerRef.name}`);
+		
 	}
 	
 	
