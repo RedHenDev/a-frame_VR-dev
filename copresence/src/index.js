@@ -38,7 +38,12 @@ const fnames=[
 	'blue',
 	'cyan',
 	'ruby',
-	'mint'
+	'mint',
+	'frosty',
+	'marron',
+	'sage',
+	'lime',
+	'silky'
 	]
 const snames=[
 	'dog',
@@ -51,7 +56,13 @@ const snames=[
 	'goldfish',
 	'worm',
 	'dragon',
-	'fox'
+	'fox',
+	'rabbit',
+	'wolf',
+	'dingo',
+	'rat',
+	'bat',
+	'baboon'
 	]
 
 function baptise(){
@@ -66,7 +77,7 @@ function manifestSubject(_who,_me){
 		// First, grab our sceneEl. 
 		// We should probably do this globally earlier?
 		const sceneEl=document.querySelector('a-scene');
-		console.log('generating avatar...');
+		console.log(`generating avatar...${_who.name}`);
 		// Create plaeholder shape for player.
 		// Set attributes and finally append to scene.
 		const nub=document.createElement('a-cylinder');
@@ -76,9 +87,10 @@ function manifestSubject(_who,_me){
 			_who.name);
 		sceneEl.appendChild(nub);
 		
+	
+		// Change player position and HUD display name.
 		if (_me){
 		const rig = document.querySelector("#rig");
-		// Change player position and HUD display name.
 		
 		const posStr=_who.position;
 		gName=_who.name;
@@ -97,12 +109,12 @@ function initGame(_who){
 	// This callback will detect change to node in db.
 	// BUT only for _who -- i.e. this client, not others.
 
-	onValue(_who, (snapshot) => {
-		console.log(`${snapshot.val().name} manifested...`);
-		const whatPos=snapshot.val().position;
-		console.log(`connected at ${whatPos}`);
-		manifestSubject(snapshot.val(),true);
-	});
+//	onValue(_who, (snapshot) => {
+//		console.log(`${snapshot.val().name} manifested...`);
+//		const whatPos=snapshot.val().position;
+//		console.log(`connected at ${whatPos}`);
+//		manifestSubject(snapshot.val(),true);
+//	});
 	
 	// So now we also need to listen for changes
 	// higher up the node. I.e. at 'players'.
@@ -112,7 +124,8 @@ function initGame(_who){
 	onChildAdded(allSubjectsRef, (data) => {
 		let newSub=data.val();
 		// False because not me, another subject.
-  	manifestSubject(newSub,false);
+		let isItMe = `NEMO` == gName;
+  	manifestSubject(newSub,isItMe);
 	});
 								
 } // EOF initGame().
