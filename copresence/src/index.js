@@ -89,9 +89,12 @@ function manifestSubject(_who,_me){
 		// Change subject position and HUD display name.
 		// That is, so long as _me is true.
 		if (_me){
-		const rig = document.querySelector("#rig");
+		//const rig = document.querySelector("#rig");
 		// Parent the avatar to the rig, so it should move?
-		nub.setAttribute('parent','#rig');
+		//nub.setAttribute('parent','#rig');
+			
+//		const rig = document.querySelector("#rig");
+//		rig.appendChild(nub);
 			
 		const posStr=_who.position;
 		gName=_who.name;
