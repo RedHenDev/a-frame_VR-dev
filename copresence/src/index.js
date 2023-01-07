@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js';
 import { getAuth, onAuthStateChanged, signInAnonymously  } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { getDatabase, onChildAdded, onValue, ref, onDisconnect, set, onChildRemoved } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, onChildAdded, onValue, ref, onDisconnect, set, onChildRemoved, onChildChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 
 const firebaseConfig = {
@@ -133,13 +133,20 @@ function initGame(_who){
 	
 	// And to clean up when other subject disconnects...
 	onChildRemoved(allSubjectsRef, (data) => {
-  	console.log(`Removing ${data.name}`);
+		let whoLeft = data.val();
+  	console.log(`Removing ${whoLeft.name}`);
 	});
 	
 	// Updating player positions etc.
-//	onChildChanged(commentsRef, (data) => {
-//  setCommentValues(postElement, data.key, data.val().text, data.val().author);
-//	});
+	onChildChanged(allSubjectsRef, (data) => {
+  const whoMoved=data.val();
+	const bod=document.querySelector(`#${whoMoved}`);
+	const posStr=whoMoved.position;
+	const posArr = posStr.match(/[-+]?\d+/g).map(str => parseInt(str));
+		bod.object3D.position.x = posArr[0];
+		bod.object3D.position.y = posArr[1];
+		bod.object3D.position.z = posArr[2];
+	});
 								
 } // EOF initGame().
 
