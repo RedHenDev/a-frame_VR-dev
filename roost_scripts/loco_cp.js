@@ -11,6 +11,7 @@ import { set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database
 // Convert three numerical positions to string
 // and set this to string position of subject.
 function write_move(_x,_y,_z,_who){
+	console.log('write moving...');
 	const posStr = String(_x + ' ' + _y + ' ' + _z);
 	set(ref(db, _who), {
     position: posStr

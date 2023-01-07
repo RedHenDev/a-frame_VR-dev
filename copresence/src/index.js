@@ -84,18 +84,11 @@ function manifestSubject(_who,_me){
 		const nub=document.createElement('a-cylinder');
 		nub.setAttribute('position',_who.position);
 		nub.setAttribute('id',_who.name);
-		sceneEl.appendChild(nub);
+		//sceneEl.appendChild(nub);
 	
 		// Change subject position and HUD display name.
 		// That is, so long as _me is true.
 		if (_me){
-		//const rig = document.querySelector("#rig");
-		// Parent the avatar to the rig, so it should move?
-		//nub.setAttribute('parent','#rig');
-			
-//		const rig = document.querySelector("#rig");
-//		rig.appendChild(nub);
-			
 		const posStr=_who.position;
 		gName=_who.name;
 		
@@ -104,6 +97,7 @@ function manifestSubject(_who,_me){
 		const posArr = 
 					posStr.match(/[-+]?\d+/g).map(str =>
 					parseInt(str));
+		const rig=document.querySelector('#rig');
 		rig.object3D.position.x = posArr[0];
 		rig.object3D.position.y = posArr[1];
 		rig.object3D.position.z = posArr[2];
@@ -149,11 +143,15 @@ function initGame(_who){
 	onChildRemoved(allSubjectsRef, (data) => {
 		const whoLeft = data.val();
   	console.log(`Removing ${whoLeft.name}`);
+		const bod=document.querySelector(`#${whoLeft.name}`);
+		document.removeChild(bod);
 	});
 	
 	// Updating player positions etc.
 	onChildChanged(allSubjectsRef, (data) => {
+	
   const whoMoved=data.val();
+		console.log(whoMoved, ' moved!');
 	const bod=document.querySelector(`#${whoMoved}`);
 	const posStr=whoMoved.position;
 	const posArr = posStr.match(/[-+]?\d+/g).map(str => parseInt(str));

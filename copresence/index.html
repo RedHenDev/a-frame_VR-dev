@@ -67,7 +67,7 @@
 				</audio>
 
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
-				<img crossorigin="local" id="carina" src="../roost_assets/images/webb_carina-nebula.jpeg">
+<!--				<img crossorigin="local" id="carina" src="../roost_assets/images/webb_carina-nebula.jpeg">-->
 				<img crossorigin="local" id="pillars" src="../roost_assets/images/webb_pillars-of-creation.png">
 				
   		</a-assets>
@@ -92,7 +92,7 @@
 				
 			<!-- 360-degree image. Default rad is 10-->
   		<a-sky id="image-360" radius="80" 
-				 		 src="#carina">
+				 		 src="#imgBloop1">
 			</a-sky>
 			
       <a-entity id="subject" 
@@ -102,6 +102,9 @@
 								wasd-controls="acceleration:100"
                 locomotion="Engine on!" 
                 log-position-data="output:#hud">
+				
+				<!--Subject's avatar.-->
+				<a-cylinder id="avatar" position="0 -1.6 0" color="green" scale="2 2 2"></a-cylinder>
 				
         <a-entity
 					id="reticle"
