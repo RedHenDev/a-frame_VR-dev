@@ -29,20 +29,30 @@ function randomFromArray(_array){
 }
 
 const fnames=[
-	'crazy',
-	'hot',
-	'square',
-	'imobile',
-	'razor',
-	'beefy'
+	'red',
+	'green',
+	'gold',
+	'scarlet',
+	'bronze',
+	'silver',
+	'orange',
+	'blue',
+	'cyan',
+	'ruby',
+	'mint'
 	]
 const snames=[
-	'jones',
-	'smith',
-	'edwards',
-	'eastwood',
-	'musk',
-	'coolridge'
+	'dog',
+	'cat',
+	'parrot',
+	'budgie',
+	'shark',
+	'walrus',
+	'panda',
+	'goldfish',
+	'worm',
+	'dragon',
+	'fox'
 	]
 
 function baptise(){
@@ -54,28 +64,20 @@ function baptise(){
 function manifestSubject(_who){
 		
 		const rig = document.querySelector("#rig");
-	
 		const sceneEl=document.querySelector('a-scene');
 		console.log('generating avatar...');
 		// Create plaeholder shape for player.
 		// Set attributes and finally append to scene.
-		const nub=document.createElement('a-box');
+		const nub=document.createElement('a-cylinder');
 		nub.setAttribute('position',
 			_who.position);
 		nub.setAttribute('id',
 			_who.name);
 		sceneEl.appendChild(nub);
 	
-		// Don't change camera rig to new subject's position.
-		// Only if we are the 'first' in. NOOOO.
-//		const allSubjectsRef = ref(db,'players');
-//		if (allSubjectsRef.length > 1) return;
-		//if (allSubjectsRef.contains(_who)) return;
 		// Change player position.
 		const posStr=_who.position;
-//		const posArray = posStr.split(' ').map(str => parseInt(str));
-	const posArr = posStr.match(/\d+/g).map(str => parseInt(str));
-
+		const posArr = posStr.match(/\d+/g).map(str => parseInt(str));
 		rig.object3D.position.x = posArr[0];
 		rig.object3D.position.y = posArr[1];
 		rig.object3D.position.z = posArr[2];
