@@ -3,7 +3,6 @@ import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase
 import { getAuth, onAuthStateChanged, signInAnonymously  } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
 import { getDatabase, onChildAdded, onValue, ref, onDisconnect, set, onChildRemoved, onChildChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyCXia4i3h3dFretIVmyBAVkJ_RCBlhK3pQ",
   authDomain: "multiplayer-base-ea50c.firebaseapp.com",
@@ -46,7 +45,7 @@ const fnames=[
 	'silky',
 	'ginger',
 	'saffron'
-	]
+	];
 const snames=[
 	'dog',
 	'cat',
@@ -65,7 +64,7 @@ const snames=[
 	'rat',
 	'bat',
 	'baboon'
-	]
+	];
 
 function baptise(){
 	const fn=randomFromArray(fnames);
@@ -83,27 +82,39 @@ function manifestSubject(_who,_me){
 		// Create plaeholder shape for player.
 		// Set attributes and finally append to scene.
 		const nub=document.createElement('a-cylinder');
-		nub.setAttribute('position',
-			_who.position);
-		nub.setAttribute('id',
-			_who.name);
+		nub.setAttribute('position',_who.position);
+		nub.setAttribute('id',_who.name);
 		sceneEl.appendChild(nub);
-		
 	
-		// Change player position and HUD display name.
+		// Change subject position and HUD display name.
+		// That is, so long as _me is true.
 		if (_me){
 		const rig = document.querySelector("#rig");
-		
+		// Parent the avatar to the rig, so it should move?
+		nub.setAttribute('parent','#rig');
+			
 		const posStr=_who.position;
 		gName=_who.name;
 		
 		// legacy /\d+/g
-		const posArr = posStr.match(/[-+]?\d+/g).map(str => parseInt(str));
+		// Regex.
+		const posArr = 
+					posStr.match(/[-+]?\d+/g).map(str =>
+					parseInt(str));
 		rig.object3D.position.x = posArr[0];
 		rig.object3D.position.y = posArr[1];
 		rig.object3D.position.z = posArr[2];
 		}
 }
+
+//// Convert three numerical positions to string
+//// and set this to string position of subject.
+//function write_move(_x,_y,_z,_who){
+//	const posStr = String(_x + ' ' + _y + ' ' + _z);
+//	set(ref(db, _who), {
+//    position: posStr
+//  });
+//}
 
 function initGame(_who){
 	// NB. _who here is playerRef.
@@ -125,15 +136,15 @@ function initGame(_who){
 	const allSubjectsRef=ref(db,`players`);
 	//const newb=push(allSubjectsRef);
 	onChildAdded(allSubjectsRef, (data) => {
-		let newSub=data.val();
+		const newSub=data.val();
 		// False because not me, another subject.
-		let isItMe = `NEMO` == gName;
+		const isItMe = `NEMO` == gName;
   	manifestSubject(newSub,isItMe);
 	});
 	
 	// And to clean up when other subject disconnects...
 	onChildRemoved(allSubjectsRef, (data) => {
-		let whoLeft = data.val();
+		const whoLeft = data.val();
   	console.log(`Removing ${whoLeft.name}`);
 	});
 	
@@ -183,11 +194,6 @@ onAuthStateChanged(auth, user => {
 		
 		// Callback for when user disconnects.
 		// Remove function removes user child from db.
-		function smoosh(){
-			
-		
-		}
-		
 		onDisconnect(playerRef).remove();
 		
 		// Deal with DOM avatar a-frame etc.

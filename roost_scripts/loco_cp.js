@@ -1,8 +1,22 @@
 /* Custom A-Frame component
 Jan 2023 - red_hen_dev
 
-Locomotion component
+Locomotion component 'copresence' version
+for use with firebase realtime db
+
 */
+
+import { set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+
+// Convert three numerical positions to string
+// and set this to string position of subject.
+function write_move(_x,_y,_z,_who){
+	const posStr = String(_x + ' ' + _y + ' ' + _z);
+	set(ref(db, _who), {
+    position: posStr
+  });
+}
+
 AFRAME.registerComponent('locomotion', {
         init: function () {
           console.log(this.data);
@@ -98,11 +112,14 @@ AFRAME.registerComponent('locomotion', {
 					
           // Finally, move pos of rig.
           // NB move rig, not camera.
-          this.rig.position.z += 
+          let x = this.rig.position.z += 
             Math.cos(theta)*speed;
-          this.rig.position.x += 
+          let y = this.rig.position.x += 
             Math.sin(theta)*speed;
-          this.rig.position.y += pitch*speed;
-
+          let z = this.rig.position.y += pitch*speed;
+					// Now we need to write to rt db.
+					
+					write_move(x,y,z);
+					
         }
       });
