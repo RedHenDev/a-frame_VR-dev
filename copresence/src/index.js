@@ -69,7 +69,7 @@ const snames=[
 function baptise(){
 	const fn=randomFromArray(fnames);
 	const sn=randomFromArray(snames);
-	return `${fn} ${sn}`;
+	return `${fn}_${sn}`;
 }
 
 function manifestSubject(_who,_me){
@@ -84,7 +84,7 @@ function manifestSubject(_who,_me){
 		const nub=document.createElement('a-cylinder');
 		nub.setAttribute('position',_who.position);
 		nub.setAttribute('id',_who.name);
-		//sceneEl.appendChild(nub);
+		sceneEl.appendChild(nub);
 	
 		// Change subject position and HUD display name.
 		// That is, so long as _me is true.
@@ -144,14 +144,14 @@ function initGame(_who){
 		const whoLeft = data.val();
   	console.log(`Removing ${whoLeft.name}`);
 		const bod=document.querySelector(`#${whoLeft.name}`);
-		document.removeChild(bod);
+		bod.remove();
 	});
 	
 	// Updating player positions etc.
 	onChildChanged(allSubjectsRef, (data) => {
 	
   const whoMoved=data.val();
-		console.log(whoMoved, ' moved!');
+		console.log(whoMoved);
 	const bod=document.querySelector(`#${whoMoved}`);
 	const posStr=whoMoved.position;
 	const posArr = posStr.match(/[-+]?\d+/g).map(str => parseInt(str));

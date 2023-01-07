@@ -6,17 +6,17 @@ for use with firebase realtime db
 
 */
 
-import { set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+//import { set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 // Convert three numerical positions to string
 // and set this to string position of subject.
-function write_move(_x,_y,_z,_who){
-	console.log('write moving...');
-	const posStr = String(_x + ' ' + _y + ' ' + _z);
-	set(ref(db, _who), {
-    position: posStr
-  });
-}
+//function write_move(_x,_y,_z,_who){
+//	console.log('write moving...');
+//	const posStr = String(_x + ' ' + _y + ' ' + _z);
+//	set(ref(db, _who), {
+//    position: posStr
+//  });
+//}
 
 AFRAME.registerComponent('locomotion', {
         init: function () {
@@ -118,9 +118,9 @@ AFRAME.registerComponent('locomotion', {
           let y = this.rig.position.x += 
             Math.sin(theta)*speed;
           let z = this.rig.position.y += pitch*speed;
-					// Now we need to write to rt db.
 					
-					write_move(x,y,z);
+					// Now we need to write to rt db.
+					//write_move(x,y,z);
 					
         }
       });
