@@ -23,7 +23,6 @@ const db = getDatabase();
 let playerId;
 let playerRef;
 
-
 function randomFromArray(_array){
 	return _array[Math.floor(Math.random()*_array.length)];
 }
@@ -62,7 +61,10 @@ function baptise(){
 }
 
 function manifestSubject(_who){
+		// NB _who here is a single snapshot.val() object.
 		
+		// First, grab our rig and sceneEl. 
+		// We should probably do this globally earlier?
 		const rig = document.querySelector("#rig");
 		const sceneEl=document.querySelector('a-scene');
 		console.log('generating avatar...');
@@ -74,30 +76,47 @@ function manifestSubject(_who){
 		nub.setAttribute('id',
 			_who.name);
 		sceneEl.appendChild(nub);
-	
-		// Change player position.
+		
+		// Change player position and HUD display name.
 		const posStr=_who.position;
-		const posArr = posStr.match(/\d+/g).map(str => parseInt(str));
+		gName=_who.name;
+		
+		// legacy /\d+/g
+		const posArr = posStr.match(/[-+]?\d+/g).map(str => parseInt(str));
 		rig.object3D.position.x = posArr[0];
 		rig.object3D.position.y = posArr[1];
 		rig.object3D.position.z = posArr[2];
-	
 }
 
-
 function initGame(_who){
+	// NB. _who here is playerRef.
+	// New subject enters world...
+	// This callback will detect change to node in db.
+	// BUT only for _who -- i.e. this client, not others.
 
-	// New subject has entered world...
 	onValue(_who, (snapshot) => {
 		console.log(`${snapshot.val().name} manifested...`);
 		const whatPos=snapshot.val().position;
 		console.log(`connected at ${whatPos}`);
 		manifestSubject(snapshot.val());
+		
 	});
+	
+	
+	// So now we also need to listen for changes
+	// higher up the node. I.e. at 'players'.
+	// Let's try. Not yet grabbing new individual...
+	// oh, doubling up -- no need to manifest self again...
+//	let allSubjectsRef = ref(db,`players`);
+//	onValue(allSubjectsRef, (snapshot) => {
+//		let newSub=snapshot.val() ;
+//		console.log(newSub);
+//	});
 								
 } // EOF initGame().
 
 
+// This allows users to log in anonymously.
 signInAnonymously(auth)
   .then(() => {
     // Signed in..
@@ -108,28 +127,30 @@ signInAnonymously(auth)
     // ...
   });
 		
-
+// This listens for changes to logged in users.
 onAuthStateChanged(auth, user => {
   // Check for user status
-	console.log(user);
+	//console.log(user);
 	if (user != null){
 		
 		playerId = user.uid;
-		// Create a reference to the player's data in the database using the `ref` function.
+		// Create a reference to the subject's data in db.
 		playerRef = ref(db,`players/${playerId}`);
 		
-		console.log('hi mom!');
-		const label = baptise();
+		// Gen random name for new subject.
+		const subName = baptise();
+		// Write initial subject details to db.
 		set(playerRef, {
 			id: playerId,
-			name: label,
-			position: `${Math.floor(Math.random()*10)} ${12} ${Math.floor(Math.random()*10)}` 
+			name: subName,
+			position: `${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)}` 
 		});
 		
-		// Solution here:
-		// https://firebase.google.com/docs/database/web/offline-capabilities#section-sample
+		// Callback for when user disconnects.
+		// Remove function removes user child from db.
 		onDisconnect(playerRef).remove();
 		
+		// Deal with DOM avatar a-frame etc.
 		initGame(playerRef);
 	}
 	

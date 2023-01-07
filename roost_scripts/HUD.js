@@ -1,6 +1,8 @@
 /* Custom A-Frame component
 Fires a specified event on this entity on a regular timed interval */
 
+// Need to refactor this global monstrosity!
+let gName = 'NEMO';
 AFRAME.registerComponent('log-position-data', {
 	
 				init: function(){
@@ -15,7 +17,7 @@ AFRAME.registerComponent('log-position-data', {
 				
         tick: function () {
 
-          let dataString = "Hold on!:\n";
+          let dataString = `${gName}\n`;
           dataString += "Position: \n";
           dataString += `x: ${this.rig.position.x.toFixed(2)}\n`
           dataString += `y: ${this.rig.position.y.toFixed(2)}\n`
