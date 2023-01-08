@@ -139,7 +139,7 @@ function initGame(_who){
   	manifestSubject(newSub,isItMe);
 	});
 	
-	// And to clean up when other subject disconnects...
+	// And to remove avatar when other subject disconnects...
 	onChildRemoved(allSubjectsRef, (data) => {
 		const whoLeft = data.val();
   	console.log(`Removing ${whoLeft.name}`);
@@ -149,7 +149,6 @@ function initGame(_who){
 	
 	// Updating player positions etc.
 	onChildChanged(allSubjectsRef, (data) => {
-	
   const whoMoved=data.val();
 		console.log(whoMoved);
 	const bod=document.querySelector(`#${whoMoved}`);

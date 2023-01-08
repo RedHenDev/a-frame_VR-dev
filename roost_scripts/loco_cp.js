@@ -10,13 +10,13 @@ for use with firebase realtime db
 
 // Convert three numerical positions to string
 // and set this to string position of subject.
-//function write_move(_x,_y,_z,_who){
-//	console.log('write moving...');
-//	const posStr = String(_x + ' ' + _y + ' ' + _z);
-//	set(ref(db, _who), {
-//    position: posStr
-//  });
-//}
+function write_move(_x,_y,_z,_who){
+	console.log('write moving...');
+	const posStr = String(_x + ' ' + _y + ' ' + _z);
+	set(ref(db, _who), {
+    position: posStr
+  });
+}
 
 AFRAME.registerComponent('locomotion', {
         init: function () {
@@ -74,6 +74,37 @@ AFRAME.registerComponent('locomotion', {
 					const maxZ=2.75; // Default 0.4.
 					const acc=0.002; // Default 0.002.
 					// Let's try a toggle.
+					
+					// New toggling with keys...
+					document.addEventListener('keydown', event => {
+					if (event.key === 'ArrowUp') {
+						let cTime = Date.now();
+						if (cTime-this.timeStamp > 1000){
+							this.hark.components.sound.playSound();
+							this.engineOn=!this.engineOn;
+							this.timeStamp=Date.now();
+							if (!this.engineOn){
+								document.querySelector('#reticle').
+								setAttribute('material','color:red');
+							}
+							else {
+								document.querySelector('#reticle').
+								setAttribute('material','color:lime');
+							}
+						}
+					
+						// do something
+					} else if (event.key === 'ArrowDown') {
+						// do something
+					} else if (event.key === 'ArrowLeft') {
+						// do something
+					} else if (event.key === 'ArrowRight') {
+						// do something
+					}
+				});
+
+					
+					
 					// Can add or Pitch for mac dev testing.
           if ((ws > minZ && ws < maxZ)){
 						// Log time stamp. This will be for

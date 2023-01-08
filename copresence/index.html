@@ -2,14 +2,12 @@
 <html>
   <head>
  
-		<title>Copresence VR sync_test</title>
+		<title>Copresence VR loco_test</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
-			
-			
 			<script src="../roost_scripts/pennyLane.js" defer></script>
 			<!--<script src="aframe.min.js"></script>-->
 		
@@ -88,18 +86,22 @@
 				</a-entity>
       
 			<!--Subject's rig starts here.-->
-      <a-entity id="rig" movement-controls>
+<!--			Add as component to rig for non-VR controls?-->
+<!--			movement-controls-->
+      <a-entity id="rig" >
 				
 			<!-- 360-degree image. Default rad is 10-->
   		<a-sky id="image-360" radius="80" 
 				 		 src="#imgBloop1">
 			</a-sky>
-			
+				
+<!--				Add as component to camera for non-VR wsad-->
+<!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
                 camera
                 position="0 1.6 0"
                 look-controls
-								wasd-controls="acceleration:100"
+								
                 locomotion="Engine on!" 
                 log-position-data="output:#hud">
 				
