@@ -138,14 +138,12 @@ AFRAME.registerComponent('locomotion', {
 					
           // Finally, move pos of rig.
           // NB move rig, not camera.
-          xSub = this.rig.position.z += 
+					// Note here we also update global values.
+          zSub = this.rig.position.z += 
             Math.cos(theta)*speed;
-          ySub = this.rig.position.x += 
+          xSub = this.rig.position.x += 
             Math.sin(theta)*speed;
-          zSub = this.rig.position.y += pitch*speed;
-					
-					// Now we need to write to rt db.
-					//write_move(x,y,z);
+          ySub = this.rig.position.y += pitch*speed;
 					
         }
       });

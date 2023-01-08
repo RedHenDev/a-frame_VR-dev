@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js';
 import { getAuth, onAuthStateChanged, signInAnonymously  } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { getDatabase, onChildAdded, onValue, ref, onDisconnect, set, onChildRemoved, onChildChanged, push } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, onChildAdded, ref, onDisconnect, set, onChildRemoved, onChildChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCXia4i3h3dFretIVmyBAVkJ_RCBlhK3pQ",
@@ -83,31 +83,26 @@ function manifestSubject(_who,_me){
 		// Create plaeholder shape for player.
 		// Set attributes and finally append to scene.
 		const nub=document.createElement('a-cylinder');
-		nub.setAttribute('position',_who.position);
+		//nub.setAttribute('position',_who.position);
 		nub.setAttribute('id',_who.name);
+		nub.setAttribute('scale','3 3 3');
 		sceneEl.appendChild(nub);
 	
 		// Change subject position and HUD display name.
 		// That is, so long as _me is true.
 		if (_me){
-		const posStr=_who.position;
 		gName=_who.name;
-		
-		// legacy /\d+/g
-		// Regex.
-		const posArr = 
-					posStr.match(/[-+]?\d+/g).map(str =>
-					parseInt(str));
+		 
 		const rig=document.querySelector('#rig');
-		rig.object3D.position.x = posArr[0];
-		rig.object3D.position.y = posArr[1];
-		rig.object3D.position.z = posArr[2];
+		rig.object3D.position.x = _who.x;
+		rig.object3D.position.y = _who.y;
+		rig.object3D.position.z = _who.z;
 		}
 }
 
 setInterval(function() {
   write_move();
-}, 3000);
+}, 255);
 
 // Convert three numerical positions to string
 // and set this to string position of subject.
@@ -117,7 +112,10 @@ function write_move(){
 	set(playerRef, {
 			id: playerId,
 			name: subName,
-			position: posStr
+			position: posStr,
+			x: xSub,
+			y: ySub,
+			z: zSub
 	});
 }
 
@@ -127,19 +125,8 @@ function initGame(_who){
 	// NB. _who here is playerRef.
 	// New subject enters world...
 	
-	// This callback will detect change to node in db.
-	// BUT only for _who -- i.e. this client, not others.
-
-//	onValue(_who, (snapshot) => {
-//		console.log(`${snapshot.val().name} manifested...`);
-//		const whatPos=snapshot.val().position;
-//		console.log(`connected at ${whatPos}`);
-//		manifestSubject(snapshot.val(),true);
-//	});
-	
 	// So now we also need to listen for changes
 	// higher up the node. I.e. at 'players'.
-	// Let's try.
 	const allSubjectsRef=ref(db,`players`);
 	//const newb=push(allSubjectsRef);
 	onChildAdded(allSubjectsRef, (data) => {
@@ -158,32 +145,26 @@ function initGame(_who){
 	});
 	
 	// Updating player positions etc.
-	//onValue(
-	
-	// Second attempt:
+	// Third attempt:
 	onChildChanged(allSubjectsRef, (snapshot) => {
   const whoMoved = snapshot.val();
-  console.log(whoMoved.name, ' moved!');
+  //console.log(whoMoved.name, 'moved');
 	// Refactor -- global array.
 	const bod=document.querySelector(`#${whoMoved.name}`);
-	const posStr=whoMoved.position;
-	const posArr = posStr.match(/[-+]?\d+/g).map(str => parseInt(str));
-		bod.object3D.position.x = posArr[0];
-		bod.object3D.position.y = posArr[1];
-		bod.object3D.position.z = posArr[2];
-});
-	
-// First attempt...	
-//	onChildChanged(allSubjectsRef, (data) => {
-//  	const whoMoved=data.val();
-//		console.log(whoMoved.name);
-	//const bod=document.querySelector(`#${whoMoved}`);
+	const x = whoMoved.x;
+	const y = whoMoved.y;
+	const z = whoMoved.z;
+	bod.object3D.position.x = x;
+	bod.object3D.position.y = y-4;
+	bod.object3D.position.z = z;
 //	const posStr=whoMoved.position;
-//	const posArr = posStr.match(/[-+]?\d+/g).map(str => parseInt(str));
+		// /[-+]?\d*\.?\d+/g
+		// /[-+]?\d+/g
+//	const posArr = posStr.match(/[-+]?\d*\.?\d+/g).map(str => parseInt(str));
 //		bod.object3D.position.x = posArr[0];
 //		bod.object3D.position.y = posArr[1];
 //		bod.object3D.position.z = posArr[2];
-//	});
+});
 								
 } // EOF initGame().
 
@@ -212,10 +193,14 @@ onAuthStateChanged(auth, user => {
 		// Gen random name for new subject.
 		subName = baptise();
 		// Write initial subject details to db.
+		// Refactor -- so that I can call write_move here.
 		set(playerRef, {
 			id: playerId,
 			name: subName,
-			position: `${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)}` 
+			position: `${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)}`,
+			x: xSub,
+			y: ySub,
+			z: zSub
 		});
 		
 		// Callback for when user disconnects.
