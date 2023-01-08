@@ -7,16 +7,9 @@ for use with firebase realtime db
 */
 
 //import { set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-
-// Convert three numerical positions to string
-// and set this to string position of subject.
-function write_move(_x,_y,_z,_who){
-	console.log('write moving...');
-	const posStr = String(_x + ' ' + _y + ' ' + _z);
-	set(ref(db, _who), {
-    position: posStr
-  });
-}
+let xSub;
+let ySub;
+let zSub;
 
 AFRAME.registerComponent('locomotion', {
         init: function () {
@@ -33,9 +26,10 @@ AFRAME.registerComponent('locomotion', {
 					this.vel=0.01;
 					this.currentVel=0.01;
 					
-//					this.shu=document.
-//						querySelector("#shuttle").object3D;
-//					this.i=0;
+					// Sync global positions.
+					xSub = this.rig.position.x;
+					ySub = this.rig.position.y;
+					zSub = this.rig.position.z;
 					
 					// Timing for toggling engine.
 					this.timeStamp=Date.now();
@@ -77,7 +71,8 @@ AFRAME.registerComponent('locomotion', {
 					
 					// New toggling with keys...
 					document.addEventListener('keydown', event => {
-					if (event.key === 'ArrowUp') {
+					if (event.key === 'ArrowUp' ||
+						  event.key === 'w') {
 						let cTime = Date.now();
 						if (cTime-this.timeStamp > 1000){
 							this.hark.components.sound.playSound();
@@ -92,7 +87,6 @@ AFRAME.registerComponent('locomotion', {
 								setAttribute('material','color:lime');
 							}
 						}
-					
 						// do something
 					} else if (event.key === 'ArrowDown') {
 						// do something
@@ -144,11 +138,11 @@ AFRAME.registerComponent('locomotion', {
 					
           // Finally, move pos of rig.
           // NB move rig, not camera.
-          let x = this.rig.position.z += 
+          xSub = this.rig.position.z += 
             Math.cos(theta)*speed;
-          let y = this.rig.position.x += 
+          ySub = this.rig.position.x += 
             Math.sin(theta)*speed;
-          let z = this.rig.position.y += pitch*speed;
+          zSub = this.rig.position.y += pitch*speed;
 					
 					// Now we need to write to rt db.
 					//write_move(x,y,z);

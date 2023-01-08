@@ -1,7 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js';
 import { getAuth, onAuthStateChanged, signInAnonymously  } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { getDatabase, onChildAdded, onValue, ref, onDisconnect, set, onChildRemoved, onChildChanged } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, onChildAdded, onValue, ref, onDisconnect, set, onChildRemoved, onChildChanged, push } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCXia4i3h3dFretIVmyBAVkJ_RCBlhK3pQ",
@@ -21,6 +21,7 @@ const auth = getAuth(app);
 const db = getDatabase();
 let playerId;
 let playerRef;
+let subName;
 
 function randomFromArray(_array){
 	return _array[Math.floor(Math.random()*_array.length)];
@@ -104,14 +105,23 @@ function manifestSubject(_who,_me){
 		}
 }
 
-//// Convert three numerical positions to string
-//// and set this to string position of subject.
-//function write_move(_x,_y,_z,_who){
-//	const posStr = String(_x + ' ' + _y + ' ' + _z);
-//	set(ref(db, _who), {
-//    position: posStr
-//  });
-//}
+setInterval(function() {
+  write_move();
+}, 3000);
+
+// Convert three numerical positions to string
+// and set this to string position of subject.
+function write_move(){
+	//console.log('write moving...');
+	const posStr = String(xSub + ' ' + ySub + ' ' + zSub);
+	set(playerRef, {
+			id: playerId,
+			name: subName,
+			position: posStr
+	});
+}
+
+
 
 function initGame(_who){
 	// NB. _who here is playerRef.
@@ -150,17 +160,30 @@ function initGame(_who){
 	// Updating player positions etc.
 	//onValue(
 	
-// First attempt...	
-	onChildChanged(allSubjectsRef, (data) => {
-  const whoMoved=data.val();
-		console.log(whoMoved);
-	const bod=document.querySelector(`#${whoMoved}`);
+	// Second attempt:
+	onChildChanged(allSubjectsRef, (snapshot) => {
+  const whoMoved = snapshot.val();
+  console.log(whoMoved.name, ' moved!');
+	// Refactor -- global array.
+	const bod=document.querySelector(`#${whoMoved.name}`);
 	const posStr=whoMoved.position;
 	const posArr = posStr.match(/[-+]?\d+/g).map(str => parseInt(str));
 		bod.object3D.position.x = posArr[0];
 		bod.object3D.position.y = posArr[1];
 		bod.object3D.position.z = posArr[2];
-	});
+});
+	
+// First attempt...	
+//	onChildChanged(allSubjectsRef, (data) => {
+//  	const whoMoved=data.val();
+//		console.log(whoMoved.name);
+	//const bod=document.querySelector(`#${whoMoved}`);
+//	const posStr=whoMoved.position;
+//	const posArr = posStr.match(/[-+]?\d+/g).map(str => parseInt(str));
+//		bod.object3D.position.x = posArr[0];
+//		bod.object3D.position.y = posArr[1];
+//		bod.object3D.position.z = posArr[2];
+//	});
 								
 } // EOF initGame().
 
@@ -187,7 +210,7 @@ onAuthStateChanged(auth, user => {
 		playerRef = ref(db,`players/${playerId}`);
 		
 		// Gen random name for new subject.
-		const subName = baptise();
+		subName = baptise();
 		// Write initial subject details to db.
 		set(playerRef, {
 			id: playerId,
