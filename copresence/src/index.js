@@ -95,9 +95,9 @@ function manifestSubject(_who,_me){
 		gName=_who.name;
 		 
 		const rig=document.querySelector('#rig');
-		rig.object3D.position.x = _who.x;
-		rig.object3D.position.y = _who.y;
-		rig.object3D.position.z = _who.z;
+		rig.object3D.position.x = +_who.x.toFixed(4);
+		rig.object3D.position.y = +_who.y.toFixed(4);
+		rig.object3D.position.z = +_who.z.toFixed(4);
 		}
 }
 
@@ -154,11 +154,11 @@ function initGame(_who){
   //console.log(whoMoved.name, 'moved');
 	// Refactor -- global array.
 	const bod=document.querySelector(`#${whoMoved.name}`);
-	const x = whoMoved.x;
-	const y = whoMoved.y;
-	const z = whoMoved.z;
+	const x = +whoMoved.x.toFixed(4);
+	const y = +whoMoved.y.toFixed(4);
+	const z = +whoMoved.z.toFixed(4);
 	bod.object3D.position.x = x;
-	bod.object3D.position.y = y+4;
+	bod.object3D.position.y = y+5;
 	bod.object3D.position.z = z;
 //	const posStr=whoMoved.position;
 		// /[-+]?\d*\.?\d+/g
