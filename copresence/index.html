@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>Copresence VR v8_light-speed</title>
+		<title>Copresence VR v9_auto-fix</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -129,13 +129,14 @@
 				<!--NB can be rotated 180 on Z for my viewer.-->
 				<!-- -30 on Y is default too.-->
         <a-plane id="hud"
+								 hud-flip
 								 visible="true"
                  position="0.4 0 -0.9"
 								 scale="0.3 0.4 0"
                  rotation="0 0 0"
   text="color:black; xOffset: 0.5; width:1.9;" 
                  material="shader:flat;
-													 color:white;
+													 color:lime;
 													 depthTest:false;
 													 transparent:true;
 													 opacity:0.6">

@@ -15,7 +15,7 @@ AFRAME.registerComponent('soundmanager', {
 		// Set attributes and finally append to scene.
 		this.ambSound=document.createElement('a-entity');
 		this.ambSound.setAttribute('sound',
-			'src:#sAmb;autoplay:true;loop:true;volume:1');
+			'src:#sAmb;autoplay:true;loop:true;volume:0.2;positional:false;');
 		this.sceneEl.appendChild(this.ambSound);
 	}
 });

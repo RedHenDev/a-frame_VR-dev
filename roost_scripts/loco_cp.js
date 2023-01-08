@@ -16,7 +16,7 @@ let toggleAttempt=false;
 AFRAME.registerComponent('locomotion', {
         init: function () {
           console.log(this.data);
-          
+					
           // Create refs here, which is
           // more performant than each
           // tick at runtime.
