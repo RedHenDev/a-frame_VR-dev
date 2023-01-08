@@ -100,9 +100,13 @@ function manifestSubject(_who,_me){
 		}
 }
 
-setInterval(function() {
+// Simple protection to ensure we don't
+// try to sync (non-existent) rigs before 5 seconds.
+setTimeout(function(){
+	setInterval(function() {
   write_move();
-}, 255);
+}, 16);
+},5000);
 
 // Convert three numerical positions to string
 // and set this to string position of subject.
@@ -118,8 +122,6 @@ function write_move(){
 			z: zSub
 	});
 }
-
-
 
 function initGame(_who){
 	// NB. _who here is playerRef.
@@ -212,8 +214,5 @@ onAuthStateChanged(auth, user => {
 	}
 	else{
 		// User is null, signed out.
-		
 	}
-	
-	
 });

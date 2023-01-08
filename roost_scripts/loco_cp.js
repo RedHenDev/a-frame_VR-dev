@@ -10,6 +10,8 @@ for use with firebase realtime db
 let xSub;
 let ySub;
 let zSub;
+let fSub; // Forward Direction.
+let toggleAttempt=false;
 
 AFRAME.registerComponent('locomotion', {
         init: function () {
@@ -46,16 +48,6 @@ AFRAME.registerComponent('locomotion', {
         },
   
         tick: function (timeDelta) { 
-          
-					/*
-					// Sine bob test for our shuttle.
-					// Not yet working...
-					// OK working, forgot to add position to shu!
-					this.i++;
-					//console.log(this.i);
-					this.shu.position.y=Math.sin(this.i*0.01)*2+4;
-					this.shu.rotation.y=Math.sin(this.i*0.01)*6;
-          */
 					
 					// First, determine direction
           // from camera.
@@ -71,40 +63,19 @@ AFRAME.registerComponent('locomotion', {
 					
 					// New toggling with keys...
 					document.addEventListener('keydown', event => {
-					if (event.key === 'ArrowUp' ||
+						if (event.key === 'ArrowUp' ||
 						  event.key === 'w') {
-						let cTime = Date.now();
-						if (cTime-this.timeStamp > 1000){
-							this.hark.components.sound.playSound();
-							this.engineOn=!this.engineOn;
-							this.timeStamp=Date.now();
-							if (!this.engineOn){
-								document.querySelector('#reticle').
-								setAttribute('material','color:red');
-							}
-							else {
-								document.querySelector('#reticle').
-								setAttribute('material','color:lime');
-							}
+						toggleAttempt=true;
 						}
-						// do something
-					} else if (event.key === 'ArrowDown') {
-						// do something
-					} else if (event.key === 'ArrowLeft') {
-						// do something
-					} else if (event.key === 'ArrowRight') {
-						// do something
-					}
-				});
+					});
 
-					
-					
-					// Can add or Pitch for mac dev testing.
-          if ((ws > minZ && ws < maxZ)){
+          if ((ws > minZ && ws < maxZ) ||
+							toggleAttempt){
 						// Log time stamp. This will be for
 						// toggling via head z rotations.
 						let cTime = Date.now();
 						if (cTime-this.timeStamp > 1000){
+							toggleAttempt=false;
 							this.hark.components.sound.playSound();
 							this.engineOn=!this.engineOn;
 							this.timeStamp=Date.now();
@@ -144,6 +115,7 @@ AFRAME.registerComponent('locomotion', {
           xSub = this.rig.position.x += 
             Math.sin(theta)*speed;
           ySub = this.rig.position.y += pitch*speed;
+					
 					
         }
       });

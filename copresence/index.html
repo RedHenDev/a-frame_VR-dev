@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>Copresence VR moving_rigs_v2</title>
+		<title>Copresence VR v3_rig-sync</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -85,29 +85,26 @@
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
       
+			<!-- 360-degree image. Default rad is 10-->
+  		<a-sky id="image-360" radius="1200" 
+				 		 src="#imgBloop1">
+			</a-sky>
+			
 			<!--Subject's rig starts here.-->
 <!--			Add as component to rig for non-VR controls?-->
 <!--			movement-controls-->
-      <a-entity id="rig" >
+      <a-entity id="rig">
 				
-			<!-- 360-degree image. Default rad is 10-->
-  		<a-sky id="image-360" radius="80" 
-				 		 src="#imgBloop1">
-			</a-sky>
-				
+			
 <!--				Add as component to camera for non-VR wsad-->
 <!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
                 camera
                 position="0 1.6 0"
                 look-controls
-								
                 locomotion="Engine on!" 
                 log-position-data="output:#hud">
-				
-				<!--Subject's avatar.-->
-				<a-cylinder id="avatar" position="0 -1.6 0" color="green" scale="2 2 2"></a-cylinder>
-				
+		
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:2000;"
@@ -127,11 +124,12 @@
 				 			 	position="0 3 -2">
 			</a-sphere>
 				<!--NB can be rotated 180 on Z for my viewer.-->
+				<!-- -30 on Y is default too.-->
         <a-plane id="hud"
 								 visible="true"
                  position="0.4 0 -0.9"
 								 scale="0.3 0.4 0"
-                 rotation="0 -30 180"
+                 rotation="0 0 0"
   text="color:black; xOffset: 0.5; width:1.9;" 
                  material="shader:flat;
 													 color:white;
