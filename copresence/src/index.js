@@ -148,6 +148,9 @@ function initGame(_who){
 	});
 	
 	// Updating player positions etc.
+	//onValue(
+	
+// First attempt...	
 	onChildChanged(allSubjectsRef, (data) => {
   const whoMoved=data.val();
 		console.log(whoMoved);
