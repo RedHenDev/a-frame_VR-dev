@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>Copresence VR v4_rig-sync</title>
+		<title>Copresence VR v5_rig-sync</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -75,9 +75,15 @@
       
       <!--Lights-->
       <a-sphere
-							 	light="type:point;color:red" 
-							 	material="shader:flat; color:red" 
-							 	position="4 12 12">
+							 	light="type:point;color:yellow" 
+							 	material="shader:emissive; color:yellow" 
+							 	position="0 24 0" scale="7 7 7">
+			</a-sphere>
+				<!-- Lights. -->
+			<a-sphere
+							 	light="type:point;color:cyan" 
+							 	material="shader:emissive; color:cyan" 
+				 			 	position="0 24 -64" scale="3 3 3">
 			</a-sphere>
 			
 				<!--Hark in our ear.-->
@@ -94,7 +100,6 @@
 <!--			Add as component to rig for non-VR controls?-->
 <!--			movement-controls-->
       <a-entity id="rig">
-				
 			
 <!--				Add as component to camera for non-VR wsad-->
 <!--			wasd-controls="acceleration:100"-->
@@ -117,12 +122,7 @@
           animation__fusing="property:scale;from:1 1 1;to:0 0 0;dur:2000;startEvents:fusing;"
           animation__reset="property:scale;from:0 0 0;to: 1 1 1;dur:333;startEvents:mouseleave;"
          ></a-entity>
-     		<!-- Lights. -->
-			<a-sphere
-							 	light="type:point;color:white" 
-							 	material="shader:flat; color:white" 
-				 			 	position="0 3 -2">
-			</a-sphere>
+     	
 				<!--NB can be rotated 180 on Z for my viewer.-->
 				<!-- -30 on Y is default too.-->
         <a-plane id="hud"
@@ -142,27 +142,27 @@
       </a-entity> <!-- rig end -->
 			
 			<!-- glFT test. Sci-fi model found online.-->
-			<a-gltf-model src="#cityModel" position="" rotation="" scale="40 40 40" visible=""></a-gltf-model>
+			<a-gltf-model src="#cityModel" position="" rotation="" scale="28 28 28" visible=""></a-gltf-model>
 			
 			<!--Test spheres.-->
 			<a-sphere id="mySphere" class="clickable"
-								position="4.2 -5 -5" radius="2" color="#00EEFF" shadow></a-sphere>
+								position="64 -5 -5" radius="3" color="#00EEFF" shadow></a-sphere>
       <a-sphere id="testPig" class="clickable"
-								position="-4 3 -9" radius="1" color="rgb(0,255,0)" shadow></a-sphere>
+								position="-64 3 -9" radius="3" color="rgb(0,255,0)" shadow></a-sphere>
 			
 			<!-- Giant paintings -->
-			<a-box position="-20 8 12" scale="60 40 0.1" material="src: #imgBloop1"></a-box>
+			<a-box position="-20 20 12" scale="60 40 0.1" material="src: #imgBloop1"></a-box>
 
 			<!-- tunnel -->
 			<a-torus class="clickable" 
-			position="0 4 -8" radius="0.5" height="1.5"
+			position="0 4 -18" radius="0.5" height="3"
 			material="shader:standard;color:#110011;">
 			</a-torus>
-			<a-torus fuse-listener class="clickable" position="0 4 -10" radius="0.5" height="1.5" 
+			<a-torus fuse-listener class="clickable" position="0 4 -22" radius="0.5" height="3" 
 			material="shader:standard;color:#880088;">
 			</a-torus>
 			<a-torus class="clickable"
-			position="0 4 -12" radius="0.5" height="1.5"
+			position="0 4 -24" radius="0.5" height="3"
 			material="shader:standard;color:#440044;">
 			</a-torus>
 

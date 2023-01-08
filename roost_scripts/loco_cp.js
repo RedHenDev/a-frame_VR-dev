@@ -58,6 +58,8 @@ AFRAME.registerComponent('locomotion', {
 					let ws=Math.abs(this.cam.rotation.z);
 					const minZ=2.5; // Default 0.2.
 					const maxZ=2.75; // Default 0.4.
+					const minZ2=0.2; // Default 0.2.
+					const maxZ2=0.45; // Default 0.4.
 					const acc=0.002; // Default 0.002.
 					// Let's try a toggle.
 					
@@ -70,6 +72,7 @@ AFRAME.registerComponent('locomotion', {
 					});
 
           if ((ws > minZ && ws < maxZ) ||
+							(ws > minZ2 && ws < maxZ2) ||
 							toggleAttempt){
 						// Log time stamp. This will be for
 						// toggling via head z rotations.
