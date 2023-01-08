@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>Copresence VR v3_rig-sync</title>
+		<title>Copresence VR v4_rig-sync</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -63,7 +63,7 @@
 				<audio crossorigin="local" id="sTog"
 				src="../roost_assets/sounds/Hit_01.mp3">
 				</audio>
-
+				<a-asset-item id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
 <!--				<img crossorigin="local" id="carina" src="../roost_assets/images/webb_carina-nebula.jpeg">-->
 				<img crossorigin="local" id="pillars" src="../roost_assets/images/webb_pillars-of-creation.png">
@@ -87,7 +87,7 @@
       
 			<!-- 360-degree image. Default rad is 10-->
   		<a-sky id="image-360" radius="1200" 
-				 		 src="#imgBloop1">
+				 		 src="#pillars">
 			</a-sky>
 			
 			<!--Subject's rig starts here.-->
@@ -140,6 +140,9 @@
         
       </a-entity> <!-- camera end -->
       </a-entity> <!-- rig end -->
+			
+			<!-- glFT test. Sci-fi model found online.-->
+			<a-gltf-model src="#cityModel" position="" rotation="" scale="40 40 40" visible=""></a-gltf-model>
 			
 			<!--Test spheres.-->
 			<a-sphere id="mySphere" class="clickable"

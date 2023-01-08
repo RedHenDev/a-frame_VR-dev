@@ -85,7 +85,8 @@ function manifestSubject(_who,_me){
 		const nub=document.createElement('a-cylinder');
 		//nub.setAttribute('position',_who.position);
 		nub.setAttribute('id',_who.name);
-		nub.setAttribute('scale','3 3 3');
+		nub.setAttribute('scale','2 2 2');
+		nub.setAttribute('color','green');
 		sceneEl.appendChild(nub);
 	
 		// Change subject position and HUD display name.
@@ -157,7 +158,7 @@ function initGame(_who){
 	const y = whoMoved.y;
 	const z = whoMoved.z;
 	bod.object3D.position.x = x;
-	bod.object3D.position.y = y-4;
+	bod.object3D.position.y = y+4;
 	bod.object3D.position.z = z;
 //	const posStr=whoMoved.position;
 		// /[-+]?\d*\.?\d+/g
