@@ -60,7 +60,7 @@ AFRAME.registerComponent('locomotion', {
 					const maxZ=2.75; // Default 0.4.
 					const minZ2=0.2; // Default 0.2.
 					const maxZ2=0.45; // Default 0.4.
-					const acc=0.002; // Default 0.002.
+					const acc=0.001; // Default 0.002.
 					// Let's try a toggle.
 					
 					// New toggling with keys...
@@ -94,7 +94,7 @@ AFRAME.registerComponent('locomotion', {
 					}
 					
 					// Speed cap.
-					const maxS=0.04;
+					const maxS=0.08;
 					if (this.vel > maxS){
 						this.vel = maxS;
 					}

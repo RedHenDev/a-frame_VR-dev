@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>Copresence VR v5_rig-sync</title>
+		<title>Copresence VR v6_speed-rigs</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -46,7 +46,7 @@
 			}
 		</script>
 		
-    <a-scene>
+    <a-scene fog="type:linear;color:#00FFEF;far:255;">
 		
 		<!--Fog...-->
 		<!--    
@@ -92,9 +92,12 @@
 				</a-entity>
       
 			<!-- 360-degree image. Default rad is 10-->
+<!--
   		<a-sky id="image-360" radius="1200" 
 				 		 src="#pillars">
-			</a-sky>
+			</a-sky>-->
+			<a-sky color:#00FFEF></a-sky>
+
 			
 			<!--Subject's rig starts here.-->
 <!--			Add as component to rig for non-VR controls?-->
