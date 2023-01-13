@@ -6,28 +6,39 @@ AFRAME.registerComponent('hud-flip', {
 				init: function(){
 					this.cam=
 					document.querySelector("#subject").object3D;
-					console.log(this.cam.rotation.z);
+					//console.log(this.cam.rotation.z);
 					// First -- check orientation and
 					// flip HUD by 180 accordingly.
 					// We run the check after 20 seconds --
-					// giving people time to put on viewer.
-					
-						if (this.cam.rotation.z < 2.9 &&
-								this.cam.rotation.z > -2.9 &&
-							  this.cam.rotation.z != 0){
-							this.el.object3D.rotation.z = 3.14;
-							this.el.object3D.position.x = -0.4;
-							console.log('hud flipped');
-						}
-					
+					// giving people time to put on viewer.	
 				}
 });
+
+let flipped=false;
+function checkFlip(){
+	console.log('cf');
+	let cam=
+					document.querySelector("#subject").object3D;
+	let hudd=
+					document.querySelector("#hud");
+	if (cam.rotation.z < 2.9 &&
+								cam.rotation.z > -2.9 &&
+							  cam.rotation.z != 80){
+							hudd.setAttribute('rotation', '0 0 -180');
+							hudd.setAttribute('position' , '-0.4 0 -0.9');
+							console.log('hud flipped');
+		flipped=true;
+						}
+}
 
 // Need to refactor this global monstrosity!
 let gName = 'NEMO';
 AFRAME.registerComponent('log-position-data', {
 	
 				init: function(){
+				
+				// Time stamp for flip check.
+				this.saTime = Date.now();
 					//console.log('Hi dad');
 				this.rig=
 				document.querySelector("#rig").object3D;
@@ -39,6 +50,9 @@ AFRAME.registerComponent('log-position-data', {
 				
         tick: function () {
 
+					if (!flipped && Date.now()-this.saTime < 10000)
+						checkFlip();
+					
           let dataString = `${gName}\n`;
           dataString += "Position: \n";
           dataString += `x: ${this.rig.position.x.toFixed(2)}\n`
