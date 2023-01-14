@@ -6,7 +6,6 @@ for use with firebase realtime db
 
 */
 
-//import { set } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 let xSub;
 let ySub;
 let zSub;
@@ -39,12 +38,6 @@ AFRAME.registerComponent('locomotion', {
 					// For sound of toggling.
 					this.hark=document.querySelector("#hark");
 					
-					// NB -- I could check whether Z is
-					// inverted on camera rotation, i.e.
-					// either around 3.14 or around 0.2
-					// and then invert z of HUD accordingly?
-					// Then, both directions of viewers
-					// catered for.
         },
   
         tick: function (timeDelta) { 
@@ -118,7 +111,5 @@ AFRAME.registerComponent('locomotion', {
           xSub = this.rig.position.x += 
             Math.sin(theta)*speed;
           ySub = this.rig.position.y += pitch*speed;
-					
-					
         }
       });

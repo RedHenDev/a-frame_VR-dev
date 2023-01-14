@@ -3,13 +3,12 @@
   <head>
  
 		<title>Welcome to the...</title>
-			<!-- Include the p5.js library -->
-			<!-- For audio context.-->
-<!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
+		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
 			<script src="../roost_scripts/pennyLane.js" defer></script>
-			<!--<script src="aframe.min.js"></script>-->
+			<script src="../roost_scripts/perlin_gpt3.js"></script>
+			<script src="../roost_scripts/block_farm.js" defer></script>
 		
 			<!-- NB defer is crucial here! -->
     	<script src="../roost_scripts/event_listen.js" defer></script>
@@ -46,12 +45,8 @@
 			}
 		</script>
 		
-    <a-scene fog="type:exponential;color:#00FFEF;far:1200;">
+    <a-scene>
 		
-		<!--Fog...-->
-		<!--    
-		<a-scene fog="type:linear;color:#00FFEF;far:128;"> 
-		-->
 			<!-- Allow assets time to load.-->
       <a-assets timeout="5000">
 
@@ -64,7 +59,7 @@
 				src="../roost_assets/sounds/Hit_01.mp3">
 				</audio>
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
-<!--				<img crossorigin="local" id="carina" src="../roost_assets/images/webb_carina-nebula.jpeg">-->
+				<img crossorigin="local" id="carina" src="../roost_assets/images/webb_carina-nebula.jpeg">
 				<img crossorigin="local" id="pillars" src="../roost_assets/images/webb_pillars-of-creation.png">
 				
   		</a-assets>
@@ -78,7 +73,7 @@
 							 	material="shader:flat; color:yellow" 
 							 	position="0 64 128" radius="24">
 			</a-sphere>
-				<!-- Lights. -->
+			<!-- Lights. -->
 			<a-sphere
 							 	light="type:point;color:cyan" 
 							 	material="shader:flat; color:cyan" 
@@ -90,11 +85,6 @@
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
       
-			<!-- 360-degree image. Default rad is 10-->
-<!--
-  		<a-sky id="image-360" radius="1200" 
-				 		 src="#pillars">
-			</a-sky>-->
 			<a-sky src="#imgBloop1" radius="1200"></a-sky>
 
 			
@@ -144,28 +134,27 @@
       </a-entity> <!-- camera end -->
       </a-entity> <!-- rig end -->
 			
-			<!-- glFT test. Sci-fi model found online.-->
-			<a-gltf-model src="#cityModel" position="" rotation="" scale="28 28 28" visible=""></a-gltf-model>
-			
 			<!-- Giant paintings -->
 			<a-box position="-120 120 112" scale="160 140 0.1" material="src:#pillars"></a-box>
-
+			<a-box position="120 120 -112" scale="160 140 0.1" material="src:#carina"></a-box>
+			
+			<a-entity farm></a-entity>
+			
 			<!-- tunnel -->
 			<a-torus class="clickable" 
 			position="0 4 -18" radius="1" height="12"
-			material="shader:standard;color:#110011;">
+			material="shader:standard;color:#dddddd;">
 			</a-torus>
 			<a-torus fuse-listener class="clickable" position="0 4 -22" radius="1" height="12" 
-			material="shader:standard;color:#880088;">
+			material="shader:standard;color:#eeeeee;">
 			</a-torus>
 			<a-torus class="clickable"
 			position="0 4 -24" radius="1" height="12"
-			material="shader:standard;color:#440044;">
+			material="shader:standard;color:#ffffff;">
 			</a-torus>
 
     </a-scene>
-		
-		
+
 		<!-- Firebase code woz 'ere-->
 		<script type='module' src="src/index.js"></script>
   </body>
