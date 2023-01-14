@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>Copresence VR v12_flip-testing</title>
+		<title>Welcome to the...</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -58,12 +58,11 @@
 				<!-- Crossorigin to permit loading images -->
 				<!-- ../ to refer up dir on path. -->
 	
-				<audio crossorigin="local" id="sAmb" src="../roost_assets/sounds/rising_moon.mp3">
+				<audio crossorigin="local" id="sAmb" src="../roost_assets/sounds/shooting_star.mp3">
 				</audio>
 				<audio crossorigin="local" id="sTog"
 				src="../roost_assets/sounds/Hit_01.mp3">
 				</audio>
-				<a-asset-item id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
 <!--				<img crossorigin="local" id="carina" src="../roost_assets/images/webb_carina-nebula.jpeg">-->
 				<img crossorigin="local" id="pillars" src="../roost_assets/images/webb_pillars-of-creation.png">
@@ -96,7 +95,7 @@
   		<a-sky id="image-360" radius="1200" 
 				 		 src="#pillars">
 			</a-sky>-->
-			<a-sky color:#00FFEF radius="1200"></a-sky>
+			<a-sky src="#imgBloop1" radius="1200"></a-sky>
 
 			
 			<!--Subject's rig starts here.-->
@@ -148,25 +147,19 @@
 			<!-- glFT test. Sci-fi model found online.-->
 			<a-gltf-model src="#cityModel" position="" rotation="" scale="28 28 28" visible=""></a-gltf-model>
 			
-			<!--Test spheres.-->
-			<a-sphere id="mySphere" class="clickable"
-								position="64 -5 -5" radius="3" color="#00EEFF" shadow></a-sphere>
-      <a-sphere id="testPig" class="clickable"
-								position="-64 3 -9" radius="3" color="rgb(0,255,0)" shadow></a-sphere>
-			
 			<!-- Giant paintings -->
-			<a-box position="-20 20 12" scale="60 40 0.1" material="src: #imgBloop1"></a-box>
+			<a-box position="-120 120 112" scale="160 140 0.1" material="src:#pillars"></a-box>
 
 			<!-- tunnel -->
 			<a-torus class="clickable" 
-			position="0 4 -18" radius="0.5" height="3"
+			position="0 4 -18" radius="1" height="12"
 			material="shader:standard;color:#110011;">
 			</a-torus>
-			<a-torus fuse-listener class="clickable" position="0 4 -22" radius="0.5" height="3" 
+			<a-torus fuse-listener class="clickable" position="0 4 -22" radius="1" height="12" 
 			material="shader:standard;color:#880088;">
 			</a-torus>
 			<a-torus class="clickable"
-			position="0 4 -24" radius="0.5" height="3"
+			position="0 4 -24" radius="1" height="12"
 			material="shader:standard;color:#440044;">
 			</a-torus>
 

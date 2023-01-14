@@ -16,14 +16,14 @@ AFRAME.registerComponent('hud-flip', {
 
 let flipped=false;
 function checkFlip(){
-	console.log('cf');
+	
 	let cam=
 					document.querySelector("#subject").object3D;
 	let hudd=
 					document.querySelector("#hud");
 	if (cam.rotation.z < 2.9 &&
 								cam.rotation.z > -2.9 &&
-							  cam.rotation.z != 80){
+							  cam.rotation.z != 0){
 							hudd.setAttribute('rotation', '0 0 -180');
 							hudd.setAttribute('position' , '-0.4 0 -0.9');
 							console.log('hud flipped');
