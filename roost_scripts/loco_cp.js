@@ -6,9 +6,9 @@ for use with firebase realtime db
 
 */
 
-let xSub;
-let ySub;
-let zSub;
+let xSub=0.0;
+let ySub=0.0;
+let zSub=0.0;
 let fSub; // Forward Direction.
 let toggleAttempt=false;
 
@@ -87,7 +87,7 @@ AFRAME.registerComponent('locomotion', {
 					}
 					
 					// Speed cap.
-					const maxS=0.2;
+					const maxS=0.02;
 					if (this.vel > maxS){
 						this.vel = maxS;
 					}
