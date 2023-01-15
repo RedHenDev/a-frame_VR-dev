@@ -1,18 +1,18 @@
 /* Custom A-Frame component
 Fires a specified event on this entity on a regular timed interval */
 
-AFRAME.registerComponent('hud-flip', {
-	
-				init: function(){
-					this.cam=
-					document.querySelector("#subject").object3D;
-					//console.log(this.cam.rotation.z);
-					// First -- check orientation and
-					// flip HUD by 180 accordingly.
-					// We run the check after 20 seconds --
-					// giving people time to put on viewer.	
-				}
-});
+//AFRAME.registerComponent('hud-flip', {
+//	
+//				init: function(){
+//					this.cam=
+//					document.querySelector("#subject").object3D;
+//					//console.log(this.cam.rotation.z);
+//					// First -- check orientation and
+//					// flip HUD by 180 accordingly.
+//					// We run the check after 20 seconds --
+//					// giving people time to put on viewer.	
+//				}
+//});
 
 let flipped=false;
 function checkFlip(){

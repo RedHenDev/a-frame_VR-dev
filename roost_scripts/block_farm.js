@@ -14,10 +14,10 @@ AFRAME.registerComponent('farm',{
 //		console.log(row);
 	//}
 		const bScale=4;
-		const cols=32;
-		const rows=32;
-		const freq=10;
-		const amp=100*bScale;
+		const cols=12;
+		const rows=12;
+		const freq=32;
+		const amp=10*bScale;
 		for (let i=0;i<cols;i++){
 			for (let j=0;j<rows;j++){
 				
@@ -27,10 +27,10 @@ AFRAME.registerComponent('farm',{
 				s.object3D.position.z=j*bScale-cols*0.5*bScale;
 				s.object3D.position.y = 
 					(perlin(i/freq,j/freq)*amp);
-				s.object3D.scale.x=bScale*0.5;
-				s.object3D.scale.y=bScale*0.5;
-				s.object3D.scale.z=bScale*0.5;
-				s.setAttribute('material', 'color:rgb(20,20,20)');
+				s.object3D.scale.x=bScale;
+				s.object3D.scale.y=bScale;
+				s.object3D.scale.z=bScale;
+				s.setAttribute('material', 'color:rgb(0,0,0)depthTest:true;transparent:false; opacity:1;');
 				
 				let e = document.createElement('a-box');
 				e.object3D.scale.x=bScale;
@@ -40,7 +40,7 @@ AFRAME.registerComponent('farm',{
 				e.object3D.position.z=j*bScale-cols*0.5*bScale;
 				e.object3D.position.y = 
 					s.object3D.position.y
-				e.setAttribute('material', 'shader:flat;depthTest:true;transparent:true; opacity:0.5; color:rgba(0,200,0)');
+				e.setAttribute('material', 'shader:flat;depthTest:false;transparent:true; opacity:0.5; color:rgba(0,200,0)');
 				//e.setAttribute('material', 'src:#imgJojo2');
 				this.sceneEl.appendChild(s);
 				this.sceneEl.appendChild(e);
