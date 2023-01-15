@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>Welcome to the...</title>
+		<title>Welcome to the...v0.1</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
@@ -23,22 +23,21 @@
   <body>
 		<style>
 		#StartArea {
-			position: fixed;width: 100vw;height: 100vh;
-			z-index: 10000;background-color: rgba(0,200,222,0.6);
+			position:fixed;width:100vw;height:100vh;
+			z-index:10000;background-color:rgba(0,255,222,0.8);
 			}
 		#StartButton{
-			position: absolute;top: 33vh; left:33vh;
-			font-size:32px;
+			position:absolute;top:45vh;left:45vw;
+			font-size:64px;background-color:rgba(0,255,222,0.8);
 			}
 		</style>
 		<div id="StartArea">
-  		<button id="StartButton">Start</button>
+  		<button id="StartButton">start</button>
 		</div>
 		<script>
-			document.querySelector("#StartButton").onclick = function() {
-  		document.querySelector("#StartArea").style.display = "none";
+			document.querySelector("#StartButton").onclick= function() {
+  		document.querySelector("#StartArea").style.display= "none";
 				const context = new AudioContext();
-				//console.log(context);
 				if (context.state !== 'running') {
     				context.resume();
   			}			
@@ -69,14 +68,14 @@
       
       <!--Lights-->
       <a-sphere
-							 	light="type:point;color:yellow" 
-							 	material="shader:flat; color:yellow" 
+							 	light="type:point;color:white" 
+							 	material="shader:flat; color:white" 
 							 	position="0 64 128" radius="24">
 			</a-sphere>
 			<!-- Lights. -->
 			<a-sphere
-							 	light="type:point;color:cyan" 
-							 	material="shader:flat; color:cyan" 
+							 	light="type:point;color:white" 
+							 	material="shader:flat; color:white" 
 				 			 	position="0 64 -128" radius="24">
 			</a-sphere>
 			
@@ -97,8 +96,8 @@
 <!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
                 camera
+								look-controls
                 position="0 1.6 0"
-                look-controls
                 locomotion="Engine on!" 
                 log-position-data="output:#hud">
 		

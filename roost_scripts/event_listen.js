@@ -1,3 +1,4 @@
+/*
 let mySphere = document.querySelector("#mySphere");
 let myPig = document.querySelector("#testPig");
 
@@ -10,6 +11,7 @@ myPig.addEventListener("mouseleave", e => {
   myPig.setAttribute("color", "yellow")
  	myPig.object3D.position.z += 1;
 });
+*/
 
 // Component to change to a sequential color on fuse
 // (click).

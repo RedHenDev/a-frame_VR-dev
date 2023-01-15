@@ -40,12 +40,14 @@ const fnames=[
 	'ruby',
 	'mint',
 	'frosty',
-	'marron',
+	'maroon',
 	'sage',
 	'lime',
 	'silky',
 	'ginger',
-	'saffron'
+	'saffron',
+	'speckled',
+	'diamond'
 	];
 const snames=[
 	'dog',
@@ -64,7 +66,9 @@ const snames=[
 	'dingo',
 	'rat',
 	'bat',
-	'baboon'
+	'baboon',
+	'hen',
+	'frog'
 	];
 
 function baptise(){
@@ -80,14 +84,6 @@ function manifestSubject(_who,_me){
 		// We should probably do this globally earlier?
 		const sceneEl=document.querySelector('a-scene');
 		console.log(`generating avatar...${_who.name}`);
-		// Create plaeholder shape for player.
-		// Set attributes and finally append to scene.
-		const nub=document.createElement('a-cylinder');
-		//nub.setAttribute('position',_who.position);
-		nub.setAttribute('id',_who.name);
-		nub.setAttribute('scale','2 2 2');
-		nub.setAttribute('color','green');
-		sceneEl.appendChild(nub);
 	
 		// Change subject position and HUD display name.
 		// That is, so long as _me is true.
@@ -95,19 +91,30 @@ function manifestSubject(_who,_me){
 		gName=_who.name;
 		 
 		const rig=document.querySelector('#rig');
-		rig.object3D.position.x = +_who.x.toFixed(4);
-		rig.object3D.position.y = +_who.y.toFixed(4);
-		rig.object3D.position.z = +_who.z.toFixed(4);
+		rig.object3D.position.x = +_who.x.toFixed(6);
+		rig.object3D.position.y = +_who.y.toFixed(6);
+		rig.object3D.position.z = +_who.z.toFixed(6);
 		}
+	else{
+		
+		// Create placeholder shape for other subject.
+		// Set attributes and finally append to scene.
+		const nub=document.createElement('a-cylinder');
+		//nub.setAttribute('position',_who.position);
+		nub.setAttribute('id',_who.name);
+		nub.setAttribute('scale','2 2 2');
+		nub.setAttribute('color','green');
+		sceneEl.appendChild(nub);
+	}
 }
 
 // Simple protection to ensure we don't
-// try to sync (non-existent) rigs before 5 seconds.
+// try to sync (non-existent) rigs before 6 seconds.
 setTimeout(function(){
 	setInterval(function() {
   write_move();
 }, 16);
-},5000);
+},6000);
 
 // Convert three numerical positions to string
 // and set this to string position of subject.
@@ -154,12 +161,14 @@ function initGame(_who){
   //console.log(whoMoved.name, 'moved');
 	// Refactor -- global array.
 	const bod=document.querySelector(`#${whoMoved.name}`);
-	const x = +whoMoved.x.toFixed(4);
-	const y = +whoMoved.y.toFixed(4);
-	const z = +whoMoved.z.toFixed(4);
+	if (bod!=null){
+	const x = +whoMoved.x.toFixed(6);
+	const y = +whoMoved.y.toFixed(6);
+	const z = +whoMoved.z.toFixed(6);
 	bod.object3D.position.x = x;
 	bod.object3D.position.y = y+5;
 	bod.object3D.position.z = z;
+	}
 //	const posStr=whoMoved.position;
 		// /[-+]?\d*\.?\d+/g
 		// /[-+]?\d+/g

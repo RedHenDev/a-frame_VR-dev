@@ -20,6 +20,18 @@ AFRAME.registerComponent('farm',{
 		const amp=100*bScale;
 		for (let i=0;i<cols;i++){
 			for (let j=0;j<rows;j++){
+				
+				// Interior sphere.
+				let s = document.createElement('a-sphere');
+				s.object3D.position.x=i*bScale-cols*0.5*bScale;
+				s.object3D.position.z=j*bScale-cols*0.5*bScale;
+				s.object3D.position.y = 
+					(perlin(i/freq,j/freq)*amp);
+				s.object3D.scale.x=bScale*0.5;
+				s.object3D.scale.y=bScale*0.5;
+				s.object3D.scale.z=bScale*0.5;
+				s.setAttribute('material', 'color:rgb(20,20,20)');
+				
 				let e = document.createElement('a-box');
 				e.object3D.scale.x=bScale;
 				e.object3D.scale.y=bScale;
@@ -27,9 +39,10 @@ AFRAME.registerComponent('farm',{
 				e.object3D.position.x=i*bScale-cols*0.5*bScale;
 				e.object3D.position.z=j*bScale-cols*0.5*bScale;
 				e.object3D.position.y = 
-					(perlin(i/freq,j/freq)*amp);
-				e.setAttribute('material', 'color:green');
+					s.object3D.position.y
+				e.setAttribute('material', 'shader:flat;depthTest:true;transparent:true; opacity:0.5; color:rgba(0,200,0)');
 				//e.setAttribute('material', 'src:#imgJojo2');
+				this.sceneEl.appendChild(s);
 				this.sceneEl.appendChild(e);
 			}
 		}
