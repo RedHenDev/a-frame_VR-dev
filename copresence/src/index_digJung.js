@@ -120,11 +120,10 @@ setTimeout(function(){
 // and set this to string position of subject.
 function write_move(){
 	//console.log('write moving...');
-	const posStr = String(xSub + ' ' + ySub + ' ' + zSub);
+//	const posStr = String(xSub + ' ' + ySub + ' ' + zSub);
 	set(playerRef, {
 			id: playerId,
 			name: subName,
-			position: posStr,
 			x: xSub,
 			y: ySub,
 			z: zSub
@@ -162,9 +161,9 @@ function initGame(_who){
 	// Refactor -- global array.
 	const bod=document.querySelector(`#${whoMoved.name}`);
 	if (bod!=null){
-	const x = +whoMoved.x.toFixed(6);
-	const y = +whoMoved.y.toFixed(6);
-	const z = +whoMoved.z.toFixed(6);
+	const x = +whoMoved.x;
+	const y = +whoMoved.y;
+	const z = +whoMoved.z;
 	bod.object3D.position.x = x;
 	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
@@ -206,10 +205,10 @@ onAuthStateChanged(auth, user => {
 		subName = baptise();
 		// Write initial subject details to db.
 		// Refactor -- so that I can call write_move here.
+//		position: `${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)}`,
 		set(playerRef, {
 			id: playerId,
 			name: subName,
-			position: `${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)}`,
 			x: xSub,
 			y: ySub,
 			z: zSub
