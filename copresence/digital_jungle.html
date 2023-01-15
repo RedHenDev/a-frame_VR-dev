@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>Welcome to the...v0.2</title>
+		<title>Welcome to the...v0.3</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
@@ -60,6 +60,7 @@
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
 				<img crossorigin="local" id="carina" src="../roost_assets/images/webb_carina-nebula.jpeg">
 				<img crossorigin="local" id="pillars" src="../roost_assets/images/webb_pillars-of-creation.png">
+				<a-asset-item id="mcLand" src="../roost_assets/models/minecraft_landscape/scene.gltf"></a-asset-item>
 				
   		</a-assets>
       
@@ -132,13 +133,16 @@
       </a-entity> <!-- camera end -->
       </a-entity> <!-- rig end -->
 			
-			<!-- Giant paintings -->
+			<!-- glFT minecraft Landscape :D-->
+			<a-gltf-model src="#mcLand" position="0 -12 0" rotation="" scale="4 4 4" visible=""></a-gltf-model>
+			
+			<!-- Giant paintings 
 			<a-box position="-120 120 112" scale="160 140 0.1" material="src:#pillars"></a-box>
 			<a-box position="120 120 -112" scale="160 140 0.1" material="src:#carina"></a-box>
 			
 			<a-entity farm></a-entity>
 			
-			<!-- tunnel -->
+			<!-- tunnel 
 			<a-torus class="clickable" 
 			position="0 4 -18" radius="1" height="12"
 			material="shader:standard;color:#dddddd;">
@@ -150,7 +154,7 @@
 			position="0 4 -24" radius="1" height="12"
 			material="shader:standard;color:#ffffff;">
 			</a-torus>
-
+			-->
     </a-scene>
 
 		<!-- Firebase code woz 'ere-->

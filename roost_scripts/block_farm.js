@@ -16,31 +16,31 @@ AFRAME.registerComponent('farm',{
 		const bScale=4;
 		const cols=12;
 		const rows=12;
-		const freq=32;
+		const freq=320;
 		const amp=10*bScale;
 		for (let i=0;i<cols;i++){
 			for (let j=0;j<rows;j++){
 				
 				// Interior sphere.
 				let s = document.createElement('a-sphere');
-				s.object3D.position.x=i*bScale-cols*0.5*bScale;
-				s.object3D.position.z=j*bScale-cols*0.5*bScale;
+				s.object3D.position.x=i*bScale;
+				s.object3D.position.z=j*bScale;
 				s.object3D.position.y = 
 					(perlin(i/freq,j/freq)*amp);
 				s.object3D.scale.x=bScale;
 				s.object3D.scale.y=bScale;
 				s.object3D.scale.z=bScale;
-				s.setAttribute('material', 'color:rgb(0,0,0)depthTest:true;transparent:false; opacity:1;');
+				s.setAttribute('material', 'shader:flat;color:rgb(0,0,0)depthTest:true;transparent:false; opacity:1;');
 				
 				let e = document.createElement('a-box');
 				e.object3D.scale.x=bScale;
 				e.object3D.scale.y=bScale;
 				e.object3D.scale.z=bScale;
-				e.object3D.position.x=i*bScale-cols*0.5*bScale;
-				e.object3D.position.z=j*bScale-cols*0.5*bScale;
+				e.object3D.position.x=i*bScale;
+				e.object3D.position.z=j*bScale;
 				e.object3D.position.y = 
 					s.object3D.position.y
-				e.setAttribute('material', 'shader:flat;depthTest:false;transparent:true; opacity:0.5; color:rgba(0,200,0)');
+				e.setAttribute('material', 'shader:flat;depthTest:false;transparent:false; opacity:1; color:rgba(0,200,0)');
 				//e.setAttribute('material', 'src:#imgJojo2');
 				this.sceneEl.appendChild(s);
 				this.sceneEl.appendChild(e);
