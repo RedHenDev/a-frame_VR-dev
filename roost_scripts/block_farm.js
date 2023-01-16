@@ -13,7 +13,7 @@ AFRAME.registerComponent('farm',{
 //			}
 //		console.log(row);
 	//}
-		const bScale=8;
+		const bScale=4;
 		const cols=12;
 		const rows=12;
 		const freq=320;
