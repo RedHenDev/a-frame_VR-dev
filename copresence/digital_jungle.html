@@ -62,11 +62,13 @@
 				<img crossorigin="local" id="pillars" src="../roost_assets/images/webb_pillars-of-creation.png">
 				<img crossorigin="local" id="marioLvl" src="../roost_assets/images/mario_level1.jpg">
 				<a-asset-item id="mcLand" src="../roost_assets/models/minecraft_landscape/scene.gltf"></a-asset-item>
+<!--				<a-asset-item id="phoenix"  src="../roost_assets/models/phoenix_bird/scene.gltf"></a-asset-item>-->
+				<a-asset-item id="phoenix"  src="../roost_assets/models/fly.glb"></a-asset-item>
 				
   		</a-assets>
       
 			<!--And now our sound manager.-->
-			<a-entity soundmanager></a-entity>
+<!--			<a-entity soundmanager></a-entity>-->
       
       <!--Lights-->
       <a-sphere
@@ -134,8 +136,12 @@
       </a-entity> <!-- camera end -->
       </a-entity> <!-- rig end -->
 			
+			<!-- birb model animation test -->
+<!--			<a-gltf-model id="birb" src="#phoenix" position="-40 4 -40" rotation="0 33 0" scale="0.1 0.1 0.1" visible="" animation-mixer="clip: Take 001"></a-gltf-model>-->
+			<a-gltf-model id="birb" src="#phoenix" position="-40 4 -40" rotation="0 33 0" scale="0.1 0.1 0.1" visible="" animation-mixer="clip: Take 001"></a-gltf-model>
+			
 			<!-- glFT minecraft Landscape :D-->
-			<a-gltf-model src="#mcLand" position="0 -18 0" rotation="" scale="8 8 8" visible="" material="roughness:1;metalness:0"></a-gltf-model>
+			<a-gltf-model src="#mcLand" position="0 -18 0" rotation="" scale="8 8 8" visible=""></a-gltf-model>
 			<!-- glFT minecraft Landscape 2 ;)-->
 <!--			<a-gltf-model src="#mcLand" position="-100 -18 0" rotation="0 90 0" scale="8 8 8" visible=""></a-gltf-model>-->
 			<a-entity farm></a-entity>
