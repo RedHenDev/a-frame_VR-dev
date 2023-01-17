@@ -87,7 +87,7 @@ AFRAME.registerComponent('locomotion', {
 					}
 					
 					// Speed cap.
-					const maxS=0.2;
+					const maxS=0.02;
 					if (this.vel > maxS){
 						this.vel = maxS;
 					}
