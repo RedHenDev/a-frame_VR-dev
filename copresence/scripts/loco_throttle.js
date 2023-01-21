@@ -36,7 +36,7 @@ AFRAME.registerComponent('locomotion', {
 					xSub = this.rig.position.x;
 					ySub = this.rig.position.y;
 					zSub = this.rig.position.z;
-					
+					//***
 					rxSub = this.cam.rotation.x;
 					rySub = this.cam.rotation.y;
 					rzSub = this.cam.rotation.z;
@@ -68,11 +68,11 @@ AFRAME.registerComponent('locomotion', {
         },
   
         tick: function (timeDelta) { 
-					
+					//***
 					// Update cam orientation.
-//					rxSub = this.cam.rotation.x;
-//					rySub = this.cam.rotation.y;
-//					rzSub = this.cam.rotation.z;
+					rxSub = this.cam.rotation.x;
+					rySub = this.cam.rotation.y;
+					rzSub = this.cam.rotation.z;
 					
 					// First, determine direction
           // from camera.

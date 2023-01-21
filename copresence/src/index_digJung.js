@@ -47,7 +47,9 @@ const fnames=[
 	'ginger',
 	'saffron',
 	'speckled',
-	'diamond'
+	'diamond',
+	'greasy',
+	'frozen'
 	];
 const snames=[
 	'dog',
@@ -68,7 +70,10 @@ const snames=[
 	'bat',
 	'baboon',
 	'hen',
-	'frog'
+	'frog',
+	'bear',
+	'wombat',
+	'kangaroo'
 	];
 
 function baptise(){
@@ -76,6 +81,9 @@ function baptise(){
 	const sn=randomFromArray(snames);
 	return `${fn}_${sn}`;
 }
+
+//***
+let VRclone=false;
 
 function manifestSubject(_who,_me){
 		// NB _who here is a single snapshot.val() object.
@@ -89,11 +97,23 @@ function manifestSubject(_who,_me){
 		// That is, so long as _me is true.
 		if (_me){
 		gName=_who.name;
-		 
+		
+		//***
+		// To turn on clone mode.
+		document.addEventListener('keypress', event => {
+			if (event.key === 'c') {
+				VRclone=true;
+				// Testing...
+				const cam=document.querySelector('#subject');
+				cam.setAttribute('look-controls','enabled',false);
+			}
+		});
+			
 		const rig=document.querySelector('#rig');
-		rig.object3D.position.x = +_who.x.toFixed(6);
-		rig.object3D.position.y = +_who.y.toFixed(6);
-		rig.object3D.position.z = +_who.z.toFixed(6);
+		//rig.object3D.position.x = +_who.x.toFixed(6);
+		xSub=rig.object3D.position.x = _who.x;
+		ySub=rig.object3D.position.y = _who.y;
+		zSub=rig.object3D.position.z = _who.z;
 		}
 	else{
 		
@@ -105,10 +125,7 @@ function manifestSubject(_who,_me){
 		nub.setAttribute('scale','2 2 2');
 		nub.setAttribute('color','green');
 		sceneEl.appendChild(nub);
-		
-		// Testing...
-		const cam=document.querySelector('#subject');
-		nub.setAttribute('look-controls','false');
+
 	}
 }
 
@@ -141,6 +158,7 @@ function initGame(_who){
 	// Grab subject's camera here...once.
 	const subject = document.
 								querySelector("#subject").object3D;
+	const rig = document.querySelector("#rig").object3D;
 	// NB. _who here is playerRef.
 	// New subject enters world...
 	
@@ -171,7 +189,8 @@ function initGame(_who){
 	// Refactor -- use array or dictionary.
 	const bod=document.querySelector(`#${whoMoved.name}`);
 	
-		if (whoMoved.name!=gName){
+		//***
+		if (VRclone && whoMoved.name!=gName){
 			// NB changing rotation of camera/subject
 			// only works if look controls disabled.
 			// I.e. look controls are the VR response
@@ -182,9 +201,9 @@ function initGame(_who){
 			subject.rotation.y = whoMoved.ry;
 			subject.rotation.z = whoMoved.rz;
 			
-			subject.position.x = whoMoved.x;
-			subject.position.y = whoMoved.y;
-			subject.position.z = whoMoved.z;
+			rig.position.x = whoMoved.x;
+			rig.position.y = whoMoved.y;
+			rig.position.z = whoMoved.z;
 		}
 	if (bod!=null){
 		// I don't think we need the unary + here...
@@ -229,7 +248,7 @@ onAuthStateChanged(auth, user => {
 		playerId = user.uid;
 		// Create a reference to the subject's data in db.
 		playerRef = ref(db,`players/${playerId}`);
-		
+		console.log('this has happened once.');
 		// Gen random name for new subject.
 		subName = baptise();
 		// Write initial subject details to db.

@@ -162,11 +162,12 @@ function initGame(_who){
 	// Refactor -- global array.
 	const bod=document.querySelector(`#${whoMoved.name}`);
 	if (bod!=null){
-	const x = +whoMoved.x.toFixed(6);
-	const y = +whoMoved.y.toFixed(6);
-	const z = +whoMoved.z.toFixed(6);
+	//const x = +whoMoved.x.toFixed(6);
+	const x = whoMoved.x.toFixed;
+	const y = whoMoved.y.toFixed;
+	const z = whoMoved.z.toFixed;
 	bod.object3D.position.x = x;
-	bod.object3D.position.y = y+5;
+	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
 	}
 //	const posStr=whoMoved.position;
