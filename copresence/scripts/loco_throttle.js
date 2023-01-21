@@ -59,7 +59,7 @@ AFRAME.registerComponent('locomotion', {
 						}
 					});
 					document.addEventListener('keypress', event => {
-						if (event.key === 'ArrowLeft' ||
+						if (event.key === 'LeftArrow' ||
 						  event.key === 'a') {
 						this.maxS+=0.01;
 						}

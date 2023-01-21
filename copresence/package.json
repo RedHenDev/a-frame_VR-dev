@@ -2,7 +2,7 @@
   "name": "copresence",
   "version": "1.0.0",
   "description": "A-frame multiplayer test",
-  "main": "index.js",
+  "main": "index_digJung.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
