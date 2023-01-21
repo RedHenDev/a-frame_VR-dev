@@ -12,6 +12,10 @@ let ySub=0.0;
 let zSub=0.0;
 let fSub; // Forward Direction.
 let toggleAttempt=false;
+// Rotations of camera.
+let rxSub=0.0;
+let rySub=0.0;
+let rzSub=0.0;
 
 AFRAME.registerComponent('locomotion', {
         init: function () {
@@ -33,15 +37,42 @@ AFRAME.registerComponent('locomotion', {
 					ySub = this.rig.position.y;
 					zSub = this.rig.position.z;
 					
+					rxSub = this.cam.rotation.x;
+					rySub = this.cam.rotation.y;
+					rzSub = this.cam.rotation.z;
+					
 					// Timing for toggling engine.
 					this.timeStamp=Date.now();
 					this.engineOn=false;
 					// For sound of toggling.
 					this.hark=document.querySelector("#hark");
 					
+					// Speed cap.
+					this.maxS_orig=0.01;
+					this.maxS=this.maxS_orig;
+					
+					// New toggling with keys...
+					document.addEventListener('keydown', event => {
+						if (event.key === 'ArrowUp' ||
+						  event.key === 'w') {
+						toggleAttempt=true;
+						}
+					});
+					document.addEventListener('keypress', event => {
+						if (event.key === 'ArrowLeft' ||
+						  event.key === 'a') {
+						this.maxS+=0.01;
+						}
+					});
+					
         },
   
         tick: function (timeDelta) { 
+					
+					// Update cam orientation.
+//					rxSub = this.cam.rotation.x;
+//					rySub = this.cam.rotation.y;
+//					rzSub = this.cam.rotation.z;
 					
 					// First, determine direction
           // from camera.
@@ -54,17 +85,9 @@ AFRAME.registerComponent('locomotion', {
 					const maxZ=2.75; // Default 0.4.
 					const minZ2=0.2; // Default 0.2.
 					const maxZ2=0.45;// Default 0.4.
-					const acc=0.001; // Default 0.002.
-					// Let's try a toggle.
+					const acc=0.002; // Default 0.002.
 					
-					// New toggling with keys...
-					document.addEventListener('keydown', event => {
-						if (event.key === 'ArrowUp' ||
-						  event.key === 'w') {
-						toggleAttempt=true;
-						}
-					});
-
+					// Let's try a toggle.
           if ((ws > minZ && ws < maxZ) ||
 							(ws > minZ2 && ws < maxZ2) ||
 							toggleAttempt){
@@ -73,12 +96,15 @@ AFRAME.registerComponent('locomotion', {
 						let cTime = Date.now();
 						if (cTime-this.timeStamp > 1000){
 							toggleAttempt=false;
+							
 							this.hark.components.sound.playSound();
 							this.engineOn=!this.engineOn;
 							this.timeStamp=Date.now();
 							if (!this.engineOn){
 								document.querySelector('#reticle').
 								setAttribute('material','color:red');
+								// Reset max speed.
+								this.maxS=this.maxS_orig;
 							}
 							else {
 								document.querySelector('#reticle').
@@ -87,10 +113,8 @@ AFRAME.registerComponent('locomotion', {
 						}
 					}
 					
-					// Speed cap.
-					const maxS=0.02;
-					if (this.vel > maxS){
-						this.vel = maxS;
+					if (this.vel > this.maxS){
+						this.vel = this.maxS;
 					}
 					// Engine.
 					let speed=-this.vel;

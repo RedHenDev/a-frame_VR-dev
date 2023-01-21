@@ -105,6 +105,10 @@ function manifestSubject(_who,_me){
 		nub.setAttribute('scale','2 2 2');
 		nub.setAttribute('color','green');
 		sceneEl.appendChild(nub);
+		
+		// Testing...
+		const cam=document.querySelector('#subject');
+		nub.setAttribute('look-controls','false');
 	}
 }
 
@@ -126,7 +130,10 @@ function write_move(){
 			name: subName,
 			x: xSub,
 			y: ySub,
-			z: zSub
+			z: zSub,
+			rx: rxSub,
+			ry: rySub,
+			rz: rzSub
 	});
 }
 
@@ -163,9 +170,22 @@ function initGame(_who){
   //console.log(whoMoved.name, 'moved');
 	// Refactor -- use array or dictionary.
 	const bod=document.querySelector(`#${whoMoved.name}`);
+	
+		if (whoMoved.name!=gName){
+			// NB changing rotation of camera/subject
+			// only works if look controls disabled.
+			// I.e. look controls are the VR response
+			// to person's head movements that override.
 		// ***
-		// Testing...
-		subject.rotation.y +=90;
+			// Testing...
+			subject.rotation.x = whoMoved.rx;
+			subject.rotation.y = whoMoved.ry;
+			subject.rotation.z = whoMoved.rz;
+			
+			subject.position.x = whoMoved.x;
+			subject.position.y = whoMoved.y;
+			subject.position.z = whoMoved.z;
+		}
 	if (bod!=null){
 		// I don't think we need the unary + here...
 	const x = whoMoved.x;
@@ -220,7 +240,10 @@ onAuthStateChanged(auth, user => {
 			name: subName,
 			x: xSub,
 			y: ySub,
-			z: zSub
+			z: zSub,
+			rx: rxSub,
+			ry: rySub,
+			rz: rzSub
 		});
 		
 		// Callback for when user disconnects.
