@@ -90,8 +90,8 @@ document.addEventListener('keypress', event => {
 	if (event.key === 'c') {
 		VRclone=true;
 		// Testing...
-		const cam=document.querySelector('#subject');
-		cam.setAttribute('look-controls','enabled',false);
+		const c=document.querySelector('#subject');
+		c.setAttribute('look-controls','enabled',false);
 	}
 });
 
@@ -133,7 +133,7 @@ function manifestSubject(_who,_me){
 setTimeout(function(){
 	setInterval(function() {
   write_move();
-}, 16);
+}, 32);
 },6000);
 
 // Convert three numerical positions to string
@@ -155,7 +155,7 @@ function write_move(){
 
 function initGame(_who){
 	// Grab subject's camera here...once.
-	const subject = document.
+	const sub = document.
 								querySelector("#subject").object3D;
 	const rig = document.querySelector("#rig").object3D;
 	// NB. _who here is playerRef.
@@ -196,9 +196,9 @@ function initGame(_who){
 			// to person's head movements that override.
 		// ***
 			// Testing...
-			subject.rotation.x = whoMoved.rx;
-			subject.rotation.y = whoMoved.ry;
-			subject.rotation.z = whoMoved.rz;
+			sub.rotation.x = whoMoved.rx;
+			sub.rotation.y = whoMoved.ry;
+			sub.rotation.z = whoMoved.rz;
 			
 			rig.position.x = whoMoved.x;
 			rig.position.y = whoMoved.y;
@@ -247,7 +247,7 @@ onAuthStateChanged(auth, user => {
 		playerId = user.uid;
 		// Create a reference to the subject's data in db.
 		playerRef = ref(db,`players/${playerId}`);
-		console.log('this has happened once.');
+		//console.log('this has happened once.');
 		// Gen random name for new subject.
 		subName = baptise();
 		// Write initial subject details to db.
