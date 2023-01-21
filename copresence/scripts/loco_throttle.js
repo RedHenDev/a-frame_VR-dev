@@ -58,18 +58,18 @@ AFRAME.registerComponent('locomotion', {
 						toggleAttempt=true;
 						}
 					});
-					document.addEventListener('keypress', event => {
-						if (event.code === 'ArrowLeft' ||
-						  event.key === 'a') {
-						this.maxS+=0.01;
-						}
-					});
+//					document.addEventListener('keypress', event => {
+//						if (event.key === 'a') {
+//						this.maxS+=0.01;
+//						}
+//					});
 					
         },
   
         tick: function (timeDelta) { 
 					//***
 					// Update cam orientation.
+					// NB these communicate with index.js firebase.
 					rxSub = this.cam.rotation.x;
 					rySub = this.cam.rotation.y;
 					rzSub = this.cam.rotation.z;
@@ -96,7 +96,6 @@ AFRAME.registerComponent('locomotion', {
 						let cTime = Date.now();
 						if (cTime-this.timeStamp > 1000){
 							toggleAttempt=false;
-							
 							this.hark.components.sound.playSound();
 							this.engineOn=!this.engineOn;
 							this.timeStamp=Date.now();

@@ -84,6 +84,16 @@ function baptise(){
 
 //***
 let VRclone=false;
+//***
+// To turn on clone mode.
+document.addEventListener('keypress', event => {
+	if (event.key === 'c') {
+		VRclone=true;
+		// Testing...
+		const cam=document.querySelector('#subject');
+		cam.setAttribute('look-controls','enabled',false);
+	}
+});
 
 function manifestSubject(_who,_me){
 		// NB _who here is a single snapshot.val() object.
@@ -98,17 +108,6 @@ function manifestSubject(_who,_me){
 		if (_me){
 		gName=_who.name;
 		
-		//***
-		// To turn on clone mode.
-		document.addEventListener('keypress', event => {
-			if (event.key === 'c') {
-				VRclone=true;
-				// Testing...
-				const cam=document.querySelector('#subject');
-				cam.setAttribute('look-controls','enabled',false);
-			}
-		});
-			
 		const rig=document.querySelector('#rig');
 		//rig.object3D.position.x = +_who.x.toFixed(6);
 		xSub=rig.object3D.position.x = _who.x;
