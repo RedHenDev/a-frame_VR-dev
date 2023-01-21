@@ -12,6 +12,11 @@ let zSub=0.0;
 let fSub; // Forward Direction.
 let toggleAttempt=false;
 
+// Rotations of camera.
+let rxSub=0.0;
+let rySub=0.0;
+let rzSub=0.0;
+
 AFRAME.registerComponent('locomotion', {
         init: function () {
           console.log(this.data);
