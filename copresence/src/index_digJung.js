@@ -131,6 +131,9 @@ function write_move(){
 }
 
 function initGame(_who){
+	// Grab subject's camera here...once.
+	const subject = document.
+								querySelector("#subject").object3D;
 	// NB. _who here is playerRef.
 	// New subject enters world...
 	
@@ -158,15 +161,21 @@ function initGame(_who){
 	onChildChanged(allSubjectsRef, (snapshot) => {
   const whoMoved = snapshot.val();
   //console.log(whoMoved.name, 'moved');
-	// Refactor -- global array.
+	// Refactor -- use array or dictionary.
 	const bod=document.querySelector(`#${whoMoved.name}`);
+		// ***
+		// Testing...
+		subject.rotation.y +=90;
 	if (bod!=null){
-	const x = +whoMoved.x;
-	const y = +whoMoved.y;
-	const z = +whoMoved.z;
+		// I don't think we need the unary + here...
+	const x = whoMoved.x;
+	const y = whoMoved.y;
+	const z = whoMoved.z;
 	bod.object3D.position.x = x;
 	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
+	
+		
 	}
 //	const posStr=whoMoved.position;
 		// /[-+]?\d*\.?\d+/g
