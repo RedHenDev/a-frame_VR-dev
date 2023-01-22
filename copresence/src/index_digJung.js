@@ -137,8 +137,17 @@ function manifestSubject(_who,_me){
 		nub.setAttribute('id',_who.name);
 		nub.setAttribute('scale','2 2 2');
 		nub.setAttribute('color','green');
+		
+		// Direction...
+		const dub=document.createElement('a-box');
+		dub.setAttribute('position','0 0 -4');
+		//dub.setAttribute('id',_who.name);
+		dub.setAttribute('scale','0.1 0.1 8');
+		dub.setAttribute('color','white');
+		dub.setAttribute('parent',`#${_who.name}`);
+		
 		sceneEl.appendChild(nub);
-
+		sceneEl.appendChild(dub);
 	}
 }
 
@@ -147,7 +156,7 @@ function manifestSubject(_who,_me){
 setTimeout(function(){
 	setInterval(function() {
   write_move();
-}, 128);
+}, 32);
 },6000);
 
 // Convert three numerical positions to string
@@ -203,6 +212,11 @@ function initGame(_who){
 	const bod=document.querySelector(`#${whoMoved.name}`);
 	
 		//***
+		// Clone mode is when we assue the pos and rot
+		// of the other VR subject -- i.e. to display
+		// this on a computer screen.
+		// This involves toggling off look-controls from
+		// camera (#subject) a-frame entity.
 		if (VRclone && whoMoved.name!=gName){
 			// NB changing rotation of camera/subject
 			// only works if look controls disabled.
@@ -226,7 +240,9 @@ function initGame(_who){
 	bod.object3D.position.x = x;
 	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
-	
+	bod.object3D.rotation.x = whoMoved.rx;
+	bod.object3D.rotation.y = whoMoved.ry;
+	bod.object3D.rotation.z = whoMoved.rz;
 		
 	}
 //	const posStr=whoMoved.position;
