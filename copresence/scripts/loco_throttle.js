@@ -52,12 +52,12 @@ AFRAME.registerComponent('locomotion', {
 					this.maxS=this.maxS_orig;
 					
 					// New toggling with keys...
-					document.addEventListener('keydown', event => {
-						if (event.key === 'ArrowUp' ||
-						  event.key === 'w') {
-						toggleAttempt=true;
-						}
-					});
+//					document.addEventListener('keydown', event => {
+//						if (event.key === 'ArrowUp' ||
+//						  event.key === 'w') {
+//						toggleAttempt=true;
+//						}
+//					});
 //					document.addEventListener('keypress', event => {
 //						if (event.key === 'a') {
 //						this.maxS+=0.01;
