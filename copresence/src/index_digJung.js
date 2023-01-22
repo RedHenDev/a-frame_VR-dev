@@ -86,14 +86,14 @@ function baptise(){
 let VRclone=false;
 //***
 // To turn on clone mode.
-document.addEventListener('keypress', event => {
-	if (event.key === 'c') {
-		VRclone=true;
-		// Testing...
-		const c=document.querySelector('#subject');
-		c.setAttribute('look-controls','enabled',false);
-	}
-});
+//document.addEventListener('keypress', event => {
+//	if (event.key === 'c') {
+//		VRclone=true;
+//		// Testing...
+//		const c=document.querySelector('#subject');
+//		c.setAttribute('look-controls','enabled',false);
+//	}
+//});
 
 function manifestSubject(_who,_me){
 		// NB _who here is a single snapshot.val() object.
