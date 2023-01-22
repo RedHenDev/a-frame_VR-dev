@@ -82,6 +82,7 @@ function baptise(){
 	return `${fn}_${sn}`;
 }
 
+// Testing...
 //***
 let VRclone=false;
 //***
@@ -90,16 +91,14 @@ document.addEventListener('keypress', event => {
 	if (event.key === 'c') {
 		if (!VRclone){
 		VRclone=true;
-		// Testing...
 		const c=document.querySelector('#subject');
 		c.setAttribute('look-controls','enabled',false);
 		return;
 		}
 		if (VRclone){
 		VRclone=false;
-		// Testing...
 		const c=document.querySelector('#subject');
-		c.setAttribute('look-controls','enabled',false);
+		c.setAttribute('look-controls','enabled',true);
 		}
 	}
 });
