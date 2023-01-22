@@ -147,7 +147,7 @@ function manifestSubject(_who,_me){
 setTimeout(function(){
 	setInterval(function() {
   write_move();
-}, 64);
+}, 128);
 },6000);
 
 // Convert three numerical positions to string
