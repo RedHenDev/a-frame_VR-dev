@@ -55,12 +55,12 @@ AFRAME.registerComponent('locomotion', {
 					document.addEventListener('keydown', event => {
 						if (event.key === 'ArrowUp' ||
 						  event.key === 'w') {
-						toggleAttempt=true;
+							toggleAttempt=true;
 						}
 					});
 					document.addEventListener('keypress', event => {
 						if (event.key === 'a') {
-						this.maxS+=0.01;
+							this.maxS+=0.01;
 						}
 					});
 					
@@ -80,12 +80,22 @@ AFRAME.registerComponent('locomotion', {
           // NB these two reversed.
           let pitch=-this.cam.rotation.x;
 					// Test for speed control.
-					let ws=Math.abs(this.cam.rotation.z);
+					let ws=(this.cam.rotation.z);
+					//let ws=Math.abs(this.cam.rotation.z);
 					const minZ=2.5;  // Default 0.2.
 					const maxZ=2.75; // Default 0.4.
 					const minZ2=0.2; // Default 0.2.
 					const maxZ2=0.45;// Default 0.4.
 					const acc=0.002; // Default 0.002.
+					
+					// Throttle test. Negative.
+					if ((ws < -minZ && ws > -maxZ) ||
+							(ws < -minZ2 && ws > -maxZ2))
+					{
+							// Low number, since no
+							// delay on how often this can happen.
+							this.maxS+=0.001;
+					}
 					
 					// Let's try a toggle.
           if ((ws > minZ && ws < maxZ) ||

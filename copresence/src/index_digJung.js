@@ -49,7 +49,10 @@ const fnames=[
 	'speckled',
 	'diamond',
 	'greasy',
-	'frozen'
+	'frozen',
+	'platinum',
+	'yellow',
+	'pink'
 	];
 const snames=[
 	'dog',
@@ -73,7 +76,9 @@ const snames=[
 	'frog',
 	'bear',
 	'wombat',
-	'kangaroo'
+	'kangaroo',
+	'warthog',
+	'wallaby'
 	];
 
 function baptise(){
@@ -114,6 +119,7 @@ function manifestSubject(_who,_me){
 		// Change subject position and HUD display name.
 		// That is, so long as _me is true.
 		if (_me){
+			// globalName.
 		gName=_who.name;
 		
 		const rig=document.querySelector('#rig');
@@ -141,7 +147,7 @@ function manifestSubject(_who,_me){
 setTimeout(function(){
 	setInterval(function() {
   write_move();
-}, 32);
+}, 64);
 },6000);
 
 // Convert three numerical positions to string
