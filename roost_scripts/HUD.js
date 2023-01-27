@@ -50,8 +50,8 @@ AFRAME.registerComponent('log-position-data', {
 				
         tick: function () {
 
-					if (!flipped && Date.now()-this.saTime < 10000)
-						checkFlip();
+//					if (!flipped && Date.now()-this.saTime < 10000)
+//						checkFlip();
 					
           let dataString = `${gName}\n`;
           dataString += "Position: \n";

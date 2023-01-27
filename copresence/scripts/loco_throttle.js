@@ -47,20 +47,38 @@ AFRAME.registerComponent('locomotion', {
 					// For sound of toggling.
 					this.hark=document.querySelector("#hark");
 					
+				// Grab reticle.
+				this.reticle=document.querySelector('#reticle')
+					
 					// Speed cap.
 					this.maxS_orig=0.01;
 					this.maxS=this.maxS_orig;
 					
-					// New toggling with keys...
+					// New driving with keys...
 					document.addEventListener('keydown', event => {
 						if (event.key === 'ArrowUp' ||
 						  event.key === 'w') {
-							toggleAttempt=true;
+							this.engineOn=true;
+							this.maxS+=0.02;
+							this.reticle.
+							setAttribute('material','color:lime');
+						}
+						else if (event.key === 'ArrowDown' ||
+						  event.key === 's') {
+							this.engineOn=false;
+							// Reset max speed.
+							this.maxS=this.maxS_orig;
+							this.reticle.
+							setAttribute('material','color:red');
 						}
 					});
-					document.addEventListener('keypress', event => {
-						if (event.key === 'a') {
-							this.maxS+=0.01;
+					document.addEventListener('keyup', event => {
+						if (event.key === 'ArrowUp' ||
+						  event.key === 'w') {
+							//toggleAttempt=true;
+							this.engineOn=false;
+							this.reticle.
+							setAttribute('material','color:red');
 						}
 					});
 					
@@ -94,7 +112,7 @@ AFRAME.registerComponent('locomotion', {
 					{
 							// Low number, since no
 							// delay on how often this can happen.
-							this.maxS+=0.001;
+							this.maxS+=0.004;
 					}
 					
 					// Let's try a toggle.
@@ -110,13 +128,13 @@ AFRAME.registerComponent('locomotion', {
 							this.engineOn=!this.engineOn;
 							this.timeStamp=Date.now();
 							if (!this.engineOn){
-								document.querySelector('#reticle').
+								this.reticle.
 								setAttribute('material','color:red');
 								// Reset max speed.
 								this.maxS=this.maxS_orig;
 							}
 							else {
-								document.querySelector('#reticle').
+								this.reticle.
 								setAttribute('material','color:lime');
 							}
 						}
