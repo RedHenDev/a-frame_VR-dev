@@ -13,7 +13,10 @@ AFRAME.registerComponent('farm',{
 //			}
 //		console.log(row);
 	//}
-		const bScale=4;
+		const x=0;
+		const y=0;
+		const z=0;
+		const bScale=40;
 		const cols=12;
 		const rows=12;
 		const freq=320;
@@ -32,15 +35,15 @@ AFRAME.registerComponent('farm',{
 //				s.object3D.scale.z=bScale;
 //				s.setAttribute('material', 'shader:flat;color:rgb(0,0,0);depthTest:true;transparent:false; opacity:1');
 				//				this.sceneEl.appendChild(s);
-				
+				// Use mixins?
 				let e = document.createElement('a-box');
 				e.object3D.scale.x=bScale;
 				e.object3D.scale.y=bScale;
 				e.object3D.scale.z=bScale;
-				e.object3D.position.x=i*bScale;
-				e.object3D.position.z=j*bScale-164;
+				e.object3D.position.x=i*bScale+x;
+				e.object3D.position.z=j*bScale+z;
 				e.object3D.position.y = 
-					(perlin(i/freq,j/freq)*amp) + 42;
+					(perlin(i/freq,j/freq)*amp) + y;
 				//e.setAttribute('src', '#imgBloop1');
 //				e.setAttribute('material', 'src:"imgBloop1";depthTest:false;transparent:false; opacity:1; color:rgba(0,200,0)');
 				//e.setAttribute('material', 'src:#imgJojo2');
