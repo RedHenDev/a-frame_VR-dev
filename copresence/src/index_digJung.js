@@ -139,15 +139,14 @@ function manifestSubject(_who,_me){
 		nub.setAttribute('color','green');
 		
 		// Direction...
-		const dub=document.createElement('a-box');
-		dub.setAttribute('position','0 0 -4');
-		//dub.setAttribute('id',_who.name);
-		dub.setAttribute('scale','0.1 0.1 8');
-		dub.setAttribute('color','white');
-		dub.setAttribute('parent',`#${_who.name}`);
+		//const dub=document.createElement('a-box');
+		//dub.setAttribute('position','0 0 -4');
+		//dub.setAttribute('scale','0.1 0.1 8');
+		//dub.setAttribute('color','white');
+		//dub.setAttribute('parent',`#${_who.name}`);
 		
 		sceneEl.appendChild(nub);
-		sceneEl.appendChild(dub);
+		//sceneEl.appendChild(dub);
 	}
 }
 
