@@ -16,7 +16,7 @@ AFRAME.registerComponent('farm',{
 		const x=0;
 		const y=0;
 		const z=0;
-		const bScale=40;
+		const bScale=8;
 		const cols=12;
 		const rows=12;
 		const freq=320;
