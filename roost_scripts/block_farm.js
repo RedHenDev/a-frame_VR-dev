@@ -41,7 +41,7 @@ AFRAME.registerComponent('farm',{
 				e.object3D.position.z=j*bScale-164;
 				e.object3D.position.y = 
 					(perlin(i/freq,j/freq)*amp) + 42;
-				e.setAttribute('src', '#imgBloop1');
+				//e.setAttribute('src', '#imgBloop1');
 //				e.setAttribute('material', 'src:"imgBloop1";depthTest:false;transparent:false; opacity:1; color:rgba(0,200,0)');
 				//e.setAttribute('material', 'src:#imgJojo2');
 

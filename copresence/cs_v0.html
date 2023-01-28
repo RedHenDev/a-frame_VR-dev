@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>0.0.1 sprinkle</title>
+		<title>0.0.3 sprinkle</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
@@ -14,8 +14,8 @@
     	<script src="../roost_scripts/event_listen.js" defer></script>
 
     	<!-- NB must not defer these scripts, else
-            text will not render to HUD -->
-      <script src="../roost_scripts/HUD.js"></script>
+            text will not render to HUD 
+      <script src="../roost_scripts/HUD.js"></script>-->
 <!--      <script src="../roost_scripts/loco_cp.js"></script>-->
 			<script src="scripts/loco_throttle.js"></script>
   
@@ -85,6 +85,9 @@
 				
 				<a-asset-item crossorigin="anonymous" id="cpu" src="../roost_assets/models/ame_cpu/scene.gltf"></a-asset-item>
 				
+				<a-asset-item crossorigin="anonymous" id="mod" src="../roost_assets/models/xeno_raven.glb"></a-asset-item>
+				
+				<a-asset-item crossorigin="anonymous" id="wuds" src="../roost_assets/models/forest_demo/scene.gltf"></a-asset-item>
 
 <!--				<a-asset-item id="carno"  src="../roost_assets/models/carnotaurus.glb"></a-asset-item>-->
 				
@@ -95,7 +98,7 @@
       
       <!--Lights-->
       <a-sphere
-							 	light="type:point;color:#ff0" 
+							 	light="type:point;color:#ffffff" 
 							 	material="shader:flat; color:#ff0;
 													emissive:#ff0;fog:false;" 
 							 	position="0 128 128" radius="24">
@@ -124,23 +127,20 @@
 <!--			Add as component to rig for non-VR controls?-->
 <!--			movement-controls-->
       <a-entity id="rig" position="0 0 0">
-<!--			-->
+
 <!--				Add as component to camera for non-VR wsad-->
 <!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
                 camera
 								look-controls
                 position="0 0 0"
-                locomotion="Engine on!"
-                log-position-data="output:#hud">
-				
-		<!--NB 	separate class names with comma in raycastable
-						list -->
+                locomotion="Engine on!">
+				<!-- NB 	separate class names with comma raycastablelist -->
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:2000;"
           raycaster="objects:.clickable, .hello;"
-          geometry="primitive:ring;radiusInner: 0.02; radiusOuter: 0.03"
+          geometry="primitive:ring;radiusInner: 0.01; radiusOuter: 0.02"
 					material="shader:flat;color:red;
 										depthTest:true;
 										transparent:false; opacity:1"
@@ -148,70 +148,18 @@
           animation__fusing="property:scale;from:1 1 1;to:0 0 0;dur:2000;startEvents:fusing;"
           animation__reset="property:scale;from:0 0 0;to: 1 1 1;dur:333;startEvents:mouseleave;"
          ></a-entity>
-     	
-				<!--NB can be rotated 180 on Z for my viewer.-->
-				<!-- -30 on Y is default too.-->
-        <a-plane id="hud"
-								 visible="true"
-                 position="0.4 0 -0.9"
-								 scale="0.3 0.4 0"
-                 rotation="0 0 0"
-  							text="color:black; 
-											xOffset: 0.5; width:1.9;" 
-                 material="shader:flat;
-													 color:lime;
-													 depthTest:false;
-													 transparent:true;
-													 opacity:0.6">
-					</a-plane>
         
       </a-entity> <!-- camera end -->
       </a-entity> <!-- rig end -->
 			
-			<a-entity rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 12000">
-        <a-sphere position="5 18 0" src="#imgCarina"
-					        scale="3 3 3"></a-sphere>
-</a-entity>
-	
-			
-<!--			<a-gltf-model id="carnot" src="#carno" position="28.6 7.87 -5" rotation="0 33 0" scale="2 2 2" visible=""></a-gltf-model>-->
-			
-			<!-- Giant paintings -->
-			<a-plane id="marioBill" src="#imgMario" 
-							 position="-42 22 -42" rotation="0 90 0"
-							 scale="30 20" material="shader:flat;
-							 normalMap:#imgPillars"></a-plane>
-			
-			<!-- glFT minecraft Landscape :D default scale 8-->
-			
-			<a-gltf-model src="#cpu" position="0 0 -100" rotation="" scale="32 32 32" visible=""></a-gltf-model>
-	<!--
 			<a-entity farm></a-entity>
--->
-			
-			<!-- Giant paintings 
-			<a-box position="-120 120 112" scale="160 140 0.1" material="src:#pillars"></a-box>
-			<a-box position="120 120 -112" scale="160 140 0.1" material="src:#carina"></a-box>
-			
-			<!-- tunnel -->
-			<a-torus fuse-listener class="hello" 
-			position="0 12 -24" radius="1" height="12"
-			material="shader:standard;color:#dddddd;">
-			</a-torus>
-			<a-torus fuse-listener class="hello" 
-			position="0 12.2 -26" radius="1" height="12" 
-			material="shader:standard;color:#eeeeee;
-								metalness:0.5">
-			</a-torus>
-			<a-torus fuse-listener class="hello"
-			position="0 12.4 -28" radius="1" height="12"
-			material="shader:standard;color:#ffffff;
-								metalness:1">
-			</a-torus>
+
+			<a-gltf-model id="modi" src="#mod" position="2 8 -32" rotation="0 33 0" scale="0.1 0.1 0.1" visible=""></a-gltf-model>
+			<a-gltf-model id="ddw" src="#wuds" position="0 0 0" rotation="0 33 0" scale="10 10 10" visible=""></a-gltf-model>
 		
     </a-scene>
 
 		<!-- Firebase code woz 'ere-->
-		<script type='module' src="src/index_digJung.js"></script>
+		<script type='module' src="src/index_cs.js"></script>
   </body>
 </html>
