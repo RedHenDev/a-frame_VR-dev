@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>0.0.5 polarity</title>
+		<title>0.0.6 alien</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
@@ -27,13 +27,13 @@
 			position:fixed;width:100vw;height:100vh;
 			z-index:10000;background-color:rgba(0,255,222,0.8);
 			}
-		#StartButton{
+		.StartButton{
 			position:absolute;
 			top:45vh;left:45vw;
-			width:128px;
+			width:1vh;
 			}
 
-			img:hover {
+			.StartButton:hover {
     animation: bob 0.8s ease-in-out infinite;
 			}
 
@@ -51,12 +51,17 @@
 		</style>
 		
   		<div id="StartArea">
-  		<img src='../roost_assets/images/grass_12.png' id="StartButton">
+				<div class="StartButton">
+					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
+					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
+    			go!
+  				</div>
+				</div>
 			</div>
 		<script>
 			// Perhaps here we could have a global paused
 			// variable to control loco?
-			document.querySelector("#StartButton").onclick= function() {
+			document.querySelector(".StartButton").onclick= function() {
   		document.querySelector("#StartArea").style.display= "none";
 				const context = new AudioContext();
 				if (context.state !== 'running') {
@@ -88,6 +93,7 @@
 				<a-asset-item crossorigin="anonymous" id="mod" src="../roost_assets/models/xeno_raven.glb"></a-asset-item>
 				
 				<a-asset-item crossorigin="anonymous" id="wuds" src="../roost_assets/models/forest_demo/scene.gltf"></a-asset-item>
+				
 
 <!--				<a-asset-item id="carno"  src="../roost_assets/models/carnotaurus.glb"></a-asset-item>-->
 				
@@ -147,9 +153,10 @@
       </a-entity> <!-- rig end -->
 			
 <!--			<a-entity farm></a-entity>-->
-
-			<a-gltf-model id="xeno" src="#mod" position="2 0 12" rotation="0 42 0" scale="0.1 0.1 0.1" visible=""></a-gltf-model>
+			<a-entity animation="property: translate; to: -4 -15 85; loop: true; dur: 2000">
+			<a-gltf-model id="xeno" src="#mod" position="2 -15 85" rotation="0 33 0" scale="0.2 0.2 0.2" visible=""></a-gltf-model></a-entity>
 			<a-gltf-model id="ddw" src="#wuds" position="0 -64 0" rotation="0 0 0" scale="10 10 10" visible=""></a-gltf-model>
+	
 		
     </a-scene>
 

@@ -27,19 +27,41 @@
 			position:fixed;width:100vw;height:100vh;
 			z-index:10000;background-color:rgba(0,255,222,0.8);
 			}
-		#StartButton{
-			position:absolute;top:45vh;left:45vw;
-			font-size:64px;background-color:rgba(0,200,255,1);
-			color:white;
+		.StartButton{
+			position:absolute;
+			top:45vh;left:45vw;
+			width:1vh;
 			}
+
+			.StartButton:hover {
+    animation: bob 0.8s ease-in-out infinite;
+			}
+
+			@keyframes bob {
+    	0% {
+        transform: translateY(0);
+    	}
+    	50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
 		</style>
-		<div id="StartArea">
-  		<button id="StartButton">start</button>
-		</div>
+		
+  		<div id="StartArea">
+				<div class="StartButton">
+					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
+					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
+    			go!
+  				</div>
+				</div>
+			</div>
 		<script>
 			// Perhaps here we could have a global paused
 			// variable to control loco?
-			document.querySelector("#StartButton").onclick= function() {
+			document.querySelector(".StartButton").onclick= function() {
   		document.querySelector("#StartArea").style.display= "none";
 				const context = new AudioContext();
 				if (context.state !== 'running') {

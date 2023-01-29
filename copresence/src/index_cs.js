@@ -22,6 +22,7 @@ const db = getDatabase();
 let playerId;
 let playerRef;
 let subName;
+let subjects={};
 
 function randomFromArray(_array){
 	return _array[Math.floor(Math.random()*_array.length)];
