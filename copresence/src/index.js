@@ -47,7 +47,12 @@ const fnames=[
 	'ginger',
 	'saffron',
 	'speckled',
-	'diamond'
+	'diamond',
+	'greasy',
+	'frozen',
+	'platinum',
+	'yellow',
+	'pink'
 	];
 const snames=[
 	'dog',
@@ -68,7 +73,12 @@ const snames=[
 	'bat',
 	'baboon',
 	'hen',
-	'frog'
+	'frog',
+	'bear',
+	'wombat',
+	'kangaroo',
+	'warthog',
+	'wallaby'
 	];
 
 function baptise(){
@@ -76,6 +86,27 @@ function baptise(){
 	const sn=randomFromArray(snames);
 	return `${fn}_${sn}`;
 }
+
+// Testing...
+//***
+let VRclone=false;
+//***
+// To turn on clone mode.
+document.addEventListener('keypress', event => {
+	if (event.key === 'c') {
+		if (!VRclone){
+		VRclone=true;
+		const c=document.querySelector('#subject');
+		c.setAttribute('look-controls','enabled',false);
+		return;
+		}
+		if (VRclone){
+		VRclone=false;
+		const c=document.querySelector('#subject');
+		c.setAttribute('look-controls','enabled',true);
+		}
+	}
+});
 
 function manifestSubject(_who,_me){
 		// NB _who here is a single snapshot.val() object.
@@ -88,12 +119,14 @@ function manifestSubject(_who,_me){
 		// Change subject position and HUD display name.
 		// That is, so long as _me is true.
 		if (_me){
+		// globalName.
 		gName=_who.name;
-		 
+		
 		const rig=document.querySelector('#rig');
-		rig.object3D.position.x = +_who.x.toFixed(6);
-		rig.object3D.position.y = +_who.y.toFixed(6);
-		rig.object3D.position.z = +_who.z.toFixed(6);
+		//rig.object3D.position.x = +_who.x.toFixed(6);
+		xSub=rig.object3D.position.x = _who.x;
+		ySub=rig.object3D.position.y = _who.y;
+		zSub=rig.object3D.position.z = _who.z;
 		}
 	else{
 		
@@ -104,7 +137,16 @@ function manifestSubject(_who,_me){
 		nub.setAttribute('id',_who.name);
 		nub.setAttribute('scale','2 2 2');
 		nub.setAttribute('color','green');
+		
+		// Direction...
+		//const dub=document.createElement('a-box');
+		//dub.setAttribute('position','0 0 -4');
+		//dub.setAttribute('scale','0.1 0.1 8');
+		//dub.setAttribute('color','white');
+		//dub.setAttribute('parent',`#${_who.name}`);
+		
 		sceneEl.appendChild(nub);
+		//sceneEl.appendChild(dub);
 	}
 }
 
@@ -113,25 +155,31 @@ function manifestSubject(_who,_me){
 setTimeout(function(){
 	setInterval(function() {
   write_move();
-}, 16);
-},6000);
+}, 128);
+},1000);
 
 // Convert three numerical positions to string
 // and set this to string position of subject.
 function write_move(){
 	//console.log('write moving...');
-	const posStr = String(xSub + ' ' + ySub + ' ' + zSub);
+//	const posStr = String(xSub + ' ' + ySub + ' ' + zSub);
 	set(playerRef, {
 			id: playerId,
 			name: subName,
-			position: posStr,
 			x: xSub,
 			y: ySub,
-			z: zSub
+			z: zSub,
+			rx: rxSub,
+			ry: rySub,
+			rz: rzSub
 	});
 }
 
 function initGame(_who){
+	// Grab subject's camera here...once.
+	const sub = document.
+								querySelector("#subject").object3D;
+	const rig = document.querySelector("#rig").object3D;
 	// NB. _who here is playerRef.
 	// New subject enters world...
 	
@@ -159,16 +207,42 @@ function initGame(_who){
 	onChildChanged(allSubjectsRef, (snapshot) => {
   const whoMoved = snapshot.val();
   //console.log(whoMoved.name, 'moved');
-	// Refactor -- global array.
+	// Refactor -- use array or dictionary.
 	const bod=document.querySelector(`#${whoMoved.name}`);
+	
+		//***
+		// Clone mode is when we assue the pos and rot
+		// of the other VR subject -- i.e. to display
+		// this on a computer screen.
+		// This involves toggling off look-controls from
+		// camera (#subject) a-frame entity.
+		if (VRclone && whoMoved.name!=gName){
+			// NB changing rotation of camera/subject
+			// only works if look controls disabled.
+			// I.e. look controls are the VR response
+			// to person's head movements that override.
+		// ***
+			// Testing...
+			sub.rotation.x = whoMoved.rx;
+			sub.rotation.y = whoMoved.ry;
+			sub.rotation.z = whoMoved.rz;
+			
+			rig.position.x = whoMoved.x;
+			rig.position.y = whoMoved.y;
+			rig.position.z = whoMoved.z;
+		}
 	if (bod!=null){
-	//const x = +whoMoved.x.toFixed(6);
-	const x = whoMoved.x.toFixed;
-	const y = whoMoved.y.toFixed;
-	const z = whoMoved.z.toFixed;
+		// I don't think we need the unary + here...
+	const x = whoMoved.x;
+	const y = whoMoved.y;
+	const z = whoMoved.z;
 	bod.object3D.position.x = x;
 	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
+	bod.object3D.rotation.x = whoMoved.rx;
+	bod.object3D.rotation.y = whoMoved.ry;
+	bod.object3D.rotation.z = whoMoved.rz;
+		
 	}
 //	const posStr=whoMoved.position;
 		// /[-+]?\d*\.?\d+/g
@@ -202,18 +276,21 @@ onAuthStateChanged(auth, user => {
 		playerId = user.uid;
 		// Create a reference to the subject's data in db.
 		playerRef = ref(db,`players/${playerId}`);
-		
+		//console.log('this has happened once.');
 		// Gen random name for new subject.
 		subName = baptise();
 		// Write initial subject details to db.
 		// Refactor -- so that I can call write_move here.
+//		position: `${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)}`,
 		set(playerRef, {
 			id: playerId,
 			name: subName,
-			position: `${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)} ${Math.floor(Math.random()*20-10)}`,
 			x: xSub,
 			y: ySub,
-			z: zSub
+			z: zSub,
+			rx: rxSub,
+			ry: rySub,
+			rz: rzSub
 		});
 		
 		// Callback for when user disconnects.
