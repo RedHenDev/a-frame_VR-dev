@@ -155,8 +155,8 @@ function manifestSubject(_who,_me){
 setTimeout(function(){
 	setInterval(function() {
   write_move();
-}, 128);
-},1000);
+}, 32);
+},6000);
 
 // Convert three numerical positions to string
 // and set this to string position of subject.
