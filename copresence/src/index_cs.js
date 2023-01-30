@@ -158,7 +158,7 @@ function initGame(_who){
   const whoMoved = snapshot.val();
   //console.log(whoMoved.name, 'moved');
 	// Refactor -- use array or dictionary.
-	const bod=subjects[whoLeft.name];
+	const bod=subjects[whoMoved.name];
 				//document.querySelector(`#${whoMoved.name}`);
 	
 		//***
