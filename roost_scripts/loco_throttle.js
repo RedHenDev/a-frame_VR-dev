@@ -16,6 +16,8 @@ let toggleAttempt=false;
 let rxSub=0.0;
 let rySub=0.0;
 let rzSub=0.0;
+// Need to refactor this global monstrosity!
+let gName = 'NEMO';
 
 AFRAME.registerComponent('locomotion', {
         init: function () {

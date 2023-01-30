@@ -31,8 +31,7 @@ function checkFlip(){
 						}
 }
 
-// Need to refactor this global monstrosity!
-let gName = 'NEMO';
+
 AFRAME.registerComponent('log-position-data', {
 	
 				init: function(){
