@@ -89,8 +89,7 @@ function manifestSubject(_who,_me){
 		sceneEl.appendChild(nub);
 		
 		// *** add to dic here.
-		subjects[_who.name]=document.
-		querySelector(`#{_who.name}`);
+		subjects[_who.name]=nub;
 		// Could just add via nub here?
 		//sceneEl.appendChild(dub);
 	}

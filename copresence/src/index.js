@@ -22,70 +22,10 @@ const db = getDatabase();
 let playerId;
 let playerRef;
 let subName;
+// *** testing.
+let subjects={};
 
-function randomFromArray(_array){
-	return _array[Math.floor(Math.random()*_array.length)];
-}
-
-const fnames=[
-	'red',
-	'green',
-	'golden',
-	'scarlet',
-	'bronze',
-	'silver',
-	'orange',
-	'blue',
-	'cyan',
-	'ruby',
-	'mint',
-	'frosty',
-	'maroon',
-	'sage',
-	'lime',
-	'silky',
-	'ginger',
-	'saffron',
-	'speckled',
-	'diamond',
-	'greasy',
-	'frozen',
-	'platinum',
-	'yellow',
-	'pink'
-	];
-const snames=[
-	'dog',
-	'cat',
-	'parrot',
-	'budgie',
-	'shark',
-	'walrus',
-	'panda',
-	'goldfish',
-	'worm',
-	'dragon',
-	'fox',
-	'rabbit',
-	'wolf',
-	'dingo',
-	'rat',
-	'bat',
-	'baboon',
-	'hen',
-	'frog',
-	'bear',
-	'wombat',
-	'kangaroo',
-	'warthog',
-	'wallaby'
-	];
-
-function baptise(){
-	const fn=randomFromArray(fnames);
-	const sn=randomFromArray(snames);
-	return `${fn}_${sn}`;
-}
+import { baptise } from "../../roost_scripts/utils.js";
 
 // Testing...
 //***
@@ -121,7 +61,8 @@ function manifestSubject(_who,_me){
 		if (_me){
 		// globalName.
 		gName=_who.name;
-		
+		console.log(`my name is ${_who.name}`);
+			
 		const rig=document.querySelector('#rig');
 		//rig.object3D.position.x = +_who.x.toFixed(6);
 		xSub=rig.object3D.position.x = _who.x;
@@ -132,11 +73,11 @@ function manifestSubject(_who,_me){
 		
 		// Create placeholder shape for other subject.
 		// Set attributes and finally append to scene.
-		const nub=document.createElement('a-cylinder');
-		//nub.setAttribute('position',_who.position);
+//		<a-gltf-model id="subMod" src="#joan" position="2 0 -85" rotation="0 0 0" scale="5 5 5" visible=""></a-gltf-model>
+		const nub=document.createElement('a-gltf-model');
 		nub.setAttribute('id',_who.name);
-		nub.setAttribute('scale','2 2 2');
-		nub.setAttribute('color','green');
+		nub.setAttribute('scale','5 5 5');
+		nub.setAttribute('src','#joan');
 		
 		// Direction...
 		//const dub=document.createElement('a-box');
@@ -146,6 +87,10 @@ function manifestSubject(_who,_me){
 		//dub.setAttribute('parent',`#${_who.name}`);
 		
 		sceneEl.appendChild(nub);
+		
+		// *** add to dic here.
+		subjects[_who.name]=nub;
+		// Could just add via nub here?
 		//sceneEl.appendChild(dub);
 	}
 }
@@ -155,7 +100,7 @@ function manifestSubject(_who,_me){
 setTimeout(function(){
 	setInterval(function() {
   write_move();
-}, 32);
+}, 16);
 },6000);
 
 // Convert three numerical positions to string
@@ -198,8 +143,12 @@ function initGame(_who){
 	onChildRemoved(allSubjectsRef, (data) => {
 		const whoLeft = data.val();
   	console.log(`Removing ${whoLeft.name}`);
-		const bod=document.querySelector(`#${whoLeft.name}`);
+		//***
+		const bod=subjects[whoLeft.name];
+					//document.querySelector(`#${whoLeft.name}`);
 		bod.remove();
+		//***
+		delete subjects[whoLeft.name];
 	});
 	
 	// Updating player positions etc.
@@ -208,7 +157,8 @@ function initGame(_who){
   const whoMoved = snapshot.val();
   //console.log(whoMoved.name, 'moved');
 	// Refactor -- use array or dictionary.
-	const bod=document.querySelector(`#${whoMoved.name}`);
+	const bod=subjects[whoMoved.name];
+				//document.querySelector(`#${whoMoved.name}`);
 	
 		//***
 		// Clone mode is when we assue the pos and rot
