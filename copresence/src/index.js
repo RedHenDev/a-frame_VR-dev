@@ -175,7 +175,7 @@ function initGame(_who){
 		// ***
 			// Testing...
 			sub.rotation.x = whoMoved.rx;
-			sub.rotation.y = whoMoved.ry+180;
+			sub.rotation.y = whoMoved.ry;
 			sub.rotation.z = whoMoved.rz;
 			
 			rig.position.x = whoMoved.x;
@@ -191,7 +191,7 @@ function initGame(_who){
 	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
 	bod.object3D.rotation.x = whoMoved.rx;
-	bod.object3D.rotation.y = whoMoved.ry;
+	bod.object3D.rotation.y = whoMoved.ry+180;
 	bod.object3D.rotation.z = whoMoved.rz;
 		
 	}
