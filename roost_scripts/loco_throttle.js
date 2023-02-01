@@ -18,6 +18,7 @@ let rySub=0.0;
 let rzSub=0.0;
 // Need to refactor this global monstrosity!
 let gName = 'NEMO';
+let VRclone= false;
 
 AFRAME.registerComponent('locomotion', {
         init: function () {
@@ -87,6 +88,7 @@ AFRAME.registerComponent('locomotion', {
         },
   
         tick: function (timeDelta) { 
+					if (VRclone) return;
 					//***
 					// Update cam orientation.
 					// NB these communicate with index.js firebase.
