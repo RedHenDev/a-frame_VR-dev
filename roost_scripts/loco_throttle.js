@@ -88,6 +88,7 @@ AFRAME.registerComponent('locomotion', {
         },
   
         tick: function (timeDelta) { 
+					// Do not interfere with cloned positioning.
 					if (VRclone) return;
 					//***
 					// Update cam orientation.
@@ -166,6 +167,6 @@ AFRAME.registerComponent('locomotion', {
             Math.cos(theta)*speed;
           xSub = this.rig.position.x += 
             Math.sin(theta)*speed;
-          ySub = this.rig.position.y += pitch*speed;
+          //ySub = this.rig.position.y += pitch*speed;
         }
       });
