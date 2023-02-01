@@ -76,7 +76,7 @@ function manifestSubject(_who,_me){
 //		<a-gltf-model id="subMod" src="#joan" position="2 0 -85" rotation="0 0 0" scale="5 5 5" visible=""></a-gltf-model>
 		const nub=document.createElement('a-gltf-model');
 		nub.setAttribute('id',_who.name);
-		nub.setAttribute('scale','1 1 1');
+		nub.setAttribute('scale','0.01 0.01 0.01');
 		nub.setAttribute('src','#avatar');
 		nub.setAttribute('rotation','0 0 0');
 		
