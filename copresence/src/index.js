@@ -78,10 +78,10 @@ function manifestSubject(_who,_me){
 //		<a-gltf-model id="subMod" src="#joan" position="2 0 -85" rotation="0 0 0" scale="5 5 5" visible=""></a-gltf-model>
 		const nub=document.createElement('a-obj-model');
 		nub.setAttribute('id',_who.name);
-		nub.setAttribute('scale','0.01 0.01 0.01');
+		nub.setAttribute('scale','1 1 1');
 		nub.setAttribute('src','#avatar');
 		nub.setAttribute('material',
-										 'shader:flat;color:yellow');
+										 'src:#texNokia');
 		nub.setAttribute('rotation','0 0 0');
 		
 		// Direction...
@@ -178,7 +178,8 @@ function initGame(_who){
 			// to person's head movements that override.
 		// ***
 			// Testing...
-			sub.rotation.x = whoMoved.rx;
+			// NB x is negated.
+			sub.rotation.x = -whoMoved.rx;
 			sub.rotation.y = whoMoved.ry;
 			sub.rotation.z = whoMoved.rz;
 			
