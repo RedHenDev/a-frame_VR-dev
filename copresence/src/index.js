@@ -77,8 +77,8 @@ function manifestSubject(_who,_me){
 		const nub=document.createElement('a-gltf-model');
 		nub.setAttribute('id',_who.name);
 		nub.setAttribute('scale','1 1 1');
-		nub.setAttribute('src','#joan');
-		nub.setAttribute('rotation','0 180 0');
+		nub.setAttribute('src','#avatar');
+		nub.setAttribute('rotation','0 0 0');
 		
 		// Direction...
 		//const dub=document.createElement('a-box');
@@ -101,7 +101,7 @@ function manifestSubject(_who,_me){
 setTimeout(function(){
 	setInterval(function() {
   write_move();
-}, 16);
+}, 31);
 },6000);
 
 // Convert three numerical positions to string
@@ -191,7 +191,7 @@ function initGame(_who){
 	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
 	bod.object3D.rotation.x = whoMoved.rx;
-	bod.object3D.rotation.y = whoMoved.ry+180;
+	bod.object3D.rotation.y = whoMoved.ry;
 	bod.object3D.rotation.z = whoMoved.rz;
 		
 	}

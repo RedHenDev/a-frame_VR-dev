@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>0.1.3 fairy garden</title>
+		<title>0.1.4 one fairy garden</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
@@ -78,24 +78,27 @@
 				<!-- Crossorigin to permit loading images -->
 				<!-- ../ to refer up dir on path. -->
 	
+<!--
 				<audio crossorigin="anonymous" id="sAmb" src="../roost_assets/sounds/shooting_star.mp3">
 				</audio>
+-->
 				<audio crossorigin="anonymous" id="sTog"
 				src="../roost_assets/sounds/Hit_01.mp3">
 				</audio>
+<!--
 				<img crossorigin="anonymous" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
 				<img crossorigin="anonymous" id="imgCarina" src="../roost_assets/images/webb_carina-nebula.jpeg">
 				<img crossorigin="anonymous" id="imgPillars" src="../roost_assets/images/webb_pillars-of-creation.png">
 				<img crossorigin="anonymous" id="imgMario" src="../roost_assets/images/mario_level1.jpg">
+-->
 				
-				<a-asset-item crossorigin="anonymous" id="joan" src="../roost_assets/models/joan.glb"></a-asset-item>
+				<a-asset-item crossorigin="anonymous" id="mJoan" src="../roost_assets/models/joan.glb"></a-asset-item>
 				
-				<a-asset-item crossorigin="anonymous" id="mod" src="../roost_assets/models/xeno_raven.glb"></a-asset-item>
+				<a-asset-item crossorigin="anonymous" id="mXeno" src="../roost_assets/models/xeno_raven.glb"></a-asset-item>
 				
-				<a-asset-item crossorigin="anonymous" id="wuds" src="../roost_assets/models/forest_demo/scene.gltf"></a-asset-item>
+				<a-asset-item crossorigin="anonymous" id="mWuds" src="../roost_assets/models/forest_demo/scene.gltf"></a-asset-item>
 				
-
-<!--				<a-asset-item id="carno"  src="../roost_assets/models/carnotaurus.glb"></a-asset-item>-->
+				<a-asset-item crossorigin="local" id="avatar" src="../roost_assets/models/old_nokia_phone_low_poly/scene.gltf"></a-asset-item>
 				
   		</a-assets>
       
@@ -110,14 +113,16 @@
 							 	position="0 64 128" radius="2">
 				</a-sphere></a-entity>
 
-			
+			<a-gltf-model id="xeno" src="#mXeno" position="2 -15 85" rotation="0 33 0" scale="0.2 0.2 0.2" visible=""></a-gltf-model>
+			<a-gltf-model id="ddw" src="#mWuds" position="0 -64 0" rotation="0 0 0" scale="10 10 10" visible=""></a-gltf-model>
+			<a-gltf-model id="joan" src="#mJoan" position="2 0 -85" rotation="0 180 0" scale="1 1 1" visible=""></a-gltf-model>
 			
 				<!--Hark in our ear.-->
 				<a-entity id="hark" sound="src:#sTog;
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
       
-			<a-sky color="blue"></a-sky>
+			
 			<!--
 			<a-sky src="#imgBloop1" radius="800"></a-sky>
 			-->
@@ -127,7 +132,7 @@
 <!--			Add as component to rig for non-VR controls?-->
 <!--			movement-controls-->
       <a-entity id="rig" position="0 0 0">
-
+				<a-sky color="black"></a-sky>
 <!--				Add as component to camera for non-VR wsad-->
 <!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
@@ -154,9 +159,7 @@
 			
 <!--			<a-entity farm></a-entity>-->
 			
-			<a-gltf-model id="xeno" src="#mod" position="2 -15 85" rotation="0 33 0" scale="0.2 0.2 0.2" visible=""></a-gltf-model>
-			<a-gltf-model id="ddw" src="#wuds" position="0 -64 0" rotation="0 0 0" scale="10 10 10" visible=""></a-gltf-model>
-			<a-gltf-model id="subMod" src="#joan" position="2 0 -85" rotation="0 180 0" scale="1 1 1" visible=""></a-gltf-model>
+			
 	
 		
     </a-scene>
