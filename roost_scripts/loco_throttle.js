@@ -167,6 +167,6 @@ AFRAME.registerComponent('locomotion', {
             Math.cos(theta)*speed;
           xSub = this.rig.position.x += 
             Math.sin(theta)*speed;
-          //ySub = this.rig.position.y += pitch*speed;
+          ySub = this.rig.position.y += pitch*speed;
         }
       });
