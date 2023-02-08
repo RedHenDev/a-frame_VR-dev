@@ -21,6 +21,11 @@ let gName = 'NEMO';
 let VRclone= false;
 
 AFRAME.registerComponent('locomotion', {
+				schema: {
+					speed: {type: 'number', default:0.01} 
+				},
+	
+	
         init: function () {
           console.log(this.data);
 					
@@ -54,7 +59,8 @@ AFRAME.registerComponent('locomotion', {
 				this.reticle=document.querySelector('#reticle')
 					
 					// Speed cap.
-					this.maxS_orig=0.01;
+					//this.maxS_orig=0.01;
+					this.maxS_orig=this.data.speed;
 					this.maxS=this.maxS_orig;
 					
 					// New driving with keys...
