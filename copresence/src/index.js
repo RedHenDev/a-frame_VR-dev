@@ -195,7 +195,7 @@ function initGame(_who){
 	bod.object3D.position.x = x;
 	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
-	bod.object3D.rotation.x = whoMoved.rx;
+	bod.object3D.rotation.x = -whoMoved.rx; // Negated!
 	bod.object3D.rotation.y = whoMoved.ry;
 	bod.object3D.rotation.z = whoMoved.rz;
 		
