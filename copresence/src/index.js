@@ -40,12 +40,14 @@ document.addEventListener('keypress', event => {
 		VRclone=true;
 		const c=document.querySelector('#subject');
 		c.setAttribute('look-controls','enabled',false);
+		
 		return;
 		}
 		if (VRclone){
 		VRclone=false;
 		const c=document.querySelector('#subject');
 		c.setAttribute('look-controls','enabled',true);
+	
 		}
 	}
 });
@@ -177,30 +179,32 @@ function initGame(_who){
 			// I.e. look controls are the VR response
 			// to person's head movements that override.
 		// ***
+//			let c= document.getElementById(whoMoved.name);
+//			c.setAttribute('src','visible',false);
 			// Testing...
-			// NB x is negated.
-			sub.rotation.x = -whoMoved.rx;
+			// NB x is negated. But not here!
+			sub.rotation.x = whoMoved.rx;
 			sub.rotation.y = whoMoved.ry;
 			sub.rotation.z = whoMoved.rz;
 			
 			rig.position.x = whoMoved.x;
 			rig.position.y = whoMoved.y;
 			rig.position.z = whoMoved.z;
+		
 		}
-	if (bod!=null){
-	// I don't think we need the unary + here...
+	else if (bod!=null){
 	const x = whoMoved.x;
 	const y = whoMoved.y;
 	const z = whoMoved.z;
 	bod.object3D.position.x = x;
 	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
-	bod.object3D.rotation.x = whoMoved.rx; // Negated!
+	bod.object3D.rotation.x = whoMoved.rx; // Nor here!
 	bod.object3D.rotation.y = whoMoved.ry;
 	bod.object3D.rotation.z = whoMoved.rz;
 		
 	}
-
+		
 });
 								
 } // EOF initGame().
