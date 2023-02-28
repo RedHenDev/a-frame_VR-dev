@@ -195,18 +195,12 @@ function initGame(_who){
 	bod.object3D.position.x = x;
 	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
-	bod.object3D.rotation.x = -whoMoved.rx; // Negated!
+	bod.object3D.rotation.x = whoMoved.rx; // Negated!
 	bod.object3D.rotation.y = whoMoved.ry;
 	bod.object3D.rotation.z = whoMoved.rz;
 		
 	}
-//	const posStr=whoMoved.position;
-		// /[-+]?\d*\.?\d+/g
-		// /[-+]?\d+/g
-//	const posArr = posStr.match(/[-+]?\d*\.?\d+/g).map(str => parseInt(str));
-//		bod.object3D.position.x = posArr[0];
-//		bod.object3D.position.y = posArr[1];
-//		bod.object3D.position.z = posArr[2];
+
 });
 								
 } // EOF initGame().

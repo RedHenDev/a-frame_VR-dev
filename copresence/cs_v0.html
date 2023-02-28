@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>0.1.8 future is nokia</title>
+		<title>0.1.9 ...lost</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
@@ -70,33 +70,21 @@
 			}
 		</script>
 		
-    <a-scene fog="type:linear; far:400; color: rgb(0,255,80)">
+    <a-scene>
 		
 			<!-- Allow assets time to load.-->
       <a-assets timeout="5000">
 
 				<!-- Crossorigin to permit loading images -->
 				<!-- ../ to refer up dir on path. -->
-	
-<!--
-				<audio crossorigin="anonymous" id="sAmb" src="../roost_assets/sounds/shooting_star.mp3">
-				</audio>
--->
+
 				<audio crossorigin="anonymous" id="sTog"
 				src="../roost_assets/sounds/Hit_01.mp3">
 				</audio>
-<!--
-				<img crossorigin="anonymous" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
-				<img crossorigin="anonymous" id="imgCarina" src="../roost_assets/images/webb_carina-nebula.jpeg">
-				<img crossorigin="anonymous" id="imgPillars" src="../roost_assets/images/webb_pillars-of-creation.png">
-				<img crossorigin="anonymous" id="imgMario" src="../roost_assets/images/mario_level1.jpg">
--->
 				
 				<a-asset-item crossorigin="anonymous" id="mJoan" src="../roost_assets/models/joan.glb"></a-asset-item>
 				
-				<a-asset-item crossorigin="anonymous" id="mXeno" src="../roost_assets/models/xeno_raven.glb"></a-asset-item>
-				
-				<a-asset-item crossorigin="anonymous" id="mWuds" src="../roost_assets/models/forest_demo/scene.gltf"></a-asset-item>
+				<a-asset-item crossorigin="anonymous" id="mIsland" src="../roost_assets/models/island/scene.gltf"></a-asset-item>
 				
 				<a-asset-item crossorigin="anonymous" id="avatar" src="../roost_assets/models/old_nokia_phone_low_poly/nokia.obj"></a-asset-item>
 				<img crossorigin="anonymous" id="texNokia" src="../roost_assets/models/old_nokia_phone_low_poly/textures/back_baseColor.jpeg">
@@ -109,31 +97,23 @@
       <!--Lights-->
 			<a-entity rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
       <a-sphere
-							 	light="type:point;color:#00ff50" 
+							 	light="type:point;color:#efef00" 
 							 	material="shader:flat; color:#00ff50;fog:false;" 
-							 	position="0 64 128" radius="2">
+							 	position="32 64 32" radius="2">
 				</a-sphere></a-entity>
 
-			<a-gltf-model id="xeno" src="#mXeno" position="2 -15 85" rotation="0 33 0" scale="0.2 0.2 0.2" visible=""></a-gltf-model>
-			<a-gltf-model id="ddw" src="#mWuds" position="0 -64 0" rotation="0 0 0" scale="10 10 10" visible=""></a-gltf-model>
-			<a-gltf-model id="joan" src="#mJoan" position="2 0 -85" rotation="0 33 0" scale="1 1 1" visible=""></a-gltf-model>
+			<a-gltf-model id="theIsland" src="#mIsland" position="-32 -4 32" rotation="0 0 0" scale="64 64 64" visible=""></a-gltf-model>
+			
+			<a-gltf-model id="joan" src="#mJoan" position="8 0 -8" rotation="0 33 0" scale="0.7 0.7 0.7" visible=""></a-gltf-model>
 			
 				<!--Hark in our ear.-->
 				<a-entity id="hark" sound="src:#sTog;
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
       
-			
-			<!--
-			<a-sky src="#imgBloop1" radius="800"></a-sky>
-			-->
-			<!--<a-sky src="#marioLvl" radius="120"></a-sky>-->
-			
-			<!--Subject's rig starts here.-->
-<!--			Add as component to rig for non-VR controls?-->
-<!--			movement-controls-->
+		
       <a-entity id="rig" position="0 0 0">
-				<a-sky color="black"></a-sky>
+				<a-sky color="cyan"></a-sky>
 <!--				Add as component to camera for non-VR wsad-->
 <!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
@@ -157,8 +137,6 @@
         
       </a-entity> <!-- camera end -->
       </a-entity> <!-- rig end -->
-			
-<!--			<a-entity farm></a-entity>-->
 			
 			
     </a-scene>
