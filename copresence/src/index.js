@@ -40,14 +40,11 @@ document.addEventListener('keypress', event => {
 		VRclone=true;
 		const c=document.querySelector('#subject');
 		c.setAttribute('look-controls','enabled',false);
-		
-		return;
 		}
 		if (VRclone){
 		VRclone=false;
 		const c=document.querySelector('#subject');
 		c.setAttribute('look-controls','enabled',true);
-	
 		}
 	}
 });
