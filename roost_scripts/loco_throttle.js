@@ -19,6 +19,7 @@ let rzSub=0.0;
 // Need to refactor this global monstrosity!
 let gName = 'NEMO';
 let VRclone= false;
+console.log('Throttle script init.')
 
 AFRAME.registerComponent('locomotion', {
 				schema: {

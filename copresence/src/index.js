@@ -40,11 +40,13 @@ document.addEventListener('keypress', event => {
 		VRclone=true;
 		const c=document.querySelector('#subject');
 		c.setAttribute('look-controls','enabled',false);
+		console.log('Cloned.')
 		}
-		if (VRclone){
+		else if (VRclone){
 		VRclone=false;
 		const c=document.querySelector('#subject');
 		c.setAttribute('look-controls','enabled',true);
+		console.log('Uncloned.')
 		}
 	}
 });
