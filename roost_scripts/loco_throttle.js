@@ -16,16 +16,30 @@ let toggleAttempt=false;
 let rxSub=0.0;
 let rySub=0.0;
 let rzSub=0.0;
-// Need to refactor this global monstrosity!
+// Need to refactor this global solution.
 let gName = 'NEMO';
 let VRclone= false;
 console.log('Throttle script init.')
+
+// Collision detection testing...
+AFRAME.registerComponent('collision-detector', {
+  init: function () {
+    let el = this.el;
+    el.addEventListener('raycaster-intersection', function(evt)  {
+      // Check if the ray has intersected with a collidable entity
+      if (evt.detail.intersectedEntity !== null) {
+        console.log('Collided with', evt.detail.intersectedEntity);
+      }
+    });
+  }
+});
+
+//******* EOF collision detec
 
 AFRAME.registerComponent('locomotion', {
 				schema: {
 					speed: {type: 'number', default:0.01} 
 				},
-	
 	
         init: function () {
           console.log(this.data);
@@ -63,13 +77,14 @@ AFRAME.registerComponent('locomotion', {
 					//this.maxS_orig=0.01;
 					this.maxS_orig=this.data.speed;
 					this.maxS=this.maxS_orig;
+					this.acc=this.maxS*0.2;
 					
 					// New driving with keys...
 					document.addEventListener('keydown', event => {
 						if (event.key === 'ArrowUp' ||
 						  event.key === 'w') {
 							this.engineOn=true;
-							this.maxS+=0.02;
+							this.maxS+=this.acc;
 							this.reticle.
 							setAttribute('material','color:lime');
 						}
@@ -116,7 +131,7 @@ AFRAME.registerComponent('locomotion', {
 					const maxZ=2.75; // Default 0.4.
 					const minZ2=0.2; // Default 0.2.
 					const maxZ2=0.45;// Default 0.4.
-					const acc=0.002; // Default 0.002.
+					const acc=this.acc; // Default 0.002.
 					
 					// Throttle test. Negative.
 					if ((ws < -minZ && ws > -maxZ) ||
@@ -152,6 +167,7 @@ AFRAME.registerComponent('locomotion', {
 						}
 					}
 					
+					// Delimit max speed. 
 					if (this.vel > this.maxS){
 						this.vel = this.maxS;
 					}
