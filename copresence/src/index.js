@@ -24,6 +24,7 @@ let playerRef;
 let subName;
 // *** testing.
 let subjects={};
+let subs=[];
 
 import { baptise } from "../../roost_scripts/utils.js";
 
@@ -32,15 +33,24 @@ import { baptise } from "../../roost_scripts/utils.js";
 //let VRclone=false;
 //import { VRclone } from "../../roost_scripts/loco_throttle.js";
 
+// Testing -- are we on a mobile device?
+function isMobile() {
+  return /Mobi/.test(navigator.userAgent);
+}
+
 //***
 // To turn on clone mode.
 document.addEventListener('keypress', event => {
+	
+	
+	
 	if (event.key === 'c') {
 		if (!VRclone){
 		VRclone=true;
 		const c=document.querySelector('#subject');
 		c.setAttribute('look-controls','enabled',false);
 		console.log('Cloned.')
+			
 		}
 		else if (VRclone){
 		VRclone=false;
@@ -106,7 +116,7 @@ function manifestSubject(_who,_me){
 setTimeout(function(){
 	setInterval(function() {
   write_move();
-}, 31);
+}, 63);
 },6000);
 
 // Convert three numerical positions to string
@@ -172,7 +182,8 @@ function initGame(_who){
 		// this on a computer screen.
 		// This involves toggling off look-controls from
 		// camera (#subject) a-frame entity.
-		if (VRclone && whoMoved.name!=gName){
+		if (VRclone && whoMoved.name!=gName &&
+			 isMobile){
 			// NB changing rotation of camera/subject
 			// only works if look controls disabled.
 			// I.e. look controls are the VR response

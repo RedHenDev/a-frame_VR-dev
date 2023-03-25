@@ -83,7 +83,7 @@
 				<audio crossorigin="local" id="sTog"
 				src="../roost_assets/sounds/Hit_01.mp3">
 				</audio>
-				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
+				
 				<img crossorigin="local" id="imgCarina" src="../roost_assets/images/webb_carina-nebula.jpeg">
 				<img crossorigin="local" id="imgPillars" src="../roost_assets/images/webb_pillars-of-creation.png">
 				<img crossorigin="local" id="imgMario" src="../roost_assets/images/mario_level1.jpg">
@@ -145,7 +145,7 @@
                 camera
 								look-controls
                 position="0 0 0"
-                locomotion="Engine on!; speed:1"
+                locomotion="speed:1"
                 log-position-data="output:#hud">
 				
 		<!--NB 	separate class names with comma in raycastable
@@ -164,9 +164,11 @@
          ></a-entity>
      	
 							
+<!--
 				<a-entity id="coli" raycaster="objects: .collidable;" position="0 -2.6 0"
 									direction="0 -1 0"
 									collision-detector></a-entity>
+-->
 
 				
 				<!--NB can be rotated 180 on Z for my viewer.-->

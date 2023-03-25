@@ -25,20 +25,25 @@ console.log('Throttle script init.')
 AFRAME.registerComponent('collision-detector', {
   init: function () {
     let el = this.el;
+		
     el.addEventListener('raycaster-intersection', function(evt)  {
       // Check if the ray has intersected with a collidable entity
       if (evt.detail.intersectedEntity !== null) {
         console.log('Collided with', evt.detail.intersectedEntity);
+//				document.querySelector('#subject').setAttribute('locomotion','acceleration:0');
+				document.querySelector('#rig').object3D.
+				position.y += 10;
       }
     });
   }
 });
 
 //******* EOF collision detec
-
+  
 AFRAME.registerComponent('locomotion', {
 				schema: {
-					speed: {type: 'number', default:0.01} 
+					speed: {type: 'number', default:0.1},
+					acceleration: {type: 'number', default:0.01}
 				},
 	
         init: function () {
@@ -77,7 +82,8 @@ AFRAME.registerComponent('locomotion', {
 					//this.maxS_orig=0.01;
 					this.maxS_orig=this.data.speed;
 					this.maxS=this.maxS_orig;
-					this.acc=this.maxS*0.2;
+					//this.acc=this.maxS*0.2;
+					this.acc=this.data.acceleration;
 					
 					// New driving with keys...
 					document.addEventListener('keydown', event => {
@@ -132,6 +138,7 @@ AFRAME.registerComponent('locomotion', {
 					const minZ2=0.2; // Default 0.2.
 					const maxZ2=0.45;// Default 0.4.
 					const acc=this.acc; // Default 0.002.
+					//const acc=this.data.acceleration;
 					
 					// Throttle test. Negative.
 					if ((ws < -minZ && ws > -maxZ) ||

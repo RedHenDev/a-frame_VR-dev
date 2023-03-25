@@ -104,7 +104,8 @@
 							 	position="32 64 32" radius="2">
 				</a-sphere></a-entity>
 
-			<a-gltf-model id="theIsland" src="#mIsland" position="-512 -64 512" rotation="0 0 0" scale="1024 1024 1024" visible=""></a-gltf-model>
+			<a-gltf-model id="theIsland" class="collidable"
+										src="#mIsland" position="-512 -64 512" rotation="0 0 0" scale="1024 1024 1024" visible=""></a-gltf-model>
 			
 			<a-gltf-model id="joan" src="#mJoan" position="8 0 -8" rotation="0 33 0" scale="0.7 0.7 0.7" visible=""></a-gltf-model>
 			
@@ -122,7 +123,12 @@
                 camera
 								look-controls
                 position="0 0 0"
-                locomotion="speed: 0.1">
+                locomotion="speed: 0.1; acceleration: 0.01">
+				
+				<a-entity id="coli" raycaster="objects: .collidable;" position="0 0 0"
+									direction="0 -1 0"
+									far="5"
+									collision-detector></a-entity>
 				
 				<!-- NB 	separate class names with comma raycastablelist -->
         <a-entity
