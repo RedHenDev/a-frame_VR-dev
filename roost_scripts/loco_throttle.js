@@ -28,11 +28,11 @@ AFRAME.registerComponent('collision-detector', {
 		
     el.addEventListener('raycaster-intersection', function(evt)  {
       // Check if the ray has intersected with a collidable entity
-			let dist=evt.detail.intersections[0].distance;
+			let dist=Math.abs(evt.detail.intersections[0].distance);
       if (dist <=10) {
         console.log('Collided at', dist);
 				document.querySelector('#rig').object3D.
-				position.y += dist*2;
+				position.y += 40;
       }
     });
   }
