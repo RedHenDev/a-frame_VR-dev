@@ -107,7 +107,7 @@
 			<a-gltf-model id="theIsland" class="collidable"
 										src="#mIsland" position="-512 -64 512" rotation="0 0 0" scale="1024 1024 1024" visible=""></a-gltf-model>
 			
-			<a-gltf-model id="joan" src="#mJoan" position="8 0 -18" rotation="0 33 0" scale="7 7 7" visible=""></a-gltf-model>
+			<a-gltf-model id="joan" src="#mJoan" position="101 -12 -42" rotation="0 33 0" scale="7 7 7" visible=""></a-gltf-model>
 			
 				<!--Hark in our ear.-->
 				<a-entity id="hark" sound="src:#sTog;
@@ -140,7 +140,7 @@
         
       </a-entity> <!-- camera end -->
 				
-				<a-entity id="coli" raycaster="objects: .collidable;" direction="down"
+				<a-entity id="coli" raycaster="objects: .collidable;direction:0 -1 0;" 
 									collision-detector></a-entity>
       </a-entity> <!-- rig end -->
 			
