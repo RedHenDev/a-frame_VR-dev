@@ -30,11 +30,11 @@ AFRAME.registerComponent('collision-detector', {
       // Check if the ray has intersected with a collidable entity
 			let dist=Math.abs(evt.detail.intersections[0].distance);
 			
-      if (dist <=10) {
+//      if (dist <=10) {
         console.log('Collided at ' + dist);
 				document.querySelector('#rig').object3D.
-				position.y += 100;
-      }
+				position.y += 1;
+//      }
     });
   }
 });
