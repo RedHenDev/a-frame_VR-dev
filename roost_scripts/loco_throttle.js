@@ -28,11 +28,11 @@ AFRAME.registerComponent('collision-detector', {
 		
     el.addEventListener('raycaster-intersection', function(evt)  {
       // Check if the ray has intersected with a collidable entity
-      if (evt.detail.intersectedEntity !== null) {
-        console.log('Collided with', evt.detail.intersectedEntity);
-//				document.querySelector('#subject').setAttribute('locomotion','acceleration:0');
+			let dist=evt.detail.intersections[0].distance;
+      if (dist <=10) {
+        console.log('Collided at', dist);
 				document.querySelector('#rig').object3D.
-				position.y += 10;
+				position.y += dist*2;
       }
     });
   }

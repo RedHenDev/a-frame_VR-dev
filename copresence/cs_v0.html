@@ -113,7 +113,6 @@
 				<a-entity id="hark" sound="src:#sTog;
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
-      
 
       <a-entity id="rig" position="0 0 0">
 <!--				<a-sky color="cyan"></a-sky>-->
@@ -124,11 +123,6 @@
 								look-controls
                 position="0 0 0"
                 locomotion="speed: 0.1; acceleration: 0.01">
-				
-				<a-entity id="coli" raycaster="objects: .collidable;" position="0 0 0"
-									direction="0 -1 0"
-									far="5"
-									collision-detector></a-entity>
 				
 				<!-- NB 	separate class names with comma raycastablelist -->
         <a-entity
@@ -145,6 +139,9 @@
          ></a-entity>
         
       </a-entity> <!-- camera end -->
+				<a-entity id="coli" raycaster="objects: .collidable;direction:0 -1 0; interval:200;showLine:true"
+									
+									collision-detector></a-entity>
       </a-entity> <!-- rig end -->
 			
 			
