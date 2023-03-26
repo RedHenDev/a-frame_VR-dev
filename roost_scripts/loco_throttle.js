@@ -33,7 +33,7 @@ AFRAME.registerComponent('collision-detector', {
 //      if (dist <=10) {
         console.log('Collided at ' + dist);
 				document.querySelector('#rig').object3D.
-				position.y += 1;
+				position.y += 12;
 //      }
     });
   }
