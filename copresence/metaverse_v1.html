@@ -150,10 +150,13 @@
    <a-sky id="theSky" radius='3000'></a-sky>
 			
 			<script>
-				const nom="#jpg-"+
+				setInterval(newSky,10000);
+				function newSky(){
+				let nom="#jpg-"+
 							Math.floor(Math.random()*imgNum);
 				document.querySelector("#theSky").
 				setAttribute('src',nom);
+				}
 			</script>
 			
 			<!--Subject's rig starts here.-->
