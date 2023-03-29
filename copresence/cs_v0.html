@@ -84,6 +84,8 @@
 				
 				<a-asset-item crossorigin="anonymous" id="mIsland" src="../roost_assets/models/island/scene.gltf"></a-asset-item>
 				
+				
+				
 				<a-asset-item crossorigin="anonymous" id="avatar" src="../roost_assets/models/old_nokia_phone_low_poly/nokia.obj"></a-asset-item>
 				<img crossorigin="anonymous" id="texNokia" src="../roost_assets/models/old_nokia_phone_low_poly/textures/back_baseColor.jpeg">
 				
@@ -103,9 +105,13 @@
 							 	material="shader:flat; color:#00ff50;fog:false;" 
 							 	position="32 64 32" radius="2">
 				</a-sphere></a-entity>
-
-			<a-gltf-model id="theIsland" class="collidable"
-										src="#mIsland" position="-512 -64 512" rotation="0 0 0" scale="1024 1024 1024" visible=""></a-gltf-model>
+			
+			<a-gltf-model id="theIsland" class="NOTcollidable"
+										src="#mIsland" position="-512 -64 512" rotation="0 0 0" scale="512 512 512" visible=""></a-gltf-model>
+			<a-gltf-model id="theIsland2" class="NOTcollidable"
+										src="#mIsland" position="-512 -128 -512" rotation="0 0 0" scale="512 512 512" visible=""
+										animation="property:position.y;
+										to: -64; dur: 6000;dir: alternate; easing: easeInOutSine; loop:true"></a-gltf-model>
 			
 			<a-gltf-model id="joan" src="#mJoan" position="101 -12 -42" rotation="0 33 0" scale="7 7 7" visible=""></a-gltf-model>
 			
