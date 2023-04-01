@@ -75,9 +75,10 @@ function manifestSubject(_who,_me){
 		// globalName.
 		gName=_who.name;
 		console.log(`my name is ${_who.name}`);
-			if (voice!=null){
-		voice.speak('Here we go, ' + gName);
-			}
+			
+//			if (voice!=null){
+//		voice.speak('Here we go, ' + gName);
+//			}
 			
 		const rig=document.querySelector('#rig');
 		//rig.object3D.position.x = +_who.x.toFixed(6);
