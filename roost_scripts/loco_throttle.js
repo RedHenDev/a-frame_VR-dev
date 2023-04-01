@@ -125,10 +125,6 @@ AFRAME.registerComponent('locomotion', {
 					// Do not interfere with cloned positioning.
 					if (VRclone) return;
 					
-					if (this.data.engine){
-						voice.speak('It worked! Engine on!');
-						console.log('It worked! Engine on!');
-					}
 					//***
 					// Update cam orientation.
 					// NB these communicate with index.js firebase.
