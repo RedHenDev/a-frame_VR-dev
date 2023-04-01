@@ -73,7 +73,7 @@ AFRAME.registerComponent('locomotion', {
 					
 					// Timing for toggling engine.
 					this.timeStamp=Date.now();
-					this.engineOn=false;
+					//this.engineOn=false;
 					// For sound of toggling.
 					this.hark=document.querySelector("#hark");
 					
@@ -90,13 +90,15 @@ AFRAME.registerComponent('locomotion', {
 					
 					// New driving with keys...
 					document.addEventListener('keydown', event => {
+						
 						if (event.key === 'ArrowUp' ||
 						  event.key === 'w') {
 							//this.engineOn=true;
 							this.data.engine=true;
 							this.maxS+=this.acc;
-							this.reticle.
-							setAttribute('material','color:lime');
+							this.update();
+//							this.reticle.
+//							setAttribute('material','color:lime');
 						}
 						else if (event.key === 'ArrowDown' ||
 						  event.key === 's') {
@@ -104,8 +106,9 @@ AFRAME.registerComponent('locomotion', {
 							this.data.engine=false;
 							// Reset max speed.
 							this.maxS=this.maxS_orig;
-							this.reticle.
-							setAttribute('material','color:red');
+							this.update();
+//							this.reticle.
+//							setAttribute('material','color:red');
 						}
 					});
 					document.addEventListener('keyup', event => {
@@ -114,6 +117,7 @@ AFRAME.registerComponent('locomotion', {
 							//toggleAttempt=true;
 							//this.engineOn=false;
 							this.data.engine=false;
+							//this.update();
 							this.reticle.
 							setAttribute('material','color:red');
 						}
@@ -130,6 +134,8 @@ AFRAME.registerComponent('locomotion', {
 					else{
 						this.reticle.
 							setAttribute('material','color:red');
+						// And reset max speed.
+						this.maxS=this.maxS_orig;
 					}
 				},
 	

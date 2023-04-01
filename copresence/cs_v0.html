@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>0.3.5 ...click flap</title>
+		<title>0.3.6 ...click flap</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
@@ -112,9 +112,16 @@
 			<a-gltf-model id="theIsland" class="NOTcollidable"
 										src="#mIsland" position="-512 -64 512" rotation="0 0 0" scale="512 512 512" visible=""></a-gltf-model>
 			<a-gltf-model id="theIsland2" class="NOTcollidable"
-										src="#mIsland" position="-512 -128 -512" rotation="0 0 0" scale="512 512 512" visible=""
-										animation="property:position.y;
-										to: -64; dur: 6000;dir: alternate; easing: easeInOutSine; loop:true"></a-gltf-model>
+										src="#mIsland" position="-512 -128 -1024" rotation="33 0 0" scale="512 512 512" visible=""
+										></a-gltf-model>
+			<a-gltf-model id="theIsland2" class="NOTcollidable"
+										src="#mIsland" position="-512 64 1200" rotation="-33 0 0" scale="512 512 512" visible=""
+										></a-gltf-model>
+			
+			<!--
+					animation="property:position.y;
+										to: -64; dur: 6000;dir: alternate; easing: easeInOutSine; loop:true"
+					-->
 			
 			<a-gltf-model id="joan" src="#mJoan" position="101 -12 -42" rotation="0 33 0" scale="7 7 7" visible=""></a-gltf-model>
 			
@@ -131,7 +138,7 @@
                 camera
 								look-controls
                 position="0 0 0"
-                locomotion="speed: 0.1; acceleration: 0.01">
+                locomotion="speed: 0.1; acceleration: 0.04">
 				
 				<!-- NB 	separate class names with comma raycastablelist -->
         <a-entity
@@ -149,8 +156,11 @@
         
       </a-entity> <!-- camera end -->
 				
+<!--
 				<a-entity id="coli" raycaster="objects: .collidable;direction:0 0 -1;interval:200;far:40" 
 									collision-detector></a-entity>
+-->
+				
       </a-entity> <!-- rig end -->
 			
 			

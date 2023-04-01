@@ -28,7 +28,7 @@ navigator.mediaDevices.getUserMedia({audio: true})
 //		}
 
     // (D2) DETECT CLAP
-    if (micLevel > 0.85 && !clapDetected) {
+    if (micLevel > 1.25 && !clapDetected) {
       clapDetected = true;
 			console.log(micLevel);
       setTimeout(function() {
@@ -49,8 +49,8 @@ navigator.mediaDevices.getUserMedia({audio: true})
       utter.text = "Engine: " + engineOn;
       utter.lang = "en-UK";
       utter.volume = 1;
-      utter.rate = 0.25;
-      utter.pitch = 1;
+      utter.rate = 0.3;
+      utter.pitch = 1.5;
       voice.speak(utter);
 			const entity =
 						document.querySelector('#subject');
