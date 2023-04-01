@@ -129,13 +129,13 @@ AFRAME.registerComponent('locomotion', {
 				update: function(){
 					if (this.data.engine){
 						this.reticle.
-							setAttribute('material','color:green');
+							setAttribute('material','color:lime');
 					}
 					else{
 						this.reticle.
 							setAttribute('material','color:red');
 						// And reset max speed.
-						this.maxS=this.maxS_orig;
+						//this.maxS=this.maxS_orig;
 					}
 				},
 	
