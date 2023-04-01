@@ -43,7 +43,7 @@ AFRAME.registerComponent('collision-detector', {
   
 AFRAME.registerComponent('locomotion', {
 				schema: {
-					speed: {type: 'number', default:0.1},
+					maxSpeed: {type: 'number', default:0.1},
 					acceleration: {type: 'number', default:0.01},
 					engine:{type: 'boolean',default:false}
 				},
@@ -83,7 +83,7 @@ AFRAME.registerComponent('locomotion', {
 					
 					// Speed cap.
 					//this.maxS_orig=0.01;
-					this.maxS_orig=this.data.speed;
+					this.maxS_orig=this.data.maxSpeed;
 					this.maxS=this.maxS_orig;
 					//this.acc=this.maxS*0.2;
 					this.acc=this.data.acceleration;
@@ -186,17 +186,10 @@ AFRAME.registerComponent('locomotion', {
 							this.hark.components.sound.playSound();
 							//this.engineOn=!this.engineOn;
 							this.data.engine=!this.data.engine;
+							// Update to sort reticle colour.
+							this.update();
 							this.timeStamp=Date.now();
-							if (this.data.engine){
-								this.reticle.
-								setAttribute('material','color:red');
-								// Reset max speed.
-								this.maxS=this.maxS_orig;
-							}
-							else {
-								this.reticle.
-								setAttribute('material','color:lime');
-							}
+							
 						}
 					}
 					

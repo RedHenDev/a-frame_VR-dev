@@ -48,9 +48,9 @@ navigator.mediaDevices.getUserMedia({audio: true})
       const utter = new SpeechSynthesisUtterance();
       utter.text = "Engine: " + engineOn;
       utter.lang = "en-UK";
-      utter.volume = 1;
-      utter.rate = 0.3;
-      utter.pitch = 1.5;
+      utter.volume = 3;
+      utter.rate = 1;
+      utter.pitch = 1;
       voice.speak(utter);
 			const entity =
 						document.querySelector('#subject');
