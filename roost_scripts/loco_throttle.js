@@ -121,6 +121,18 @@ AFRAME.registerComponent('locomotion', {
 					
         },
   
+	
+				update: function(){
+					if (this.data.engine){
+						this.reticle.
+							setAttribute('material','color:green');
+					}
+					else{
+						this.reticle.
+							setAttribute('material','color:red');
+					}
+				},
+	
         tick: function (timeDelta) { 
 					// Do not interfere with cloned positioning.
 					if (VRclone) return;

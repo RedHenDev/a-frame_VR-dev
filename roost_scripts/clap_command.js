@@ -28,8 +28,9 @@ navigator.mediaDevices.getUserMedia({audio: true})
 //		}
 
     // (D2) DETECT CLAP
-    if (micLevel > 0.8 && !clapDetected) {
+    if (micLevel > 0.85 && !clapDetected) {
       clapDetected = true;
+			console.log(micLevel);
       setTimeout(function() {
         clapDetected = false;
       }, 3000); // Wait 3s before detecting next clap
@@ -49,14 +50,15 @@ navigator.mediaDevices.getUserMedia({audio: true})
       utter.lang = "en-UK";
       utter.volume = 1;
       utter.rate = 0.25;
-      utter.pitch = 2;
+      utter.pitch = 1;
       voice.speak(utter);
 			const entity =
 						document.querySelector('#subject');
-				entity.setAttribute
-						('locomotion', { engine: engineOn });
+				entity.setAttribute('locomotion', 
+														{ engine: engineOn });
+
     }
-  }, 50); // Loop every 50ms
+  }, 200); // Loop every 200ms
 })
 .catch(function(err) {
   console.error(err);
