@@ -44,7 +44,8 @@ AFRAME.registerComponent('collision-detector', {
 AFRAME.registerComponent('locomotion', {
 				schema: {
 					speed: {type: 'number', default:0.1},
-					acceleration: {type: 'number', default:0.01}
+					acceleration: {type: 'number', default:0.01},
+					engine:{type: 'boolean',default:false}
 				},
 	
         init: function () {
@@ -76,8 +77,9 @@ AFRAME.registerComponent('locomotion', {
 					// For sound of toggling.
 					this.hark=document.querySelector("#hark");
 					
-				// Grab reticle.
-				this.reticle=document.querySelector('#reticle')
+					// Grab reticle.
+					this.reticle=
+						document.querySelector('#reticle')
 					
 					// Speed cap.
 					//this.maxS_orig=0.01;
@@ -90,14 +92,16 @@ AFRAME.registerComponent('locomotion', {
 					document.addEventListener('keydown', event => {
 						if (event.key === 'ArrowUp' ||
 						  event.key === 'w') {
-							this.engineOn=true;
+							//this.engineOn=true;
+							this.data.engine=true;
 							this.maxS+=this.acc;
 							this.reticle.
 							setAttribute('material','color:lime');
 						}
 						else if (event.key === 'ArrowDown' ||
 						  event.key === 's') {
-							this.engineOn=false;
+							//this.engineOn=false;
+							this.data.engine=false;
 							// Reset max speed.
 							this.maxS=this.maxS_orig;
 							this.reticle.
@@ -108,7 +112,8 @@ AFRAME.registerComponent('locomotion', {
 						if (event.key === 'ArrowUp' ||
 						  event.key === 'w') {
 							//toggleAttempt=true;
-							this.engineOn=false;
+							//this.engineOn=false;
+							this.data.engine=false;
 							this.reticle.
 							setAttribute('material','color:red');
 						}
@@ -119,6 +124,11 @@ AFRAME.registerComponent('locomotion', {
         tick: function (timeDelta) { 
 					// Do not interfere with cloned positioning.
 					if (VRclone) return;
+					
+					if (this.data.engine){
+						voice.speak('It worked! Engine on!');
+						console.log('It worked! Engine on!');
+					}
 					//***
 					// Update cam orientation.
 					// NB these communicate with index.js firebase.
@@ -160,7 +170,8 @@ AFRAME.registerComponent('locomotion', {
 						if (cTime-this.timeStamp > 1000){
 							toggleAttempt=false;
 							this.hark.components.sound.playSound();
-							this.engineOn=!this.engineOn;
+							//this.engineOn=!this.engineOn;
+							this.data.engine=!this.data.engine;
 							this.timeStamp=Date.now();
 							if (!this.engineOn){
 								this.reticle.
@@ -181,7 +192,8 @@ AFRAME.registerComponent('locomotion', {
 					}
 					// Engine.
 					let speed=-this.vel;
-					if (!this.engineOn) {
+					// default this.engineOn;
+					if (!this.data.engine) {
 							// Apply friction.
 							this.vel*=0.98;
 //							if (this.vel < 0.001)

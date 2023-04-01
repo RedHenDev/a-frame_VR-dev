@@ -26,9 +26,15 @@ let voice = {
 			else{this.engine = !this.engine;}
 //      else if (said == "engine off") { this.engine = false; }
       console.log("Engine: " + this.engine);
-      //voice.stop ();
+      voice.stop ();
 			// (D) UPDATE UTTERANCE TEXT & SPEAK
     voice.speak("Engine: " + this.engine);
+
+			const entity =
+						document.querySelector('#subject');
+			entity.setAttribute
+						('locomotion', { engine: true });
+
 			//voice.start ();
     };
 
@@ -53,8 +59,9 @@ let voice = {
     voice.utter = new SpeechSynthesisUtterance();
     voice.utter.lang = "en-UK";
     voice.utter.volume = 1;
-    voice.utter.rate = 1;
-    voice.utter.pitch = 1;
+    voice.utter.rate = 0.25;
+    voice.utter.pitch = 2;
+		
   },
 
   // (C) STOP/CANCEL SPEECH RECOGNITION
@@ -66,7 +73,7 @@ let voice = {
 // (D) GET MIC ACCESS PERMISSION
 // {audio: true}    -- default.
 navigator.mediaDevices.getUserMedia ( 
-	{audio: true, mic: true}
+	{audio: true}
 )
 .then (stream => {
   // (E) READY!
