@@ -169,7 +169,7 @@ AFRAME.registerComponent('locomotion', {
 							//this.engineOn=!this.engineOn;
 							this.data.engine=!this.data.engine;
 							this.timeStamp=Date.now();
-							if (!this.engineOn){
+							if (this.data.engine){
 								this.reticle.
 								setAttribute('material','color:red');
 								// Reset max speed.

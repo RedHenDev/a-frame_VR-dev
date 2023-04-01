@@ -1,86 +1,78 @@
 // (A) INIT VOICE COMMAND
 let voice = {
-	// (A) ADD SPEECH SYNTHESIS OBJECT & SETTINGS
+  // (A) ADD SPEECH SYNTHESIS OBJECT & SETTINGS
   synth: window.speechSynthesis,
   utter: null,
   // (A1) SPEECH RECOGNITION OBJECT & SETTINGS
-  recog : null,
-  init : () => {
-		
-		
-		
-		this.engine=false;
+  recog: null,
+  init: () => {
+    this.engine = false;
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    voice.recog = new SpeechRecognition ();
+    voice.recog = new SpeechRecognition();
     voice.recog.lang = "en-UK";
     voice.recog.continuous = false;
     voice.recog.interimResults = false;
-		console.log('vox system awake...');
-		//voice.speak('Hello world!');
+    console.log('vox system awake...');
+
     // (A2) ON SPEECH RECOGNITION - RUN CORRESPONDING COMMAND
     voice.recog.onresult = evt => {
-			console.log('vox event detected');
-      let said = evt.results [0] [0].transcript.toLowerCase ();
-      if (said!="engine") { 
-				 }
-			else{this.engine = !this.engine;}
-//      else if (said == "engine off") { this.engine = false; }
-      console.log("Engine: " + this.engine);
-      voice.stop ();
-			// (D) UPDATE UTTERANCE TEXT & SPEAK
-    voice.speak("Engine: " + this.engine);
-
-			const entity =
+      console.log('vox event detected');
+      let said = evt.results[0][0].transcript.toLowerCase();
+      if (said != "engine") {
+      } else {
+        this.engine = !this.engine;
+				const entity =
 						document.querySelector('#subject');
-			entity.setAttribute
-						('locomotion', { engine: true });
+				entity.setAttribute
+						('locomotion', { engine: this.engine });
+      }
+      console.log("Engine: " + this.engine);
+      //voice.stop();
 
-			//voice.start ();
+      // (D) UPDATE UTTERANCE TEXT & SPEAK
+      //voice.speak("Engine: " + this.engine);
     };
 
     // (A3) ON SPEECH RECOGNITION ERROR
-    voice.recog.onerror = err => console.error (evt);
+    voice.recog.onerror = err => console.error(evt);
   },
 
-	speak: (text) => {
+  speak: (text) => {
     if (voice.synth.speaking) {
       console.error("SpeechSynthesis: Already speaking");
       return;
-		}
-		voice.utter.text = text;
+    }
+    voice.utter.text = text;
     voice.synth.speak(voice.utter);
-    },
-	
+  },
+
   // (B) START SPEECH RECOGNITION
-  start : () => {
-    voice.recog.start ();
-		// Speech init.
-		// (B) ADD UTTERANCE FOR SPEECH SYNTHESIS
+  start: () => {
+    voice.recog.start();
+    // Speech init.
+    // (B) ADD UTTERANCE FOR SPEECH SYNTHESIS
     voice.utter = new SpeechSynthesisUtterance();
     voice.utter.lang = "en-UK";
     voice.utter.volume = 1;
     voice.utter.rate = 0.25;
     voice.utter.pitch = 2;
-		
   },
 
   // (C) STOP/CANCEL SPEECH RECOGNITION
-  stop : () => {
-    voice.recog.stop ();
+  stop: () => {
+    voice.recog.stop();
   }
 };
 
 // (D) GET MIC ACCESS PERMISSION
 // {audio: true}    -- default.
-navigator.mediaDevices.getUserMedia ( 
-	{audio: true}
-)
-.then (stream => {
-  // (E) READY!
-  voice.init();
-	// ChatGPT March 15's fix - in less that 1 second.
-	voice.start ();
-})
-.catch (err => {
-  console.error (err);
-});
+navigator.mediaDevices.getUserMedia({ audio: true })
+  .then(stream => {
+    // (E) READY!
+    voice.init();
+    // ChatGPT March 15's fix - in less that 1 second.
+    voice.start();
+  })
+  .catch(err => {
+    console.error(err);
+  });
