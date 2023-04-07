@@ -198,7 +198,7 @@ AFRAME.registerComponent('locomotion', {
 						this.vel = this.maxS;
 					}
 					// Engine.
-					let speed=-this.vel;
+					let speedNow=-this.vel;
 					// default this.engineOn;
 					if (!this.data.engine) {
 							// Apply friction.
@@ -214,9 +214,10 @@ AFRAME.registerComponent('locomotion', {
           // NB move rig, not camera.
 					// Note here we also update global values.
           zSub = this.rig.position.z += 
-            Math.cos(theta)*speed;
+            Math.cos(theta)*speedNow;
           xSub = this.rig.position.x += 
-            Math.sin(theta)*speed;
-          ySub = this.rig.position.y += pitch*speed;
+            Math.sin(theta)*speedNow;
+          ySub = this.rig.position.y += 
+						pitch*speedNow;
         }
       });

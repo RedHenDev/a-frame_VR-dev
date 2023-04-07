@@ -28,12 +28,12 @@ navigator.mediaDevices.getUserMedia({audio: true})
 //		}
 
     // (D2) DETECT CLAP
-    if (micLevel > 1.25 && !clapDetected) {
+    if (micLevel > 32 && !clapDetected) {
       clapDetected = true;
 			console.log(micLevel);
       setTimeout(function() {
         clapDetected = false;
-      }, 3000); // Wait 3s before detecting next clap
+      }, 1000); // Wait 3s before detecting next clap
 
       // (D3) TOGGLE ENGINE STATE
       engineOn = !engineOn;

@@ -10,6 +10,8 @@
 		
 			<!-- NB defer is crucial here! -->
     	<script src="../roost_scripts/event_listen.js" defer></script>
+		
+		<script src='../roost_scripts/entity_factory.js' defer></script>
 
     	<!-- NB must not defer these scripts, else
             text will not render to HUD 
@@ -108,15 +110,22 @@
 							 	material="shader:flat; color:#00ff50;fog:false;" 
 							 	position="32 64 32" radius="2">
 				</a-sphere></a-entity>
-			
+			<!--
 			<a-gltf-model id="theIsland" class="NOTcollidable"
 										src="#mIsland" position="-512 -64 512" rotation="0 0 0" scale="512 512 512" visible=""></a-gltf-model>
 			<a-gltf-model id="theIsland2" class="NOTcollidable"
-										src="#mIsland" position="-512 -128 -1024" rotation="33 0 0" scale="512 512 512" visible=""
+										src="#mIsland" position="-512 -128 -1512" rotation="12 0 0" scale="512 512 512" visible=""
 										></a-gltf-model>
-			<a-gltf-model id="theIsland2" class="NOTcollidable"
-										src="#mIsland" position="-512 64 1200" rotation="-33 0 0" scale="512 512 512" visible=""
+			<a-gltf-model id="theIsland3" class="NOTcollidable"
+										src="#mIsland" position="-512 1024 1200" rotation="-166 0 0" scale="512 512 512" visible=""
 										></a-gltf-model>
+			-->
+			
+			<a-mixin id="isl" class="NOTcollidable"
+										gltf-model="#mIsland" position="0 0 0" rotation="0 0 0" scale="512 512 512" visible=""></a-mixin>
+			
+			
+			<a-entity entity-factory="#isl"></a-entity>
 			
 			<!--
 					animation="property:position.y;
