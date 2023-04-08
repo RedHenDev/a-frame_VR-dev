@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>0.0.4 meta-yards</title>
+		<title>0.0.5 jungle 2.0</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
@@ -111,9 +111,9 @@
   <script>
     // Define the path to the .jpg files
     const path = '../roost_assets/images/blockade/';
-		const imgNum=17;
+		const imgNum=20;
     // Use a loop to load in the .jpg files and create an <a-asset-item> element for each one
-    for (let i = 0; i < imgNum; i++) {
+    for (let i = 0; i <= imgNum; i++) {
       let id = 'jpg-' + i;
       let src = path + i + '.jpg';
       let assetItem = document.createElement('img');
@@ -122,6 +122,7 @@
 			assetItem.setAttribute('crossorigin', 'local');
       document.querySelector('a-assets').appendChild(assetItem);
     }
+		let currentSky=20;
   </script>
 
   		</a-assets>
@@ -147,16 +148,37 @@
 				</a-entity>
 			
 			
-   <a-sky id="theSky" radius='3000'></a-sky>
+   <a-sky id="theSky" radius='3000' src="#jpg-17"></a-sky>
 			
 			<script>
-				setInterval(newSky,10000);
-				function newSky(){
-				let nom="#jpg-"+
+				//setInterval(newSky,10000);
+				
+				function newSky(_ws){
+					let nom;
+				if (_ws > -1){
+					nom="#jpg-"+_ws;
+					console.log('setting new sky...');
+				}
+				else{
+					nom="#jpg-"+
 							Math.floor(Math.random()*imgNum);
+				}
 				document.querySelector("#theSky").
 				setAttribute('src',nom);
 				}
+				
+				
+				document.addEventListener('keyup', event => {
+						console.log('You pressed ' + event.key);
+						if (event.key === 'g') {
+							currentSky+=1;
+							if (currentSky>20){
+								currentSky=0;
+							}
+							newSky(currentSky);
+						}
+						
+					});
 			</script>
 			
 			<!--Subject's rig starts here.-->
