@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>0.3.8 ...toggle fix</title>
+		<title>0.4.0 ...hills on hills</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
@@ -121,11 +121,13 @@
 										></a-gltf-model>
 			-->
 			
+<!--
 			<a-mixin id="isl" class="NOTcollidable"
 										gltf-model="#mIsland" position="0 0 0" rotation="0 0 0" scale="512 512 512" visible=""></a-mixin>
+-->
 			
 			
-			<a-entity entity-factory="#isl"></a-entity>
+			<a-entity entity-factory="cols:8"></a-entity>
 			
 			<!--
 					animation="property:position.y;
