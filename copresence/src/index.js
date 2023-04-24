@@ -181,7 +181,7 @@ function initGame(_who){
 				//document.querySelector(`#${whoMoved.name}`);
 	
 		//***
-		// Clone mode is when we assue the pos and rot
+		// Clone mode is when we assume the pos and rot
 		// of the other VR subject -- i.e. to display
 		// this on a computer screen.
 		// This involves toggling off look-controls from
