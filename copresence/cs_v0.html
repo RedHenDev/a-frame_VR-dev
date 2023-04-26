@@ -2,14 +2,14 @@
 <html>
   <head>
  
-		<title>0.4.1 ...hills on hills</title>
+		<title>0.4.2 ...aiayn</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
 			<script src="../roost_scripts/pennyLane.js" defer></script>
 		
 			<!-- NB defer is crucial here! -->
-    	<script src="../roost_scripts/event_listen.js" defer></script>
+<!--    	<script src="../roost_scripts/event_listen.js" defer></script>-->
 		
 		<script src='../roost_scripts/perlin_gpt3.js' defer></script>
 		<script src='../roost_scripts/entity_factory.js' defer></script>
@@ -21,7 +21,7 @@
 			<script src="../roost_scripts/loco_throttle.js"></script>
 		
 <!--		<script src="../roost_scripts/vox_command.js"></script>-->
-		<script src="../roost_scripts/clap_command.js"></script>
+<!--		<script src="../roost_scripts/clap_command.js"></script>-->
   
   </head>
 
@@ -29,17 +29,19 @@
 		<style>
 		#StartArea {
 			position:fixed;width:100vw;height:100vh;
-			z-index:10000;background-color:rgba(0,255,222,0.8);
+			z-index:999;background-color:rgba(0,255,222,0.8);
 			}
 		.StartButton{
 			position:absolute;
-			top:45vh;left:45vw;
+			top:25vh;left:33vw;
 			width:1vh;
 			}
 
 			.StartButton:hover {
-    animation: bob 0.8s ease-in-out infinite;
+    animation: bob 0.6s ease-in-out infinite;
+			
 			}
+		
 
 			@keyframes bob {
     	0% {
@@ -56,8 +58,9 @@
 		
   		<div id="StartArea">
 				<div class="StartButton">
-					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
-					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
+					<img src='../roost_assets/images/stare_bots1.png' style="width: 512px;">
+					<div  style="position: absolute; top:50%; 
+											left:5vw; z-index: 1; color: white; font-size: 64px">
     			go!
   				</div>
 				</div>
@@ -110,6 +113,11 @@
 							 	light="type:point;color:#efef00" 
 							 	material="shader:flat; color:#00ff50;fog:false;" 
 							 	position="32 64 32" radius="2">
+				</a-sphere>
+			<a-sphere
+							 	light="type:point;color:#00ff00" 
+							 	material="shader:flat; color:#00ffff;fog:false;" 
+							 	position="2000 128 132" radius="20">
 				</a-sphere></a-entity>
 			<!--
 			<a-gltf-model id="theIsland" class="NOTcollidable"
@@ -128,14 +136,19 @@
 -->
 			
 			
-			<a-entity entity-factory="cols:4"></a-entity>
+			<a-entity entity-factory="cols:8"></a-entity>
+			
+			<a-plane position="0 -42 0"
+							 rotation="-90 0 0"
+							 scale="6000 6000" 
+							 color="rgb(0,0.5,0.1)"></a-plane>
 			
 			<!--
 					animation="property:position.y;
 										to: -64; dur: 6000;dir: alternate; easing: easeInOutSine; loop:true"
 					-->
 			
-			<a-gltf-model id="joan" src="#mJoan" position="101 -12 -42" rotation="0 33 0" scale="7 7 7" visible=""></a-gltf-model>
+			<a-gltf-model id="joan" src="#mJoan" position="1001 -12 -42" rotation="0 33 0" scale="77 77 77" visible=""></a-gltf-model>
 			
 				<!--Hark in our ear.-->
 				<a-entity id="hark" sound="src:#sTog;

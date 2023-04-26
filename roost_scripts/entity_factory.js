@@ -10,11 +10,11 @@ AFRAME.registerComponent('entity-factory',{
 		const x=0;
 		const y=0;
 		const z=0;
-		const bScale=256;
+		const bScale=128;
 		
 		const cols=this.data.cols;
 		const rows=cols;
-		const freq=64;
+		const freq=128; // Default 64.
 		const amp=20*bScale;
 		for (let i=0;i<cols;i++){
 			for (let j=0;j<rows;j++){
@@ -26,9 +26,11 @@ AFRAME.registerComponent('entity-factory',{
 				e.object3D.scale.x=bScale;
 				e.object3D.scale.y=bScale;
 				e.object3D.scale.z=bScale;
-				e.object3D.position.x=i*bScale*3.5+x;
-				e.object3D.position.z=j*bScale*3.5+z;
-				e.object3D.position.y = (perlin(i/freq,j/freq)*amp)-42;
+				e.object3D.position.x=i*bScale*5+x+
+					Math.random()*bScale;
+				e.object3D.position.z=j*bScale*5+z
+					+Math.random()*bScale;
+				e.object3D.position.y = (perlin(i/freq,j/freq)*amp)-40;
 			
 				this.sceneEl.appendChild(e);
 			}
