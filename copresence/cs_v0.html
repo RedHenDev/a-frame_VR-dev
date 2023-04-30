@@ -33,17 +33,26 @@
 			}
 		.StartButton{
 			position:absolute;
-			top:50%;left:50%;
-			transform: translate(~50,~50);
-			width:1vh;
+			top:25%;left:25%;
+/*			transform: translate(-100,-100);*/
+			width:200px;
+			height:200px;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			overflow:hidden;
 			}
 
-			.StartButton:hover {
-    animation: bob 0.6s ease-in-out infinite;
+		.StartButton img{
+			max-width:100%;
+			max-height:100%;
+			object-fit:contain;
+			}
 			
+		.StartButton:hover {
+    animation: bob 0.6s ease-in-out infinite;
 			}
 		
-
 			@keyframes bob {
     	0% {
         transform: translateY(0);
@@ -59,9 +68,9 @@
 		
   		<div id="StartArea">
 				<div class="StartButton">
-					<img src='../roost_assets/images/stare_bots1.png' style="width: 512px;">
-					<div  style="position: absolute; top:50%; 
-											left:5vw; z-index: 1; color: white; font-size: 64px">
+					<img src='../roost_assets/images/stare_bots1.png'>
+					<div  style="position: absolute; top:25%; 
+											left:30%; z-index: 1; color: white; font-size: 64px">
     			go!
   				</div>
 				</div>
