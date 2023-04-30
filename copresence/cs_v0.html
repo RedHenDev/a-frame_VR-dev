@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>0.4.2 ...aiayn</title>
+		<title>0.4.3 ...seamlesss</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
@@ -33,7 +33,8 @@
 			}
 		.StartButton{
 			position:absolute;
-			top:25vh;left:33vw;
+			top:50%;left:50%;
+			transform: translate(~50,~50);
 			width:1vh;
 			}
 
@@ -114,11 +115,14 @@
 							 	material="shader:flat; color:#00ff50;fog:false;" 
 							 	position="32 64 32" radius="2">
 				</a-sphere>
+			</a-entity>
+			
 			<a-sphere
 							 	light="type:point;color:#00ff00" 
 							 	material="shader:flat; color:#00ffff;fog:false;" 
 							 	position="2000 128 132" radius="20">
-				</a-sphere></a-entity>
+				</a-sphere>
+			
 			<!--
 			<a-gltf-model id="theIsland" class="NOTcollidable"
 										src="#mIsland" position="-512 -64 512" rotation="0 0 0" scale="512 512 512" visible=""></a-gltf-model>
@@ -136,12 +140,12 @@
 -->
 			
 			
-			<a-entity entity-factory="cols:8"></a-entity>
+			<a-entity entity-factory="cols:6"></a-entity>
 			
-			<a-plane position="0 -42 0"
+			<a-plane position="-1500 -42 -1500"
 							 rotation="-90 0 0"
-							 scale="6000 6000" 
-							 color="rgb(0,0.5,0.1)"></a-plane>
+							 scale="12000 12000" 
+							 color="rgb(0,0.8,0.2)"></a-plane>
 			
 			<!--
 					animation="property:position.y;
