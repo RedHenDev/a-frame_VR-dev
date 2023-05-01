@@ -11,7 +11,7 @@ AFRAME.registerComponent('entity-factory',{
 		const y=0;
 		const z=-7000;
 		const bScale=128;
-		const bxScale=90;
+		const bxScale=1; //90
 		
 		const cols=this.data.cols;
 		const rows=cols;
@@ -35,13 +35,17 @@ AFRAME.registerComponent('entity-factory',{
 				this.sceneEl.appendChild(e);
 				*/
 				
-				let f = document.createElement('a-box');
-				f.setAttribute('color','rgb(0,0,1)');
+				//let f = document.createElement('a-box');
+				let f = document.createElement('a-obj-model');
+				f.setAttribute('src',"../roost_assets/models/mech_walker/mech_walker.obj");
+				f.setAttribute('material',"src:#tex_mech");
+				f.setAttribute('visible','');
+				
 				f.object3D.scale.x=bxScale;
-				f.object3D.scale.y=bxScale*90;
+				f.object3D.scale.y=bxScale;
 				f.object3D.scale.z=bxScale;
-				f.object3D.position.x=i*bxScale*10+x;
-				f.object3D.position.z=j*bxScale*10+z;
+				f.object3D.position.x=i*bxScale*10;
+				f.object3D.position.z=j*bxScale*10;
 				f.object3D.position.y=0;
 				f.object3D.rotation.y=Math.random()*360;
 				
