@@ -11,6 +11,7 @@ AFRAME.registerComponent('entity-factory',{
 		const y=0;
 		const z=0;
 		const bScale=128;
+		const bxScale=90;
 		
 		const cols=this.data.cols;
 		const rows=cols;
@@ -19,9 +20,8 @@ AFRAME.registerComponent('entity-factory',{
 		for (let i=0;i<cols;i++){
 			for (let j=0;j<rows;j++){
 				
+				/*
 				let e = document.createElement('a-gltf-model');
-				//let e = document.createElement('a-entity');
-				//e.setAttribute('mixin', this.data.mixin);
 				e.setAttribute('src',"#mIsland");
 				e.object3D.scale.x=bScale;
 				e.object3D.scale.y=bScale;
@@ -32,11 +32,26 @@ AFRAME.registerComponent('entity-factory',{
 					+Math.random()*bScale;
 				e.object3D.position.y = (perlin(i/freq,j/freq)*amp)-40;
 				e.object3D.rotation.y=Math.random()*360;
-			
 				this.sceneEl.appendChild(e);
+				*/
+				
+				let f = document.createElement('a-box');
+				f.setAttribute('color','rgb(0,0,1)');
+				f.object3D.scale.x=bxScale;
+				f.object3D.scale.y=bxScale*90;
+				f.object3D.scale.z=bxScale;
+				f.object3D.position.x=i*bxScale*10;
+				f.object3D.position.z=j*bxScale*10;
+				f.object3D.position.y=0;
+				f.object3D.rotation.y=Math.random()*360;
+				
+				this.sceneEl.appendChild(f);
+
 			}
 		}
 		
 	}
+	
+	
 	
 });

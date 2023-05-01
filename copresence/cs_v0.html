@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>0.4.3 ...seamlesss</title>
+		<title>0.4.4...towers</title>
 		
       <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 		
@@ -33,7 +33,7 @@
 			}
 		.StartButton{
 			position:absolute;
-			top:25%;left:25%;
+			top:45%;left:45%;
 /*			transform: translate(-100,-100);*/
 			width:200px;
 			height:200px;
@@ -112,7 +112,7 @@
 				
   		</a-assets>
       
-			<a-sky src="#sky_solar" radius="6000"></a-sky>
+			
 			
 			<!--And now our sound manager.-->
 <!--			<a-entity soundmanager></a-entity>-->
@@ -169,11 +169,12 @@
 				</a-entity>
 
       <a-entity id="rig" position="0 0 0">
+				<a-sky src="#sky_solar" radius="12000"></a-sky>
 <!--				<a-sky color="cyan"></a-sky>-->
 <!--				Add as component to camera for non-VR wsad-->
 <!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
-                camera
+                camera="far:200000;"
 								look-controls
                 position="0 0 0"
                 locomotion="maxSpeed: 0.1; acceleration: 0.04">
