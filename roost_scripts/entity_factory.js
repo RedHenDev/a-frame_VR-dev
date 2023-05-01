@@ -46,7 +46,7 @@ AFRAME.registerComponent('entity-factory',{
 				f.object3D.scale.z=bxScale;
 				f.object3D.position.x=i*bxScale*10;
 				f.object3D.position.z=j*bxScale*10;
-				f.object3D.position.y=0;
+				f.object3D.position.y=-12;
 				f.object3D.rotation.y=Math.random()*360;
 				
 				this.sceneEl.appendChild(f);
