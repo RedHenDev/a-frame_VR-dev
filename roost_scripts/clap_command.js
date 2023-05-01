@@ -33,7 +33,7 @@ navigator.mediaDevices.getUserMedia({audio: true})
 			console.log(micLevel);
       setTimeout(function() {
         clapDetected = false;
-      }, 1000); // Wait 3s before detecting next clap
+      }, 1000); // Wait 1s before detecting next clap
 
       // (D3) TOGGLE ENGINE STATE
       engineOn = !engineOn;

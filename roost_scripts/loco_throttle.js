@@ -45,7 +45,8 @@ AFRAME.registerComponent('locomotion', {
 				schema: {
 					maxSpeed: {type: 'number', default:0.1},
 					acceleration: {type: 'number', default:0.01},
-					engine:{type: 'boolean',default:false}
+					engine:{type: 'boolean',default:false},
+					vel:{type:'number',default:0.0}
 				},
 	
         init: function () {
@@ -59,7 +60,7 @@ AFRAME.registerComponent('locomotion', {
           this.cam =
       		document.querySelector("#subject").object3D;
           // Current speed.
-					this.vel=0.01;
+					//this.vel=0.0;
 					this.currentVel=0.01;
 					
 					// Sync global positions.
@@ -194,20 +195,20 @@ AFRAME.registerComponent('locomotion', {
 					}
 					
 					// Delimit max speed. 
-					if (this.vel > this.maxS){
-						this.vel = this.maxS;
+					if (this.data.vel > this.maxS){
+						this.data.vel = this.maxS;
 					}
 					// Engine.
-					let speedNow=-this.vel;
+					let speedNow=-this.data.vel;
 					// default this.engineOn;
 					if (!this.data.engine) {
 							// Apply friction.
-							this.vel*=0.98;
+							this.data.vel*=0.98;
 //							if (this.vel < 0.001)
 //								this.vel=0;
 					}
 					else{
-						this.vel+=acc;
+						this.data.vel+=acc;
 					}
 					
           // Finally, move pos of rig.

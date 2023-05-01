@@ -7,9 +7,9 @@ AFRAME.registerComponent('entity-factory',{
 	
 		this.sceneEl = document.querySelector('a-scene');
 		
-		const x=0;
+		const x=-7000;
 		const y=0;
-		const z=0;
+		const z=-7000;
 		const bScale=128;
 		const bxScale=90;
 		
@@ -40,8 +40,8 @@ AFRAME.registerComponent('entity-factory',{
 				f.object3D.scale.x=bxScale;
 				f.object3D.scale.y=bxScale*90;
 				f.object3D.scale.z=bxScale;
-				f.object3D.position.x=i*bxScale*10;
-				f.object3D.position.z=j*bxScale*10;
+				f.object3D.position.x=i*bxScale*10+x;
+				f.object3D.position.z=j*bxScale*10+z;
 				f.object3D.position.y=0;
 				f.object3D.rotation.y=Math.random()*360;
 				
