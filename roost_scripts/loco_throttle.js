@@ -172,7 +172,8 @@ AFRAME.registerComponent('locomotion', {
 					{
 							// Low number, since no
 							// delay on how often this can happen.
-							this.maxS+=0.004;
+							// Recent was 0.004.
+							this.maxS+=0.001;
 					}
 					
 					// Let's try a toggle.
@@ -182,7 +183,7 @@ AFRAME.registerComponent('locomotion', {
 						// Log time stamp. This will be for
 						// toggling via head z rotations.
 						let cTime = Date.now();
-						if (cTime-this.timeStamp > 1000){
+						if (cTime-this.timeStamp > 2000){
 							toggleAttempt=false;
 							this.hark.components.sound.playSound();
 							//this.engineOn=!this.engineOn;
