@@ -1,0 +1,11 @@
+Model Information:
+* title:	Spiral City Alpha
+* source:	https://sketchfab.com/3d-models/spiral-city-alpha-f1cc43a1d8cd42d98ef80de42bcf77c2
+* author:	Tom (https://sketchfab.com/trbaker)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Spiral City Alpha" (https://sketchfab.com/3d-models/spiral-city-alpha-f1cc43a1d8cd42d98ef80de42bcf77c2) by Tom (https://sketchfab.com/trbaker) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
