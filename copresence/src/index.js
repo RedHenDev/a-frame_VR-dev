@@ -96,9 +96,11 @@ function manifestSubject(_who,_me){
 		// no avatarTex will be found or applied.
 		nub.setAttribute('material',
 										 'src:#avatarTex');
-		
-		sceneEl.appendChild(nub);
 			
+		const rig = document.
+								querySelector("#subject").object3D;
+		sceneEl.appendChild(nub);
+		rig.appendChild(nub);
 		}
 	else{
 		
@@ -116,7 +118,7 @@ function manifestSubject(_who,_me){
 		// no avatarTex will be found or applied.
 		nub.setAttribute('material',
 										 'src:#avatarTex');
-		subject.appendChild(nub);
+		
 		// Direction...
 		//const dub=document.createElement('a-box');
 		//dub.setAttribute('position','0 0 -4');
