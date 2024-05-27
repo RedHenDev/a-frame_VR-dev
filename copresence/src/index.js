@@ -92,13 +92,16 @@ function manifestSubject(_who,_me){
 		// Set attributes and finally append to scene.
 //		<a-gltf-model id="subMod" src="#joan" position="2 0 -85" rotation="0 0 0" scale="5 5 5" visible=""></a-gltf-model>
 		//const nub=document.createElement('a-obj-model');
-		const nub=document.createElement('a-gltf-model');
+		const nub=document.createElement(avatarType);
 		nub.setAttribute('id',_who.name);
-		nub.setAttribute('scale','10 10 10');
+		nub.setAttribute('scale',avatarScale);
 		nub.setAttribute('src','#avatar');
-//		nub.setAttribute('material',
-//										 'src:#texNokia');
-		nub.setAttribute('rotation','0 0 0');
+		// No Nokia material for Cap. No matter - 
+		// no avatarTex will be found or applied.
+		nub.setAttribute('material',
+										 'src:#avatarTex');
+		// Cap is backwards on Y.
+		nub.setAttribute('rotation',avatarRotation);
 		
 		// Direction...
 		//const dub=document.createElement('a-box');
