@@ -1,0 +1,257 @@
+<!-- j-realm 0.1
+27/5/24
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+ 
+		<title>j-realm 0.2</title>
+			<!-- Include the p5.js library -->
+			<!-- For audio context.-->
+<!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
+      <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+		
+			<script src="../roost_scripts/pennyLane.js" defer></script>
+			<!--<script src="aframe.min.js"></script>-->
+		
+			<!-- NB defer is crucial here! -->
+    	<script src="../roost_scripts/event_listen.js" defer></script>
+
+    	<!-- NB must not defer these scripts, else
+            text will not render to HUD -->
+<!--      <script src="../roost_scripts/HUD.js"></script>-->
+      
+  		<script src="../roost_scripts/loco_throttle.js"></script>
+  </head>
+
+  <body>
+		<style>
+		#StartArea {
+			position:fixed;width:100vw;height:100vh;
+			z-index:10000;background-color:rgba(0,255,222,0.8);
+			}
+		.StartButton{
+			position:absolute;
+			top:45vh;left:45vw;
+			width:1vh;
+			}
+
+			.StartButton:hover {
+    animation: bob 0.8s ease-in-out infinite;
+			}
+
+			@keyframes bob {
+    	0% {
+        transform: translateY(0);
+    	}
+    	50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+		</style>
+		
+  		<div id="StartArea">
+				<div class="StartButton">
+					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
+					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
+    			go!
+  				</div>
+				</div>
+			</div>
+		<script>
+			// Perhaps here we could have a global paused
+			// variable to control loco?
+			document.querySelector(".StartButton").onclick= function() {
+  		document.querySelector("#StartArea").style.display= "none";
+				const context = new AudioContext();
+				if (context.state !== 'running') {
+    				context.resume();
+  			}			
+			}
+		</script>
+		
+    <a-scene>
+		
+		<!--Fog...-->
+		<!--	 fog="type:linear;color:#00FFEF;far:255;"-->
+		<!--    
+		<a-scene fog="type:linear;color:#00FFEF;far:128;"> 
+		-->
+			<!-- Allow assets time to load.-->
+      <a-assets timeout="5000">
+
+				<!-- Crossorigin to permit loading images -->
+				<!-- ../ to refer up dir on path. -->
+				
+				<!-- Must apply this script first before
+other assets, else causes issues later, such as
+decoupling rig from camera etc. -->
+<!--
+				<script>
+    // Define the path to the .jpg files
+    const path = '../roost_assets/images/blockade/';
+		const imgNum=21;
+		let currentSky=20;
+    // Use a loop to load in the .jpg files and create an <a-asset-item> element for each one
+    for (let i = 0; i < imgNum; i++) {
+      let id = 'jpg-' + i;
+      let src = path + i + '.jpg';
+      let assetItem = document.createElement('img');
+      assetItem.setAttribute('id', id);
+      assetItem.setAttribute('src', src);
+			assetItem.setAttribute('crossorigin','local');
+      document.querySelector('a-assets').appendChild(assetItem);
+    }
+		
+  </script>
+-->
+				<img crossorigin="local" id="iGarden" src="../roost_assets/images/bl_garden1.jpg">
+				
+				<a-asset-item crossorigin="local" id="avatar" src="../roost_assets/models/marvels_future_fight_-_captain_america/scene.gltf"></a-asset-item>
+				
+				<audio crossorigin="local" id="sAmb" src="../roost_assets/sounds/rising_moon.mp3">
+				</audio>
+				<audio crossorigin="local" id="sTog"
+				src="../roost_assets/sounds/Hit_01.mp3">
+				</audio>
+<!--				<a-asset-item id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>-->
+<!--
+				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
+				<img crossorigin="local" id="carina" src="../roost_assets/images/webb_carina-nebula.jpeg">
+				<img crossorigin="local" id="pillars" src="../roost_assets/images/webb_pillars-of-creation.png">
+-->
+				
+				<a-asset-item crossorigin="anonymous" id="mWuds" src="../roost_assets/models/spiral_city_alpha/scene.gltf"></a-asset-item>
+				
+<!--
+				<a-asset-item crossorigin="anonymous" id="avatar" src="../roost_assets/models/old_nokia_phone_low_poly/nokia.obj"></a-asset-item>
+				<img crossorigin="anonymous" id="texNokia" src="../roost_assets/models/old_nokia_phone_low_poly/textures/back_baseColor.jpeg">
+-->
+	
+  		</a-assets>
+			
+			
+      
+			<!--And now our sound manager.-->
+			<a-entity soundmanager></a-entity>
+      
+      <!--Lights-->
+      <a-sphere
+							 	light="type:point;color:yellow" 
+							 	material="shader:flat; color:yellow" 
+							 	position="0 64 128" radius="24">
+			</a-sphere>
+				<!-- Lights. -->
+			<a-sphere
+							 	light="type:point;color:cyan" 
+							 	material="shader:flat; color:cyan" 
+				 			 	position="0 64 -128" radius="24">
+			</a-sphere>
+			
+				<!--Hark in our ear.-->
+				<a-entity id="hark" sound="src:#sTog;
+						autoplay:false;volume:0.4;positional:false;">
+				</a-entity>
+      
+			<a-sky id="theSky" radius='3000' src="#iGarden"></a-sky>
+			
+<!--			This script switches skybox every 10 seconds.-->
+<!--
+			<script>
+				setInterval(newSky,10000);
+				
+				function newSky(_ws){
+					let nom;
+				if (_ws > -1){
+					nom="#jpg-"+_ws;
+					//console.log('setting new sky...');
+				}
+				else{
+					nom="#jpg-"+
+							Math.floor(Math.random()*imgNum);
+				}
+				document.querySelector("#theSky").
+				setAttribute('src',nom);
+				}
+				
+				
+				document.addEventListener('keyup', event => {
+						console.log('You pressed ' + event.key);
+						if (event.key === 'g') {
+							currentSky+=1;
+							if (currentSky>20){
+								currentSky=0;
+							}
+							newSky(currentSky);
+						}
+						
+					});
+				
+			</script>
+-->
+
+			
+			<!--Subject's rig starts here.-->
+<!--			Add as component to rig for non-VR controls?-->
+<!--			movement-controls-->
+      <a-entity id="rig">
+			
+<!--				Add as component to camera for non-VR wsad-->
+<!--			wasd-controls="acceleration:100"-->
+      <a-entity id="subject" 
+                camera
+                position="0 1.6 0"
+                look-controls
+                locomotion="speed:0.1"
+								>
+		
+        <a-entity
+					id="reticle"
+          cursor="fuse:true;fuseTimeout:2000;"
+          raycaster="objects:.clickable;"
+          geometry="primitive:ring;radiusInner: 0.02; radiusOuter: 0.03"
+					material="shader:flat;color:red;
+										depthTest:false;
+										transparent:true; opacity:0.5"
+          position="0 0 -1;"
+          animation__fusing="property:scale;from:1 1 1;to:0 0 0;dur:2000;startEvents:fusing;"
+          animation__reset="property:scale;from:0 0 0;to: 1 1 1;dur:333;startEvents:mouseleave;"
+         ></a-entity>
+     	
+				<!--NB can be rotated 180 on Z for my viewer.-->
+				<!-- -30 on Y is default too.-->
+<!--
+        <a-plane id="hud"
+								 visible="true"
+                 position="0.4 0 -0.9"
+								 scale="0.3 0.4 0"
+                 rotation="0 0 0"
+  text="color:black; xOffset: 0.5; width:1.9;" 
+                 material="shader:flat;
+													 color:lime;
+													 depthTest:false;
+													 transparent:true;
+													 opacity:0.6">
+					</a-plane>
+-->
+        
+      </a-entity> <!-- camera end -->
+      </a-entity> <!-- rig end -->
+			
+			<!-- glFT test. Sci-fi model found online.-->
+			<a-gltf-model src="#mWuds" position="0 -32 0" rotation="0 0 0" scale="256 256 256" visible=""></a-gltf-model>
+			
+			<!-- Cap' -->
+			<a-gltf-model src="#avatar" position="0 32 0" rotation="0 0 0" scale="10 10 10" visible=""></a-gltf-model>
+			
+    </a-scene>
+		
+		<!-- Firebase code woz 'ere-->
+		<script type='module' src="src/index.js"></script>
+  </body>
+</html>
+
