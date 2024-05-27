@@ -6,7 +6,7 @@
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
-      <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+      <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 		
 			<script src="../roost_scripts/pennyLane.js" defer></script>
 			<!--<script src="aframe.min.js"></script>-->
@@ -92,7 +92,7 @@ decoupling rig from camera etc. -->
 		const imgNum=21;
 		let currentSky=20;
     // Use a loop to load in the .jpg files and create an <a-asset-item> element for each one
-    for (let i = 0; i <= imgNum; i++) {
+    for (let i = 0; i < imgNum; i++) {
       let id = 'jpg-' + i;
       let src = path + i + '.jpg';
       let assetItem = document.createElement('img');
@@ -147,9 +147,10 @@ decoupling rig from camera etc. -->
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
       
-			<a-sky id="theSky" radius='3000' src="#jpg-17"></a-sky>
+			<a-sky id="theSky" radius='3000' src="#jpg-18"></a-sky>
 			
-			
+<!--			This script switches skybox every 10 seconds.-->
+<!--
 			<script>
 				setInterval(newSky,10000);
 				
@@ -181,6 +182,7 @@ decoupling rig from camera etc. -->
 					});
 				
 			</script>
+-->
 
 			
 			<!--Subject's rig starts here.-->
