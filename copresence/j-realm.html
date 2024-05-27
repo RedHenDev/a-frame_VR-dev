@@ -6,7 +6,7 @@
 <html>
   <head>
  
-		<title>j-realm 0.4</title>
+		<title>j-realm 0.5</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -82,7 +82,7 @@
 		<a-scene fog="type:linear;color:#00FFEF;far:128;"> 
 		-->
 			<!-- Allow assets time to load.-->
-      <a-assets timeout="1000">
+      <a-assets timeout="6000">
 
 				<!-- Crossorigin to permit loading images -->
 				<!-- ../ to refer up dir on path. -->
@@ -115,7 +115,8 @@ decoupling rig from camera etc. -->
 				<script>
 					// To sync avatar model with index.js
 					const avatarScale='10 10 10';
-					const avatarRotation='0 -180 0';
+					const avatarPosition='0 -16 0';
+					const avatarRotation='0 180 0';
 					const avatarType='a-gltf-model';
 				</script>
 				

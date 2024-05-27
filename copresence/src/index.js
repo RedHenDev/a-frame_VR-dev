@@ -85,22 +85,7 @@ function manifestSubject(_who,_me){
 		xSub=rig.object3D.position.x = _who.x;
 		ySub=rig.object3D.position.y = _who.y;
 		zSub=rig.object3D.position.z = _who.z;
-			
-		const nub=document.createElement(avatarType);
-		nub.setAttribute('id',_who.name);
-		nub.setAttribute('scale',avatarScale);
-		// Cap is backwards on Y.
-		nub.setAttribute('rotation',avatarRotation);
-		nub.setAttribute('src','#avatar');
-		// No Nokia material for Cap. No matter - 
-		// no avatarTex will be found or applied.
-		nub.setAttribute('material',
-										 'src:#avatarTex');
-			
-		const rig = document.
-								querySelector("#subject").object3D;
-		sceneEl.appendChild(nub);
-		rig.appendChild(nub);
+		
 		}
 	else{
 		
@@ -112,6 +97,7 @@ function manifestSubject(_who,_me){
 		nub.setAttribute('id',_who.name);
 		// Cap is backwards on Y.
 		nub.setAttribute('rotation',avatarRotation);
+		nub.setAttribute('position',avatarPosition);
 		nub.setAttribute('scale',avatarScale);
 		nub.setAttribute('src','#avatar');
 		// No Nokia material for Cap. No matter - 
@@ -234,7 +220,10 @@ function initGame(_who){
 	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
 	bod.object3D.rotation.x = whoMoved.rx; // Nor here!
-	bod.object3D.rotation.y = whoMoved.ry;
+		let aRo=0;
+		if (avatarRotation=='0 180 0') aRo=180;
+	bod.object3D.rotation.y = 
+		whoMoved.ry + aRo;
 	bod.object3D.rotation.z = whoMoved.rz;
 		
 	}
