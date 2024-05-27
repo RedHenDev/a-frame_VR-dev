@@ -70,9 +70,10 @@
 			}
 		</script>
 		
-    <a-scene fog="type:linear;color:#00FFEF;far:255;">
+    <a-scene>
 		
 		<!--Fog...-->
+		<!--	 fog="type:linear;color:#00FFEF;far:255;"-->
 		<!--    
 		<a-scene fog="type:linear;color:#00FFEF;far:128;"> 
 		-->
@@ -81,7 +82,10 @@
 
 				<!-- Crossorigin to permit loading images -->
 				<!-- ../ to refer up dir on path. -->
-	
+				
+				<!-- Must apply this script first before
+other assets, else causes issues later, such as
+decoupling rig from camera etc. -->
 				<script>
     // Define the path to the .jpg files
     const path = '../roost_assets/images/blockade/';
@@ -143,12 +147,40 @@
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
       
-			<!-- 360-degree image. Default rad is 10-->
-<!--
-  		<a-sky id="image-360" radius="1200" 
-				 		 src="#pillars">
-			</a-sky>-->
-			<a-sky color:#00FFEF radius="1200"></a-sky>
+			<a-sky id="theSky" radius='3000' src="#jpg-17"></a-sky>
+			
+			
+			<script>
+				setInterval(newSky,10000);
+				
+				function newSky(_ws){
+					let nom;
+				if (_ws > -1){
+					nom="#jpg-"+_ws;
+					//console.log('setting new sky...');
+				}
+				else{
+					nom="#jpg-"+
+							Math.floor(Math.random()*imgNum);
+				}
+				document.querySelector("#theSky").
+				setAttribute('src',nom);
+				}
+				
+				
+				document.addEventListener('keyup', event => {
+						console.log('You pressed ' + event.key);
+						if (event.key === 'g') {
+							currentSky+=1;
+							if (currentSky>20){
+								currentSky=0;
+							}
+							newSky(currentSky);
+						}
+						
+					});
+				
+			</script>
 
 			
 			<!--Subject's rig starts here.-->

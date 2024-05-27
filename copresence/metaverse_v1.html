@@ -79,6 +79,9 @@
 				<!-- Crossorigin to permit loading images -->
 				<!-- ../ to refer up dir on path. -->
 	
+				<!-- Must apply this script first before
+other assets, else causes issues later, such as
+decoupling rig from camera etc. -->
 				<script>
     // Define the path to the .jpg files
     const path = '../roost_assets/images/blockade/';
