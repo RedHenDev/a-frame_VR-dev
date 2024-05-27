@@ -82,6 +82,16 @@
 				<!-- Crossorigin to permit loading images -->
 				<!-- ../ to refer up dir on path. -->
 	
+				<a-asset-item crossorigin="anonymous" id="avatar" src="../roost_assets/models/old_nokia_phone_low_poly/nokia.obj"></a-asset-item>
+				<img crossorigin="anonymous" id="avatarTex" src="../roost_assets/models/old_nokia_phone_low_poly/textures/back_baseColor.jpeg">
+				<script>
+					// To sync avatar model with index.js
+					const avatarScale='2 2 2';
+					const avatarRotation='0 0 0';
+					const avatarPosition='0 0 0';
+					const avatarType='a-obj-model';
+				</script>
+				
 				<audio crossorigin="local" id="sAmb" src="../roost_assets/sounds/rising_moon.mp3">
 				</audio>
 				<audio crossorigin="local" id="sTog"
@@ -92,14 +102,7 @@
 <!--				<img crossorigin="local" id="carina" src="../roost_assets/images/webb_carina-nebula.jpeg">-->
 				<img crossorigin="local" id="pillars" src="../roost_assets/images/webb_pillars-of-creation.png">
 				
-				<a-asset-item crossorigin="anonymous" id="avatar" src="../roost_assets/models/old_nokia_phone_low_poly/nokia.obj"></a-asset-item>
-				<img crossorigin="anonymous" id="avatarTex" src="../roost_assets/models/old_nokia_phone_low_poly/textures/back_baseColor.jpeg">
-				<script>
-					// To sync avatar model with index.js
-					const avatarScale='2 2 2';
-					const avatarRotation='0 0 0';
-					const avatarType='a-obj-model';
-				</script>
+				
 				
   		</a-assets>
       
