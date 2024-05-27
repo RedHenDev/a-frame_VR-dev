@@ -91,7 +91,8 @@ function manifestSubject(_who,_me){
 		// Create placeholder shape for other subject.
 		// Set attributes and finally append to scene.
 //		<a-gltf-model id="subMod" src="#joan" position="2 0 -85" rotation="0 0 0" scale="5 5 5" visible=""></a-gltf-model>
-		const nub=document.createElement('a-obj-model');
+		//const nub=document.createElement('a-obj-model');
+		const nub=document.createElement('a-gltf-model');
 		nub.setAttribute('id',_who.name);
 		nub.setAttribute('scale','10 10 10');
 		nub.setAttribute('src','#avatar');
