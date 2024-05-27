@@ -85,6 +85,27 @@ function manifestSubject(_who,_me){
 		xSub=rig.object3D.position.x = _who.x;
 		ySub=rig.object3D.position.y = _who.y;
 		zSub=rig.object3D.position.z = _who.z;
+			
+		const nub=document.createElement(avatarType);
+		nub.setAttribute('id',_who.name);
+		nub.setAttribute('scale',avatarScale);
+		nub.setAttribute('src','#avatar');
+		// No Nokia material for Cap. No matter - 
+		// no avatarTex will be found or applied.
+		nub.setAttribute('material',
+										 'src:#avatarTex');
+		// Cap is backwards on Y.
+		nub.setAttribute('rotation',avatarRotation);
+		
+		// Direction...
+		//const dub=document.createElement('a-box');
+		//dub.setAttribute('position','0 0 -4');
+		//dub.setAttribute('scale','0.1 0.1 8');
+		//dub.setAttribute('color','white');
+		//dub.setAttribute('parent',`#${_who.name}`);
+		
+		sceneEl.appendChild(nub);
+			
 		}
 	else{
 		
