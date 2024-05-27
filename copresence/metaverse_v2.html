@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>Copresence VR v13 new throttle</title>
+		<title>27th_may</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -82,20 +82,45 @@
 				<!-- Crossorigin to permit loading images -->
 				<!-- ../ to refer up dir on path. -->
 	
+				<script>
+    // Define the path to the .jpg files
+    const path = '../roost_assets/images/blockade/';
+		const imgNum=21;
+		let currentSky=20;
+    // Use a loop to load in the .jpg files and create an <a-asset-item> element for each one
+    for (let i = 0; i <= imgNum; i++) {
+      let id = 'jpg-' + i;
+      let src = path + i + '.jpg';
+      let assetItem = document.createElement('img');
+      assetItem.setAttribute('id', id);
+      assetItem.setAttribute('src', src);
+			assetItem.setAttribute('crossorigin','local');
+      document.querySelector('a-assets').appendChild(assetItem);
+    }
+		
+  </script>
+				
+				
 				<audio crossorigin="local" id="sAmb" src="../roost_assets/sounds/rising_moon.mp3">
 				</audio>
 				<audio crossorigin="local" id="sTog"
 				src="../roost_assets/sounds/Hit_01.mp3">
 				</audio>
-				<a-asset-item id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>
+<!--				<a-asset-item id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>-->
+<!--
 				<img crossorigin="local" id="imgBloop1" src="../roost_assets/images/bloop_fish_1.png">
-<!--				<img crossorigin="local" id="carina" src="../roost_assets/images/webb_carina-nebula.jpeg">-->
+				<img crossorigin="local" id="carina" src="../roost_assets/images/webb_carina-nebula.jpeg">
 				<img crossorigin="local" id="pillars" src="../roost_assets/images/webb_pillars-of-creation.png">
+-->
+				
+				<a-asset-item crossorigin="anonymous" id="mWuds" src="../roost_assets/models/low_poly_game_level/scene.gltf"></a-asset-item>
 				
 				<a-asset-item crossorigin="anonymous" id="avatar" src="../roost_assets/models/old_nokia_phone_low_poly/nokia.obj"></a-asset-item>
 				<img crossorigin="anonymous" id="texNokia" src="../roost_assets/models/old_nokia_phone_low_poly/textures/back_baseColor.jpeg">
-				
+	
   		</a-assets>
+			
+			
       
 			<!--And now our sound manager.-->
 			<a-entity soundmanager></a-entity>
@@ -172,29 +197,9 @@
       </a-entity> <!-- rig end -->
 			
 			<!-- glFT test. Sci-fi model found online.-->
-			<a-gltf-model src="#cityModel" position="" rotation="" scale="28 28 28" visible=""></a-gltf-model>
+			<a-gltf-model src="#mWuds" position="" rotation="0 -90 0" scale="10 10 10" visible=""></a-gltf-model>
 			
-			<!--Test spheres.-->
-			<a-sphere id="mySphere" class="clickable"
-								position="64 -5 -5" radius="3" color="#00EEFF" shadow></a-sphere>
-      <a-sphere id="testPig" class="clickable"
-								position="-64 3 -9" radius="3" color="rgb(0,255,0)" shadow></a-sphere>
 			
-			<!-- Giant paintings -->
-			<a-box position="-20 20 12" scale="60 40 0.1" material="src: #imgBloop1"></a-box>
-
-			<!-- tunnel -->
-			<a-torus class="clickable" 
-			position="0 4 -18" radius="0.5" height="3"
-			material="shader:standard;color:#110011;">
-			</a-torus>
-			<a-torus fuse-listener class="clickable" position="0 4 -22" radius="0.5" height="3" 
-			material="shader:standard;color:#880088;">
-			</a-torus>
-			<a-torus class="clickable"
-			position="0 4 -24" radius="0.5" height="3"
-			material="shader:standard;color:#440044;">
-			</a-torus>
 
     </a-scene>
 		
