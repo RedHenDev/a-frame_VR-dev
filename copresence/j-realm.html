@@ -6,7 +6,7 @@
 <html>
   <head>
  
-		<title>j-realm 0.7</title>
+		<title>j-realm 0.9</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -58,7 +58,7 @@
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			go!
+    			v0.9
   				</div>
 				</div>
 			</div>
@@ -74,7 +74,7 @@
 			}
 		</script>
 		
-    <a-scene fog="type:linear;color:#00FFEF;far:1023;">
+    <a-scene fog="type:linear;color:#00FFFF;far:3000;">
 		
 		<!--Fog...-->
 		<!--	 fog="type:linear;color:#00FFEF;far:255;"-->
@@ -116,7 +116,7 @@ decoupling rig from camera etc. -->
 					// To sync avatar model with index.js
 					const avatarScale='1 1 1';
 					const avatarPosition='0 0 0';
-					const avatarRotation='0 -90 0';
+					const avatarRotation='0 90 0';
 					const avatarType='a-gltf-model';
 				</script>
 				
@@ -148,13 +148,13 @@ decoupling rig from camera etc. -->
       <a-sphere
 							 	light="type:point;color:yellow" 
 							 	material="shader:flat; color:yellow" 
-							 	position="0 64 128" radius="24">
+							 	position="0 512 128" radius="64">
 			</a-sphere>
 				<!-- Lights. -->
 			<a-sphere
 							 	light="type:point;color:cyan" 
 							 	material="shader:flat; color:cyan" 
-				 			 	position="0 64 -128" radius="24">
+				 			 	position="0 512 -128" radius="64">
 			</a-sphere>
 			
 				<!--Hark in our ear.-->
@@ -162,55 +162,22 @@ decoupling rig from camera etc. -->
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
       
-			<a-sky id="theSky" radius='3000' src="#iGarden"></a-sky>
 			
-<!--			This script switches skybox every 10 seconds.-->
-<!--
-			<script>
-				setInterval(newSky,10000);
-				
-				function newSky(_ws){
-					let nom;
-				if (_ws > -1){
-					nom="#jpg-"+_ws;
-					//console.log('setting new sky...');
-				}
-				else{
-					nom="#jpg-"+
-							Math.floor(Math.random()*imgNum);
-				}
-				document.querySelector("#theSky").
-				setAttribute('src',nom);
-				}
-				
-				document.addEventListener('keyup', event => {
-						console.log('You pressed ' + event.key);
-						if (event.key === 'g') {
-							currentSky+=1;
-							if (currentSky>20){
-								currentSky=0;
-							}
-							newSky(currentSky);
-						}
-						
-					});
-				
-			</script>
--->
+			
 
 			
 			<!--Subject's rig starts here.-->
 <!--			Add as component to rig for non-VR controls?-->
 <!--			movement-controls-->
       <a-entity id="rig">
-			
+			<a-sky id="theSky" radius='3040' src="#iGarden"></a-sky>
 <!--				Add as component to camera for non-VR wsad-->
 <!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
                 camera
                 position="0 0 0"
                 look-controls
-                locomotion="maxSpeed:0.3"
+                locomotion="maxSpeed:10.0"
 								>
 		
         <a-entity
