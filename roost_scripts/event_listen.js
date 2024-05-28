@@ -32,7 +32,7 @@ AFRAME.registerComponent('fuse-listener', {
 			}
 			
 			// Experiment. Websling. Worked first time!?
-			if (evt.detail.intersection.distance < 500 &&
+			if (evt.detail.intersection.distance < 2000 &&
 				 evt.target.id!='bigCap'){
 			const myMe = document.querySelector('#subject');
 			myMe.setAttribute('locomotion','vel',3);
