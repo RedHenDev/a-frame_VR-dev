@@ -6,7 +6,7 @@
 <html>
   <head>
  
-		<title>j-realm 0.97</title>
+		<title>j-realm 0.98</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -58,7 +58,7 @@
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			97
+    			98
   				</div>
 				</div>
 			</div>
@@ -179,7 +179,7 @@ decoupling rig from camera etc. -->
             // Create a line element
             rayLine = document.createElement('a-entity');
             rayLine.setAttribute('line', {
-              start: '0, 1, -1',
+              start: '0, 0.1, -0.1',
               end: '0, 0, -1',
               color: '#FF00FF',
 							lineWidth: 2
@@ -215,7 +215,7 @@ decoupling rig from camera etc. -->
                 camera
                 position="0 0 0"
                 look-controls
-                locomotion="maxSpeed:10.0;
+                locomotion="maxSpeed:0.1;
 														acceleration:0.001;"
 								>
 		

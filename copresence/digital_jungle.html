@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>0.2</title>
+		<title>0.3</title>
 		
       <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 		
@@ -152,21 +152,22 @@
                 camera
 								look-controls
                 position="0 0 0"
-                locomotion="maxSpeed:0.4;acceleration:0.04"
+                locomotion="maxSpeed:0.04;
+														acceleration:0.001"
                 log-position-data="output:#hud">
 				
 		<!--NB 	separate class names with comma in raycastable
 						list -->
         <a-entity
 					id="reticle"
-          cursor="fuse:true;fuseTimeout:2000;"
+          cursor="fuse:true;fuseTimeout:1000;"
           raycaster="objects:.clickable,.hello;"
           geometry="primitive:ring;radiusInner: 0.02; radiusOuter: 0.03"
 					material="shader:flat;color:red;
 										depthTest:true;
 										transparent:false; opacity:1"
           position="0 0 -1;"
-          animation__fusing="property:scale;from:1 1 1;to:0 0 0;dur:2000;startEvents:fusing;"
+          animation__fusing="property:scale;from:1 1 1;to:0 0 0;dur:1000;startEvents:fusing;"
           animation__reset="property:scale;from:0 0 0;to: 1 1 1;dur:333;startEvents:mouseleave;"
          ></a-entity>
      	
