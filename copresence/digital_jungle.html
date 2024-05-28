@@ -2,9 +2,9 @@
 <html>
   <head>
  
-		<title>0.1.6...modest</title>
+		<title>0.2</title>
 		
-      <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+      <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 		
 			<script src="../roost_scripts/pennyLane.js" defer></script>
 			<script src="../roost_scripts/perlin_gpt3.js"></script>
@@ -160,7 +160,7 @@
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:2000;"
-          raycaster="objects:.clickable, .hello;"
+          raycaster="objects:.clickable,.hello;"
           geometry="primitive:ring;radiusInner: 0.02; radiusOuter: 0.03"
 					material="shader:flat;color:red;
 										depthTest:true;

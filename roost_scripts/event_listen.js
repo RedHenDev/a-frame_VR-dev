@@ -17,12 +17,26 @@ myPig.addEventListener("mouseleave", e => {
 // (click).
 AFRAME.registerComponent('fuse-listener', {
   init: function () {
-    var lastIndex = -1;
-    var COLORS = ['red', 'green', 'blue'];
+    let lastIndex = -1;
+    const COLORS = ['red', 'green', 'blue'];
     this.el.addEventListener('click', function (evt) {
       lastIndex = (lastIndex + 1) % COLORS.length;
       this.setAttribute('material', 'color', COLORS[lastIndex]);
-      console.log('I was clicked at: ', evt.detail.intersection.point);
+			console.log(`${evt.target.id} was clicked at: `, evt.detail.intersection.point);
+			
+			// Testing for j-realm.
+			const myPiglet = document.querySelector('#bigCap');
+			if (myPiglet != null && 
+					evt.target.id == myPiglet.id){
+			myPiglet.object3D.position.y -= 10;
+			}
+			
+			// Experiment. Websling. Worked first time!?
+			if (evt.detail.intersection.distance < 500 &&
+				 evt.target.id!='bigCap'){
+			const myMe = document.querySelector('#subject');
+			myMe.setAttribute('locomotion','vel',3);
+			}
     });
   }
 });
