@@ -137,6 +137,12 @@ setTimeout(function(){
 },63);
 },3000);
 
+setTimeout(function(){
+	setInterval(function() {
+  yAnked=null;
+},125);
+},3000);
+
 // Convert three numerical positions to string
 // and set this to string position of subject.
 function write_move(){
@@ -230,9 +236,12 @@ function initGame(_who){
 		
 	// Let's see if we've been yanked.
 	if (gName==whoMoved.yanked){
-		whoMoved.yanked=null;
+		console.log('I got yanked!');
+		//whoMoved.yanked=null;
+		// Perhaps each subject nulls yanked
+		// every 2 seconds? Via index.js
 		const myMe = document.querySelector('#subject');
-		myMe.setAttribute('locomotion','vel',-2);
+		myMe.setAttribute('locomotion','vel',-0.5);
 	}
 		
 	const x = whoMoved.x;
