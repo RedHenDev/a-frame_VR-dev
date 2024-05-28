@@ -15,6 +15,7 @@ myPig.addEventListener("mouseleave", e => {
 
 // Component to change to a sequential color on fuse
 // (click).
+let yAnked = '';
 AFRAME.registerComponent('fuse-listener', {
   init: function () {
     let lastIndex = -1;
@@ -38,6 +39,7 @@ AFRAME.registerComponent('fuse-listener', {
 			const myTar = document.
 			querySelector('#'+evt.target.id);
 				console.log(myTar.id + ' yanked');
+				yAnked=myTar.id;
 				// This affects subject, not target, for
 				// some reason?
 				//myTar.setAttribute('locomotion','vel',-3);

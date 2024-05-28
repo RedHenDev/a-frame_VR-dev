@@ -95,6 +95,7 @@ function manifestSubject(_who,_me){
 		nub.setAttribute('id',_who.name);
 		// Cap is backwards on Y.
 		//nub.setAttribute('rotation',avatarRotation);
+		nub.setAttribute('rotation','0 0 0');
 		nub.setAttribute('position',avatarPosition);
 		nub.setAttribute('scale',avatarScale);
 		nub.setAttribute('class','clickable');
@@ -141,6 +142,8 @@ setTimeout(function(){
 function write_move(){
 	//console.log('write moving...');
 //	const posStr = String(xSub + ' ' + ySub + ' ' + zSub);
+	// Don't update yanked here.
+	// Thank only happens in event_listen.
 	set(playerRef, {
 			id: playerId,
 			name: subName,
@@ -149,7 +152,8 @@ function write_move(){
 			z: zSub,
 			rx: rxSub,
 			ry: rySub,
-			rz: rzSub
+			rz: rzSub,
+			yanked: yAnked
 	});
 }
 
@@ -201,8 +205,9 @@ function initGame(_who){
 		// this on a computer screen.
 		// This involves toggling off look-controls from
 		// camera (#subject) a-frame entity.
+		// Shouldn't isMobile be negated here?
 		if (VRclone && whoMoved.name!=gName &&
-			 isMobile){
+			 !isMobile){
 			// NB changing rotation of camera/subject
 			// only works if look controls disabled.
 			// I.e. look controls are the VR response
@@ -222,6 +227,14 @@ function initGame(_who){
 		
 		}
 	else if (bod!=null){
+		
+	// Let's see if we've been yanked.
+	if (gName==whoMoved.yanked){
+		whoMoved.yanked=null;
+		const myMe = document.querySelector('#subject');
+		myMe.setAttribute('locomotion','vel',-2);
+	}
+		
 	const x = whoMoved.x;
 	const y = whoMoved.y;
 	const z = whoMoved.z;
@@ -276,7 +289,7 @@ onAuthStateChanged(auth, user => {
 			z: zSub,
 			rx: rxSub,
 			ry: rySub,
-			rz: rzSub
+			rz: rzSub,
 		});
 		
 		// Callback for when user disconnects.
