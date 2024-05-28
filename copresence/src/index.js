@@ -137,6 +137,7 @@ setTimeout(function(){
 },63);
 },3000);
 
+// For stopping never-ending yanking.
 setTimeout(function(){
 	setInterval(function() {
   yAnked='n';
@@ -302,6 +303,7 @@ onAuthStateChanged(auth, user => {
 			rx: rxSub,
 			ry: rySub,
 			rz: rzSub,
+			yanked: 'n'
 		});
 		
 		// Callback for when user disconnects.

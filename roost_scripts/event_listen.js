@@ -21,7 +21,8 @@ AFRAME.registerComponent('fuse-listener', {
     let lastIndex = -1;
     const COLORS = ['red', 'green', 'blue'];
     this.el.addEventListener('click', function (evt) {
-      lastIndex = (lastIndex + 1) % COLORS.length;
+      
+			lastIndex = (lastIndex + 1) % COLORS.length;
       this.setAttribute('material', 'color', COLORS[lastIndex]);
 			console.log(`${evt.target.id} was clicked at: `, evt.detail.intersection.point);
 			
@@ -45,7 +46,7 @@ AFRAME.registerComponent('fuse-listener', {
 				//myTar.setAttribute('locomotion','vel',-3);
 				// This is temporary, not synced.
 				//myTar.object3D.position.y += 10;
-				myMe.setAttribute('locomotion','vel',3);
+				//myMe.setAttribute('locomotion','vel',3);
 			}
     });
   }

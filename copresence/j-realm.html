@@ -7,7 +7,7 @@ started
 <html>
   <head>
  
-		<title>j-realm 1.6</title>
+		<title>j-realm 1.7</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -59,7 +59,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			16
+    			17
   				</div>
 				</div>
 			</div>
@@ -91,7 +91,7 @@ started
 				<script>
 					// To sync avatar model with index.js
 					const avatarScale='1 1 1';
-					const avatarPosition='0 0.5 0';
+					const avatarPosition='0 -0.5 0';
 					const avatarRotation='0 180 0';
 					const avatarType='a-gltf-model';
 				</script>
@@ -177,9 +177,7 @@ started
         }
       });
 			</script>
-			
 
-			
 			<!--Subject's rig starts here.-->
 <!--			Add as component to rig for non-VR controls?-->
 <!--			movement-controls-->
@@ -192,7 +190,7 @@ started
                 position="0 0 0"
                 look-controls
                 locomotion="maxSpeed:1;
-														acceleration:0.001;"
+														acceleration:0.002;"
 								>
 		
         <a-entity
