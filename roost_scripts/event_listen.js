@@ -40,7 +40,26 @@ AFRAME.registerComponent('fuse-listener', {
 			const myTar = document.
 			querySelector('#'+evt.target.id);
 				console.log(myTar.id + ' yanked');
+				// Changing yAnked like this will
+				// get written to db.
 				yAnked=myTar.id;
+				let f = document.createElement('a-sphere');
+				f.setAttribute('visible','');
+				f.setAttribute('material','shader','flat');
+				f.setAttribute('material','color','red');
+				f.setAttribute('material','transparent',true);
+				f.setAttribute('material','opacity',0.5);
+				f.object3D.scale.x=0.4;
+				f.object3D.scale.y=0.4;
+				f.object3D.scale.z=0.4;
+				f.object3D.position.x=
+					evt.detail.intersection.point.x;
+				f.object3D.position.z=
+					evt.detail.intersection.point.z;
+				f.object3D.position.y=
+					evt.detail.intersection.point.y;
+				//f.object3D.rotation.y=Math.random()*360;
+				this.sceneEl.appendChild(f);
 				// This affects subject, not target, for
 				// some reason?
 				//myTar.setAttribute('locomotion','vel',-3);
