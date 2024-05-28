@@ -94,7 +94,7 @@ function manifestSubject(_who,_me){
 		const nub=document.createElement(avatarType);
 		nub.setAttribute('id',_who.name);
 		// Cap is backwards on Y.
-		nub.setAttribute('rotation',avatarRotation);
+		//nub.setAttribute('rotation',avatarRotation);
 		nub.setAttribute('position',avatarPosition);
 		nub.setAttribute('scale',avatarScale);
 		nub.setAttribute('class','clickable');
@@ -228,15 +228,13 @@ function initGame(_who){
 	bod.object3D.position.x = x;
 	bod.object3D.position.y = y;
 	bod.object3D.position.z = z;
-		let aRo=0;
 		let xm=1;
-		if (avatarRotation=='0 180 0') {aRo=-1;xm=-1}
+		let aRo=0;
+		if (avatarRotation=='0 180 0') {xm=-1;aRo=180;}
 	bod.object3D.rotation.x = 
 		whoMoved.rx * xm; // Nor here!
-	bod.object3D.rotation.y = 
-		whoMoved.ry * aRo;
+	bod.object3D.rotation.y = whoMoved.ry+aRo;
 	bod.object3D.rotation.z = whoMoved.rz;
-		
 	}
 		
 });

@@ -37,7 +37,9 @@ AFRAME.registerComponent('fuse-listener', {
 			const myMe = document.querySelector('#subject');
 			const myTar = document.
 			querySelector('#'+evt.target.id);
-				myTar.object3D.position.y -= 10;
+				console.log(myTar.id);
+				myTar.setAttribute('subject','locomotion','vel',-3);
+				//myTar.object3D.position.y -= 10;
 				//myMe.setAttribute('locomotion','vel',3);
 			}
     });
