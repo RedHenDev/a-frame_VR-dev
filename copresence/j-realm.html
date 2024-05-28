@@ -133,6 +133,9 @@ decoupling rig from camera etc. -->
 -->
 				<a-asset-item crossorigin="local" id="mWuds" src="../roost_assets/models/spiral_city_alpha/scene.gltf"></a-asset-item>
 				
+				<img crossorigin="local" id="cap_v1"
+						 src="../roost_assets/images/cap_v1.png">
+				
 <!--
 				<a-asset-item crossorigin="anonymous" id="avatar" src="../roost_assets/models/old_nokia_phone_low_poly/nokia.obj"></a-asset-item>
 				<img crossorigin="anonymous" id="texNokia" src="../roost_assets/models/old_nokia_phone_low_poly/textures/back_baseColor.jpeg">
@@ -217,7 +220,12 @@ decoupling rig from camera etc. -->
 			<a-gltf-model src="#mWuds" position="0 -128 0" rotation="0 0 0" scale="1023 1023 1023" visible=""></a-gltf-model>
 			
 			<!-- Cap' -->
-			<a-gltf-model src="#avatar" position="24 -32 0" rotation="0 0 0" scale="3 3 3" visible=""></a-gltf-model>
+			<a-gltf-model src="#avatar" position="24 -28.25 0" rotation="0 90 0" scale="3 3 3" visible=""></a-gltf-model>
+			
+			<!-- Giant paintings -->
+			<a-plane id="capBill" src="#cap_v1" 
+							 position="-200 1 -42" rotation="0 90 0"
+							 scale="160 90" material="shader:flat;"></a-plane>
 			
     </a-scene>
 		
