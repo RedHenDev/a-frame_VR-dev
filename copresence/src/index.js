@@ -228,7 +228,7 @@ function initGame(_who){
 	bod.object3D.position.z = z;
 		let aRo=0;
 		let xm=1;
-		if (avatarRotation=='0 90 0') {aRo=180;xm=-1}
+		if (avatarRotation=='0 90 0') {aRo=-180;xm=-1}
 	bod.object3D.rotation.x = 
 		whoMoved.rx * xm; // Nor here!
 	bod.object3D.rotation.y = 
