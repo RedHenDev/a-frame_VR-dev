@@ -134,7 +134,7 @@ setTimeout(function(){
 	setInterval(function() {
   write_move();
 },63);
-},6000);
+},3000);
 
 // Convert three numerical positions to string
 // and set this to string position of subject.

@@ -37,10 +37,13 @@ AFRAME.registerComponent('fuse-listener', {
 			const myMe = document.querySelector('#subject');
 			const myTar = document.
 			querySelector('#'+evt.target.id);
-				console.log(myTar.id);
-				myTar.setAttribute('locomotion','vel',-3);
-				//myTar.object3D.position.y -= 10;
-				//myMe.setAttribute('locomotion','vel',3);
+				console.log(myTar.id + ' yanked');
+				// This affects subject, not target, for
+				// some reason?
+				//myTar.setAttribute('locomotion','vel',-3);
+				// This is temporary, not synced.
+				//myTar.object3D.position.y += 10;
+				myMe.setAttribute('locomotion','vel',3);
 			}
     });
   }

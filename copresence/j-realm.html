@@ -1,4 +1,5 @@
 <!-- j-realm 0.1
+started
 27/5/24
 -->
 
@@ -6,7 +7,7 @@
 <html>
   <head>
  
-		<title>j-realm 1.1</title>
+		<title>j-realm 1.2</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -58,7 +59,7 @@
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			11
+    			12
   				</div>
 				</div>
 			</div>
@@ -90,7 +91,7 @@
 				<script>
 					// To sync avatar model with index.js
 					const avatarScale='1 1 1';
-					const avatarPosition='0 -4 0';
+					const avatarPosition='0 0.5 0';
 					const avatarRotation='0 180 0';
 					const avatarType='a-gltf-model';
 				</script>
@@ -158,7 +159,7 @@
               start: '0.1, -0.1, 1',
               end: '0, 0, -1',
               color: '#FF00FF',
-							lineWidth: 1
+							width: 4
             });
             raycasterEl.appendChild(rayLine);
           });
