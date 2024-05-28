@@ -139,7 +139,10 @@ setTimeout(function(){
 
 setTimeout(function(){
 	setInterval(function() {
-  yAnked=null;
+  yAnked='n';
+		set(playerRef, {
+			yanked: yAnked
+	});
 },125);
 },3000);
 
