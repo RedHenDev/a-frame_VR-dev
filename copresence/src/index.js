@@ -114,10 +114,10 @@ function manifestSubject(_who,_me){
 		
 		// Only child the avatar to subject camera
 		// if this avatar belongs to client.
-		if (_who.name=gName){
-		let aac = document.querySelector('#subject');
-		aac.appendChild(nub);
-		}
+//		if (_who.name=gName){
+//		let aac = document.querySelector('#subject');
+//		aac.appendChild(nub);
+//		}
 		
 		// *** add to dic here.
 		subjects[_who.name]=nub;
@@ -177,7 +177,9 @@ function initGame(_who){
 		//***
 		const bod=subjects[whoLeft.name];
 					//document.querySelector(`#${whoLeft.name}`);
+		if (bod!=null){
 		bod.remove();
+		}
 		//***
 		delete subjects[whoLeft.name];
 	});

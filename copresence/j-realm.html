@@ -115,7 +115,7 @@ decoupling rig from camera etc. -->
 				<script>
 					// To sync avatar model with index.js
 					const avatarScale='1 1 1';
-					const avatarPosition='0 0 0';
+					const avatarPosition='0 -4 0';
 					const avatarRotation='0 180 0';
 					const avatarType='a-gltf-model';
 				</script>
@@ -208,9 +208,9 @@ decoupling rig from camera etc. -->
 <!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
                 camera
-                position="0 1.6 0"
+                position="0 0 0"
                 look-controls
-                locomotion="speed:0.4"
+                locomotion="maxSpeed:0.3"
 								>
 		
         <a-entity
