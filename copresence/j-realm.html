@@ -6,7 +6,7 @@
 <html>
   <head>
  
-		<title>j-realm 0.98</title>
+		<title>j-realm 0.99</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -58,7 +58,7 @@
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			98
+    			99
   				</div>
 				</div>
 			</div>
@@ -178,17 +178,18 @@ decoupling rig from camera etc. -->
           raycasterEl.addEventListener('loaded', () => {
             // Create a line element
             rayLine = document.createElement('a-entity');
+						// Begin line to right and behind.
             rayLine.setAttribute('line', {
-              start: '0, 0.1, -0.1',
+              start: '0.1, -0.1, 1',
               end: '0, 0, -1',
               color: '#FF00FF',
-							lineWidth: 2
+							lineWidth: 1
             });
             raycasterEl.appendChild(rayLine);
           });
 
-          raycasterEl.addEventListener('raycaster-intersection', function (event) {
-            const intersection = event.detail.intersections[0];
+          raycasterEl.addEventListener('raycaster-intersection', function (evt) {
+            const intersection = evt.detail.intersections[0];
             const distance = intersection.distance;
             // Update the end point of the line to match the intersection distance
             rayLine.setAttribute('line', 'end', `0 0 -${distance}`);
@@ -215,7 +216,7 @@ decoupling rig from camera etc. -->
                 camera
                 position="0 0 0"
                 look-controls
-                locomotion="maxSpeed:0.1;
+                locomotion="maxSpeed:1;
 														acceleration:0.001;"
 								>
 		

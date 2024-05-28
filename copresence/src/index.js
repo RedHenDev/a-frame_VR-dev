@@ -97,6 +97,8 @@ function manifestSubject(_who,_me){
 		nub.setAttribute('rotation',avatarRotation);
 		nub.setAttribute('position',avatarPosition);
 		nub.setAttribute('scale',avatarScale);
+		nub.setAttribute('class','clickable');
+		nub.setAttribute('fuse-listener');
 		nub.setAttribute('src','#avatar');
 		// No Nokia material for Cap. No matter - 
 		// no avatarTex will be found or applied.
@@ -228,11 +230,11 @@ function initGame(_who){
 	bod.object3D.position.z = z;
 		let aRo=0;
 		let xm=1;
-		if (avatarRotation=='0 90 0') {aRo=0;xm=-1}
+		if (avatarRotation=='0 180 0') {aRo=-1;xm=-1}
 	bod.object3D.rotation.x = 
 		whoMoved.rx * xm; // Nor here!
 	bod.object3D.rotation.y = 
-		whoMoved.ry + aRo;
+		whoMoved.ry * aRo;
 	bod.object3D.rotation.z = whoMoved.rz;
 		
 	}

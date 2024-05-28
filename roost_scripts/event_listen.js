@@ -35,7 +35,10 @@ AFRAME.registerComponent('fuse-listener', {
 			if (evt.detail.intersection.distance < 2000 &&
 				 evt.target.id!='bigCap'){
 			const myMe = document.querySelector('#subject');
-			myMe.setAttribute('locomotion','vel',3);
+			const myTar = document.
+			querySelector('#'+evt.target.id);
+				myTar.object3D.position.y -= 10;
+				//myMe.setAttribute('locomotion','vel',3);
 			}
     });
   }
