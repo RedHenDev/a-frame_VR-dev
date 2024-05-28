@@ -111,8 +111,13 @@ function manifestSubject(_who,_me){
 		//dub.setAttribute('parent',`#${_who.name}`);
 		
 		sceneEl.appendChild(nub);
+		
+		// Only child the avatar to subject camera
+		// if this avatar belongs to client.
+		if (_who.name=gName){
 		let aac = document.querySelector('#subject');
 		aac.appendChild(nub);
+		}
 		
 		// *** add to dic here.
 		subjects[_who.name]=nub;
