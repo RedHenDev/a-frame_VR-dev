@@ -6,7 +6,7 @@
 <html>
   <head>
  
-		<title>j-realm 0.5</title>
+		<title>j-realm 0.6</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -74,7 +74,7 @@
 			}
 		</script>
 		
-    <a-scene>
+    <a-scene fog="type:linear;color:#00FFEF;far:1023;">
 		
 		<!--Fog...-->
 		<!--	 fog="type:linear;color:#00FFEF;far:255;"-->
@@ -115,8 +115,8 @@ decoupling rig from camera etc. -->
 				<script>
 					// To sync avatar model with index.js
 					const avatarScale='1 1 1';
-					const avatarPosition='0 -4 0';
-					const avatarRotation='0 180 0';
+					const avatarPosition='0 0 0';
+					const avatarRotation='0 -90 0';
 					const avatarType='a-gltf-model';
 				</script>
 				
@@ -247,7 +247,7 @@ decoupling rig from camera etc. -->
       </a-entity> <!-- rig end -->
 			
 			<!-- glFT test. Sci-fi model found online.-->
-			<a-gltf-model src="#mWuds" position="0 -32 0" rotation="0 0 0" scale="256 256 256" visible=""></a-gltf-model>
+			<a-gltf-model src="#mWuds" position="0 -64 0" rotation="0 0 0" scale="512 512 512" visible=""></a-gltf-model>
 			
 			<!-- Cap' -->
 <!--			<a-gltf-model src="#avatar" position="0 32 0" rotation="0 0 0" scale="10 10 10" visible=""></a-gltf-model>-->
