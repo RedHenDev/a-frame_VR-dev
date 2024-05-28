@@ -41,9 +41,7 @@ function isMobile() {
 //***
 // To turn on clone mode.
 document.addEventListener('keypress', event => {
-	
-	
-	
+
 	if (event.key === 'c') {
 		if (!VRclone){
 		VRclone=true;
@@ -88,7 +86,7 @@ function manifestSubject(_who,_me){
 		
 		}
 	else{
-		
+		console.log('Entering realm...');
 		// Create placeholder shape for other subject.
 		// Set attributes and finally append to scene.
 //		<a-gltf-model id="subMod" src="#joan" position="2 0 -85" rotation="0 0 0" scale="5 5 5" visible=""></a-gltf-model>
@@ -113,6 +111,8 @@ function manifestSubject(_who,_me){
 		//dub.setAttribute('parent',`#${_who.name}`);
 		
 		sceneEl.appendChild(nub);
+		let aac = document.querySelector('#subject');
+		aac.appendChild(nub);
 		
 		// *** add to dic here.
 		subjects[_who.name]=nub;
@@ -221,7 +221,7 @@ function initGame(_who){
 	bod.object3D.position.z = z;
 	bod.object3D.rotation.x = whoMoved.rx; // Nor here!
 		let aRo=0;
-		if (avatarRotation=='0 180 0') aRo=180;
+		if (avatarRotation=='0 180 0') {aRo=180;}
 	bod.object3D.rotation.y = 
 		whoMoved.ry + aRo;
 	bod.object3D.rotation.z = whoMoved.rz;

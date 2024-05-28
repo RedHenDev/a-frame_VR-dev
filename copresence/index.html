@@ -2,11 +2,11 @@
 <html>
   <head>
  
-		<title>Copresence VR v13 new throttle</title>
+		<title>Copresence VR v2</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
-      <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+      <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 		
 			<script src="../roost_scripts/pennyLane.js" defer></script>
 			<!--<script src="aframe.min.js"></script>-->
@@ -70,7 +70,7 @@
 			}
 		</script>
 		
-    <a-scene fog="type:linear;color:#00FFEF;far:255;">
+    <a-scene fog="type:linear;color:#00FFEF;far:511;">
 		
 		<!--Fog...-->
 		<!--    
@@ -86,7 +86,7 @@
 				<img crossorigin="anonymous" id="avatarTex" src="../roost_assets/models/old_nokia_phone_low_poly/textures/back_baseColor.jpeg">
 				<script>
 					// To sync avatar model with index.js
-					const avatarScale='2 2 2';
+					const avatarScale='1 1 1';
 					const avatarRotation='0 0 0';
 					const avatarPosition='0 0 0';
 					const avatarType='a-obj-model';
