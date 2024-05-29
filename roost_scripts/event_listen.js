@@ -15,6 +15,8 @@ myPig.addEventListener("mouseleave", e => {
 
 // Component to change to a sequential color on fuse
 // (click).
+// *** for user interaction.
+let yAnked = '';
 AFRAME.registerComponent('fuse-listener', {
   init: function () {
     let lastIndex = -1;

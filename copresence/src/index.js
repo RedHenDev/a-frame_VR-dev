@@ -25,8 +25,6 @@ let subName;
 // *** testing.
 let subjects={};
 let subs=[];
-// *** for user interaction.
-let yAnked = 'n';
 
 import { baptise } from "../../roost_scripts/utils.js";
 
