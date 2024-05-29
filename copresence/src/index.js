@@ -215,9 +215,10 @@ function initGame(_who){
 		// this on a computer screen.
 		// This involves toggling off look-controls from
 		// camera (#subject) a-frame entity.
-		// Shouldn't isMobile be negated here?
+		// Shouldn't isMobile be negated here? No -- 
+		// because here we're referring to an other user.
 		if (VRclone && whoMoved.name!=gName &&
-			 !isMobile){
+			 isMobile){
 			// NB changing rotation of camera/subject
 			// only works if look controls disabled.
 			// I.e. look controls are the VR response
