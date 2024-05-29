@@ -141,9 +141,7 @@ setTimeout(function(){
 setTimeout(function(){
 	setInterval(function() {
   yAnked='n';
-		set(playerRef, {
-			yanked: yAnked
-	});
+		write_move();
 },125);
 },3000);
 
