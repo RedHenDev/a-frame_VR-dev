@@ -7,7 +7,7 @@ started
 <html>
   <head>
  
-		<title>j-realm 2.6</title>
+		<title>j-realm</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -59,7 +59,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			26
+    			27
   				</div>
 				</div>
 			</div>
@@ -155,7 +155,7 @@ started
 						// Begin line to right and behind.
             rayLine.setAttribute('line', {
               start: '0.1, -0.1, 1',
-              end: '0, 0, -0.7',
+              end: '0, 0, -3',
               color: '#FFFFFF'
             });
             raycasterEl.appendChild(rayLine);
@@ -171,7 +171,7 @@ started
 
           raycasterEl.addEventListener('raycaster-intersection-cleared', function () {
             // Reset the line if no intersection
-            rayLine.setAttribute('line', 'end', '0 0 -1');
+            rayLine.setAttribute('line', 'end', '0 0 -3');
 						rayLine.setAttribute('line','color','white');
           });
         }
@@ -194,10 +194,10 @@ started
 								>
 				
 				<a-entity
-					raycaster="far: 0.7; objects:.solid;"
+					raycaster="far: 3; objects:.solid;"
 					collision-detector
-					ray-visible=""
-									></a-entity>
+					ray-visible
+				></a-entity>
 				
         <a-entity
 					id="reticle"

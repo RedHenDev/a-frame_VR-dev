@@ -23,6 +23,7 @@ console.log('Throttle script init.')
 
 // Collision detection testing...
 AFRAME.registerComponent('collision-detector', {
+	
   init: function () {
     let el = this.el;
 		const tRig =
@@ -45,18 +46,21 @@ AFRAME.registerComponent('collision-detector', {
 			
       //if (dist <=100) {
         //console.log('Collided at ' + dist);
-			
+		
             isIntersecting = true;
             //console.log('Raycaster intersected');
             // Start any action you want, for example:
             intervalId = setInterval(function() {
               //console.log('Action happening...');
 							//tRig.position.y += 1;
+							
 						tSub.setAttribute('locomotion','vel',-0.2);
+							
             }, 2); // Repeat action every 1/4 sec.
-					//}// eof dist query.
+			//}// eof dist query.
+						}
           }
-        }
+        
 
         function stopAction() {
           if (isIntersecting) {
