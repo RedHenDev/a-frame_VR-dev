@@ -44,7 +44,7 @@ AFRAME.registerComponent('fuse-listener', {
 			const myPiglet = document.querySelector('#bigCap');
 			if (myPiglet != null && 
 					evt.target.id == myPiglet.id){
-			myPiglet.object3D.position.y -= 10;
+			myPiglet.object3D.rotation.y += 0.2;
 			}
 			
 			// Experiment. Websling. Worked first time!?
