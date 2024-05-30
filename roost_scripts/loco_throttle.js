@@ -43,7 +43,7 @@ AFRAME.registerComponent('collision-detector', {
           if (!isIntersecting) {
 				let dist=Math.abs(evt.detail.intersections[0].distance);
 			
-      if (dist <=100) {
+      //if (dist <=100) {
         //console.log('Collided at ' + dist);
 			
             isIntersecting = true;
@@ -51,9 +51,10 @@ AFRAME.registerComponent('collision-detector', {
             // Start any action you want, for example:
             intervalId = setInterval(function() {
               //console.log('Action happening...');
-							tRig.position.y += 1;
-            }, 250); // Repeat action every 1/4 sec.
-					}// eof dist query.
+							//tRig.position.y += 1;
+						tSub.setAttribute('locomotion','vel',-0.2);
+            }, 2); // Repeat action every 1/4 sec.
+					//}// eof dist query.
           }
         }
 

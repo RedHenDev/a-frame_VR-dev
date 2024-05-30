@@ -62,10 +62,10 @@ AFRAME.registerComponent('fuse-listener', {
 				f.setAttribute('material','shader','flat');
 				f.setAttribute('material','color','lime');
 				f.setAttribute('material','transparent',true);
-				f.setAttribute('material','opacity',0.5);
-				f.object3D.scale.x=0.2;
-				f.object3D.scale.y=0.2;
-				f.object3D.scale.z=0.2;
+				f.setAttribute('material','opacity',0.6);
+				f.object3D.scale.x=0.4;
+				f.object3D.scale.y=0.4;
+				f.object3D.scale.z=0.4;
 				f.object3D.position.x=
 					evt.detail.intersection.point.x;
 				f.object3D.position.z=

@@ -7,7 +7,7 @@ started
 <html>
   <head>
  
-		<title>j-realm 2.5</title>
+		<title>j-realm 2.6</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -59,7 +59,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			25
+    			26
   				</div>
 				</div>
 			</div>
@@ -155,14 +155,15 @@ started
 						// Begin line to right and behind.
             rayLine.setAttribute('line', {
               start: '0.1, -0.1, 1',
-              end: '0, 0, -1',
-              color: '#FF00FF'
+              end: '0, 0, -0.7',
+              color: '#FFFFFF'
             });
             raycasterEl.appendChild(rayLine);
           });
 
           raycasterEl.addEventListener('raycaster-intersection', function (evt) {
             const intersection = evt.detail.intersections[0];
+						rayLine.setAttribute('line','color','lime');
             const distance = intersection.distance;
             // Update the end point of the line to match the intersection distance
             rayLine.setAttribute('line', 'end', `0 0 -${distance}`);
@@ -171,6 +172,7 @@ started
           raycasterEl.addEventListener('raycaster-intersection-cleared', function () {
             // Reset the line if no intersection
             rayLine.setAttribute('line', 'end', '0 0 -1');
+						rayLine.setAttribute('line','color','white');
           });
         }
       });
@@ -192,15 +194,16 @@ started
 								>
 				
 				<a-entity
-					raycaster="far: 200; objects:.solid;"
+					raycaster="far: 0.7; objects:.solid;"
 					collision-detector
+					ray-visible=""
 									></a-entity>
 				
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:1000;"
-          raycaster="objects:.clickable;"
-					ray-visible=""
+          raycaster="far: 300; objects:.clickable;"
+					
           geometry="primitive:ring;radiusInner: 0.01; radiusOuter: 0.04"
 					material="shader:flat;color:red;
 										depthTest:false;
@@ -230,14 +233,14 @@ started
       </a-entity> <!-- camera end -->
       </a-entity> <!-- rig end -->
 			
-			<!-- glFT test. Sci-fi model found online.-->
-			<a-gltf-model src="#mWuds" position="0 -128 0" rotation="0 0 0" scale="1023 1023 1023"  visible=""></a-gltf-model>
+			<!-- glFT test. Model city found online.-->
+			<a-gltf-model src="#mWuds" position="0 -128 0" rotation="0 0 0" scale="1023 1023 1023"  visible="" class="solid"></a-gltf-model>
 			
 			<!-- Cap' -->
 			<a-gltf-model id="bigCap" fuse-listener src="#avatar" class="clickable" position="64 -12 0" rotation="0 270 0" scale="32 32 32" visible=""></a-gltf-model>
 			
 			<!-- Giant paintings -->
-			<a-plane id="capBill" src="#cap_v1" class="solid" 
+			<a-plane id="capBill" src="#cap_v1"  
 							 position="-200 1 -42" rotation="0 90 0"
 							 scale="160 90" material="shader:flat;"></a-plane>
 			
