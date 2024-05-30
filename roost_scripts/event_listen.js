@@ -15,7 +15,20 @@ myPig.addEventListener("mouseleave", e => {
 
 // Component to change to a sequential color on fuse
 // (click).
-// *** for user interaction.
+/*
+// *** yAnked for user interaction.
+The user stores the name of an other
+player's id.
+When this changes, and the other user
+detects that their id is stored by
+an other user's yanked variable, then
+the user's own code can 'yank' them.
+The point of this is that we cannot
+directly affect the movement of an
+other user from afar. The 3D avatars that
+correspond to their position etc. are not
+the other users themselves.
+*/
 let yAnked = '';
 AFRAME.registerComponent('fuse-listener', {
   init: function () {
@@ -47,12 +60,12 @@ AFRAME.registerComponent('fuse-listener', {
 				let f = document.createElement('a-sphere');
 				f.setAttribute('visible','');
 				f.setAttribute('material','shader','flat');
-				f.setAttribute('material','color','red');
+				f.setAttribute('material','color','lime');
 				f.setAttribute('material','transparent',true);
 				f.setAttribute('material','opacity',0.5);
-				f.object3D.scale.x=0.4;
-				f.object3D.scale.y=0.4;
-				f.object3D.scale.z=0.4;
+				f.object3D.scale.x=0.2;
+				f.object3D.scale.y=0.2;
+				f.object3D.scale.z=0.2;
 				f.object3D.position.x=
 					evt.detail.intersection.point.x;
 				f.object3D.position.z=

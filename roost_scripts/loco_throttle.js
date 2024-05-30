@@ -25,16 +25,20 @@ console.log('Throttle script init.')
 AFRAME.registerComponent('collision-detector', {
   init: function () {
     let el = this.el;
+		this.rig =
+      		document.querySelector("#rig").object3D;
+		const tSub = document.querySelector('#subject');
 		
     el.addEventListener('raycaster-intersection', function(evt)  {
       // Check if the ray has intersected with a collidable entity
 			let dist=Math.abs(evt.detail.intersections[0].distance);
 			
-//      if (dist <=10) {
-        console.log('Collided at ' + dist);
-				document.querySelector('#rig').object3D.
-				position.y += 50;
-//      }
+      if (dist <=100) {
+        //console.log('Collided at ' + dist);
+				//document.querySelector('#rig').object3D.
+				//position.y += 50;
+			tSub.setAttribute('locomotion','vel',-0.5);
+      }
     });
   }
 });

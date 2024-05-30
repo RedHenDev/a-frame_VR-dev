@@ -135,15 +135,20 @@ setTimeout(function(){
 	setInterval(function() {
   write_move();
 },63);
-},3000);
+},6000);
 
 // For stopping never-ending yanking.
 setTimeout(function(){
 	setInterval(function() {
-  yAnked='n';
+  yAnked='';
+		// NB we must write all the data, not just
+		// a single data entry, else we wipe that
+		// other data.
+		// So, easiest thing to do is call
+		// write_move() here.
 		write_move();
-},125);
-},3000);
+},64);
+},7000);
 
 // Convert three numerical positions to string
 // and set this to string position of subject.
@@ -245,6 +250,10 @@ function initGame(_who){
 		// every 2 seconds? Via index.js
 		const myMe = document.querySelector('#subject');
 		myMe.setAttribute('locomotion','vel',-0.5);
+		// Oh, maybe we could store id of this other
+		// source of the yanking, and then instruction
+		// to 'wipe'. I.e. they will assign their
+		// yAnked to '' and write to db.
 	}
 		
 	const x = whoMoved.x;
@@ -302,7 +311,7 @@ onAuthStateChanged(auth, user => {
 			rx: rxSub,
 			ry: rySub,
 			rz: rzSub,
-			yanked: 'n'
+			yanked: ''
 		});
 		
 		// Callback for when user disconnects.
