@@ -20,7 +20,15 @@ let rzSub=0.0;
 let gName = 'NEMO';
 let VRclone= false;
 console.log('Throttle script init.')
-  
+
+// Gravity could go here.
+let gravityON = true;
+function gravity(_rigY){
+	// The way to do that which the body, the nature,
+	// may not necessarily wish to do. E.g. 10K run.
+	ySub = _rigY.position.y -= 1;
+}
+
 AFRAME.registerComponent('locomotion', {
 				schema: {
 					maxSpeed: {type: 'number', default:0.1},
@@ -106,7 +114,6 @@ AFRAME.registerComponent('locomotion', {
 					
         },
   
-	
 				update: function(){
 					if (this.data.engine){
 						this.reticle.
@@ -191,6 +198,9 @@ AFRAME.registerComponent('locomotion', {
 					else{
 						this.data.vel+=acc;
 					}
+					
+					// Let's try gravity here.
+					if (gravityON){gravity(this.rig);}
 					
           // Finally, move pos of rig.
           // NB move rig, not camera.

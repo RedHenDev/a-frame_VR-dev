@@ -25,7 +25,7 @@ started
       <script src="../roost_scripts/ray_visible.js"></script>
 			<script src="../roost_scripts/collision_detector.js"></script>
 			<script src="../roost_scripts/collision_detector_back.js"></script>
-<!--			<script src="../roost_scripts/gravity_v1.js"></script>-->
+			<script src="../roost_scripts/gravity_v1.js"></script>
   		<script src="../roost_scripts/loco_throttle.js"></script>
   </head>
 
@@ -172,7 +172,8 @@ started
 							 	light="type:point;color:orange" 
 							 	material="shader:flat; color:orange;opacity:0.5;
 													transparent:true" 
-				 			 	position="0 -3 -4" radius="0.5">
+				 			 	position="0 -3 -4" radius="0.5"
+								distance="0.1">
 				</a-sphere>
 				
 <!--		Collision detection. Forward.-->
@@ -192,15 +193,13 @@ started
 					collision-detector-back
 				></a-entity>
 				
-<!--
 				<a-entity
 					raycaster="far: 3; 
 										 direction: 0 -1 0;
 										 objects:.solid;
-										 interval:63;"
+										 interval:20;"
 					collision-gravity
 				></a-entity>
--->
 				
         <a-entity
 					id="reticle"

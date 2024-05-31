@@ -27,14 +27,15 @@ AFRAME.registerComponent('collision-gravity', {
           if (!isIntersecting) {
 
             isIntersecting = true;
-						clearInterval(gravintId);
+						gravityON = true;
+						//clearInterval(gravintId);
             //console.log('Raycaster intersected');
             // Start any action you want, for example:
-            intervalId = setInterval(function() {
+            //intervalId = setInterval(function() {
               //console.log('Action happening...');
-							tRig.position.y += 1;
+							//tRig.position.y += 1;
 							
-            }, 20); // Repeat action every 20ms.
+            //}, 20); // Repeat action every 20ms.
 		
 						}
           }
@@ -43,13 +44,13 @@ AFRAME.registerComponent('collision-gravity', {
           if (isIntersecting) {
             isIntersecting = false;
 //            console.log('Raycaster intersection cleared');
-						gravintId = setInterval(function() {
+						//gravintId = setInterval(function() {
               //console.log('Action happening...');
-							tRig.position.y -= 1;
-							
-            }, 20); // Repeat action every 20ms.
+							//tRig.position.y -= 1;
+							gravityON = false;
+            //}, 20); // Repeat action every 20ms.
             
-						clearInterval(intervalId);
+						//clearInterval(intervalId);
           }
         }
 
