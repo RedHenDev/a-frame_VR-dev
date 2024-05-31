@@ -26,7 +26,7 @@ let gravityON = true;
 function gravity(_rigY){
 	// The way to do that which the body, the nature,
 	// may not necessarily wish to do. E.g. 10K run.
-	ySub = _rigY.position.y -= 1;
+	ySub = _rigY.position.y -= 0.8;
 }
 
 AFRAME.registerComponent('locomotion', {
