@@ -17,6 +17,10 @@
             text will not render to HUD -->
       <script src="../roost_scripts/HUD.js"></script>
 <!--      <script src="../roost_scripts/loco_cp.js"></script>-->
+		
+		<script src="../roost_scripts/collision_detector.js"></script>
+		<script src="../roost_scripts/collision_detector_back.js"></script>
+		<script src="../roost_scripts/gravity_v1.js"></script>
 			<script src="../roost_scripts/loco_throttle.js"></script>
   
   </head>
@@ -145,8 +149,6 @@
 <!--			-->
 <!--				Add as component to camera for non-VR wsad-->
 				
-				
-
 <!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
                 camera
@@ -155,6 +157,33 @@
                 locomotion="maxSpeed:0.04;
 														acceleration:0.001"
                 log-position-data="output:#hud">
+				
+				
+				<!--		Collision detection. Forward.-->
+<!--		Need to add the raycaster etc via script.-->
+				<a-entity
+					raycaster="far: 3; 
+										 objects:.solid;
+										 interval:80;"
+					collision-detector
+					ray-visible
+				></a-entity>
+				<a-entity
+					raycaster="far: 3; 
+										 objects:.solid;
+										 direction:0 0 1;
+										 interval:80;"
+					collision-detector-back
+				></a-entity>
+				
+				<a-entity
+					raycaster="far: 3; 
+										 direction: 0 -1 0;
+										 objects:.solid;
+										 interval:80;"
+					collision-gravity
+				></a-entity>
+				
 				
 		<!--NB 	separate class names with comma in raycastable
 						list -->
@@ -219,7 +248,7 @@
 			
 			<!-- glFT minecraft Landscape :D default scale 8-->
 			
-			<a-gltf-model src="#mcLand" position="0 -84 0" rotation="" scale="32 32 32" visible="" class="collidable"></a-gltf-model>
+			<a-gltf-model src="#mcLand" position="0 -84 0" rotation="" scale="32 32 32" visible="" class="solid"></a-gltf-model>
 	<!--
 			<a-entity farm></a-entity>
 -->
