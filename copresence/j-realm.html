@@ -25,7 +25,7 @@ started
       <script src="../roost_scripts/ray_visible.js"></script>
 			<script src="../roost_scripts/collision_detector.js"></script>
 			<script src="../roost_scripts/collision_detector_back.js"></script>
-			<script src="../roost_scripts/gravity_v1.js"></script>
+<!--			<script src="../roost_scripts/gravity_v1.js"></script>-->
   		<script src="../roost_scripts/loco_throttle.js"></script>
   </head>
 
@@ -62,7 +62,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			29
+    			30
   				</div>
 				</div>
 			</div>
@@ -180,7 +180,7 @@ started
 				<a-entity
 					raycaster="far: 3; 
 										 objects:.solid;
-										 interval:63;"
+										 interval:20;"
 					collision-detector
 					ray-visible
 				></a-entity>
@@ -188,10 +188,11 @@ started
 					raycaster="far: 3; 
 										 objects:.solid;
 										 direction:0 0 1;
-										 interval:63;"
+										 interval:20;"
 					collision-detector-back
 				></a-entity>
 				
+<!--
 				<a-entity
 					raycaster="far: 3; 
 										 direction: 0 -1 0;
@@ -199,6 +200,7 @@ started
 										 interval:63;"
 					collision-gravity
 				></a-entity>
+-->
 				
         <a-entity
 					id="reticle"
