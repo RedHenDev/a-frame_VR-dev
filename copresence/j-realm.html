@@ -22,7 +22,9 @@ started
     	<!-- NB must not defer these scripts, else
             text will not render to HUD -->
 <!--      <script src="../roost_scripts/HUD.js"></script>-->
-      
+      <script src="../roost_scripts/ray_visible.js"></script>
+			<script src="../roost_scripts/collision_detector.js"></script>
+			<script src="../roost_scripts/collision_detector_back.js"></script>
   		<script src="../roost_scripts/loco_throttle.js"></script>
   </head>
 
@@ -59,7 +61,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			27
+    			28
   				</div>
 				</div>
 			</div>
@@ -87,6 +89,8 @@ started
 
 				<img crossorigin="local" id="iGarden" src="../roost_assets/images/bl_garden1.jpg">
 				
+				<img crossorigin="local" id="iCap2d" src="../roost_assets/images/cap_two-demons.png">
+				
 				<a-asset-item crossorigin="local" id="avatar" src="../roost_assets/models/marvels_future_fight_-_captain_america/scene.gltf"></a-asset-item>
 				<script>
 					// To sync avatar model with index.js
@@ -111,7 +115,7 @@ started
 -->
 				<a-asset-item crossorigin="local" id="mWuds" src="../roost_assets/models/spiral_city_alpha/scene.gltf"></a-asset-item>
 				
-				<img crossorigin="local" id="cap_v1"
+				<img crossorigin="local" id="iCap_v1"
 						 src="../roost_assets/images/cap_v1.png">
 				
 <!--
@@ -124,79 +128,62 @@ started
 <!--			<a-entity soundmanager></a-entity>-->
       
       <!--Lights-->
+<!--
       <a-sphere
 							 	light="type:point;color:yellow" 
 							 	material="shader:flat; color:yellow" 
-							 	position="0 51 128" radius="64">
+							 	position="0 255 128" radius="64">
 			</a-sphere>
+-->
 				<!-- Lights. -->
+<!--
 			<a-sphere
-							 	light="type:point;color:cyan" 
-							 	material="shader:flat; color:cyan" 
-				 			 	position="0 512 -128" radius="64">
+							 	light="type:point;color:orange" 
+							 	material="shader:flat; color:orange;opacity:0.5;
+													transparent:true" 
+				 			 	position="0 255 -128" radius="64">
 			</a-sphere>
+-->
 			
 				<!--Hark in our ear.-->
 				<a-entity id="hark" sound="src:#sTog;
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
-      
-			<script>
-      // Custom component to make the ray visible
-      AFRAME.registerComponent('ray-visible', {
-        init: function () {
-          const raycasterEl = this.el;
-          const sceneEl = raycasterEl.sceneEl;
-          let rayLine;
-
-          raycasterEl.addEventListener('loaded', () => {
-            // Create a line element
-            rayLine = document.createElement('a-entity');
-						// Begin line to right and behind.
-            rayLine.setAttribute('line', {
-              start: '0.1, -0.1, 1',
-              end: '0, 0, -3',
-              color: '#FFFFFF'
-            });
-            raycasterEl.appendChild(rayLine);
-          });
-
-          raycasterEl.addEventListener('raycaster-intersection', function (evt) {
-            const intersection = evt.detail.intersections[0];
-						rayLine.setAttribute('line','color','lime');
-            const distance = intersection.distance;
-            // Update the end point of the line to match the intersection distance
-            rayLine.setAttribute('line', 'end', `0 0 -${distance}`);
-          });
-
-          raycasterEl.addEventListener('raycaster-intersection-cleared', function () {
-            // Reset the line if no intersection
-            rayLine.setAttribute('line', 'end', '0 0 -3');
-						rayLine.setAttribute('line','color','white');
-          });
-        }
-      });
-			</script>
 
 			<!--Subject's rig starts here.-->
 <!--			Add as component to rig for non-VR controls?-->
 <!--			movement-controls-->
       <a-entity id="rig">
+				
 			<a-sky id="theSky" radius='3040' src="#iGarden"></a-sky>
-<!--				Add as component to camera for non-VR wsad-->
+<!--			Add as component to camera for non-VR wsad-->
 <!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
                 camera
                 position="0 0 0"
                 look-controls
                 locomotion="maxSpeed:1;
-														acceleration:0.002;"
+														acceleration:0.004;"
 								>
 				
+				<!-- Head lamp :) -->
+				<a-sphere
+							 	light="type:point;color:orange" 
+							 	material="shader:flat; color:orange;opacity:0.5;
+													transparent:true" 
+				 			 	position="0 3 -4" radius="0.5">
+				</a-sphere>
+				
+<!--		Collision detection. Forward.-->
+<!--		Need to add the raycaster etc via script.-->
 				<a-entity
 					raycaster="far: 3; objects:.solid;"
 					collision-detector
 					ray-visible
+				></a-entity>
+				<a-entity
+					raycaster="far: 3; objects:.solid;direction:0 0 1"
+					collision-detector-back
 				></a-entity>
 				
         <a-entity
@@ -236,12 +223,15 @@ started
 			<!-- glFT test. Model city found online.-->
 			<a-gltf-model src="#mWuds" position="0 -128 0" rotation="0 0 0" scale="1023 1023 1023"  visible="" class="solid"></a-gltf-model>
 			
-			<!-- Cap' -->
+			<!-- Cap' statue -->
 			<a-gltf-model id="bigCap" fuse-listener src="#avatar" class="clickable" position="64 -12 0" rotation="0 270 0" scale="32 32 32" visible=""></a-gltf-model>
 			
 			<!-- Giant paintings -->
-			<a-plane id="capBill" src="#cap_v1"  
+			<a-plane id="capBill1" src="#iCap_v1"  
 							 position="-200 1 -42" rotation="0 90 0"
+							 scale="160 90" material="shader:flat;"></a-plane>
+			<a-plane id="capBill2" src="#iCap2d"  
+							 position="-400 1 -42" rotation="0 90 0"
 							 scale="160 90" material="shader:flat;"></a-plane>
 			
     </a-scene>
