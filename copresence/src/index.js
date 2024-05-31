@@ -147,7 +147,7 @@ setTimeout(function(){
 		// So, easiest thing to do is call
 		// write_move() here.
 		write_move();
-},64);
+},126);
 },7000);
 
 // Convert three numerical positions to string

@@ -22,10 +22,12 @@ let VRclone= false;
 console.log('Throttle script init.')
 
 // Gravity could go here.
-let gravityON = true;
+let gravityON=true;
+let flyMode=false;
 function gravity(_rigY){
 	// The way to do that which the body, the nature,
 	// may not necessarily wish to do. E.g. 10K run.
+	if (flyMode)return;
 	ySub = _rigY.position.y -= 0.8;
 }
 
@@ -111,17 +113,26 @@ AFRAME.registerComponent('locomotion', {
 							setAttribute('material','color:red');
 						}
 					});
+					document.addEventListener('keyup', event => {
+						if (event.key === 'f') {
+							//toggleAttempt=true;
+							//this.engineOn=false;
+							//this.update();
+							
+							flyMode=!flyMode;
+						}
+					});
 					
         },
   
 				update: function(){
 					if (this.data.engine){
-						this.reticle.
-							setAttribute('material','color:lime');
+						//this.reticle.
+							//setAttribute('material','color:lime');
 					}
 					else{
-						this.reticle.
-							setAttribute('material','color:red');
+						//this.reticle.
+							//setAttribute('material','color:red');
 						// And reset max speed.
 						//this.maxS=this.maxS_orig;
 					}
@@ -160,7 +171,11 @@ AFRAME.registerComponent('locomotion', {
 							// Low number, since no
 							// delay on how often this can happen.
 							// Recent was 0.004.
-							this.maxS+=0.001;
+							//this.maxS+=0.001;
+							this.reticle.
+							setAttribute('material','color:blue');
+							
+							flyMode=!flyMode;
 					}
 					
 					// Let's try a toggle.

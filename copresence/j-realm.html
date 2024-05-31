@@ -62,7 +62,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			30
+    			31
   				</div>
 				</div>
 			</div>
@@ -173,8 +173,15 @@ started
 							 	light="type:point;color:orange" 
 							 	material="shader:flat; color:orange;opacity:0.5;
 													transparent:true" 
-				 			 	position="0 -3 -4" radius="0.5"
-								distance="0.1">
+				 			 	position="-2 3 -4" radius="0.4"
+								>
+				</a-sphere>
+				<a-sphere
+							 	light="type:point;color:orange" 
+							 	material="shader:flat; color:orange;opacity:0.5;
+													transparent:true" 
+				 			 	position="2 3 -4" radius="0.4"
+								>
 				</a-sphere>
 				
 <!--		Collision detection. Forward.-->
@@ -182,7 +189,7 @@ started
 				<a-entity
 					raycaster="far: 3; 
 										 objects:.solid;
-										 interval:20;"
+										 interval:80;"
 					collision-detector
 					ray-visible
 				></a-entity>
@@ -190,7 +197,7 @@ started
 					raycaster="far: 3; 
 										 objects:.solid;
 										 direction:0 0 1;
-										 interval:20;"
+										 interval:80;"
 					collision-detector-back
 				></a-entity>
 				
@@ -198,7 +205,7 @@ started
 					raycaster="far: 3; 
 										 direction: 0 -1 0;
 										 objects:.solid;
-										 interval:20;"
+										 interval:80;"
 					collision-gravity
 				></a-entity>
 				
