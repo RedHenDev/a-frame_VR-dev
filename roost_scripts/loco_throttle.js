@@ -174,7 +174,7 @@ AFRAME.registerComponent('locomotion', {
 							//this.maxS+=0.001;
 							this.reticle.
 							setAttribute('material','color:blue');
-							
+							this.hark.components.sound.playSound();
 							flyMode=!flyMode;
 					}
 					
