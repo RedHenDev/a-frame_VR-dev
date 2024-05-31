@@ -15,11 +15,11 @@ AFRAME.registerComponent('collision-gravity', {
 				let gravIntId = null;
 		
 		
-				gravintId = setInterval(function() {
-              //console.log('Action happening...');
-							tRig.position.y -= 0.1;
-							
-            }, 20); // Repeat action every 20ms.
+//				gravintId = setInterval(function() {
+//              //console.log('Action happening...');
+//							tRig.position.y -= 0.1;
+//							
+//            }, 20); // Repeat action every 20ms.
 						
 
         function startAction(evt) {
