@@ -2,7 +2,7 @@
 <html>
   <head>
  
-		<title>Copresence VR v2.1</title>
+		<title>Copresence VR v2.2</title>
 			<!-- Include the p5.js library -->
 			<!-- For audio context.-->
 <!--			<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>-->
@@ -18,6 +18,9 @@
             text will not render to HUD -->
       <script src="../roost_scripts/HUD.js"></script>
       <!--<script src="../roost_scripts/loco_cp.js"></script>-->
+			<script src="../roost_scripts/collision_detector.js"></script>
+			<script src="../roost_scripts/collision_detector_back.js"></script>
+		<script src="../roost_scripts/gravity_v1.js"></script>
   		<script src="../roost_scripts/loco_throttle.js"></script>
   </head>
 
@@ -149,6 +152,30 @@
                 locomotion="maxSpeed:0.1"
 								log-position-data="output:#hud">
 		
+				<!--		Collision detection. Forward.-->
+<!--		Need to add the raycaster etc via script.-->
+				<a-entity
+					raycaster="far: 3; 
+										 objects:.solid;
+										 interval:42;"
+					collision-detector
+					ray-visible
+				></a-entity>
+				<a-entity
+					raycaster="far: 3; 
+										 objects:.solid;
+										 direction:0 0 1;
+										 interval:42;"
+					collision-detector-back
+				></a-entity>
+				<a-entity
+					raycaster="far: 3; 
+										 direction: 0 -1 0;
+										 objects:.solid;
+										 interval:42;"
+					collision-gravity
+				></a-entity>
+				
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:2000;"
@@ -181,7 +208,7 @@
       </a-entity> <!-- rig end -->
 			
 			<!-- glFT test. Sci-fi model found online.-->
-			<a-gltf-model src="#cityModel" position="" rotation="" scale="28 28 28" visible=""></a-gltf-model>
+			<a-gltf-model src="#cityModel" class ='solid" position="" rotation="" scale="28 28 28" visible=""></a-gltf-model>
 			
 			<!--Test spheres.-->
 			<a-sphere id="mySphere" class="clickable"
