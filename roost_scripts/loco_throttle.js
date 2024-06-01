@@ -22,8 +22,9 @@ let VRclone= false;
 console.log('Throttle script init.')
 
 // Gravity could go here.
+// gravityON false when grounded.
 let gravityON=true;
-let flyMode=false;
+let flyMode=true;
 function gravity(_rigY){
 	// The way to do that which the body, the nature,
 	// may not necessarily wish to do. E.g. 10K run.
@@ -164,6 +165,7 @@ AFRAME.registerComponent('locomotion', {
 					const acc=this.acc; // Default 0.002.
 					//const acc=this.data.acceleration;
 					
+					/*
 					// Throttle test. Negative.
 					if ((ws < -minZ && ws > -maxZ) ||
 							(ws < -minZ2 && ws > -maxZ2))
@@ -172,11 +174,22 @@ AFRAME.registerComponent('locomotion', {
 							// delay on how often this can happen.
 							// Recent was 0.004.
 							//this.maxS+=0.001;
+						let cTime = Date.now();
+						if (cTime-this.timeStamp > 2000){
+							toggleAttempt=false;
+							
+							this.timeStamp=Date.now();
+							
 							this.reticle.
 							setAttribute('material','color:blue');
 							this.hark.components.sound.playSound();
 							flyMode=!flyMode;
+							
+							// Update to sort reticle colour.
+							this.update();
 					}
+					}
+					*/
 					
 					// Let's try a toggle.
           if ((ws > minZ && ws < maxZ) ||
