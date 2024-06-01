@@ -165,10 +165,11 @@ AFRAME.registerComponent('locomotion', {
 					const acc=this.acc; // Default 0.002.
 					//const acc=this.data.acceleration;
 					
-					/*
+					
 					// Throttle test. Negative.
 					if ((ws < -minZ && ws > -maxZ) ||
-							(ws < -minZ2 && ws > -maxZ2))
+							(ws < -minZ2 && ws > -maxZ2)
+						 || toggleAttempt)
 					{
 							// Low number, since no
 							// delay on how often this can happen.
@@ -189,7 +190,7 @@ AFRAME.registerComponent('locomotion', {
 							this.update();
 					}
 					}
-					*/
+					
 					
 					// Let's try a toggle.
           if ((ws > minZ && ws < maxZ) ||
