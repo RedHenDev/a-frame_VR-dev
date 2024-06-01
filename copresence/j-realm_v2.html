@@ -59,7 +59,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			j1
+    			j3
   				</div>
 				</div>
 			</div>
@@ -79,8 +79,6 @@ started
 		
 			<!-- Allow assets time to load.-->
       <a-assets timeout="6000">
-
-				<img crossorigin="local" id="iGarden" src="../roost_assets/images/bl_garden1.jpg">
 				
 				<img crossorigin="local" id="iCap2d" src="../roost_assets/images/cap_two-demons.png">
 				
@@ -88,7 +86,7 @@ started
 				<script>
 					// To sync avatar model with index.js
 					const avatarScale='1 1 1';
-					const avatarPosition='0 -0.5 0';
+					const avatarPosition='0 0 0';
 					const avatarRotation='0 180 0';
 					const avatarType='a-gltf-model';
 				</script>
@@ -106,32 +104,10 @@ started
 				<img crossorigin="local" id="iCap_v1"
 						 src="../roost_assets/images/cap_v1.png">
 				
-<!--
-				<a-asset-item crossorigin="anonymous" id="avatar" src="../roost_assets/models/old_nokia_phone_low_poly/nokia.obj"></a-asset-item>
-				<img crossorigin="anonymous" id="avatarTex" src="../roost_assets/models/old_nokia_phone_low_poly/textures/back_baseColor.jpeg">
--->
   		</a-assets>
 			
 			<!--And now our sound manager.-->
 <!--			<a-entity soundmanager></a-entity>-->
-      
-      <!--Lights-->
-<!--
-      <a-sphere
-							 	light="type:point;color:yellow" 
-							 	material="shader:flat; color:yellow" 
-							 	position="0 255 128" radius="64">
-			</a-sphere>
--->
-				<!-- Lights. -->
-<!--
-			<a-sphere
-							 	light="type:point;color:orange" 
-							 	material="shader:flat; color:orange;opacity:0.5;
-													transparent:true" 
-				 			 	position="0 255 -128" radius="64">
-			</a-sphere>
--->
 			
 				<!--Hark in our ear.-->
 				<a-entity id="hark" sound="src:#sTog;
@@ -141,9 +117,8 @@ started
 			<!--Subject's rig starts here.-->
 <!--			Add as component to rig for non-VR controls?-->
 <!--			movement-controls-->
-      <a-entity id="rig">
+      <a-entity id="rig" position="0 90 0">
 				
-			<a-sky id="theSky" radius='3040' src="#iGarden"></a-sky>
 <!--			Add as component to camera for non-VR wsad-->
 <!--			wasd-controls="acceleration:100"-->
 <!--				Default acceleration 0.001-->
@@ -151,20 +126,26 @@ started
                 camera
                 position="0 0 0"
                 look-controls
-                locomotion="maxSpeed:1;
-														acceleration:0.01;"
+                locomotion="maxSpeed:0.1;
+														acceleration:0.001;"
 								>
+				
+				<script>
+				// Here we can set walk mode etc.
+					flyMode=false;
+					gravityON=true;
+				</script>
 				
 				<!-- Head lamp :) -->
 				<a-sphere
-							 	light="type:point;color:orange" 
+							 	light="type:point;color:green" 
 							 	material="shader:flat; color:orange;opacity:0.5;
 													transparent:true" 
 				 			 	position="-2 3 -4" radius="0.4"
 								>
 				</a-sphere>
 				<a-sphere
-							 	light="type:point;color:orange" 
+							 	light="type:point;color:purple" 
 							 	material="shader:flat; color:orange;opacity:0.5;
 													transparent:true" 
 				 			 	position="2 3 -4" radius="0.4"
@@ -199,7 +180,6 @@ started
 					id="reticle"
           cursor="fuse:true;fuseTimeout:1000;"
           raycaster="far: 300; objects:.clickable;"
-					
           geometry="primitive:ring;radiusInner: 0.01; radiusOuter: 0.04"
 					material="shader:flat;color:red;
 										depthTest:false;
@@ -209,7 +189,7 @@ started
           animation__reset="property:scale;from:0 0 0;to: 1 1 1;dur:333;startEvents:mouseleave;"
          ></a-entity>
         
-      </a-entity> <!-- camera end -->
+      </a-entity> <!-- camera/subject end -->
       </a-entity> <!-- rig end -->
 			
 			<a-gltf-model src="#cityModel" class="solid" position="" rotation="" scale="28 28 28" visible=""></a-gltf-model>

@@ -229,7 +229,8 @@ AFRAME.registerComponent('locomotion', {
 					}
 					
 					// Let's try gravity here.
-					if (gravityON){gravity(this.rig);}
+					if (gravityON && !flyMode)
+						{gravity(this.rig);}
 					
           // Finally, move pos of rig.
           // NB move rig, not camera.
