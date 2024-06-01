@@ -59,7 +59,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			j3
+    			j4
   				</div>
 				</div>
 			</div>
@@ -75,8 +75,11 @@ started
 			}
 		</script>
 		
-    <a-scene fog="type:linear;color:#00FFFF;far:3000;">
+    <a-scene fog="type:linear;color:#00FFFF;far:1000;"
+						 renderer="antialias: true;">
 		
+			<a-light type="directional" light="castShadow:true;" position="1 1 1" intensity="0.5" shadow-camera-automatic="#objects"></a-light>
+			
 			<!-- Allow assets time to load.-->
       <a-assets timeout="6000">
 				
@@ -123,7 +126,7 @@ started
 <!--			wasd-controls="acceleration:100"-->
 <!--				Default acceleration 0.001-->
       <a-entity id="subject" 
-                camera
+                camera="far:3000;"
                 position="0 0 0"
                 look-controls
                 locomotion="maxSpeed:0.1;
@@ -137,6 +140,7 @@ started
 				</script>
 				
 				<!-- Head lamp :) -->
+<!--
 				<a-sphere
 							 	light="type:point;color:green" 
 							 	material="shader:flat; color:orange;opacity:0.5;
@@ -151,6 +155,7 @@ started
 				 			 	position="2 3 -4" radius="0.4"
 								>
 				</a-sphere>
+-->
 				
 <!--		Collision detection. Forward.-->
 <!--		Need to add the raycaster etc via script.-->
@@ -159,7 +164,7 @@ started
 										 objects:.solid;
 										 "
 					collision-detector
-					ray-visible
+					
 				></a-entity>
 				<a-entity
 					raycaster="far: 3; 
@@ -180,7 +185,7 @@ started
 					id="reticle"
           cursor="fuse:true;fuseTimeout:1000;"
           raycaster="far: 300; objects:.clickable;"
-          geometry="primitive:ring;radiusInner: 0.01; radiusOuter: 0.04"
+          geometry="primitive:ring;radiusInner: 0.02; radiusOuter: 0.01"
 					material="shader:flat;color:red;
 										depthTest:false;
 										transparent:true; opacity:0.5"

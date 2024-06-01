@@ -239,7 +239,10 @@ AFRAME.registerComponent('locomotion', {
             Math.cos(theta)*speedNow;
           xSub = this.rig.position.x += 
             Math.sin(theta)*speedNow;
+					// Only change y position if flyMode on.
+					if (flyMode){
           ySub = this.rig.position.y += 
 						pitch*speedNow;
+					}
         }
       });
