@@ -74,7 +74,7 @@
 			}
 		</script>
 		
-    <a-scene fog="type:linear; far:200; color: rgb(0,180,255)">
+    <a-scene fog="type:linear; far:1000; color: rgb(0,180,255)">
 		
 			<!-- Allow assets time to load.-->
       <a-assets timeout="5000">
@@ -151,7 +151,7 @@
 				
 <!--			wasd-controls="acceleration:100"-->
       <a-entity id="subject" 
-                camera
+                camera="far: 3000;"
 								look-controls
                 position="0 0 0"
                 locomotion="maxSpeed:0.04;
@@ -161,15 +161,13 @@
 				
 				<!--		Collision detection. Forward.-->
 <!--		Need to add the raycaster etc via script.-->
-<!--
 				<a-entity
 					raycaster="far: 3; 
 										 objects:.solid;
-										 interval:42;"
+										 "
 					collision-detector
-					ray-visible
+					
 				></a-entity>
--->
 <!--
 				<a-entity
 					raycaster="far: 3; 

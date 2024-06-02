@@ -11,6 +11,9 @@ started
 			
       <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 		
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.rawgit.com/mrdoob/three.js/r128/examples/js/loaders/GLTFLoader.js"></script>
+		
 			<script src="../roost_scripts/pennyLane.js" defer></script>
 		
 			<!-- NB defer is crucial here! -->
@@ -59,7 +62,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			j4
+    			j5
   				</div>
 				</div>
 			</div>
@@ -74,6 +77,36 @@ started
   			}			
 			}
 		</script>
+		
+		<script>
+  AFRAME.registerShader('toon', {
+    schema: {
+      color: {type: 'color', is: 'uniform', default: 'red'},
+      toonLevels: {type: 'int', is: 'uniform', default: 5}
+    },
+    
+    vertexShader: `
+      varying vec3 vNormal;
+      void main() {
+        vNormal = normalize(normalMatrix * normal);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    
+    fragmentShader: `
+      uniform vec3 color;
+      uniform int toonLevels;
+      varying vec3 vNormal;
+      
+      void main() {
+        float intensity = dot(vNormal, vec3(0, 0, 1));
+        float toonIntensity = floor(intensity * float(toonLevels)) / float(toonLevels);
+        gl_FragColor = vec4(color * toonIntensity, 1.0);
+      }
+    `
+  });
+</script>
+
 		
     <a-scene fog="type:linear;color:#00FFFF;far:1000;"
 						 renderer="antialias: true;">
@@ -106,6 +139,26 @@ started
 				
 				<img crossorigin="local" id="iCap_v1"
 						 src="../roost_assets/images/cap_v1.png">
+				
+				
+				<script type="x-shader/x-vertex">
+      varying vec3 vNormal;
+      void main() {
+        vNormal = normalize(normalMatrix * normal);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    </script>
+    <script type="x-shader/x-fragment">
+      uniform vec3 color;
+      uniform int toonLevels;
+      varying vec3 vNormal;
+      
+      void main() {
+        float intensity = dot(vNormal, vec3(0, 0, 1));
+        float toonIntensity = floor(intensity * float(toonLevels)) / float(toonLevels);
+        gl_FragColor = vec4(color * toonIntensity, 1.0);
+      }
+    </script>
 				
   		</a-assets>
 			
@@ -160,14 +213,14 @@ started
 <!--		Collision detection. Forward.-->
 <!--		Need to add the raycaster etc via script.-->
 				<a-entity
-					raycaster="far: 3; 
+					raycaster="far: 1; 
 										 objects:.solid;
 										 "
 					collision-detector
 					
 				></a-entity>
 				<a-entity
-					raycaster="far: 3; 
+					raycaster="far: 1; 
 										 objects:.solid;
 										 direction:0 0 1;
 										 "
@@ -185,7 +238,7 @@ started
 					id="reticle"
           cursor="fuse:true;fuseTimeout:1000;"
           raycaster="far: 300; objects:.clickable;"
-          geometry="primitive:ring;radiusInner: 0.02; radiusOuter: 0.01"
+          geometry="primitive:ring;radiusInner: 0.04; radiusOuter: 0.08"
 					material="shader:flat;color:red;
 										depthTest:false;
 										transparent:true; opacity:0.5"
@@ -197,14 +250,14 @@ started
       </a-entity> <!-- camera/subject end -->
       </a-entity> <!-- rig end -->
 			
-			<a-gltf-model src="#cityModel" class="solid" position="" rotation="" scale="28 28 28" visible=""></a-gltf-model>
+			<a-gltf-model src="#cityModel" apply-toon-shader="color: #ff0000; toonLevels: 5;" class="solid" position="" rotation="" scale="28 28 28" visible="" ></a-gltf-model>
 			
 			<!-- Giant paintings -->
 			<a-plane id="capBill1" src="#iCap_v1"  
-							 position="-200 1 -42" rotation="0 90 0"
+							 position="-200 10 -42" rotation="0 90 0"
 							 scale="160 90" material="shader:flat;"></a-plane>
 			<a-plane id="capBill2" src="#iCap2d"  
-							 position="-400 1 -42" rotation="0 90 0"
+							 position="-400 10 -42" rotation="0 90 0"
 							 scale="160 90" material="shader:flat;"></a-plane>
 			
     </a-scene>
