@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Perlin Noise Landscape</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script>
+		// Perlin noise implementation
+(function(global) {
+  var module = { exports: {} };
+
+  // Classic Perlin noise implementation in 2D
+  var grad3 = [
+    [1, 1, 0], [-1, 1, 0], [1, -1, 0], [-1, -1, 0],
+    [1, 0, 1], [-1, 0, 1], [1, 0, -1], [-1, 0, -1],
+    [0, 1, 1], [0, -1, 1], [0, 1, -1], [0, -1, -1]
+  ];
+
+  var p = [];
+  for (var i = 0; i < 256; i++) {
+    p[i] = Math.floor(Math.random() * 256);
+  }
+  var perm = [];
+  for (var i = 0; i < 512; i++) {
+    perm[i] = p[i & 255];
+  }
+
+  function dot(g, x, y) {
+    return g[0] * x + g[1] * y;
+  }
+
+  function mix(a, b, t) {
+    return (1 - t) * a + t * b;
+  }
+
+  function fade(t) {
+    return t * t * t * (t * (t * 6 - 15) + 10);
+  }
+
+  function perlin2(x, y) {
+    var X = Math.floor(x) & 255;
+    var Y = Math.floor(y) & 255;
+
+    x -= Math.floor(x);
+    y -= Math.floor(y);
+
+    var u = fade(x);
+    var v = fade(y);
+
+    var n00 = dot(grad3[perm[X + perm[Y]] % 12], x, y);
+    var n01 = dot(grad3[perm[X + perm[Y + 1]] % 12], x, y - 1);
+    var n10 = dot(grad3[perm[X + 1 + perm[Y]] % 12], x - 1, y);
+    var n11 = dot(grad3[perm[X + 1 + perm[Y + 1]] % 12], x - 1, y - 1);
+
+    return mix(mix(n00, n10, u), mix(n01, n11, v), v);
+  }
+
+  module.exports = { perlin2 };
+
+  global.noise = module.exports;
+}(this));
+		</script>
+    
+    <script>
+      // Registering the Perlin landscape component
+      AFRAME.registerComponent('perlin-landscape', {
+        schema: {
+          width: { type: 'number', default: 10 },
+          height: { type: 'number', default: 10 },
+          segments: { type: 'int', default: 32 },
+          noiseScale: { type: 'number', default: 0.1 },
+          amplitude: { type: 'number', default: 2 },
+          positionOffset: { type: 'vec3', default: {x: 0, y: 0, z: 0} }
+        },
+
+        init: function () {
+          const data = this.data;
+          const el = this.el;
+
+          // Create a plane geometry
+          const geometry = new THREE.PlaneGeometry(data.width, data.height, data.segments, data.segments);
+          
+          // Apply Perlin noise to the vertices using world positions
+          const vertices = geometry.attributes.position.array;
+          for (let i = 0; i < vertices.length; i += 3) {
+            const x = vertices[i] + data.positionOffset.x;
+            const y = vertices[i + 1] + data.positionOffset.y;
+            const z = noise.perlin2(x * data.noiseScale, y * data.noiseScale) * data.amplitude;
+            vertices[i + 2] = z;
+          }
+
+          geometry.attributes.position.needsUpdate = true;
+          geometry.computeVertexNormals();
+
+          // Create a mesh with the modified geometry
+          const material = new THREE.MeshStandardMaterial({ color: '#228B22', wireframe: false });
+          const mesh = new THREE.Mesh(geometry, material);
+
+          // Add the mesh to the entity
+          el.setObject3D('mesh', mesh);
+        }
+      });
+
+      // JavaScript to dynamically generate the Perlin planes
+      function createPerlinPlanes(containerId, numPlanes, planeSize, segments, noiseScale, amplitude) {
+        const container = document.querySelector(containerId);
+
+        for (let x = -Math.floor(numPlanes / 2); x <= Math.floor(numPlanes / 2); x++) {
+          for (let z = -Math.floor(numPlanes / 2); z <= Math.floor(numPlanes / 2); z++) {
+            const plane = document.createElement('a-entity');
+            const positionOffset = {
+              x: x * planeSize,
+              y: 0,
+              z: z * planeSize
+            };
+            plane.setAttribute('perlin-landscape', `width: ${planeSize}; height: ${planeSize}; segments: ${segments}; noiseScale: ${noiseScale}; amplitude: ${amplitude}; positionOffset: ${JSON.stringify(positionOffset)}`);
+            plane.setAttribute('position', `${x * planeSize} 0 ${z * planeSize}`);
+            container.appendChild(plane);
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        createPerlinPlanes('#perlin-landscape-container', 3, 10, 32, 0.1, 2);
+      });
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <!-- Any additional assets can be defined here -->
+      </a-assets>
+      
+      <!-- Sky and light sources -->
+      <a-sky color="#87CEEB"></a-sky>
+      <a-light type="directional" position="-1 2 1" intensity="0.5"></a-light>
+      <a-light type="ambient" intensity="0.3"></a-light>
+      
+      <!-- Container to hold the dynamically generated planes -->
+      <a-entity id="perlin-landscape-container"></a-entity>
+    </a-scene>
+  </body>
+</html>
