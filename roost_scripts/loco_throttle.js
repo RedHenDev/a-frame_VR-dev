@@ -22,13 +22,13 @@ let VRclone= false;
 console.log('Throttle script init.')
 
 // Gravity could go here.
-// gravityON false when grounded.
-let gravityON=true;
+// isGrounded relates to gravity_v1 raycast.
+let isGrounded=false;
 let flyMode=true;
 function gravity(_rigY){
 	// The way to do that which the body, the nature,
 	// may not necessarily wish to do. E.g. 10K run.
-	if (flyMode)return;
+	if (flyMode || isGrounded)return;
 	ySub = _rigY.position.y -= 0.8;
 }
 
@@ -229,7 +229,7 @@ AFRAME.registerComponent('locomotion', {
 					}
 					
 					// Let's try gravity here.
-					if (gravityON && !flyMode)
+					if (!isGrounded && !flyMode)
 						{gravity(this.rig);}
 					
           // Finally, move pos of rig.

@@ -63,7 +63,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			j6
+    			j7
   				</div>
 				</div>
 			</div>
@@ -79,10 +79,10 @@ started
 			}
 		</script>
 		
-    <a-scene fog="type:linear;color:#00FFFF;far:1000;"
+    <a-scene fog="type:linear;color:#00FFFF;far:3000;"
 						 renderer="antialias: true;">
 		
-			<a-light type="directional" light="castShadow:true;" position="1 1 1" intensity="0.5" shadow-camera-automatic="#objects"></a-light>
+<!--			<a-light type="directional" light="castShadow:true;" position="1 1 1" intensity="0.5" shadow-camera-automatic="#objects"></a-light>-->
 			
 			<!-- Allow assets time to load.-->
       <a-assets timeout="6000">
@@ -133,14 +133,14 @@ started
                 camera="far:7000;"
                 position="0 0 0"
                 look-controls
-                locomotion="maxSpeed:0.1;
-														acceleration:0.001;"
+                locomotion="maxSpeed:0.8;
+														acceleration:0.04;"
 								>
 				
 				<script>
 				// Here we can set walk mode etc.
-					flyMode=false;
-					gravityON=true;
+					flyMode=true;
+					isGrounded=false;
 				</script>
 				
 				<!-- Head lamp :) -->
