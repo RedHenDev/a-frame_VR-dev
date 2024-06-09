@@ -1,0 +1,158 @@
+<!-- static space v1 0.1
+started
+9/6/24
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+ 
+		<title>static space</title>
+			
+<!--      <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>-->
+		
+			<script src="aframe.1.6.min.js"></script>
+		
+<!--
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+-->
+		
+			<script src="../roost_scripts/pennyLane.js" defer></script>
+		
+			<!-- NB defer is crucial here! -->
+    	<script src="../roost_scripts/event_listen.js" defer></script>
+
+    	<!-- NB must not defer these scripts, else
+            text will not render to HUD -->
+<!--      <script src="../roost_scripts/HUD.js"></script>-->
+   
+			<script src="../roost_scripts/collision_detector.js"></script>
+			<script src="../roost_scripts/collision_detector_back.js"></script>
+			<script src="../roost_scripts/gravity_v1.js"></script>
+<!--  		<script src="loco_stat.js"></script>-->
+  </head>
+
+  <body>
+		<style>
+		#StartArea {
+			position:fixed;width:100vw;height:100vh;
+			z-index:10000;background-color:rgba(0,255,222,0.8);
+			}
+		.StartButton{
+			position:absolute;
+			top:45vh;left:45vw;
+			width:1vh;
+			}
+
+			.StartButton:hover {
+    animation: bob 0.8s ease-in-out infinite;
+			}
+
+			@keyframes bob {
+    	0% {
+        transform: translateY(0);
+    	}
+    	50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+		</style>
+		
+  		<div id="StartArea">
+				<div class="StartButton">
+					<img src='../roost_assets/images/bloop_fish_1.png' style="position: absolute; width: 256px">
+					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
+    			s-space
+  				</div>
+				</div>
+			</div>
+		<script>
+			// Perhaps here we could have a global paused
+			// variable to control loco?
+			document.querySelector(".StartButton").onclick= function() {
+  		document.querySelector("#StartArea").style.display= "none";
+				const context = new AudioContext();
+				if (context.state !== 'running') {
+    				context.resume();
+  			}			
+			}
+		</script>
+		
+    <a-scene fog="type:linear;color:#00FFFF;far:3000;"
+						 renderer="antialias: true;">
+		
+<!--			<a-light type="directional" light="castShadow:true;" position="1 1 1" intensity="0.5" shadow-camera-automatic="#objects"></a-light>-->
+			
+			<!-- Allow assets time to load.-->
+      <a-assets timeout="3000">
+				
+				<img crossorigin="local" id="iBg"
+						src="../roost_assets/images/blockade/18.jpg">
+				
+				<a-asset-item id="carno"  src="../roost_assets/models/carnotaurus.glb"></a-asset-item>
+				
+				<audio crossorigin="local" id="sAmb" src="../roost_assets/sounds/rising_moon.mp3">
+				</audio>
+				<audio crossorigin="local" id="sTog"
+				src="../roost_assets/sounds/Hit_01.mp3">
+				</audio>
+				
+  		</a-assets>
+			
+			<!--And now our sound manager.-->
+<!--			<a-entity soundmanager></a-entity>-->
+			
+				<!--Hark in our ear.-->
+				<a-entity id="hark" sound="src:#sTog;
+						autoplay:false;volume:0.4;positional:false;">
+				</a-entity>
+
+			<a-sky id="image-360" radius="1024" 
+				 src="#iBg"></a-sky> 
+			
+			<!--Subject's rig starts here.-->
+<!--			Add as component to rig for non-VR controls?-->
+<!--			movement-controls-->
+      <a-entity id="rig" position="0 0 0">
+				
+<!--			Add as component to camera for non-VR wsad-->
+<!--			wasd-controls="acceleration:100"-->
+<!--				Default acceleration 0.001-->
+				
+<!--
+				     locomotion="maxSpeed:0.8;
+														acceleration:0.04;"
+-->
+				
+      <a-entity id="subject" 
+                camera="far:7000;"
+                position="0 0 0"
+                look-controls
+								>
+				
+        <a-entity
+					id="reticle"
+          cursor="fuse:true;fuseTimeout:1000;"
+          raycaster="far: 300; objects:.clickable;"
+          geometry="primitive:ring;radiusInner: 0.04; radiusOuter: 0.08"
+					material="shader:flat;color:green;
+										depthTest:false;
+										transparent:true; opacity:0.3"
+          position="0 0 -1;"
+          animation__fusing="property:scale;from:1 1 1;to:0 0 0;dur:1000;startEvents:fusing;"
+          animation__reset="property:scale;from:0 0 0;to: 1 1 1;dur:333;startEvents:mouseleave;"
+         ></a-entity>
+        
+      </a-entity> <!-- camera/subject end -->
+      </a-entity> <!-- rig end -->
+			
+			<a-gltf-model id="carnot" src="#carno" position="0 -6 9" rotation="0 129 0" scale="2 2 2" visible=""></a-gltf-model>
+			
+    </a-scene>
+		
+		<!-- Firebase code woz 'ere-->
+  </body>
+</html>
