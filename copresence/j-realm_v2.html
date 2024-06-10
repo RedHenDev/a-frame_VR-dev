@@ -63,7 +63,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			j8
+    			j9
   				</div>
 				</div>
 			</div>
@@ -79,7 +79,7 @@ started
 			}
 		</script>
 		
-    <a-scene fog="type:linear;color:#00FFFF;far:3000;"
+    <a-scene fog="type:linear;color:#00FFFF;far:1900;"
 						 renderer="antialias: true;">
 		
 <!--			<a-light type="directional" light="castShadow:true;" position="1 1 1" intensity="0.5" shadow-camera-automatic="#objects"></a-light>-->
@@ -121,6 +121,14 @@ started
 				<a-entity id="hark" sound="src:#sTog;
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
+			
+				<!-- Lights. -->
+			<a-sphere
+							 	light="type:point;color:orange" 
+							 	material="shader:flat; color:orange;opacity:0.5;
+													transparent:true" 
+				 			 	position="0 255 -128" radius="64">
+			</a-sphere>
 
 			<!--Subject's rig starts here.-->
 <!--			Add as component to rig for non-VR controls?-->
@@ -131,7 +139,7 @@ started
 <!--			wasd-controls="acceleration:100"-->
 <!--				Default acceleration 0.001-->
       <a-entity id="subject" 
-                camera="far:7000;"
+                camera="far:12000;"
                 position="0 0 0"
                 look-controls
                 locomotion="maxSpeed:0.8;
@@ -140,7 +148,7 @@ started
 				
 				<script>
 				// Here we can set walk mode etc.
-					flyMode=true;
+					flyMode=false;
 					isGrounded=false;
 				</script>
 				
