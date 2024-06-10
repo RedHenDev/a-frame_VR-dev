@@ -1,8 +1,7 @@
 /* Custom A-Frame component
-Jan 2023 - red_hen_dev
+June 2024 - red_hen_dev
 
-Locomotion component 'copresence' version
-for use with firebase realtime db
+Built on top of locomotion component 'copresence' version for use with firebase realtime db.
 
 */
 
@@ -19,7 +18,7 @@ let rzSub=0.0;
 // Need to refactor this global solution.
 let gName = 'NEMO';
 let VRclone= false;
-console.log('Throttle script init.')
+console.log('Throttle_static script init.')
 
 // Gravity could go here.
 // isGrounded relates to gravity_v1 raycast.
@@ -115,7 +114,7 @@ AFRAME.registerComponent('locomotion', {
 						}
 					});
 					document.addEventListener('keyup', event => {
-						if (event.key === 'g') {
+						if (event.key === 'f') {
 							//toggleAttempt=true;
 							//this.engineOn=false;
 							//this.update();
@@ -167,8 +166,8 @@ AFRAME.registerComponent('locomotion', {
 					
 					
 					// Throttle test. Negative.
-					if ((ws < -minZ-0.5 && ws > -maxZ-0.5) ||
-							(ws < -minZ2-0.5 && ws > -maxZ2-0.5)
+					if ((ws < -minZ && ws > -maxZ) ||
+							(ws < -minZ2 && ws > -maxZ2)
 						 || toggleAttempt)
 					{
 							// Low number, since no
@@ -231,11 +230,6 @@ AFRAME.registerComponent('locomotion', {
 					// Let's try gravity here.
 					if (!isGrounded && !flyMode)
 						{gravity(this.rig);}
-					
-					// Non-fly mode slower.
-					if (!flyMode){
-						speedNow*=0.09;
-					}
 					
           // Finally, move pos of rig.
           // NB move rig, not camera.

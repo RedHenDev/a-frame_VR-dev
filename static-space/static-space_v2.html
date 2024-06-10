@@ -1,21 +1,23 @@
-<!-- j-realm v2 0.1
+<!-- static space v2 0.1
 started
-1/6/24
+10/6/24
 -->
 
 <!DOCTYPE html>
 <html>
   <head>
  
-		<title>j-realm</title>
+		<title>static space</title>
 			
-      <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+<!--      <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>-->
 		
+			<script src="aframe.1.6.min.js"></script>
+		
+<!--
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+-->
 		
 			<script src="../roost_scripts/pennyLane.js" defer></script>
-		
-<!--		<script src="../roost_scripts/perlin_planes_v1.js" defer></script>-->
 		
 			<!-- NB defer is crucial here! -->
     	<script src="../roost_scripts/event_listen.js" defer></script>
@@ -23,11 +25,11 @@ started
     	<!-- NB must not defer these scripts, else
             text will not render to HUD -->
 <!--      <script src="../roost_scripts/HUD.js"></script>-->
-      <script src="../roost_scripts/ray_visible.js"></script>
+   
 			<script src="../roost_scripts/collision_detector.js"></script>
 			<script src="../roost_scripts/collision_detector_back.js"></script>
 			<script src="../roost_scripts/gravity_v1.js"></script>
-  		<script src="../roost_scripts/loco_throttle.js"></script>
+  		<script src="throttle_static.js"></script>
   </head>
 
   <body>
@@ -61,9 +63,9 @@ started
 		
   		<div id="StartArea">
 				<div class="StartButton">
-					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
+					<img src='../roost_assets/images/bloop_fish_1.png' style="position: absolute; width: 256px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			j7
+    			2space
   				</div>
 				</div>
 			</div>
@@ -85,31 +87,18 @@ started
 <!--			<a-light type="directional" light="castShadow:true;" position="1 1 1" intensity="0.5" shadow-camera-automatic="#objects"></a-light>-->
 			
 			<!-- Allow assets time to load.-->
-      <a-assets timeout="6000">
+      <a-assets timeout="3000">
 				
-				<img crossorigin="local" id="iCap2d" src="../roost_assets/images/cap_two-demons.png">
+				<img crossorigin="local" id="iBg"
+						src="../roost_assets/images/blockade/18.jpg">
 				
-				<a-asset-item crossorigin="local" id="avatar" src="../roost_assets/models/marvels_future_fight_-_captain_america/scene.gltf"></a-asset-item>
-				<script>
-					// To sync avatar model with index.js
-					const avatarScale='1 1 1';
-					const avatarPosition='0 0 0';
-					const avatarRotation='0 180 0';
-					const avatarType='a-gltf-model';
-				</script>
+				<a-asset-item id="carno"  src="../roost_assets/models/carnotaurus.glb"></a-asset-item>
 				
-<!--
 				<audio crossorigin="local" id="sAmb" src="../roost_assets/sounds/rising_moon.mp3">
 				</audio>
--->
 				<audio crossorigin="local" id="sTog"
 				src="../roost_assets/sounds/Hit_01.mp3">
 				</audio>
-				<a-asset-item crossorigin="local" id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>
-<!--				<a-asset-item crossorigin="local" id="mWuds" src="../roost_assets/models/spiral_city_alpha/scene.gltf"></a-asset-item>-->
-				
-				<img crossorigin="local" id="iCap_v1"
-						 src="../roost_assets/images/cap_v1.png">
 				
   		</a-assets>
 			
@@ -121,78 +110,34 @@ started
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
 
+			<a-sky id="image-360" radius="1024" 
+				 src="#iBg"></a-sky> 
+			
 			<!--Subject's rig starts here.-->
 <!--			Add as component to rig for non-VR controls?-->
 <!--			movement-controls-->
-      <a-entity id="rig" position="0 90 0">
+      <a-entity id="rig" position="0 0 0">
 				
 <!--			Add as component to camera for non-VR wsad-->
 <!--			wasd-controls="acceleration:100"-->
 <!--				Default acceleration 0.001-->
+				
       <a-entity id="subject" 
                 camera="far:7000;"
                 position="0 0 0"
                 look-controls
-                locomotion="maxSpeed:0.8;
+								locomotion="maxSpeed:0.8;
 														acceleration:0.04;"
 								>
-				
-				<script>
-				// Here we can set walk mode etc.
-					flyMode=true;
-					isGrounded=false;
-				</script>
-				
-				<!-- Head lamp :) -->
-<!--
-				<a-sphere
-							 	light="type:point;color:green" 
-							 	material="shader:flat; color:orange;opacity:0.5;
-													transparent:true" 
-				 			 	position="-2 3 -4" radius="0.4"
-								>
-				</a-sphere>
-				<a-sphere
-							 	light="type:point;color:purple" 
-							 	material="shader:flat; color:orange;opacity:0.5;
-													transparent:true" 
-				 			 	position="2 3 -4" radius="0.4"
-								>
-				</a-sphere>
--->
-				
-<!--		Collision detection. Forward.-->
-<!--		Need to add the raycaster etc via script.-->
-				<a-entity
-					raycaster="far: 5; 
-										 objects:.solid;
-										 "
-					collision-detector
-					
-				></a-entity>
-				<a-entity
-					raycaster="far: 3; 
-										 objects:.solid;
-										 direction:0 0 1;
-										 "
-					collision-detector-back
-				></a-entity>
-				<a-entity
-					raycaster="far: 4; 
-										 direction: 0 -1 0;
-										 objects:.solid;
-										 "
-					collision-gravity
-				></a-entity>
 				
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:1000;"
           raycaster="far: 300; objects:.clickable;"
           geometry="primitive:ring;radiusInner: 0.04; radiusOuter: 0.08"
-					material="shader:flat;color:red;
+					material="shader:flat;color:green;
 										depthTest:false;
-										transparent:true; opacity:0.5"
+										transparent:true; opacity:0.3"
           position="0 0 -1;"
           animation__fusing="property:scale;from:1 1 1;to:0 0 0;dur:1000;startEvents:fusing;"
           animation__reset="property:scale;from:0 0 0;to: 1 1 1;dur:333;startEvents:mouseleave;"
@@ -201,20 +146,10 @@ started
       </a-entity> <!-- camera/subject end -->
       </a-entity> <!-- rig end -->
 			
-			<a-gltf-model src="#cityModel" class="solid" position="" rotation="" scale="64 64 64" visible="" ></a-gltf-model>
-			
-			<!-- Giant paintings -->
-			<a-plane id="capBill1" src="#iCap_v1"  
-							 position="-200 10 -42" rotation="0 90 0"
-							 scale="160 90" material="shader:flat;"></a-plane>
-			<a-plane id="capBill2" src="#iCap2d"  
-							 position="-400 10 -42" rotation="0 90 0"
-							 scale="160 90" material="shader:flat;"></a-plane>
+			<a-gltf-model id="carnot" src="#carno" position="0 -6 9" rotation="0 129 0" scale="2 2 2" visible=""></a-gltf-model>
 			
     </a-scene>
 		
 		<!-- Firebase code woz 'ere-->
-		<script type='module' src="src/index.js"></script>
   </body>
 </html>
-
