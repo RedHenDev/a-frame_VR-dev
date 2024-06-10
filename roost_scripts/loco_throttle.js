@@ -89,8 +89,6 @@ AFRAME.registerComponent('locomotion', {
 							this.data.engine=true;
 							this.maxS+=this.acc;
 							this.update();
-//							this.reticle.
-//							setAttribute('material','color:lime');
 						}
 						else if (event.key === 'ArrowDown' ||
 						  event.key === 's') {
@@ -99,8 +97,6 @@ AFRAME.registerComponent('locomotion', {
 							// Reset max speed.
 							this.maxS=this.maxS_orig;
 							this.update();
-//							this.reticle.
-//							setAttribute('material','color:red');
 						}
 					});
 					document.addEventListener('keyup', event => {
@@ -109,18 +105,13 @@ AFRAME.registerComponent('locomotion', {
 							//toggleAttempt=true;
 							//this.engineOn=false;
 							this.data.engine=false;
-							//this.update();
-							this.reticle.
-							setAttribute('material','color:red');
+							this.update();
 						}
 					});
 					document.addEventListener('keyup', event => {
 						if (event.key === 'g') {
-							//toggleAttempt=true;
-							//this.engineOn=false;
-							//this.update();
-							
 							flyMode=!flyMode;
+							this.update();
 						}
 					});
 					
@@ -130,10 +121,18 @@ AFRAME.registerComponent('locomotion', {
 					if (this.data.engine){
 						this.reticle.
 							setAttribute('material','color:lime');
+						if (!flyMode){
+						this.reticle.
+							setAttribute('material','color:cyan');
+						}
 					}
 					else{
 						this.reticle.
 							setAttribute('material','color:red');
+							if (!flyMode){
+						this.reticle.
+							setAttribute('material','color:blue');
+						}
 						 //And reset max speed.
 						//this.maxS=this.maxS_orig;
 					}
@@ -165,10 +164,9 @@ AFRAME.registerComponent('locomotion', {
 					const acc=this.acc; // Default 0.002.
 					//const acc=this.data.acceleration;
 					
-					
 					// Throttle test. Negative.
-					if ((ws < -minZ-0.5 && ws > -maxZ-0.5) ||
-							(ws < -minZ2-0.5 && ws > -maxZ2-0.5)
+					if ((ws < -minZ-0.3 && ws > -maxZ-0.3) ||
+							(ws < -minZ2-0.3 && ws > -maxZ2-0.3)
 						 || toggleAttempt)
 					{
 							// Low number, since no
@@ -181,8 +179,6 @@ AFRAME.registerComponent('locomotion', {
 							
 							this.timeStamp=Date.now();
 							
-							this.reticle.
-							setAttribute('material','color:blue');
 							this.hark.components.sound.playSound();
 							flyMode=!flyMode;
 							

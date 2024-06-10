@@ -1,7 +1,8 @@
 /* Custom A-Frame component
-June 2024 - red_hen_dev
+Jan 2023 - red_hen_dev
 
-Built on top of locomotion component 'copresence' version for use with firebase realtime db.
+Locomotion component 'copresence' version
+for use with firebase realtime db
 
 */
 
@@ -18,7 +19,7 @@ let rzSub=0.0;
 // Need to refactor this global solution.
 let gName = 'NEMO';
 let VRclone= false;
-console.log('Throttle_static script init.')
+console.log('Throttle script init.')
 
 // Gravity could go here.
 // isGrounded relates to gravity_v1 raycast.
@@ -88,8 +89,6 @@ AFRAME.registerComponent('locomotion', {
 							this.data.engine=true;
 							this.maxS+=this.acc;
 							this.update();
-//							this.reticle.
-//							setAttribute('material','color:lime');
 						}
 						else if (event.key === 'ArrowDown' ||
 						  event.key === 's') {
@@ -98,8 +97,6 @@ AFRAME.registerComponent('locomotion', {
 							// Reset max speed.
 							this.maxS=this.maxS_orig;
 							this.update();
-//							this.reticle.
-//							setAttribute('material','color:red');
 						}
 					});
 					document.addEventListener('keyup', event => {
@@ -108,18 +105,13 @@ AFRAME.registerComponent('locomotion', {
 							//toggleAttempt=true;
 							//this.engineOn=false;
 							this.data.engine=false;
-							//this.update();
-							this.reticle.
-							setAttribute('material','color:red');
+							this.update();
 						}
 					});
 					document.addEventListener('keyup', event => {
-						if (event.key === 'f') {
-							//toggleAttempt=true;
-							//this.engineOn=false;
-							//this.update();
-							
+						if (event.key === 'g') {
 							flyMode=!flyMode;
+							this.update();
 						}
 					});
 					
@@ -129,10 +121,18 @@ AFRAME.registerComponent('locomotion', {
 					if (this.data.engine){
 						this.reticle.
 							setAttribute('material','color:lime');
+						if (!flyMode){
+						this.reticle.
+							setAttribute('material','color:cyan');
+						}
 					}
 					else{
 						this.reticle.
 							setAttribute('material','color:red');
+							if (!flyMode){
+						this.reticle.
+							setAttribute('material','color:blue');
+						}
 						 //And reset max speed.
 						//this.maxS=this.maxS_orig;
 					}
@@ -164,10 +164,9 @@ AFRAME.registerComponent('locomotion', {
 					const acc=this.acc; // Default 0.002.
 					//const acc=this.data.acceleration;
 					
-					
 					// Throttle test. Negative.
-					if ((ws < -minZ && ws > -maxZ) ||
-							(ws < -minZ2 && ws > -maxZ2)
+					if ((ws < -minZ-0.3 && ws > -maxZ-0.3) ||
+							(ws < -minZ2-0.3 && ws > -maxZ2-0.3)
 						 || toggleAttempt)
 					{
 							// Low number, since no
@@ -180,8 +179,6 @@ AFRAME.registerComponent('locomotion', {
 							
 							this.timeStamp=Date.now();
 							
-							this.reticle.
-							setAttribute('material','color:blue');
 							this.hark.components.sound.playSound();
 							flyMode=!flyMode;
 							
@@ -230,6 +227,11 @@ AFRAME.registerComponent('locomotion', {
 					// Let's try gravity here.
 					if (!isGrounded && !flyMode)
 						{gravity(this.rig);}
+					
+					// Non-fly mode slower.
+					if (!flyMode){
+						speedNow*=0.09;
+					}
 					
           // Finally, move pos of rig.
           // NB move rig, not camera.
