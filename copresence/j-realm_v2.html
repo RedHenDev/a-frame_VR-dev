@@ -19,6 +19,7 @@ started
 		
 			<!-- NB defer is crucial here! -->
     	<script src="../roost_scripts/event_listen.js" defer></script>
+			<script src="../roost_scripts/websling_v1.js" defer></script>
 
     	<!-- NB must not defer these scripts, else
             text will not render to HUD -->
@@ -63,7 +64,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			j9
+    			j10
   				</div>
 				</div>
 			</div>
@@ -139,7 +140,7 @@ started
 <!--			wasd-controls="acceleration:100"-->
 <!--				Default acceleration 0.001-->
       <a-entity id="subject" 
-                camera="far:12000;"
+                camera="far:7000;"
                 position="0 0 0"
                 look-controls
                 locomotion="maxSpeed:0.8;
@@ -197,7 +198,7 @@ started
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:1000;"
-          raycaster="far: 300; objects:.clickable;"
+          raycaster="far: 300; objects:.solid;"
           geometry="primitive:ring;radiusInner: 0.04; radiusOuter: 0.08"
 					material="shader:flat;color:red;
 										depthTest:false;
@@ -210,7 +211,7 @@ started
       </a-entity> <!-- camera/subject end -->
       </a-entity> <!-- rig end -->
 			
-			<a-gltf-model src="#cityModel" class="solid" position="" rotation="" scale="64 64 64" visible="" ></a-gltf-model>
+			<a-gltf-model src="#cityModel" class="solid" web-sling position="" rotation="" scale="64 64 64" visible="" ></a-gltf-model>
 			
 			<!-- glFT test. Model city found online.-->
 <!--			<a-gltf-model src="#mWuds" position="0 -128 0" rotation="0 0 0" scale="1023 1023 1023"  visible="" class="solid"></a-gltf-model>-->

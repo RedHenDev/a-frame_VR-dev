@@ -51,7 +51,8 @@ AFRAME.registerComponent('fuse-listener', {
 			if (evt.detail.intersection.distance < 2000 &&
 				 evt.target.id!='bigCap'){
 			const myMe = document.querySelector('#subject');
-			const myTar = document.
+			
+				const myTar = document.
 			querySelector('#'+evt.target.id);
 				console.log(myTar.id + ' yanked');
 				// Changing yAnked like this will
