@@ -24,11 +24,12 @@ started
     	<!-- NB must not defer these scripts, else
             text will not render to HUD -->
 <!--      <script src="../roost_scripts/HUD.js"></script>-->
-      <script src="../roost_scripts/ray_visible.js"></script>
+<!--      <script src="../roost_scripts/ray_visible.js"></script>-->
 			<script src="../roost_scripts/collision_detector.js"></script>
 			<script src="../roost_scripts/collision_detector_back.js"></script>
 			<script src="../roost_scripts/gravity_v1.js"></script>
   		<script src="../static-space/web_throttle.js"></script>
+<!--		<script src="../roost_scripts/loco_throttle.js"></script>-->
   </head>
 
   <body>
@@ -86,7 +87,7 @@ started
 <!--			<a-light type="directional" light="castShadow:true;" position="1 1 1" intensity="0.5" shadow-camera-automatic="#objects"></a-light>-->
 			
 			<!-- Allow assets time to load.-->
-      <a-assets timeout="6000">
+      <a-assets timeout="3000">
 				
 				<img crossorigin="local" id="iCap2d" src="../roost_assets/images/cap_two-demons.png">
 				
@@ -141,52 +142,27 @@ started
 <!--				Default acceleration 0.001-->
       <a-entity id="subject" 
                 camera="far:7000;"
-                position="0 0 0"
+                position="0 0 0;"
                 look-controls
                 web-locomotion="maxSpeed:0.8;
 														acceleration:0.04;"
 								>
-				
 				<script>
 				// Here we can set walk mode etc.
 					flyMode=true;
 					isGrounded=false;
 				</script>
 				
-				<!-- Head lamp :) -->
-<!--
-				<a-sphere
-							 	light="type:point;color:green" 
-							 	material="shader:flat; color:orange;opacity:0.5;
-													transparent:true" 
-				 			 	position="-2 3 -4" radius="0.4"
-								>
-				</a-sphere>
-				<a-sphere
-							 	light="type:point;color:purple" 
-							 	material="shader:flat; color:orange;opacity:0.5;
-													transparent:true" 
-				 			 	position="2 3 -4" radius="0.4"
-								>
-				</a-sphere>
--->
-				
-<!--		Collision detection. Forward.-->
+      <!--		Collision detection. Forward.-->
 <!--		Need to add the raycaster etc via script.-->
 				<a-entity
 					raycaster="far: 5; 
 										 objects:.solid;
-										 "
+										 direction:0 0 -1"
 					collision-detector
 					
 				></a-entity>
-				<a-entity
-					raycaster="far: 3; 
-										 objects:.solid;
-										 direction:0 0 1;
-										 "
-					collision-detector-back
-				></a-entity>
+				
 				<a-entity
 					raycaster="far: 4; 
 										 direction: 0 -1 0;
@@ -198,7 +174,7 @@ started
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:1000;"
-          
+          raycaster="far: 300; objects:.solid;"
           geometry="primitive:ring;radiusInner: 0.04; radiusOuter: 0.08"
 					material="shader:flat;color:red;
 										depthTest:false;

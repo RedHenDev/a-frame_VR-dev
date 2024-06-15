@@ -123,8 +123,6 @@ started
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
 
-			
-			
 			<!--Subject's rig starts here.-->
 <!--			Add as component to rig for non-VR controls?-->
 <!--			movement-controls-->
@@ -154,7 +152,6 @@ started
 					collision-detector
 					
 				></a-entity>
-<!--
 				<a-entity
 					raycaster="far: 3; 
 										 objects:.solid;
@@ -162,7 +159,6 @@ started
 										 "
 					collision-detector-back
 				></a-entity>
--->
 				<a-entity
 					raycaster="far: 4; 
 										 direction: 0 -1 0;
@@ -174,7 +170,7 @@ started
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:1000;"
-          raycaster="far: 300; objects:.solid;"
+          raycaster="far: 300;"
           geometry="primitive:ring;radiusInner: 0.04; radiusOuter: 0.08"
 					material="shader:flat;color:red;
 										depthTest:false;
