@@ -20,12 +20,12 @@ let rzSub=0.0;
 // Need to refactor this global solution.
 let gName = 'NEMO';
 let VRclone= false;
-console.log('web-throttle script init.')
+console.log('web throttle script init.')
 
 // Gravity could go here.
 // isGrounded relates to gravity_v1 raycast.
 let isGrounded=false;
-let flyMode=false;
+let flyMode=true;
 function gravity(_rigY){
 	// The way to do that which the body, the nature,
 	// may not necessarily wish to do. E.g. 10K run.
@@ -33,16 +33,13 @@ function gravity(_rigY){
 	ySub = _rigY.position.y -= 0.8;
 }
 
-AFRAME.registerComponent('web-locomotion', {
+AFRAME.registerComponent('locomotion', {
 				schema: {
 					maxSpeed: {type: 'number', default:0.1},
 					acceleration: {type: 'number', default:0.01},
 					engine:{type: 'boolean',default:false},
 					vel:{type:'number',default:0.0}
 				},
-	
-	
-				
 	
         init: function () {
           //console.log(this.data);
@@ -118,20 +115,14 @@ AFRAME.registerComponent('web-locomotion', {
 							this.update();
 						}
 					});
-					
-					// Sling!
 					document.addEventListener('keyup', event => {
 						if (event.key === 'e') {
-							// We could record current direction
-					// and propel?
-					this.data.vel+=9.0;
-					// This for updating colour of reticle.
-					this.update();
+							this.data.vel+=9;
 						}
 					});
 					
         },
-	
+  
 				update: function(){
 					if (this.data.engine){
 						this.reticle.
@@ -195,14 +186,8 @@ AFRAME.registerComponent('web-locomotion', {
 							this.timeStamp=Date.now();
 							
 							this.hark.components.sound.playSound();
-							// We could record current direction
-					// and propel?
-					this.data.vel+=9.0;
-					// This for updating colour of reticle.
-					this.update();
-							
-							// Update to sort reticle colour.
-							this.update();
+							this.data.vel+=9;
+						
 					}
 					}
 					

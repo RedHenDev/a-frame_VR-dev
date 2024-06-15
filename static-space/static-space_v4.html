@@ -35,7 +35,7 @@ started
 			<script src="../roost_scripts/collision_detector.js"></script>
 			<script src="../roost_scripts/collision_detector_back.js"></script>
 			<script src="../roost_scripts/gravity_v1.js"></script>
-  		<script src="throttle_static.js"></script>
+  		<script src="../static-space/web_throttle.js"></script>
   </head>
 
   <body>
@@ -88,7 +88,8 @@ started
 		</script>
 		
 <!--		fog="type:linear;color:#00aaFF;far:300;"-->
-    <a-scene renderer="antialias: true;">
+     <a-scene fog="type:linear;color:#00FFFF;far:1900;"
+						 renderer="antialias: true;">
 		
 <!--			<a-light type="directional" light="castShadow:true;" position="1 1 1" intensity="0.5" shadow-camera-automatic="#objects"></a-light>-->
 			
@@ -128,18 +129,18 @@ started
 <!--			movement-controls-->
       <a-entity id="rig" position="0 0 0">
 				
-				<a-sky material="color: #00AAFF" radius="11000"></a-sky> 
+				<a-sky material="color: #00AAFF" radius="1100"></a-sky> 
 				
       <a-entity id="subject" 
                 camera="far:12000;"
-                position="0 0 0"
+                position="0 12 0"
                 look-controls
                 locomotion="maxSpeed:0.8;
 														acceleration:0.04;"
 								>
 				<script>
 				// Here we can set walk mode etc.
-					flyMode=false;
+					flyMode=true;
 					isGrounded=false;
 				</script>
 				
@@ -188,7 +189,11 @@ started
 					<!-- glFT test. Model city found online.-->
 <!--			<a-gltf-model src="#mWuds" position="0 -128 0" rotation="0 0 0" scale="1023 1023 1023"  visible="" class="solid" ></a-gltf-model>-->
 			
-			<a-gltf-model src="#cityModel" class="solid" position="" rotation="" scale="64 64 64" visible="" 
+			<a-gltf-model src="#cityModel" class="solid"  position="" rotation="" scale="64 64 64" visible="" 
+			 ></a-gltf-model>
+			<a-gltf-model src="#cityModel" class="solid"  position="0 -0.3 0" rotation="0 45 0" scale="64 64 64" visible="" 
+			 ></a-gltf-model>
+			<a-gltf-model src="#cityModel" class="solid"  position="0 -0.6 400" rotation="0 180 0" scale="64 64 64" visible="" 
 			 ></a-gltf-model>
 			
     </a-scene>

@@ -144,7 +144,7 @@ started
                 camera="far:7000;"
                 position="0 0 0;"
                 look-controls
-                web-locomotion="maxSpeed:0.8;
+                locomotion="maxSpeed:0.8;
 														acceleration:0.04;"
 								>
 				<script>
@@ -158,13 +158,19 @@ started
 				<a-entity
 					raycaster="far: 5; 
 										 objects:.solid;
-										 direction:0 0 -1"
+										 "
 					collision-detector
 					
 				></a-entity>
-				
 				<a-entity
-					raycaster="far: 4; 
+					raycaster="far: 2; 
+										 objects:.solid;
+										 direction:0 0 1;
+										 "
+					collision-detector-back
+				></a-entity>
+				<a-entity
+					raycaster="far: 5; 
 										 direction: 0 -1 0;
 										 objects:.solid;
 										 "
@@ -174,7 +180,7 @@ started
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:1000;"
-          raycaster="far: 300; objects:.solid;"
+          raycaster="far: 300;"
           geometry="primitive:ring;radiusInner: 0.04; radiusOuter: 0.08"
 					material="shader:flat;color:red;
 										depthTest:false;
@@ -187,7 +193,11 @@ started
       </a-entity> <!-- camera/subject end -->
       </a-entity> <!-- rig end -->
 			
-			<a-gltf-model src="#cityModel" class="solid" position="" rotation="" scale="64 64 64" visible="" 
+			<a-gltf-model src="#cityModel" class="solid"  position="" rotation="" scale="64 64 64" visible="" 
+			 ></a-gltf-model>
+			<a-gltf-model src="#cityModel" class="solid"  position="0 -0.3 0" rotation="0 45 0" scale="64 64 64" visible="" 
+			 ></a-gltf-model>
+			<a-gltf-model src="#cityModel" class="solid"  position="0 -0.6 400" rotation="0 180 0" scale="64 64 64" visible="" 
 			 ></a-gltf-model>
 			
 			<!-- glFT test. Model city found online.-->
