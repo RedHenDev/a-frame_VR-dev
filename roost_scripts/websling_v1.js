@@ -11,6 +11,8 @@ AFRAME.registerComponent('web-sling', {
 			console.log(`${evt.target.id} was clicked at: `, evt.detail.intersection.point);
 			
 			// Experiment. Websling. Worked first time!?
+			// NB the 'bigCap' id is just an e.g. for how
+			// to avoid certain objects if need be.
 			if (evt.detail.intersection.distance < 1000 &&
 				 evt.target.id!='bigCap'){
 			const myMe = document.querySelector('#subject');
@@ -38,7 +40,6 @@ AFRAME.registerComponent('web-sling', {
 					evt.detail.intersection.point.y;
 				
 				this.sceneEl.appendChild(f);
-				
 				
 			}
     });

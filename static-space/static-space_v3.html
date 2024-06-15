@@ -1,13 +1,14 @@
 <!-- static space v3 0.1
 started
 12/6/24
+Made for student who wanted to access Minecraft level.
 -->
 
 <!DOCTYPE html>
 <html>
   <head>
  
-		<title>static space</title>
+		<title>Minecraft VR</title>
 			
 <!--      <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>-->
 		
@@ -93,8 +94,10 @@ started
 				
 				<a-asset-item crossorigin="local" id="carno"  src="../roost_assets/models/carnotaurus.glb"></a-asset-item>
 				
+<!--
 				<audio crossorigin="local" id="sAmb" src="../roost_assets/sounds/rising_moon.mp3">
 				</audio>
+-->
 				<audio crossorigin="local" id="sTog"
 				src="../roost_assets/sounds/Hit_01.mp3">
 				</audio>
@@ -117,12 +120,15 @@ started
 						autoplay:false;volume:0.4;positional:false;">
 				</a-entity>
 
-			<a-sky material="color: #00AAFF"></a-sky> 
+			
 			
 			<!--Subject's rig starts here.-->
 <!--			Add as component to rig for non-VR controls?-->
 <!--			movement-controls-->
       <a-entity id="rig" position="0 0 0">
+				
+				
+				<a-sky material="color: #00AAFF"></a-sky> 
 				
 <!--			Add as component to camera for non-VR wsad-->
 <!--			wasd-controls="acceleration:100"-->
