@@ -19,7 +19,7 @@ started
 		
 			<!-- NB defer is crucial here! -->
     	<script src="../roost_scripts/event_listen.js" defer></script>
-			<script src="../roost_scripts/websling_v1.js" defer></script>
+<!--			<script src="../roost_scripts/websling_v1.js" defer></script>-->
 
     	<!-- NB must not defer these scripts, else
             text will not render to HUD -->
@@ -28,7 +28,7 @@ started
 			<script src="../roost_scripts/collision_detector.js"></script>
 			<script src="../roost_scripts/collision_detector_back.js"></script>
 			<script src="../roost_scripts/gravity_v1.js"></script>
-  		<script src="../roost_scripts/loco_throttle.js"></script>
+  		<script src="../static-space/web_throttle.js"></script>
   </head>
 
   <body>
@@ -64,7 +64,7 @@ started
 				<div class="StartButton">
 					<img src='../roost_assets/images/grass_12.png' style="position: absolute; width: 128px">
 					<div  style="position: absolute; top:4vh; left:2vw; z-index: 1; color: white; font-size: 64px">
-    			j10
+    			j-web
   				</div>
 				</div>
 			</div>
@@ -143,13 +143,13 @@ started
                 camera="far:7000;"
                 position="0 0 0"
                 look-controls
-                locomotion="maxSpeed:0.8;
+                web-locomotion="maxSpeed:0.8;
 														acceleration:0.04;"
 								>
 				
 				<script>
 				// Here we can set walk mode etc.
-					flyMode=false;
+					flyMode=true;
 					isGrounded=false;
 				</script>
 				
@@ -198,7 +198,7 @@ started
         <a-entity
 					id="reticle"
           cursor="fuse:true;fuseTimeout:1000;"
-          raycaster="far: 300; objects:.solid;"
+          
           geometry="primitive:ring;radiusInner: 0.04; radiusOuter: 0.08"
 					material="shader:flat;color:red;
 										depthTest:false;
@@ -212,7 +212,7 @@ started
       </a-entity> <!-- rig end -->
 			
 			<a-gltf-model src="#cityModel" class="solid" position="" rotation="" scale="64 64 64" visible="" 
-			web-sling ></a-gltf-model>
+			 ></a-gltf-model>
 			
 			<!-- glFT test. Model city found online.-->
 <!--			<a-gltf-model src="#mWuds" position="0 -128 0" rotation="0 0 0" scale="1023 1023 1023"  visible="" class="solid"></a-gltf-model>-->

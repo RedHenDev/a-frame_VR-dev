@@ -95,7 +95,9 @@ started
 			<!-- Allow assets time to load.-->
       <a-assets timeout="4000">
 				
-				<a-asset-item crossorigin="local" id="mWuds" src="../roost_assets/models/spiral_city_alpha/scene.gltf"></a-asset-item>
+					<a-asset-item crossorigin="local" id="cityModel" src="../roost_assets/models/VC/VC.gltf"></a-asset-item>
+				
+<!--				<a-asset-item crossorigin="local" id="mWuds" src="../roost_assets/models/spiral_city_alpha/scene.gltf"></a-asset-item>-->
 				
 				<a-asset-item crossorigin="local" id="carno"  src="../roost_assets/models/carnotaurus.glb"></a-asset-item>
 				
@@ -188,7 +190,10 @@ started
 			<a-gltf-model id="carnot" src="#carno" position="0 -35.70554 -0.8104" rotation="0 -126.84655330621783 0" scale="2 2 2" visible=""></a-gltf-model>
 			
 					<!-- glFT test. Model city found online.-->
-			<a-gltf-model src="#mWuds" position="0 -128 0" rotation="0 0 0" scale="1023 1023 1023"  visible="" class="solid" ></a-gltf-model>
+<!--			<a-gltf-model src="#mWuds" position="0 -128 0" rotation="0 0 0" scale="1023 1023 1023"  visible="" class="solid" ></a-gltf-model>-->
+			
+			<a-gltf-model src="#cityModel" class="solid" position="" rotation="" scale="64 64 64" visible="" 
+			 ></a-gltf-model>
 			
     </a-scene>
 		
