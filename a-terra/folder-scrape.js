@@ -53,6 +53,7 @@ async function setupImageAssets() {
         plane.setAttribute('width', '200');
         plane.setAttribute('height', '200');
         plane.setAttribute('material', 'side: double');
+        plane.setAttribute('crossorigin', 'local');
         scene.appendChild(plane);
     });
 
