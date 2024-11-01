@@ -1,8 +1,8 @@
 async function loadLocalImageFiles() {
     try {
         // Get the current script's path
-        //const scriptPath = document.currentScript.src;
-        const scriptPath="/";
+        const scriptPath = document.currentScript.src;
+        //const scriptPath="/a-terra/";
         const baseUrl = scriptPath.substring(0, scriptPath.lastIndexOf('/') + 1);
 
         // Attempt to fetch the directory listing.
