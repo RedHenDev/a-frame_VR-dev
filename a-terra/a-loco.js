@@ -82,6 +82,7 @@ AFRAME.registerComponent('terrain-movement', {
          // Let's try a toggle to the right.
          const RminZ=-0.3;  
          const RmaxZ=-0.5;
+         document.querySelector('#hud-text').setAttribute('value',`${roll}`);
              if ((roll > RminZ && roll < RmaxZ)||this.keys.d){
                  console.log('right toggle!');
          // Log time stamp. This will be for
