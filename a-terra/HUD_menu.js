@@ -58,7 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('HUD ready and waiting...');
         document.querySelector('#b1').addEventListener('statechanged', (event) => {
             console.log('Button state:', event.detail.state);
-            // Do something with the new state
+            const playerEl = document.querySelector('#player');
+            const tmc = playerEl.components['terrain-movement'];
+            tmc.running=!tmc.running;
         });
     }
 });

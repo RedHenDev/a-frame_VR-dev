@@ -82,7 +82,7 @@ AFRAME.registerComponent('terrain-movement', {
          // Let's try a toggle to the right.
          const RminZ=-0.3;  
          const RmaxZ=-0.5;
-             if ((roll > RminZ && roll < RmaxZ)){
+             if ((roll > RminZ && roll < RmaxZ)||this.keys.d){
                  console.log('right toggle!');
          // Log time stamp. This will be for
          // toggling via head z rotations.
@@ -110,8 +110,8 @@ AFRAME.registerComponent('terrain-movement', {
         }
         
         // Are we running?
-        if (this.keys.ShiftLeft) this.running=true;
-        else this.running=false;
+        // if (this.keys.ShiftLeft) this.running=true;
+        // else this.running=false;
 
         // Return fov to normal, i.e. not running.
         if (this.fov<80){this.fov=80;}
