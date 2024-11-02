@@ -79,25 +79,21 @@ AFRAME.registerComponent('terrain-movement', {
         //}
         }
 
-         // Let's try a toggle to the right.
-         const RminZ=-0.3;  
-         const RmaxZ=-0.5;
-         document.querySelector('#hud-text').setAttribute('value',`${roll}`);
-             if ((roll > RminZ && roll < RmaxZ)||this.keys.d){
-                 console.log('right toggle!');
+        // Let's try a toggle to the right.
+        const RminZ=-0.3;  
+        const RmaxZ=-0.5;
+         //document.querySelector('#hud-text').setAttribute('value',`${roll}`);
+        if ((roll < RminZ && roll > RmaxZ)||this.keys.d){
+            console.log('right toggle!');
          // Log time stamp. This will be for
          // toggling via head z rotations.
          // Have 2s elapsed?
-         let cTime = Date.now();
-         if (cTime-this.timeStamp > 2000){
-         
-             // Toggle locomotion.
-             this.timeStamp=Date.now();
-             this.hud.visible=!this.hud.visible;
-             
-         }
-     //}
-     }
+            let cTime = Date.now();
+            if (cTime-this.timeStamp > 2000){
+                this.timeStamp=Date.now();
+                this.hud.visible=!this.hud.visible;
+            }
+        }
 
         
         // Calculate movement direction.
@@ -153,7 +149,7 @@ AFRAME.registerComponent('terrain-movement', {
         //position.y += (this.targetY - position.y) * 0.1;
 
         // Pitch can affect y position...for flight :D
-        position.y += pitch * 0.07*Math.abs(this.velocity.z);
+        position.y += pitch * 0.1*Math.abs(this.velocity.z);
 
         // Prevent falling below present surface.
         if (position.y < this.targetY) position.y = terrainY + this.data.height;
