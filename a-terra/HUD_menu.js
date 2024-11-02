@@ -2,7 +2,7 @@
 // Component to make an entity follow the camera.
 AFRAME.registerComponent('follow-camera', {
   tick: function () {
-    const camera = document.querySelector('#cam');
+    const camera = document.querySelector('#player');
     if (!camera) return;
     
     // Get camera world position.

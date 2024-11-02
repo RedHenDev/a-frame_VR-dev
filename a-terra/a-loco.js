@@ -16,6 +16,7 @@ AFRAME.registerComponent('terrain-movement', {
         this.moveX=0;
 
         this.running=false;
+        this.hud=document.querySelector("#hud");
         
         // Setup key listeners for smoother movement
         this.keys = {
@@ -77,6 +78,29 @@ AFRAME.registerComponent('terrain-movement', {
             }
         //}
         }
+
+         // Let's try a toggle to the right.
+         const RminZ=-0.3;  
+         const RmaxZ=-0.5; 
+             if ((roll > RminZ && roll < RmaxZ)){
+                 console.log('right toggle!');
+         // Log time stamp. This will be for
+         // toggling via head z rotations.
+         // Have 2s elapsed?
+         let cTime = Date.now();
+         if (cTime-this.timeStamp > 2000){
+         
+             // Toggle locomotion.
+             this.timeStamp=Date.now();
+             if (this.hud.visible)
+             this.hud.setAttribute('visible','false');
+            else
+             this.hud.setAttribute('visible','false');
+             
+         }
+     //}
+     }
+
         
         // Calculate movement direction.
         // Have negated sign of 1 here -- before, inverted movement bug.
