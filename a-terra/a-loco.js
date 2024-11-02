@@ -16,7 +16,7 @@ AFRAME.registerComponent('terrain-movement', {
         this.moveX=0;
 
         this.running=false;
-        this.hud=document.querySelector("#hud");
+        this.hud=document.querySelector("#hud").object3D;
         
         // Setup key listeners for smoother movement
         this.keys = {
@@ -81,7 +81,7 @@ AFRAME.registerComponent('terrain-movement', {
 
          // Let's try a toggle to the right.
          const RminZ=-0.3;  
-         const RmaxZ=-0.5; 
+         const RmaxZ=-0.5;
              if ((roll > RminZ && roll < RmaxZ)){
                  console.log('right toggle!');
          // Log time stamp. This will be for
@@ -92,10 +92,7 @@ AFRAME.registerComponent('terrain-movement', {
          
              // Toggle locomotion.
              this.timeStamp=Date.now();
-             if (this.hud.visible)
-             this.hud.setAttribute('visible','false');
-            else
-             this.hud.setAttribute('visible','false');
+             this.hud.visible=!this.hud.visible;
              
          }
      //}
