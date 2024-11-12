@@ -187,12 +187,13 @@ function getTerrainHeight(x, z) {
 // }
 
 function getTerrainColor(height) {
-    // Basic height-based coloring
-    if (height < 0) return '#00A900';     // Deep water
+    // Basic height-based colouring.
+    if (height < -11.5) return '#002222';
+    if (height < 0) return '#222200';     // Deep water
     if (height < 5) return '#00B800';     // Shallow water
     if (height < 10) return '#00C400';    // Beach/Sand
-    if (height < 30) return '#00D800';    // Grass/Plains
-    if (height < 50) return '#00E000';    // Forest
+    if (height < 30) return '#030303';    // Grass/Plains
+    if (height < 50) return '#0B0B0B';    // Forest
     if (height < 70) return '#6B6B6B';    // Mountain
     return '#FFFFFF';                     // Snow peaks
 }
