@@ -1,11 +1,10 @@
 // Procedural terrain generation.
-
-
-
 let ws=prompt('Type a word or phrase to generate\n a new terrain.');
+const worldSeed = getSeed(ws);
 //let ws='ihoooo';
 
 function getSeed(seedWord){
+    if (!seedWord) return 1;
     // 1. Basic djb2 hash - 
         // simple but effective for most cases.
         
@@ -19,7 +18,6 @@ function getSeed(seedWord){
             return hash >>> 0; 
         // Convert to unsigned 32-bit integer.
 }
-
 
 // Perlin noise implementation.
 const noise = {
@@ -116,8 +114,8 @@ function getTerrainHeight(x, z) {
     
     // Large features (mountains and valleys)
     // Original values 0.5 and 24.
-    // General spread multiplier attempt.
-    const gSpread = 1;
+    // General spread multiplier attempt. Default 1.
+    const gSpread = 0.7;
     height += noise.noise(xCoord * 0.1 * gSpread, 0, zCoord * 0.1 * gSpread) * 64;  // Increased from 10.
     
     // Medium features (hills)
@@ -157,11 +155,11 @@ function getTerrainHeight(x, z) {
     }
 
     let biomes=true;
-    let erosion=false;
-    let ridges=false;
+    let erosion=true;
+    let ridges=true;
     // Add biomes.
     if (biomes){
-        height += getBiomeHeight(x,z)
+        height += getBiomeHeight(x,z,gSpread)
     }
     // Add ridges.
     if (ridges){
@@ -177,19 +175,21 @@ function getTerrainHeight(x, z) {
     return height;
 }
 
-// function getTerrainColor(height) {
-//     // Basic height-based coloring
-//     if (height < 0) return '#2039AA';     // Deep water
-//     if (height < 5) return '#3060FF';     // Shallow water
-//     if (height < 10) return '#DACAA0';    // Beach/Sand
-//     if (height < 30) return '#4CAF50';    // Grass/Plains
-//     if (height < 50) return '#276A29';    // Forest
-//     if (height < 70) return '#6B6B6B';    // Mountain
-//     return '#FFFFFF';                     // Snow peaks
-// }
-
 function getTerrainColor(height) {
-    // Basic height-based colouring.
+
+    if (worldSeed!=1){
+    // Grassy height-based colouring.
+    if (height < -11.5) return '#002222';
+    if (height < 0) return '#002200';     
+    if (height < 5) return '#002900';     
+    if (height < 10) return '#003000';    
+    if (height < 30) return '#003800';    
+    if (height < 50) return '#004400';    
+    if (height < 70) return '#6B6B6B';    
+    return '#FFFFFF';
+    }
+    else if (worldSeed===1){
+    // Snowy appearance.
     if (height < -11.5) return '#002222';
     if (height < 0) return '#AAA';     // Deep water
     if (height < 5) return '#BBB';     // Shallow water
@@ -198,6 +198,7 @@ function getTerrainColor(height) {
     if (height < 50) return '#EEE';    // Forest
     if (height < 70) return '#FFFFFF';    // Mountain
     return '#FFFFFF';                     // Snow peaks
+    }
 }
 
 // Terrain generator component.
@@ -207,25 +208,28 @@ AFRAME.registerComponent('terrain-generator', {
     },
 
     init: function() {
+
         noise.init();
         this.chunks = new Map(); // Store generated chunks.
         //let worldName=prompt('name?');
         // Start at -99,999 not 0,0, else gap behind subject.
         //this.worldSeed = this.hashseed(worldName);
         this.generateChunk(-99,999);
-        // Chunksize default 50, not 64.
-        this.chunkSize=88;
+        // Chunksize default 88.
+        this.chunkSize=78;
         // Default number of chunks to gen in one go is 1, not 3.
         this.chunksToGen=2;
 
+        
+
         // Texturing the terrain.
         // First create texture loader. I.e. via THREE.js.
-        const textureLoader = new THREE.TextureLoader();
-        // Load texture from image file.
-        this.texture = textureLoader.load('nrm1.png');
-        this.texture.wrapS = THREE.RepeatWrapping;
-        this.texture.wrapT = THREE.RepeatWrapping;
-        this.texture.repeat.set(22, 22);
+        // const textureLoader = new THREE.TextureLoader();
+        // // Load texture from image file.
+        // this.texture = textureLoader.load('nrm1.png');
+        // this.texture.wrapS = THREE.RepeatWrapping;
+        // this.texture.wrapT = THREE.RepeatWrapping;
+        // this.texture.repeat.set(22, 22);
     },
 
     // hashseed: function(seedString){
@@ -281,7 +285,7 @@ AFRAME.registerComponent('terrain-generator', {
         // Add colours.
         const colors = [];
         for (let i = 0; i < vertices.length; i += 3) {
-            const height = vertices[i + 1]; // Y coordinate is height
+            const height = vertices[i + 1]; // Y coordinate is height.
             const color = new THREE.Color(getTerrainColor(height));
             colors.push(color.r, color.g, color.b);
         }
@@ -292,28 +296,33 @@ AFRAME.registerComponent('terrain-generator', {
         geometry.computeVertexNormals();
         geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
-        // const chunk = new THREE.Mesh(
-        //     geometry,
-        //     new THREE.MeshStandardMaterial({
-        //         color: '#4CAF50',
-        //         roughness: 0.8,
-        //         metalness: 0.2,
-        //         flatShading: true
-        //     })
-        // );
-
-        const chunk = new THREE.Mesh(
+        let chunk;
+        if (worldSeed!=1){
+        chunk = new THREE.Mesh(
+            geometry,
+            new THREE.MeshStandardMaterial({
+                //color: '#4CAF50',
+                vertexColors: true,
+                roughness: 0.8,
+                metalness: 0.2,
+                flatShading: true
+            })
+            );
+        } else if (worldSeed===1) {
+            // Snowy appearance.
+            chunk = new THREE.Mesh(
             geometry,
             new THREE.MeshStandardMaterial({
                 // map: this.texture,
                 //roughnessMap: this.texture,
-                // color: '#4CAF50',
+                //color: '#4CAF50',
                 vertexColors: true,
                 roughness: 0.6,
                 metalness: 0.1,
                 flatShading: true
             })
         );
+        }
 
         this.el.object3D.add(chunk);
         this.chunks.set(`${chunkX},${chunkZ}`, chunk);
@@ -367,11 +376,11 @@ AFRAME.registerComponent('terrain-generator', {
 
 });
 
-function getBiomeHeight(x, z) {
-    const xCoord = x * 0.05;
-    const zCoord = z * 0.05;
+function getBiomeHeight(x, z, gSpread) {
+    const xCoord = x * 0.05 * gSpread;
+    const zCoord = z * 0.05 * gSpread;
     
-    // Biome selection
+    // Biome selection.
     const biomeNoise = noise.noise(xCoord * 0.002, 0, zCoord * 0.002);
     
     let height = 0;
