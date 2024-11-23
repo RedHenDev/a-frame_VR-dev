@@ -31,7 +31,8 @@ AFRAME.registerComponent('forest-system', {
             opacity: 0.9,
             roughness: 0.7,
             metalness: 0.0,
-            flatShading: true
+            flatShading: true,
+            side: THREE.DoubleSide
         });
 
         // Rest of init remains the same
@@ -138,7 +139,7 @@ AFRAME.registerComponent('forest-system', {
             const colors = [];
 
             // Create multiple layers of canopy
-            const layers = 5;
+            const layers = 2;
             const shapesPerLayer = 8;
             
             for (let layer = 0; layer < layers; layer++) {

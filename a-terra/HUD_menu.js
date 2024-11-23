@@ -1,6 +1,7 @@
 const hudParent = document.createElement('a-entity');
 hudParent.setAttribute('generate-hud', '');
 document.querySelector('a-scene').appendChild(hudParent);
+//document.querySelector('#player').appendChild(hudParent);
 
 AFRAME.registerComponent('generate-hud', {
   init: function() {
@@ -9,11 +10,12 @@ AFRAME.registerComponent('generate-hud', {
     const sceneEl = document.querySelector('a-scene');
     hudEntity.setAttribute('id', 'hud');
     hudEntity.setAttribute('follow-camera', '');
+    //hudEntity.setAttribute('position', '0 2 -2');
 
     // Create background panel (plane)
     const panel = document.createElement('a-plane');
-    panel.setAttribute('position', '0 4 -2');
-    panel.setAttribute('rotation', '70 0 0');
+    panel.setAttribute('position', '0 2 -3');
+    panel.setAttribute('rotation', '0 0 0');
     panel.setAttribute('width', '4');
     panel.setAttribute('height', '2');
     panel.setAttribute('material', {
@@ -99,7 +101,7 @@ AFRAME.registerComponent('generate-hud', {
     });
     // Place button out in world, not on Hud. Note lower we append
     // to scene and not Hud.
-    button5.setAttribute('position', "440 12 -365");
+    button5.setAttribute('position', "440 0 -365");
     button5.setAttribute('scale', "12 12 12");
 
     // Add buttons to panel.

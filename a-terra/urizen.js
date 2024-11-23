@@ -185,7 +185,7 @@ function getTerrainColor(height) {
     if (height < 10) return '#003000';    
     if (height < 30) return '#003800';    
     if (height < 50) return '#004400';    
-    if (height < 70) return '#6B6B6B';    
+    if (height < 70) return '#6B776B';    
     return '#FFFFFF';
     }
     else if (worldSeed===1){
@@ -214,13 +214,11 @@ AFRAME.registerComponent('terrain-generator', {
         //let worldName=prompt('name?');
         // Start at -99,999 not 0,0, else gap behind subject.
         //this.worldSeed = this.hashseed(worldName);
-        this.generateChunk(-99,999);
+        this.generateChunk(-99,99);
         // Chunksize default 88.
-        this.chunkSize=78;
+        this.chunkSize=201;
         // Default number of chunks to gen in one go is 1, not 3.
         this.chunksToGen=2;
-
-        
 
         // Texturing the terrain.
         // First create texture loader. I.e. via THREE.js.
@@ -231,22 +229,6 @@ AFRAME.registerComponent('terrain-generator', {
         // this.texture.wrapT = THREE.RepeatWrapping;
         // this.texture.repeat.set(22, 22);
     },
-
-    // hashseed: function(seedString){
-    //     // 1. Basic djb2 hash - 
-    //     // simple but effective for most cases.
-        
-    //     let hash = 5381;
-    //     for (let i = 0; i < seedString.length; i++) 
-    //         {
-    //             hash = ((hash << 5) + hash) +
-    //             seedString.charCodeAt(i);
-    //         }
-    //         console.log(hash >>> 0);
-    //         console.log(hash);
-    //         return hash; 
-    //     // Convert to unsigned 32-bit integer.
-    // },
 
     generateChunk: function(chunkX, chunkZ) {
         const chunkSize = this.chunkSize;
@@ -371,8 +353,6 @@ AFRAME.registerComponent('terrain-generator', {
             }
         }
     }
-
-
 
 });
 
