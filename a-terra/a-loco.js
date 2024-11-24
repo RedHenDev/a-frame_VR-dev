@@ -54,8 +54,12 @@ AFRAME.registerComponent('terrain-movement', {
         document.addEventListener('keyup', (e) => {
             if (e.code === 'Space') {
                 this.hud.visible=!this.hud.visible;
-                this.hud.position.y=2;
-            }
+                if (this.hud.visible){
+                    this.hud.position.y=2;
+                    this.hud.rotation.y=this.cam.rotation.y;
+                    }
+                    else this.hud.position.y=999;
+                }
         });
     },
 
