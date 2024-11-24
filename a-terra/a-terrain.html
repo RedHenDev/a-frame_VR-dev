@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Procedural Terrain larch</title>
+    <title>Procedural Terrain blue-tit</title>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.min.js"></script> -->
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
 
@@ -49,7 +49,7 @@
 
 
         <!-- Player with terrain locomotion system. -->
-        <a-entity id="player" position="0 25 0" terrain-movement="height: 0.2">
+        <a-entity id="player" position="0 25 0" terrain-movement="height: 3.2">
             <a-camera id="cam" wasd-controls="enabled: false" look-controls>
                 <!-- micro HUD Interface -->
                 <a-entity id="micro-hud">
@@ -88,14 +88,14 @@
                 <a-entity raycaster="objects: .clickable;" cursor="rayOrigin: mouse" ></a-entity>
                 <a-entity
 					id="reticle"
-                    cursor="fuse:true;fuseTimeout:1000;"
+                    cursor="fuse:true;fuseTimeout:720;"
                     raycaster="objects:.clickable; far:12;"
                     geometry="primitive:ring;radiusInner: 0.01; radiusOuter: 0.03"
                     material="shader:flat;color:#077;
                                 depthTest:true;
                                 transparent:false; opacity:0.4;"
                     position="0 0 -1;"
-                    animation__fusing="property:scale;from:1 1 1;to:0 0 0;dur:1000;startEvents:fusing;"
+                    animation__fusing="property:scale;from:1 1 1;to:0 0 0;dur:720;startEvents:fusing;"
                     animation__reset="property:scale;from:0 0 0;to: 1 1 1;dur:333;startEvents:mouseleave;"
                 ></a-entity></a-camera>
             <!-- Sky color="#87CEEB"-->
@@ -144,12 +144,8 @@
         <a-entity   terrain-generator 
                     terrain-grass-generator 
                     terrain-plant-generator
-                    terrain-forest-generator
+                    
         ></a-entity>
-
-        <!-- <a-entity forest-system ></a-entity> -->
-
-        <!-- <a-entity position="0 0 0" grass-system="count: 10000; debug: true"></a-entity> -->
 
         <!-- Here is where we load in obj models -->
 
@@ -172,9 +168,14 @@
         <!-- <a-obj-model src="#grave-digger" position ="64 1.8 -42" scale="0.03 0.03 0.03" color="white"></a-obj-model> -->
 
         <a-entity gltf-model="#great-hall"
+                    position ="0 24 -8" 
+                    scale="2 2 2"
+                    rotation="0 63 0"></a-entity>
+
+        <!-- <a-entity gltf-model="#great-hall"
                     position ="0 260 -820" 
                     scale="42 42 42"
-                    rotation="0 63 0"></a-entity>
+                    rotation="0 63 0"></a-entity> -->
         
         <!-- <a-entity gltf-model="#hogz"
                     position ="0 0.453 4" 
@@ -183,7 +184,6 @@
         <!-- Lighting -->
         <a-light type="ambient" color="#888"></a-light> 
         <!-- <a-light id="blinky" type="directional" position="1 1 1" color="#FFF" intensity="1"></a-light> -->
-
 
     </a-scene>
 

@@ -2,12 +2,12 @@ AFRAME.registerComponent('terrain-forest-generator', {
     dependencies: ['terrain-generator'],
 
     schema: {
-        count: { type: 'number', default: 1 },
-        range: { type: 'number', default: 128 },
+        count: { type: 'number', default: 5 },
+        range: { type: 'number', default: 512 },
         minHeight: { type: 'number', default: 12 },
-        maxHeight: { type: 'number', default: 25 },
-        minRadius: { type: 'number', default: 4 },
-        maxRadius: { type: 'number', default: 8.2 },
+        maxHeight: { type: 'number', default: 18 },
+        minRadius: { type: 'number', default: 8 },
+        maxRadius: { type: 'number', default: 12 },
         canopySize: { type: 'number', default: 18 }
     },
 

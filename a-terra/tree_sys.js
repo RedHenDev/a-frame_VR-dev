@@ -28,7 +28,7 @@ AFRAME.registerComponent('forest-system', {
             color: '#1a4314',
             vertexColors: true,
             transparent: true,
-            opacity: 0.9,
+            opacity: 0.7,
             roughness: 0.7,
             metalness: 0.0,
             flatShading: true,

@@ -1,7 +1,7 @@
 // Player movement component with terrain following.
 AFRAME.registerComponent('terrain-movement', {
     schema: {
-        height: {type: 'number', default: 0.2} // Height above ground.
+        height: {type: 'number', default: 2} // Height above ground.
     },
 
     init: function() {
@@ -54,6 +54,7 @@ AFRAME.registerComponent('terrain-movement', {
         document.addEventListener('keyup', (e) => {
             if (e.code === 'Space') {
                 this.hud.visible=!this.hud.visible;
+                this.hud.position.y=2;
             }
         });
     },

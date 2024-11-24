@@ -115,7 +115,7 @@ function getTerrainHeight(x, z) {
     // Large features (mountains and valleys)
     // Original values 0.5 and 24.
     // General spread multiplier attempt. Default 1.
-    const gSpread = 0.7;
+    const gSpread = 0.8;
     height += noise.noise(xCoord * 0.1 * gSpread, 0, zCoord * 0.1 * gSpread) * 64;  // Increased from 10.
     
     // Medium features (hills)
@@ -133,7 +133,7 @@ function getTerrainHeight(x, z) {
         // Create more varied mountains.
         // Default 40, not 160.
         const mountainHeight = (mountainNoise - 0.5) * 2; // 0 to 1
-        const mountainScale = 160 + noise.noise(xCoord * 0.1, 0, zCoord * 0.1) * 20;
+        const mountainScale = 40 + noise.noise(xCoord * 0.1, 0, zCoord * 0.1) * 200;
         height += mountainHeight * mountainScale;
     }
     
@@ -156,7 +156,7 @@ function getTerrainHeight(x, z) {
 
     let biomes=true;
     let erosion=true;
-    let ridges=true;
+    let ridges=false;
     // Add biomes.
     if (biomes){
         height += getBiomeHeight(x,z,gSpread)
@@ -210,11 +210,12 @@ AFRAME.registerComponent('terrain-generator', {
     init: function() {
 
         noise.init();
+        this.player = document.querySelector('#player').object3D;
         this.chunks = new Map(); // Store generated chunks.
         //let worldName=prompt('name?');
         // Start at -99,999 not 0,0, else gap behind subject.
         //this.worldSeed = this.hashseed(worldName);
-        this.generateChunk(-99,99);
+        this.generateChunk(-99,999);
         // Chunksize default 88.
         this.chunkSize=201;
         // Default number of chunks to gen in one go is 1, not 3.
@@ -325,7 +326,8 @@ AFRAME.registerComponent('terrain-generator', {
     },
 
     tick: function() {
-        const player = document.querySelector('#player').object3D;
+        //const player = document.querySelector('#player').object3D;
+        const player = this.player;
         const chunkSize = this.chunkSize;
         
         // Calculate current chunk.

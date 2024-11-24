@@ -246,8 +246,9 @@ AFRAME.registerComponent('plant-system', {
             }
             
             // Add flower with probability
+            // Default flowerHeight 0.25.
             if (Math.random() < this.data.flowerProbability) {
-                const flowerHeight = 0.25 + Math.random() * 0.1;
+                const flowerHeight = 0.9 + Math.random() * 0.1;
                 createFlower(0, flowerHeight, 0, Math.random() * Math.PI * 2);
             }
         };

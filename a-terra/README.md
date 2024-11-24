@@ -15,7 +15,7 @@ To Do & ideas
 
 -bug correct tree trunks
 
--feature double sided canopy
+DONE -feature double sided canopy
 
 -bug correct pitch when at zero?
 

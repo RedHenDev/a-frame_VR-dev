@@ -127,6 +127,9 @@ AFRAME.registerComponent('generate-hud', {
 // Component to make an entity follow the camera.
 AFRAME.registerComponent('follow-camera', {
   tick: function () {
+    // Not visible? Don't move me.
+    if (!this.el.object3D.visible)return;
+
     const camera = document.querySelector('#player');
     if (!camera) return;
     
@@ -141,8 +144,10 @@ AFRAME.registerComponent('follow-camera', {
     
     this.el.object3D.position.copy(worldPos).add(cameraDirection.multiplyScalar(distance));
     
-    // Make HUD face camera
+    // Make HUD face camera.
     this.el.object3D.lookAt(worldPos);
+    if (!this.el.object3D.visible)
+    this.el.object3D.position.y=999;
   }
 });
 
@@ -173,6 +178,7 @@ AFRAME.registerComponent('toggle-button', {
       this.el.emit('statechanged', { state: this.state });
       // Hide menu now.
       this.hud.visible=false;
+      this.hud.position.y=999;
     });
   },
   
