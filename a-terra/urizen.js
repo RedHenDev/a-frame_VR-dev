@@ -111,11 +111,14 @@ function getTerrainHeight(x, z) {
     
     // Base terrain with multiple layers
     let height = 0;
+
+    const gSpread2 = 0.001;
+    height += noise.noise(xCoord * 0.1 * gSpread2, 0, zCoord * 0.1 * gSpread2) * 2048;
     
     // Large features (mountains and valleys)
     // Original values 0.5 and 24.
     // General spread multiplier attempt. Default 1.
-    const gSpread = 0.8;
+    const gSpread = 0.7;
     height += noise.noise(xCoord * 0.1 * gSpread, 0, zCoord * 0.1 * gSpread) * 64;  // Increased from 10.
     
     // Medium features (hills)
@@ -217,9 +220,15 @@ AFRAME.registerComponent('terrain-generator', {
         //this.worldSeed = this.hashseed(worldName);
         this.generateChunk(-99,999);
         // Chunksize default 88.
-        this.chunkSize=201;
+        this.chunkSize=204;
         // Default number of chunks to gen in one go is 1, not 3.
         this.chunksToGen=2;
+
+        // Move player slightly to trigger generation of surrounding
+        // terrain chunks.
+        // Didn't work.
+        // this.player.position.x = 2;
+        // this.player.position.z=2;
 
         // Texturing the terrain.
         // First create texture loader. I.e. via THREE.js.
@@ -311,12 +320,12 @@ AFRAME.registerComponent('terrain-generator', {
         this.chunks.set(`${chunkX},${chunkZ}`, chunk);
         //this.el.setAttribute('shadow');
 
-        // Emit custom event after chunk generation
+        // Emit custom event after chunk generation.
+        // Removed chunk itself as part of the detail (3rd item).
         const event = new CustomEvent('chunk-generated', {
             detail: { 
                 chunkX, 
-                chunkZ, 
-                chunk,
+                chunkZ,
                 offsetX,
                 offsetZ
             }
@@ -352,6 +361,7 @@ AFRAME.registerComponent('terrain-generator', {
                     Math.abs(z - chunkZ) > (this.chunksToGen+1)) {
                 this.el.object3D.remove(chunk);
                 this.chunks.delete(key);
+                //console.log('Chunks away!');
             }
         }
     }

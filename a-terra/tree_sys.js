@@ -1,8 +1,8 @@
 AFRAME.registerComponent('forest-system', {
     // Schema remains the same
     schema: {
-        count: { type: 'number', default: 64 },
-        range: { type: 'number', default: 256 },
+        count: { type: 'number', default: 1 },
+        range: { type: 'number', default: 204 },
         minHeight: { type: 'number', default: 12 },
         maxHeight: { type: 'number', default: 25 },
         minRadius: { type: 'number', default: 0.4 },
@@ -248,8 +248,9 @@ AFRAME.registerComponent('forest-system', {
             const height = this.data.minHeight + Math.random() * (this.data.maxHeight - this.data.minHeight);
             const radius = this.data.minRadius + Math.random() * (this.data.maxRadius - this.data.minRadius);
             
+            // -3 to prevent bole sticking out of terrain.
             const baseTransform = {
-                position: new THREE.Vector3(localX, y, localZ),
+                position: new THREE.Vector3(localX, y-3, localZ),
                 rotation: new THREE.Euler(
                     (Math.random() - 0.5) * 0.2,
                     Math.random() * Math.PI * 2,

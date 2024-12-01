@@ -2,13 +2,13 @@ AFRAME.registerComponent('terrain-plant-generator', {
     dependencies: ['terrain-generator'],
 
     schema: {
-        count: { type: 'number', default: 128 },
-        range: { type: 'number', default: 128 },
-        bladeWidth: { type: 'number', default: 0.09 },
-        minHeight: { type: 'number', default: 0.1 },
-        bladeHeight: { type: 'number', default: 7 },
-        windStrength: { type: 'number', default: 0.1 },
-        windTurbulence: { type: 'number', default: 0.05 }
+        count: { type: 'number', default: 3 },
+        range: { type: 'number', default: 204 },
+        bladeWidth: { type: 'number', default: 0.9 },
+        minHeight: { type: 'number', default: 7 },
+        bladeHeight: { type: 'number', default: 70 },
+        windStrength: { type: 'number', default: 0.001 },
+        windTurbulence: { type: 'number', default: 0.00 }
     },
 
     init: function() {
@@ -61,6 +61,8 @@ AFRAME.registerComponent('terrain-plant-generator', {
         if (this.grassInstances.has(key)) {
             return;
         }
+        // Don't make plants at starting position.
+        if ((chunkX==0 && chunkZ==0)) return;
 
         const grassEntity = document.createElement('a-entity');
         const randomizedRange = this.data.range + 
@@ -73,8 +75,8 @@ AFRAME.registerComponent('terrain-plant-generator', {
             range: randomizedRange,
             bladeWidth: this.data.bladeWidth,
             bladeHeight: this.data.bladeHeight,
-            windStrength: 0.1,
-            windTurbulence: 0.05
+            windStrength: 0.001,
+            windTurbulence: 0.005
         });
 
         const chunkSize = this.terrainGenerator.chunkSize;

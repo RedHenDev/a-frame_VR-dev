@@ -1,7 +1,7 @@
 // Player movement component with terrain following.
 AFRAME.registerComponent('terrain-movement', {
     schema: {
-        height: {type: 'number', default: 2} // Height above ground.
+        height: {type: 'number', default: 4.6} // Height above ground.
     },
 
     init: function() {
@@ -53,14 +53,19 @@ AFRAME.registerComponent('terrain-movement', {
         });
         document.addEventListener('keyup', (e) => {
             if (e.code === 'Space') {
-                this.hud.visible=!this.hud.visible;
-                if (this.hud.visible){
-                    this.hud.position.y=2;
-                    this.hud.rotation.y=this.cam.rotation.y;
-                    }
-                    else this.hud.position.y=999;
-                }
+                this.hudToggle();
+            }
         });
+    },
+
+    hudToggle: function(){
+        this.hud.visible=!this.hud.visible;
+                if (this.hud.visible){
+                this.hud.position.y=2;
+                this.hud.rotation.y=this.cam.rotation.y;
+                }
+                else this.hud.position.y=999;
+            
     },
 
     tick: function(time, delta) {
@@ -71,15 +76,18 @@ AFRAME.registerComponent('terrain-movement', {
         const position = this.rig.position;
         const rotation = this.cam.rotation;
 
+        // Camera controls testing, for VR (and mobile).
+        //if(AFRAME.utils.device.isMobile()){
+            const pitch=rotation.x;
+            const roll=rotation.z;
+
         // Location of co-ords projected to a HUD.
         document.querySelector('#micro-hud-text').setAttribute(
             'value',`${Math.floor(position.x*0.01)} ${Math.floor(position.z*0.01)}`);
         
-        // Camera controls testing, for VR (and mobile).
-        //if(AFRAME.utils.device.isMobile()){
-            const pitch=this.cam.rotation.x;
-            const roll=this.cam.rotation.z;
-
+            // document.querySelector('#micro-hud-text').setAttribute(
+            //     'value',`${pitch}`);
+            
             // Let's try a toggle left.
             const minZ=0.3;  // Default 0.2.
 			const maxZ=0.5; // Default 0.4.
@@ -122,15 +130,10 @@ AFRAME.registerComponent('terrain-movement', {
             let cTime = Date.now();
             if (cTime-this.timeStamp > 2000){
                 this.timeStamp=Date.now();
-                this.hud.visible=!this.hud.visible;
-                // NB Hud buttons still respond if not visible.
-                // Note that the below pause() toggles itself :)
-                //document.querySelector("#hud").pause();
-                // Causes issue of detatching from player.
+                //this.hud.visible=!this.hud.visible;
+                this.hudToggle();
             }
         }
-
-        
 
         // Calculate movement direction.
         // Have negated sign of 1 here -- before, inverted movement bug.
@@ -199,7 +202,8 @@ AFRAME.registerComponent('terrain-movement', {
         //this.lunaBounce=ridges;
         if (this.flying){
             // Pitch can affect y position...for flight :D
-            position.y += pitch*0.06 * Math.abs(this.velocity.z+this.velocity.x);
+            //position.y += pitch*0.06 * Math.abs(this.velocity.z+this.velocity.x);
+            position.y += pitch*0.4*this.moveZ;
         } else if (this.lunaBounce) {
             if (!this.jumping){
                 position.y -= this.presentJumpSpeed;
@@ -233,31 +237,5 @@ AFRAME.registerComponent('terrain-movement', {
             }
             position.y = terrainY + this.data.height;
         }
-    }
-});
-
-
-AFRAME.registerComponent('keyboard-roll', {
-    init: function() {
-        this.camera = this.el.getObject3D('camera');
-        
-        window.addEventListener('keydown', (e) => {
-            if (!this.camera) return;
-            
-            switch(e.key) {
-                case 'q':  // Roll left
-                    this.camera.rotation.z += 0.057;  // radians
-                    //console.log(this.camera.rotation.z);
-                    break;
-                case 'e':  // Roll right
-                    this.camera.rotation.z -= 0.057;  // radians
-                    //console.log(this.camera.rotation.z);
-                    break;
-                case 'r':  // Reset roll
-                    this.camera.rotation.z = 0;
-                    //console.log(this.camera.rotation.z);
-                    break;
-            }
-        });
     }
 });
