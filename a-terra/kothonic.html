@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+<script>
+      AFRAME.registerComponent('crystal-light', {
+        init: function() {
+          this.el.addEventListener('mouseenter', () => {
+            this.el.setAttribute('animation', {
+              property: 'intensity',
+              to: '2',
+              dur: 500
+            });
+          });
+          this.el.addEventListener('mouseleave', () => {
+            this.el.setAttribute('animation', {
+              property: 'intensity',
+              to: '1',
+              dur: 500
+            });
+          });
+        }
+      });
+
+      AFRAME.registerComponent('rotate-slowly', {
+        init: function() {
+          this.el.setAttribute('animation', {
+            property: 'rotation',
+            dur: 10000,
+            dir: 'alternate',
+            easing: 'easeInOutSine',
+            loop: true,
+            to: '0 360 0'
+          });
+        }
+      });
+    </script>
+  </head>
+  <body>
+    
+    <a-scene>
+      <!-- Environment -->
+      <a-assets>
+        <img crossorigin="local" id="stone" src="./assets/snowQueen.png" ></img>
+        <img crossorigin="local" id="gold" src="./assets/duck.png" ></img>
+      </a-assets>
+
+      <!-- Main Hall Structure -->
+      <a-cylinder 
+        position="0 10 0" 
+        radius="15" 
+        height="20" 
+        material="src: #stone; roughness: 0.8; metalness: 0.2; repeat: 8 4"
+        open-ended="true">
+      </a-cylinder>
+
+      <!-- Floor -->
+      <a-circle 
+        position="0 0 0" 
+        radius="15" 
+        rotation="-90 0 0" 
+        material="src: #gold; roughness: 0.3; metalness: 0.7; repeat: 4 4">
+      </a-circle>
+
+      <!-- Ceiling -->
+      <a-circle 
+        position="0 20 0" 
+        radius="15" 
+        rotation="90 0 0" 
+        material="src: #stone; roughness: 0.8; metalness: 0.2; repeat: 4 4">
+      </a-circle>
+
+      <!-- Crystal Columns -->
+      <a-entity position="0 0 0">
+        <a-cylinder 
+          class="crystal-column"
+          position="7 10 7" 
+          radius="0.5" 
+          height="20" 
+          material="color: #88ccff; transparent: true; opacity: 0.6; metalness: 0.9; roughness: 0.1">
+        </a-cylinder>
+        <a-cylinder 
+          class="crystal-column"
+          position="-7 10 7" 
+          radius="0.5" 
+          height="20" 
+          material="color: #88ccff; transparent: true; opacity: 0.6; metalness: 0.9; roughness: 0.1">
+        </a-cylinder>
+        <a-cylinder 
+          class="crystal-column"
+          position="7 10 -7" 
+          radius="0.5" 
+          height="20" 
+          material="color: #88ccff; transparent: true; opacity: 0.6; metalness: 0.9; roughness: 0.1">
+        </a-cylinder>
+        <a-cylinder 
+          class="crystal-column"
+          position="-7 10 -7" 
+          radius="0.5" 
+          height="20" 
+          material="color: #88ccff; transparent: true; opacity: 0.6; metalness: 0.9; roughness: 0.1">
+        </a-cylinder>
+      </a-entity>
+
+      <!-- Crystal Lights -->
+      <a-entity position="0 15 0">
+        <a-sphere 
+          position="5 0 5" 
+          radius="0.3" 
+          material="emissive: #88ccff; emissiveIntensity: 1"
+          light="type: point; color: #88ccff; intensity: 1"
+          crystal-light>
+        </a-sphere>
+        <a-sphere 
+          position="-5 0 5" 
+          radius="0.3" 
+          material="emissive: #88ccff; emissiveIntensity: 1"
+          light="type: point; color: #88ccff; intensity: 1"
+          crystal-light>
+        </a-sphere>
+        <a-sphere 
+          position="5 0 -5" 
+          radius="0.3" 
+          material="emissive: #88ccff; emissiveIntensity: 1"
+          light="type: point; color: #88ccff; intensity: 1"
+          crystal-light>
+        </a-sphere>
+        <a-sphere 
+          position="-5 0 -5" 
+          radius="0.3" 
+          material="emissive: #88ccff; emissiveIntensity: 1"
+          light="type: point; color: #88ccff; intensity: 1"
+          crystal-light>
+        </a-sphere>
+      </a-entity>
+
+      <!-- Central Crystal Formation -->
+      <a-entity position="0 10 0" rotate-slowly>
+        <a-cone 
+          position="0 2 0" 
+          radius-bottom="1.5" 
+          radius-top="0.2" 
+          height="4" 
+          material="color: #88ccff; transparent: true; opacity: 0.6; metalness: 0.9; roughness: 0.1">
+        </a-cone>
+        <a-cone 
+          position="0 -2 0" 
+          radius-bottom="0.2" 
+          radius-top="1.5" 
+          height="4" 
+          material="color: #88ccff; transparent: true; opacity: 0.6; metalness: 0.9; roughness: 0.1">
+        </a-cone>
+      </a-entity>
+
+      <!-- Ambient Light -->
+      <a-light type="ambient" color="#445" intensity="0.5"></a-light>
+
+      <!-- Camera -->
+      <a-entity position="0 8 20">
+        <a-camera wasd-controls look-controls></a-camera>
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>
