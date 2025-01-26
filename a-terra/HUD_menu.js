@@ -82,13 +82,13 @@ AFRAME.registerComponent('generate-hud', {
     });
 
     let button4;
-    if (worldSeed!=1){
+    //if (worldSeed!=1){
     button4 = createButton('b4', '-1 -0.6 0', 'snow', (event) => {
       console.log('Button state:', event.detail.state);
       const en = document.querySelector('#klaus').components['snow-system'];
       en.data.snowing = event.detail.state;
     });
-    }
+    //}
 
     // Add buttons to panel.
     panel.appendChild(button1);
